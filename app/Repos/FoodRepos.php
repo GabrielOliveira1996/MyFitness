@@ -22,6 +22,7 @@ class FoodRepos implements IFoodRepos{
 
         $food = $this->_food->create([
             'name' => $data['name'],
+            'calories' => $data['calories'],
             'protein' => $data['protein'],
             'carbohydrate' => $data['carbohydrate'],
             'saturated_fat' => $data['saturated_fat'],

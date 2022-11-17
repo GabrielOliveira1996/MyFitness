@@ -20,6 +20,7 @@ class FoodTest extends DuskTestCase
                     ->assertPathIs('/home')
                     ->visit('/food/create')
                     ->type('name', 'food test')
+                    ->type('calories', '80')
                     ->type('protein', '1')
                     ->type('carbohydrate', '2')
                     ->type('saturated_fat', '3')

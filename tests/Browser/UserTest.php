@@ -27,10 +27,10 @@ class UserTest extends DuskTestCase
 
         $this->browse(function(Browser $browser){
             $browser->visit('/register')
-                    ->type('name', 'User Teste')
-                    ->type('email', 'userteste@hotmail.com')
-                    ->type('password', '123456781')
-                    ->type('password_confirmation', '123456781')
+                    ->type('name', 'Gabriel')
+                    ->type('email', 'gab-oliveira@hotmail.com')
+                    ->type('password', '123456789')
+                    ->type('password_confirmation', '123456789')
                     ->press('Register')
                     ->assertPathIs('/home');
         });

@@ -9,6 +9,7 @@ class Food extends Model
 {
     protected $fillable = [
         'name',
+        'calories',
         'protein',
         'carbohydrate',
         'saturated_fat',

@@ -34,9 +34,25 @@ class FoodController extends Controller
         
         $foodValidate = $this->_foodService->FoodValidate($data);
         
-        $createFood = $this->_foodRepos->createFoodRepos($data);
+        $foodCreation = $this->_foodRepos->createFoodRepos($data);
 
         return redirect()->route('home');
+
+    }
+
+    public function searchFoodView(){
+
+        return view('food.search');
+    }
+
+    public function searchFood(){
+
+        $data = $this->_request->all();
+
+        //$search = $this->_foodRepos->searchFoodRepos($data);
+        //Product::where([['bar_code', 'like', '%'.$barcode.'%']])->paginate(10);
+
+        return redirect()->route('food.search');
 
     }
 }

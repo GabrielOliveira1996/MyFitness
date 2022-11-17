@@ -28,19 +28,22 @@
                         <input type="text" name="name" class="form-control" placeholder="Nome">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="text" name="protein" class="form-control" placeholder="Proteína">
+                        <input type="number" name="calories" class="form-control" placeholder="Calorias">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="text" name="carbohydrate" class="form-control" placeholder="Carboidrato">
+                        <input type="number" name="protein" class="form-control" placeholder="Proteína">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="text" name="saturated_fat" class="form-control" placeholder="Gordura Saturada">
+                        <input type="number" name="carbohydrate" class="form-control" placeholder="Carboidrato">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="text" name="monounsaturated_fat" class="form-control" placeholder="Gordura Monoinsaturada">
+                        <input type="number" name="saturated_fat" class="form-control" placeholder="Gordura Saturada">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="text" name="polyunsaturated_fat" class="form-control" placeholder="Gordura Poli-insaturada">
+                        <input type="number" name="monounsaturated_fat" class="form-control" placeholder="Gordura Monoinsaturada">
+                    </div>
+                    <div class="col-lg-8 mt-2">
+                        <input type="number" name="polyunsaturated_fat" class="form-control" placeholder="Gordura Poli-insaturada">
                     </div>
 
                     <hr class="col-lg-8">

@@ -18,6 +18,7 @@ class FoodService{
 
         $rules = [
             'name' => 'required',
+            'calories' => 'required',
             'protein' => 'required',
             'carbohydrate' => 'required',
             'saturated_fat' => 'required',
@@ -27,6 +28,7 @@ class FoodService{
         
         $messages = [
             'name.required' => 'Digite o nome do alimento.',
+            'calories.required' => 'Digite a quantidade de calorias.',
             'protein.required' => 'Digite a quantidade de proteínas.',
             'carbohydrate.required' => 'Digite a quantidade de carboidratos.',
             'saturated_fat.required' => 'Digite a quantidade de de gordura saturada.',
