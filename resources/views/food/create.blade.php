@@ -52,7 +52,9 @@
                     <hr class="col-lg-8">
 
                     <div class="col-lg-8 mt-2">
-                        <button class="btn btn-primary col-lg-12">Adicionar</button>
+                        <button class="btn btn-primary col-lg-12">
+                            {{ __('Adicionar') }}
+                        </button>
                     </div>
                 </div>
             </form>

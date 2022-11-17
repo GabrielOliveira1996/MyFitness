@@ -12,11 +12,12 @@ return new class extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('protein');
-            $table->string('carbohydrate');
-            $table->string('saturated_fat');
-            $table->string('monounsaturated_fat');
-            $table->string('polyunsaturated_fat');
+            $table->integer('calories');
+            $table->integer('protein');
+            $table->integer('carbohydrate');
+            $table->integer('saturated_fat');
+            $table->integer('monounsaturated_fat');
+            $table->integer('polyunsaturated_fat');
             $table->timestamps();
         });
     }

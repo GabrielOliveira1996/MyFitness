@@ -34,8 +34,9 @@ class FoodController extends Controller
         
         $foodValidate = $this->_foodService->FoodValidate($data);
         
-        $this->_foodRepos->createFoodRepos($data);
+        $createFood = $this->_foodRepos->createFoodRepos($data);
 
         return redirect()->route('home');
+
     }
 }
