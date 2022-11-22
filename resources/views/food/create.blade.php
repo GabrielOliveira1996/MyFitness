@@ -28,22 +28,25 @@
                         <input type="text" name="name" class="form-control" placeholder="Nome">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="calories" class="form-control" placeholder="Calorias">
+                        <input type="number" name="quantity_grams" class="form-control" placeholder="Gramas" step="any">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="protein" class="form-control" placeholder="Proteína">
+                        <input type="number" name="calories" class="form-control" placeholder="Calorias" step="any">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="carbohydrate" class="form-control" placeholder="Carboidrato">
+                        <input type="number" name="carbohydrate" class="form-control" placeholder="Carboidrato" step="any">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="saturated_fat" class="form-control" placeholder="Gordura Saturada">
+                        <input type="number" name="protein" class="form-control" placeholder="Proteína" step="any">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="monounsaturated_fat" class="form-control" placeholder="Gordura Monoinsaturada">
+                        <input type="number" name="total_fat" class="form-control" placeholder="Gordura Total" step="any">
                     </div>
                     <div class="col-lg-8 mt-2">
-                        <input type="number" name="polyunsaturated_fat" class="form-control" placeholder="Gordura Poli-insaturada">
+                        <input type="number" name="saturated_fat" class="form-control" placeholder="Gordura Saturada" step="any">
+                    </div>
+                    <div class="col-lg-8 mt-2">
+                        <input type="number" name="trans_fat" class="form-control" placeholder="Gordura Trans" step="any">
                     </div>
 
                     <hr class="col-lg-8">
@@ -64,7 +67,5 @@
         </div>
     </div>
 </div>
-
-<script src="createViewPage.js"></script>
 
 @endsection

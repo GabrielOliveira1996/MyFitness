@@ -9,11 +9,12 @@ class Food extends Model
 {
     protected $fillable = [
         'name',
+        'quantity_grams',
         'calories',
-        'protein',
         'carbohydrate',
+        'protein',
+        'total_fat',
         'saturated_fat',
-        'monounsaturated_fat',
-        'polyunsaturated_fat'
+        'trans_fat'
     ];
 }

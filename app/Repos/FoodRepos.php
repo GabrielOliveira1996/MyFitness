@@ -18,16 +18,24 @@ class FoodRepos implements IFoodRepos{
 
     }
     
+    public function allFoodRepos(){
+
+        $foods = $this->_food->all();
+
+        return $foods;
+    }
+
     public function createFoodRepos($data){
 
         $food = $this->_food->create([
             'name' => $data['name'],
+            'quantity_grams' => $data['quantity_grams'],
             'calories' => $data['calories'],
-            'protein' => $data['protein'],
             'carbohydrate' => $data['carbohydrate'],
+            'protein' => $data['protein'],
+            'total_fat' => $data['total_fat'],
             'saturated_fat' => $data['saturated_fat'],
-            'monounsaturated_fat' => $data['monounsaturated_fat'],
-            'polyunsaturated_fat' => $data['polyunsaturated_fat']
+            'trans_fat' => $data['trans_fat']
         ]);
         
         return $food;

@@ -1,44 +1,52 @@
-var ctxP = document.getElementById("labelChart").getContext('2d');
-var myPieChart = new Chart(ctxP, {
-  plugins: [ChartDataLabels],
-  type: 'pie',
-  data: {
-    labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-    datasets: [{
-      data: [210, 130, 120, 160, 120],
-      backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-      hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-    }]
-  },
-  options: {
-    responsive: true,
-    legend: {
-      position: 'right',
-      labels: {
-        padding: 20,
-        boxWidth: 10
-      }
-    },
-    plugins: {
-      datalabels: {
-        formatter: (value, ctx) => {
-          let sum = 0;
-          let dataArr = ctx.chart.data.datasets[0].data;
-          dataArr.map(data => {
-            sum += data;
-          });
-          let percentage = (value * 100 / sum).toFixed(2) + "%";
-          return percentage;
-        },
-        color: 'white',
-        labels: {
-          title: {
-            font: {
-              size: '16'
-            }
-          }
-        }
-      }
-    }
-  }
-});
+function allFoods(){
+
+    axios
+        .get('http://localhost:8000/api/food/all')
+        .then((response) => {
+            const repos = response.data
+            //console.log(repos[0].quantity_grams);
+        });
+
+}
+
+let quantityGramsFix = document.getElementById('quantityGramsFixId');
+let quantityGrams = document.getElementById('quantityGramsId');
+
+let quantityCalorieFix = document.getElementById('quantityCalorieFixId');
+let quantityCalorie = document.getElementById('quantityCalorieId');
+
+let quantityCarbohydrateFix = document.getElementById('quantityCarbohydrateFixId');
+let quantityCarbohydrate = document.getElementById('quantityCarbohydrateId');
+
+let quantityProteinFix = document.getElementById('quantityProteinFixId');
+let quantityProtein = document.getElementById('quantityProteinId');
+
+let quantityTotalFatFix = document.getElementById('quantityTotalFatFixId');
+let quantityTotalFat = document.getElementById('quantityTotalFatId');
+
+let quantitySaturatedFatFix = document.getElementById('quantitySaturatedFatFixId');
+let quantitySaturatedFat = document.getElementById('quantitySaturatedFatId');
+
+let quantityTransFatFix = document.getElementById('quantityTransFatFixId');
+let quantityTransFat = document.getElementById('quantityTransFatId');
+
+quantityGrams.addEventListener("keyup", this.quantityGramsModify);
+
+function quantityGramsModify(){
+
+    let modifiedValueQuantityCalorie = (quantityGrams.value * quantityCalorieFix.value) / quantityGramsFix.value;
+    let modifiedValueQuantityCarbohydrate = (quantityGrams.value * quantityCarbohydrateFix.value) / quantityGramsFix.value;
+    let modifiedValueQuantityProtein = (quantityGrams.value * quantityProteinFix.value) / quantityGramsFix.value;
+    let modifiedValueQuantityTotalFat = (quantityGrams.value * quantityTotalFatFix.value) / quantityGramsFix.value;
+    let modifiedValueQuantitySaturatedFat = (quantityGrams.value * quantitySaturatedFatFix.value) / quantityGramsFix.value;
+    let modifiedValueQuantityTransFat = (quantityGrams.value * quantityTransFatFix.value) / quantityGramsFix.value;
+    
+    quantityCalorie.value = modifiedValueQuantityCalorie.toFixed(2);
+    quantityCarbohydrate.value = modifiedValueQuantityCarbohydrate.toFixed(2);
+    quantityProtein.value = modifiedValueQuantityProtein.toFixed(2);
+    quantityTotalFat.value = modifiedValueQuantityTotalFat.toFixed(2);
+    quantitySaturatedFat.value = modifiedValueQuantitySaturatedFat.toFixed(2);
+    quantityTransFat.value = modifiedValueQuantityTransFat.toFixed(2);
+
+}
+

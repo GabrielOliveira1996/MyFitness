@@ -18,22 +18,24 @@ class FoodService{
 
         $rules = [
             'name' => 'required',
+            'quantity_grams' => 'required',
             'calories' => 'required',
-            'protein' => 'required',
             'carbohydrate' => 'required',
+            'protein' => 'required',
+            'total_fat' => 'required',
             'saturated_fat' => 'required',
-            'monounsaturated_fat' => 'required',
-            'polyunsaturated_fat' => 'required'
+            'trans_fat' => 'required'
         ];
         
         $messages = [
             'name.required' => 'Digite o nome do alimento.',
+            'quantity_grams.required' => 'Digite a quantidade de quantidade de gramas.',
             'calories.required' => 'Digite a quantidade de calorias.',
-            'protein.required' => 'Digite a quantidade de proteínas.',
             'carbohydrate.required' => 'Digite a quantidade de carboidratos.',
+            'protein.required' => 'Digite a quantidade de proteínas.',
+            'total_fat.required' => 'Digite a quantidade de gordura total.',
             'saturated_fat.required' => 'Digite a quantidade de de gordura saturada.',
-            'monounsaturated_fat.required' => 'Digite a quantidade de gordura monoinsaturada.',
-            'polyunsaturated_fat.required' => 'Digite a quantidade de gordura poli-insaturada.'
+            'trans_fat.required' => 'Digite a quantidade de de gordura trans.'
         ];
 
         $validated = $this->_request->validate($rules, $messages);
