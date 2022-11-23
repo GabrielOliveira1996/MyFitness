@@ -25,8 +25,13 @@ class GoalsController extends Controller
 
         $foods = $this->_foodRepos->allFoodRepos();
         $goalFoods = $this->_goalRepos->goalFoodOfTheDay();
- 
-        return view('goals.myGoals', compact('goalFoods'));
+     
+        $calories = $goalFoods->sum('calories');
+        $carbohydrate = $goalFoods->sum('carbohydrate');
+        $protein = $goalFoods->sum('protein');
+        $totalFat = $goalFoods->sum('total_fat');
+
+        return view('goals.myGoals', compact('goalFoods', 'calories', 'carbohydrate', 'protein', 'totalFat'));
     }  
     
     public function addFoodToDayGoalView(){

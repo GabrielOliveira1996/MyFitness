@@ -25,6 +25,13 @@
             </div>
 
         </div>
+
+        <h5 class="text-center mt-5">Você ainda não tem metas estabelidas? Clique no botão abaixo e ajudaremos você a obter o melhor resultado para si.<h5>
+        
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-primary mt-3 col-sm-2" href="">Adicionar Alimentos</a>
+        </div>
+        
     </div>
 
     <hr class="mt-5">
@@ -38,13 +45,13 @@
             <div class="row justify-content-center mt-4">
                 <div class="col-md-8 d-flex justify-content-around">
 
-                    <label class="font-weight-bold">Calorias {{__('0')}}</label>
+                    <label class="font-weight-bold">Calorias {{__($calories)}}</label>
 
-                    <label class="font-weight-bold">Proteínas {{__('0')}}</label>
+                    <label class="font-weight-bold">Proteínas {{__($protein)}}</label>
 
-                    <label class="font-weight-bold">Carboidratos {{__('0')}}</label>
+                    <label class="font-weight-bold">Carboidratos {{__($carbohydrate)}}</label>
 
-                    <label class="font-weight-bold">Gorduras {{__('0')}}</label>
+                    <label class="font-weight-bold">Gorduras {{__($totalFat)}}</label>
 
                 </div>
             </div>
