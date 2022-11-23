@@ -30,11 +30,18 @@ class GoalsController extends Controller
         $goalFoods = $this->_goalRepos->goalFoodOfTheDayRepos();
         $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
         
-        //Metas estabelecidas pelo usuário.
-        $goalCalories = $settingGoal['basal_metabolic_rate'];
-        $goalCarbohydrate = $settingGoal['daily_protein'];
-        $goalProtein = $settingGoal['daily_carbohydrate'];
-        $goalTotalFat = $settingGoal['daily_fat'];
+        $goalCalories = 0;
+        $goalCarbohydrate = 0;
+        $goalProtein = 0;
+        $goalTotalFat = 0;
+
+        if($settingGoal){
+            //Metas estabelecidas pelo usuário.
+            $goalCalories = $settingGoal['basal_metabolic_rate'];
+            $goalCarbohydrate = $settingGoal['daily_carbohydrate'];
+            $goalProtein = $settingGoal['daily_protein'];
+            $goalTotalFat = $settingGoal['daily_fat'];
+        }
 
         //Resultados do dia.
         $todaysCalories = $goalFoods->sum('calories');
