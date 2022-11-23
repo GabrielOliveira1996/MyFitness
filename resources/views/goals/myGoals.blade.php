@@ -13,13 +13,25 @@
             <div class="row mt-4 justify-content-center">
                 <div class="col-md-8 d-flex justify-content-around">
 
-                    <label class="font-weight-bold">Calorias {{__('0')}}</label>
+                    <label class="font-weight-bold">
+                        Calorias 
+                        <input id="goalCaloriesId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalCalories)}}" disabled>
+                    </label>
 
-                    <label class="font-weight-bold">Proteínas {{__('0')}}</label>
+                    <label class="font-weight-bold">
+                        Carboidratos 
+                        <input id="goalProteinId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalProtein)}}" disabled>
+                    </label>
 
-                    <label class="font-weight-bold">Carboidratos {{__('0')}}</label>
+                    <label class="font-weight-bold">
+                        Proteínas 
+                        <input id="goalCarbohydrateId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalCarbohydrate)}}" disabled>
+                    </label>
 
-                    <label class="font-weight-bold">Gorduras {{__('0')}}</label>
+                    <label class="font-weight-bold">
+                        Gorduras 
+                        <input id="goalTotalFatId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalTotalFat)}}" disabled>
+                    </label>
 
                 </div>
             </div>
@@ -29,57 +41,70 @@
         <h5 class="text-center mt-5">Você ainda não tem metas estabelidas? Clique no botão abaixo e ajudaremos você a obter o melhor resultado para si.<h5>
         
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary mt-3 col-sm-2" href="">Adicionar Alimentos</a>
+            <a class="btn btn-primary mt-3 col-sm-3" href="{{ route('settingGoalsView') }}">ESTABELEÇA SUAS META</a>
         </div>
         
     </div>
 
-    <hr class="mt-5">
+    
+    <hr class="mt-5"> 
 
-    <div class="row d-flex justify-content-center mt-5">
 
-        <div class="col-md-12">
+    <div class="col-md-12">
 
-            <h3 class="text-center">Meta de hoje</h3>
+        <h3 class="text-center">Resultados do dia</h3>
 
-            <div class="row justify-content-center mt-4">
-                <div class="col-md-8 d-flex justify-content-around">
+        <h5 class="text-center mt-3">Até o momento esse foi a sua ingestão de nutrientes.</h5>
 
-                    <label class="font-weight-bold">Calorias {{__($calories)}}</label>
-
-                    <label class="font-weight-bold">Proteínas {{__($protein)}}</label>
-
-                    <label class="font-weight-bold">Carboidratos {{__($carbohydrate)}}</label>
-
-                    <label class="font-weight-bold">Gorduras {{__($totalFat)}}</label>
-
+        <div class="flex-row d-flex justify-content-center mt-4">
+            
+            <div class="d-flex flex-column">
+                <label class="d-flex flex-row">
+                    Calorias 
+                    <input id="todaysCaloriesId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysCalories)}}" disabled>
+                </label>
+                
+                <div class="progress col-lg-8">
+                    <div id="progressbarCalorieId" class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
 
+            <div class="d-flex flex-column">
+                <label class="d-flex flex-row">
+                    Carboidratos 
+                    <input id="todaysCarbohydrateId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysCarbohydrate)}}" disabled>
+                </label>
+                <div class="progress col-lg-8">
+                    <div id="progressbarCarbohydrateId" class="progress-bar bg-primary" role="progressbar" style="width: 5%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <label class="d-flex flex-row">
+                    Proteínas 
+                    <input id="todaysProteinId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysProtein)}}" disabled>
+                </label>
+                <div class="progress col-lg-8">
+                    <div id="progressbarProteinId" class="progress-bar bg-danger" role="progressbar" style="width: 5%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <label class="d-flex flex-row">
+                    Gorduras 
+                    <input id="todaysTotalFatId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysTotalFat)}}" disabled>
+                </label>
+                <div class="progress col-lg-8">
+                    <div id="progressbarFatId" class="progress-bar bg-warning" role="progressbar" style="width: 5%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+             
         </div>
+
     </div>
 
+
     <div class="row justify-content-center mt-2">
-
-        <div class="col-md-8 d-flex justify-content-around">
-
-            <div class="progress col-lg-2">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <div class="progress col-lg-2">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 5%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <div class="progress col-lg-2">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 5%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-            <div class="progress col-lg-2">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 5%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-
-        </div>
         
         <h3 class="text-center mt-5">Consumo de hoje</h3>
 
@@ -125,5 +150,7 @@
     <hr class="mt-5">
 
 </div>
+
+<script src="{{ asset('js/macroNutrientProgress.js') }}"></script>
 
 @endsection

@@ -24,7 +24,7 @@ class GoalRepos implements IGoalRepos{
         return $goalFoods;
     }
 
-    public function goalFoodOfTheDay(){
+    public function goalFoodOfTheDayRepos(){
         
         $currentDate = date('m/d/y');
 
@@ -52,5 +52,5 @@ class GoalRepos implements IGoalRepos{
         return $food;
 
     }
-
+    
 }

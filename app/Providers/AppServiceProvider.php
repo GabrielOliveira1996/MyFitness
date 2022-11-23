@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
     {
         App::bind('App\Contracts\IFoodRepos', 'App\Repos\FoodRepos');
         App::bind('App\Contracts\IGoalRepos', 'App\Repos\GoalRepos');
+        App::bind('App\Contracts\IBasalMetabolicRateRepos', 'App\Repos\BasalMetabolicRateRepos');
     }
 
     public function boot()
