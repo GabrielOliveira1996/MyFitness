@@ -63,7 +63,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('myGoalsView', ['userName' => Auth::user()->name])}}" role="button">
+                                <a class="nav-link" href="{{ route('myGoalsView') }}" role="button">
                                     {{ __('Minhas metas') }}
                                 </a>
                             </li>

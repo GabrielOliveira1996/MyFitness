@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    //
+    
     public function up()
     {
         Schema::create('goals', function (Blueprint $table) {
@@ -14,12 +14,15 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('user_name');
-            $table->integer('calories');
-            $table->integer('protein');
-            $table->integer('carbohydrate');
-            $table->integer('saturated_fat');
-            $table->integer('monounsaturated_fat');
-            $table->integer('polyunsaturated_fat');
+            $table->string('name');
+            $table->decimal('quantity_grams');
+            $table->decimal('calories');
+            $table->decimal('carbohydrate');
+            $table->decimal('protein');
+            $table->decimal('total_fat');
+            $table->decimal('saturated_fat');
+            $table->decimal('trans_fat');
+            $table->string('date');
             $table->timestamps();
         });
     }

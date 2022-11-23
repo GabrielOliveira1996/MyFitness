@@ -33,7 +33,7 @@
 
         <div class="col-md-12">
 
-            <h3 class="text-center">Metas do dia</h3>
+            <h3 class="text-center">Meta de hoje</h3>
 
             <div class="row justify-content-center mt-4">
                 <div class="col-md-8 d-flex justify-content-around">
@@ -73,18 +73,10 @@
             </div>
 
         </div>
+        
+        <h3 class="text-center mt-5">Consumo de hoje</h3>
 
-    </div>
-
-    <hr class="mt-5">
-
-    <div class="row">
-
-        <h3 class="text-center">Alimentos</h3>
-
-        <p class="text-center">Adicione alimentos para sua meta do dia.</p>
-
-        <table class="table">
+        <table class="table mt-3">
             <thead>
                 <tr>
                     <th scope="col">Nome</th>
@@ -95,31 +87,36 @@
                     <th scope="col">Gordura Total</th>
                     <th scope="col">Gordura Saturada</th>
                     <th scope="col">Gordura Trans</th>
-                    <th scope="col">Adicionar</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($foods as $key => $value)
-                <tr>
-                    <td>{{__($value->name)}}</th>
-                    <td><input id="quantityGramsId-{{__($key)}}" type="number" class="form-control" name="quantity_grams" value="{{__($value->quantity_grams)}}" step="any"></td>
-                    <td><input id="quantityCalorieId-{{__($key)}}" type="number" class="form-control border-0" name="quantity_calories" value="{{__($value->calories)}}" step="any" readonly></td>
-                    <td><input id="quantityCarbohydrateId-{{__($key)}}" type="number" class="form-control border-0" name="carbohydrate" value="{{__($value->carbohydrate)}}" step="any" readonly></td>
-                    <td><input id="quantityProteinId-{{__($key)}}" type="number" class="form-control border-0" name="protein" value="{{__($value->protein)}}" step="any" readonly></td>
-                    <td><input id="quantityTotalFatId-{{__($key)}}" type="number" class="form-control border-0" name="total_fat" value="{{__($value->total_fat)}}" step="any" readonly></td>
-                    <td><input id="quantitySaturatedFatId-{{__($key)}}" type="number" class="form-control border-0" name="saturated_fat" value="{{__($value->saturated_fat)}}" step="any" readonly></td>
-                    <td><input id="quantityTransFatId-{{__($key)}}" type="number" class="form-control border-0" name="trans_fat" value="{{__($value->trans_fat)}}" step="any" readonly></td>
-                    <td><a class="btn btn-primary" href="">Add</a></td>
-                </tr>
+                @foreach($goalFoods as $goalFood)
+                    <tr>
+                        <td><input type="text" class="form-control" name="name" value="{{__($goalFood->name)}}" step="any" readonly></th>
+                        <td><input type="number" class="form-control" name="quantity_grams" value="{{__($goalFood->quantity_grams)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="calories" value="{{__($goalFood->calories)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="carbohydrate" value="{{__($goalFood->carbohydrate)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="protein" value="{{__($goalFood->protein)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="total_fat" value="{{__($goalFood->total_fat)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="saturated_fat" value="{{__($goalFood->saturated_fat)}}" step="any" readonly></td>
+                        <td><input type="number" class="form-control border-0" name="trans_fat" value="{{__($goalFood->trans_fat)}}" step="any" readonly></td>                    
+                    </tr>
                 @endforeach
             </tbody>
         </table>
 
     </div>
 
-</div>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-primary mt-5" href="{{ route('addFoodToDayGoalView') }}">Adicionar Alimentos</a>
+    </div>
 
-<script src="{{ url('https://unpkg.com/axios/dist/axios.min.js') }}"></script>
-<script src="{{ asset('js/goals.js') }}"></script>
+    <div class="d-flex justify-content-center mt-5">
+        {{$goalFoods->links()}}
+    </div>
+
+    <hr class="mt-5">
+
+</div>
 
 @endsection

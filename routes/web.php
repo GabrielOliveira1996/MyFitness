@@ -16,6 +16,8 @@ Route::prefix('food')->group(function () {
     Route::post('/create', [App\Http\Controllers\FoodController::class, 'createFood'])->name('createFood');
 });
 
-Route::prefix('{userName}')->group(function () {
-    Route::get('/my-goals', [App\Http\Controllers\GoalsController::class, 'myGoalsView'])->name('myGoalsView');
+Route::prefix('goals')->group(function () {
+    Route::get('/list', [App\Http\Controllers\GoalsController::class, 'myGoalsView'])->name('myGoalsView');
+    Route::get('/add-food-to-day-goal', [App\Http\Controllers\GoalsController::class, 'addFoodToDayGoalView'])->name('addFoodToDayGoalView');
+    Route::post('/add-food-to-day-goal', [App\Http\Controllers\GoalsController::class, 'addFoodToDayGoal'])->name('addFoodToMyDayGoal');
 });

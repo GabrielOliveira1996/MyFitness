@@ -11,12 +11,15 @@ class Goal extends Model
     protected $fillable = [
         'user_id',
         'user_name',
+        'name',
+        'quantity_grams',
         'calories',
-        'protein',
         'carbohydrate',
+        'protein',
+        'total_fat',
         'saturated_fat',
-        'monounsaturated_fat',
-        'polyunsaturated_fat'
+        'trans_fat',
+        'date'
     ];
 
 }

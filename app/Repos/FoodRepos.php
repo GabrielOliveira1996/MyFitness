@@ -20,7 +20,7 @@ class FoodRepos implements IFoodRepos{
     
     public function allFoodRepos(){
 
-        $foods = $this->_food->all();
+        $foods = $this->_food->paginate(10);
 
         return $foods;
     }

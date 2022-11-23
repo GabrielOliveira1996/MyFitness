@@ -3,22 +3,53 @@
 namespace App\Repos;
 
 use Illuminate\Http\Request;
+use App\Contracts\IGoalRepos;
 use App\Models\Goal;
 
-class GoalRepos{
+class GoalRepos implements IGoalRepos{
 
     private $_request;
-    private $_goal;
+    private $_goalRepos;
 
-    public function __construct(Request $request, Goal $goal){
+    public function __construct(Request $request, Goal $goalRepos){
 
         $this->_request = $request;
-        $this->_goal = $goal;
+        $this->_goalRepos = $goalRepos;
     }
 
     public function allGoalRepos(){
 
-        $this->_goal->all();
+        $goalFoods = $this->_goalRepos->all();
+
+        return $goalFoods;
+    }
+
+    public function goalFoodOfTheDay(){
+        
+        $currentDate = date('m/d/y');
+
+        $goalFoods = $this->_goalRepos->where('date', $currentDate)->paginate(10);
+
+        return $goalFoods;
+    }
+    
+    public function addFoodToDayGoalRepos($data){
+
+        $food = $this->_goalRepos->create([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'name' => $data['name'],
+            'quantity_grams' => $data['quantity_grams'],
+            'calories' => $data['calories'],
+            'carbohydrate' => $data['carbohydrate'],
+            'protein' => $data['protein'],
+            'total_fat' => $data['total_fat'],
+            'saturated_fat' => $data['saturated_fat'],
+            'trans_fat' => $data['trans_fat'],
+            'date' => date('m/d/y')
+        ]);
+
+        return $food;
 
     }
 
