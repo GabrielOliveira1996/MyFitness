@@ -5,11 +5,11 @@
 <div class="container">
 
     <div class="row d-flex justify-content-center mt-5">
-        
+
         <div class="col-md-12">
-            
+
             <h3 class="text-center">Suas metas</h3>
-            
+
             <div class="row mt-4 justify-content-center">
                 <div class="col-md-8 d-flex justify-content-around">
 
@@ -23,18 +23,18 @@
 
                 </div>
             </div>
-            
+
         </div>
     </div>
 
     <hr class="mt-5">
 
     <div class="row d-flex justify-content-center mt-5">
-        
+
         <div class="col-md-12">
-            
+
             <h3 class="text-center">Metas do dia</h3>
-            
+
             <div class="row justify-content-center mt-4">
                 <div class="col-md-8 d-flex justify-content-around">
 
@@ -48,12 +48,12 @@
 
                 </div>
             </div>
-            
+
         </div>
     </div>
 
     <div class="row justify-content-center mt-2">
-            
+
         <div class="col-md-8 d-flex justify-content-around">
 
             <div class="progress col-lg-2">
@@ -99,25 +99,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($foods as $food)
+                @foreach($foods as $key => $value)
                 <tr>
-
-                    <input id="quantityGramsFixId" type="number" class="d-none" name="quantity_grams" value="{{__($food->quantity_grams)}}" step="any">
-                    <input id="quantityCalorieFixId" type="number" class="d-none" name="quantity_grams" value="{{__($food->calories)}}" step="any" readonly>
-                    <input id="quantityCarbohydrateFixId" type="number" class="d-none" name="carbohydrate" value="{{__($food->carbohydrate)}}" step="any" readonly>
-                    <input id="quantityProteinFixId" type="number" class="d-none" name="protein" value="{{__($food->protein)}}" step="any" readonly>
-                    <input id="quantityTotalFatFixId" type="number" class="d-none" name="total_fat" value="{{__($food->total_fat)}}" step="any" readonly>
-                    <input id="quantitySaturatedFatFixId" type="number" class="d-none" name="saturated_fat" value="{{__($food->saturated_fat)}}" step="any" readonly>
-                    <input id="quantityTransFatFixId" type="number" class="d-none" name="trans_fat" value="{{__($food->trans_fat)}}" step="any" readonly>
-
-                    <td>{{__($food->name)}}</th>
-                    <td><input id="quantityGramsId" type="number" class="form-control" name="quantity_grams" value="{{__($food->quantity_grams)}}" step="any"></td>
-                    <td><input id="quantityCalorieId" type="number" class="form-control border-0" name="quantity_calories" value="{{__($food->calories)}}" step="any" readonly></td>
-                    <td><input id="quantityCarbohydrateId" type="number" class="form-control border-0" name="carbohydrate" value="{{__($food->carbohydrate)}}" step="any" readonly></td>
-                    <td><input id="quantityProteinId" type="number" class="form-control border-0" name="protein" value="{{__($food->protein)}}" step="any" readonly></td>
-                    <td><input id="quantityTotalFatId" type="number" class="form-control border-0" name="total_fat" value="{{__($food->total_fat)}}" step="any" readonly></td>
-                    <td><input id="quantitySaturatedFatId" type="number" class="form-control border-0" name="saturated_fat" value="{{__($food->saturated_fat)}}" step="any" readonly></td>
-                    <td><input id="quantityTransFatId" type="number" class="form-control border-0" name="trans_fat" value="{{__($food->trans_fat)}}" step="any" readonly></td>
+                    <td>{{__($value->name)}}</th>
+                    <td><input id="quantityGramsId-{{__($key)}}" type="number" class="form-control" name="quantity_grams" value="{{__($value->quantity_grams)}}" step="any"></td>
+                    <td><input id="quantityCalorieId-{{__($key)}}" type="number" class="form-control border-0" name="quantity_calories" value="{{__($value->calories)}}" step="any" readonly></td>
+                    <td><input id="quantityCarbohydrateId-{{__($key)}}" type="number" class="form-control border-0" name="carbohydrate" value="{{__($value->carbohydrate)}}" step="any" readonly></td>
+                    <td><input id="quantityProteinId-{{__($key)}}" type="number" class="form-control border-0" name="protein" value="{{__($value->protein)}}" step="any" readonly></td>
+                    <td><input id="quantityTotalFatId-{{__($key)}}" type="number" class="form-control border-0" name="total_fat" value="{{__($value->total_fat)}}" step="any" readonly></td>
+                    <td><input id="quantitySaturatedFatId-{{__($key)}}" type="number" class="form-control border-0" name="saturated_fat" value="{{__($value->saturated_fat)}}" step="any" readonly></td>
+                    <td><input id="quantityTransFatId-{{__($key)}}" type="number" class="form-control border-0" name="trans_fat" value="{{__($value->trans_fat)}}" step="any" readonly></td>
                     <td><a class="btn btn-primary" href="">Add</a></td>
                 </tr>
                 @endforeach
