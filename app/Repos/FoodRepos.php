@@ -28,6 +28,8 @@ class FoodRepos implements IFoodRepos{
     public function createFoodRepos($data){
 
         $food = $this->_food->create([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
             'name' => $data['name'],
             'quantity_grams' => $data['quantity_grams'],
             'calories' => $data['calories'],
@@ -39,6 +41,13 @@ class FoodRepos implements IFoodRepos{
         ]);
         
         return $food;
+    }
+
+    public function userListFoodRepos(){
+
+        $userlistFood = $this->_food->where('user_id', auth()->user()->id)->get();
+
+        return $userlistFood;
     }
 
 }

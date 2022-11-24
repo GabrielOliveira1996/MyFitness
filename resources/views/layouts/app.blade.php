@@ -50,34 +50,35 @@
                             @endif
                         @else
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Olá, {{ Auth::user()->name }}
                                 </a>
+                                <div class="dropdown-menu">
+                                    <a class="nav-link mx-5">
+                                        {{ __('Menu') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('createFood') }}">
+                                        {{ __('Adicionar') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('userListFoodView') }}">
+                                        {{ __('Meus alimentos') }}
+                                    </a>
+                                </div>
                             </li>
 
+                            <!-- Separador -->
+
                             <li class="nav-item">
-                                <p class="nav-link">
+                                <a class="nav-link">
                                     |
-                                </p>
+                                </a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('myGoalsView') }}" role="button">
                                     {{ __('Minhas metas') }}
                                 </a>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('Alimentos') }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('createFood') }}">
-                                        {{ __('Adicionar') }}
-                                    </a>
-                                </div>
                             </li>
 
                             <li class="nav-item">

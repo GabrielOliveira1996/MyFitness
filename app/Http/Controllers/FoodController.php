@@ -40,6 +40,15 @@ class FoodController extends Controller
 
     }
 
+    public function userListFoodView(){
+
+        $userlistFood = $this->_foodRepos->userListFoodRepos();
+
+        return view('food.userList', compact('userlistFood'));
+
+    }
+
+
     public function searchFoodView(){
 
         return view('food.search');

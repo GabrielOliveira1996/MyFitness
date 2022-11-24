@@ -26,14 +26,17 @@ class GoalRepos implements IGoalRepos{
 
     public function goalFoodOfTheDayRepos(){
         
+        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
         $currentDate = date('m/d/y');
 
-        $goalFoods = $this->_goalRepos->where('date', $currentDate)->paginate(10);
+        $goalFoods = $this->_goalRepos->where('date', $currentDate)->where('user_id', auth()->user()->id)->paginate(10);
 
         return $goalFoods;
     }
     
     public function addFoodToDayGoalRepos($data){
+
+        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
 
         $food = $this->_goalRepos->create([
             'user_id' => auth()->user()->id,
@@ -51,6 +54,14 @@ class GoalRepos implements IGoalRepos{
 
         return $food;
 
+    }
+
+    public function deleteGoalFoodRepos($id){
+
+        $deleteFoodGoal = $this->_goalRepos->delete($id);
+
+        return $deleteFoodGoal;
+        
     }
     
 }

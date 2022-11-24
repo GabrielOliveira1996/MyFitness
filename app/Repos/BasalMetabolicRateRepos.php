@@ -28,10 +28,10 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
     public function settingBasalMetabolicRateRepos($data){
 
         $dataExists = $this->_basalMetabolicRepos->where('user_id', auth()->user()->id)->first();
-
+        
         if($dataExists){
 
-            $settingBasalMetabolic = $this->_basalMetabolicRepos->update([
+            $settingBasalMetabolic = $dataExists->update([
                 'user_id' => auth()->user()->id,
                 'user_name' => auth()->user()->name,
                 'gender' => $data['gender'],

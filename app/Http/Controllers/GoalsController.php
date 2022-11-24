@@ -92,4 +92,12 @@ class GoalsController extends Controller
         return redirect()->route('myGoalsView');
     }
 
+    public function deleteGoalFood(){
+
+        $deleteFoodGoal = $this->_goalRepos->deleteGoalFoodRepos($id);
+
+        return redirect()->route('deleteGoalFood');
+        
+    }
+
 }
