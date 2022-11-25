@@ -1,5 +1,6 @@
 
-
+// Exemplo de utilização do axios.
+/*
 function allFoods(){
 
     axios
@@ -10,6 +11,8 @@ function allFoods(){
         });
 
 }
+*/
+
 
 const elements = document.querySelectorAll('[name="quantity_grams"]');
 const perGrams = [];

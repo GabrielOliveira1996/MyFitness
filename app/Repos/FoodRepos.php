@@ -43,9 +43,43 @@ class FoodRepos implements IFoodRepos{
         return $food;
     }
 
+    public function findFoodRepos($id){
+
+        $food = $this->_food->find($id);
+        
+        return $food;
+    }
+
+    public function updateFoodRepos($id){
+
+        $data = $this->_request->all();
+
+        $food = $this->_food->where('id', $id)->update([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'name' => $data['name'],
+            'quantity_grams' => $data['quantity_grams'],
+            'calories' => $data['calories'],
+            'carbohydrate' => $data['carbohydrate'],
+            'protein' => $data['protein'],
+            'total_fat' => $data['total_fat'],
+            'saturated_fat' => $data['saturated_fat'],
+            'trans_fat' => $data['trans_fat']
+        ]);
+        
+        return $food;
+    }
+
+    public function deleteFoodRepos($id){
+
+        $food = $this->_food->find($id)->delete();
+        
+        return $food;
+    }
+
     public function userListFoodRepos(){
 
-        $userlistFood = $this->_food->where('user_id', auth()->user()->id)->get();
+        $userlistFood = $this->_food->where('user_id', auth()->user()->id)->paginate(10);
 
         return $userlistFood;
     }

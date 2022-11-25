@@ -56,6 +56,33 @@ class GoalRepos implements IGoalRepos{
 
     }
 
+    public function findFoodRepos($id){
+
+        $food = $this->_goalRepos->find($id);
+        
+        return $food;
+    }
+
+    public function updateFoodToDayGoalRepos($id){
+
+        $data = $this->_request->all();
+
+        $food = $this->_goalRepos->where('id', $id)->update([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'name' => $data['name'],
+            'quantity_grams' => $data['quantity_grams'],
+            'calories' => $data['calories'],
+            'carbohydrate' => $data['carbohydrate'],
+            'protein' => $data['protein'],
+            'total_fat' => $data['total_fat'],
+            'saturated_fat' => $data['saturated_fat'],
+            'trans_fat' => $data['trans_fat']
+        ]);
+
+        return $food;
+    }
+
     public function deleteGoalFoodRepos($id){
 
         $deleteFoodGoal = $this->_goalRepos->delete($id);

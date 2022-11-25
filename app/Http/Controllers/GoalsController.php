@@ -68,6 +68,29 @@ class GoalsController extends Controller
         return view('goals.addFoodToGoal', compact('foods'));
     }
 
+    public function addFoodToDayGoal(){
+        
+        $data = $this->_request->all();
+
+        $food = $this->_goalRepos->addFoodToDayGoalRepos($data);
+
+        return redirect()->route('myGoalsView');
+    }
+
+    public function updateFoodToDayGoalView($id){
+
+        $food = $this->_foodRepos->findFoodRepos($id);
+ 
+        return view('goals.updateFoodToGoal', compact('food'));
+    }
+    
+    public function updateFoodToDayGoal($id){
+
+        $food = $this->_goalRepos->updateFoodToDayGoalRepos($id);
+
+        return redirect()->route('myGoalsView');
+    }
+    
     //Página de cálculo Taxa de Metabolismo Basal (TMB).
     public function settingGoalsView(){
 
@@ -81,15 +104,6 @@ class GoalsController extends Controller
         $settingGoal = $this->_basalMetabolicRateRepos->settingBasalMetabolicRateRepos($data);
 
         return view('goals.settingGoals');
-    }
-
-    public function addFoodToDayGoal(){
-        
-        $data = $this->_request->all();
-
-        $food = $this->_goalRepos->addFoodToDayGoalRepos($data);
-
-        return redirect()->route('myGoalsView');
     }
 
     public function deleteGoalFood(){

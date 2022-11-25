@@ -31,13 +31,10 @@ class FoodController extends Controller
     public function createFood(){
         
         $data = $this->_request->all();
-        
         $foodValidate = $this->_foodService->FoodValidate($data);
-        
         $foodCreation = $this->_foodRepos->createFoodRepos($data);
 
-        return redirect()->route('home');
-
+        return redirect()->route('createFoodView');
     }
 
     public function userListFoodView(){
@@ -45,10 +42,32 @@ class FoodController extends Controller
         $userlistFood = $this->_foodRepos->userListFoodRepos();
 
         return view('food.userList', compact('userlistFood'));
-
     }
 
+    public function updateFoodView($id){
+        
+        $food = $this->_foodRepos->findFoodRepos($id);
+        
+        return view('food.edit', compact('food'));
+    }
 
+    public function updateFood($id){
+
+        $userlistFood = $this->_foodRepos->userListFoodRepos();
+        $food = $this->_foodRepos->updateFoodRepos($id);
+        
+        return redirect()->route('userListFoodView', compact('userlistFood'));
+    }
+    
+    public function deleteFood($id){
+
+        $userlistFood = $this->_foodRepos->userListFoodRepos();
+        $food = $this->_foodRepos->deleteFoodRepos($id);
+        
+        return redirect()->route('userListFoodView', compact('userlistFood'));
+    }
+
+    //Funções não utilizadas até o momento.
     public function searchFoodView(){
 
         return view('food.search');
@@ -62,6 +81,5 @@ class FoodController extends Controller
         //Product::where([['bar_code', 'like', '%'.$barcode.'%']])->paginate(10);
 
         return redirect()->route('food.search');
-
     }
 }
