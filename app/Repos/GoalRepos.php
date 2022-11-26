@@ -85,7 +85,7 @@ class GoalRepos implements IGoalRepos{
 
     public function deleteGoalFoodRepos($id){
 
-        $deleteFoodGoal = $this->_goalRepos->delete($id);
+        $deleteFoodGoal = $this->_goalRepos->where('id', $id)->delete();
 
         return $deleteFoodGoal;
         

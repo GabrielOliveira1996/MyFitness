@@ -41,7 +41,7 @@
         <h5 class="text-center mt-5">Você ainda não tem metas estabelidas? Clique no botão abaixo e ajudaremos você a obter o melhor resultado para si.<h5>
         
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary mt-3 col-sm-3" href="{{ route('settingGoalsView') }}">ESTABELEÇA SUAS META</a>
+            <a class="btn btn-primary mt-3 col-sm-3" href="{{ route('settingGoalView') }}">ESTABELEÇA SUAS META</a>
         </div>
         
     </div>

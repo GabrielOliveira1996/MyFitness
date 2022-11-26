@@ -23,11 +23,33 @@ class FoodController extends Controller
 
     }
 
+    //Views.
     public function createFoodView(){
 
         return view('food.create');
     }  
 
+    public function allFoodsView(){
+
+        $userFoods = $this->_foodRepos->allFoodsRepos();
+
+        return view('food.all', compact('userFoods'));
+    }
+
+    public function updateFoodView($id){
+        
+        $food = $this->_foodRepos->findFoodRepos($id);
+        
+        return view('food.update', compact('food'));
+    }
+    //View não utilizada até o momento.
+    public function searchFoodView(){
+
+        return view('food.search');
+    }
+
+
+    //Funções.
     public function createFood(){
         
         $data = $this->_request->all();
@@ -37,42 +59,23 @@ class FoodController extends Controller
         return redirect()->route('createFoodView');
     }
 
-    public function userListFoodView(){
-
-        $userlistFood = $this->_foodRepos->userListFoodRepos();
-
-        return view('food.userList', compact('userlistFood'));
-    }
-
-    public function updateFoodView($id){
-        
-        $food = $this->_foodRepos->findFoodRepos($id);
-        
-        return view('food.edit', compact('food'));
-    }
-
     public function updateFood($id){
 
-        $userlistFood = $this->_foodRepos->userListFoodRepos();
+        $userFoods = $this->_foodRepos->allFoodsRepos();
         $food = $this->_foodRepos->updateFoodRepos($id);
         
-        return redirect()->route('userListFoodView', compact('userlistFood'));
+        return redirect()->route('allFoodsView', compact('userFoods'));
     }
     
     public function deleteFood($id){
 
-        $userlistFood = $this->_foodRepos->userListFoodRepos();
+        $userFoods = $this->_foodRepos->allFoodsRepos();
         $food = $this->_foodRepos->deleteFoodRepos($id);
         
-        return redirect()->route('userListFoodView', compact('userlistFood'));
+        return redirect()->route('allFoodsView', compact('userFoods'));
     }
 
-    //Funções não utilizadas até o momento.
-    public function searchFoodView(){
-
-        return view('food.search');
-    }
-
+    //Função não utilizadas até o momento.
     public function searchFood(){
 
         $data = $this->_request->all();

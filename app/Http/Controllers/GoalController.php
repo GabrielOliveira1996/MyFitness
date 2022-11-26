@@ -7,7 +7,7 @@ use App\Contracts\IFoodRepos;
 use App\Contracts\IGoalRepos;
 use App\Contracts\IBasalMetabolicRateRepos;
 
-class GoalsController extends Controller
+class GoalController extends Controller
 {
     
     private $_request;
@@ -24,9 +24,10 @@ class GoalsController extends Controller
         $this->_basalMetabolicRateRepos = $basalMetabolicRateRepos;
     }
 
-    public function myGoalsView(){
+    //Views.
+    public function goalView(){
 
-        $foods = $this->_foodRepos->allFoodRepos();
+        $foods = $this->_foodRepos->allFoodsRepos();
         $goalFoods = $this->_goalRepos->goalFoodOfTheDayRepos();
         $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
         
@@ -49,7 +50,7 @@ class GoalsController extends Controller
         $todaysProtein = $goalFoods->sum('protein');
         $todaysTotalFat = $goalFoods->sum('total_fat');
 
-        return view('goals.myGoals', compact('goalFoods', 
+        return view('goal.goal', compact('goalFoods', 
                                             'todaysCalories', 
                                             'todaysCarbohydrate', 
                                             'todaysProtein', 
@@ -63,54 +64,56 @@ class GoalsController extends Controller
     
     public function addFoodToDayGoalView(){
 
-        $foods = $this->_foodRepos->allFoodRepos();
+        $foods = $this->_foodRepos->allFoodsRepos();
  
-        return view('goals.addFoodToGoal', compact('foods'));
-    }
-
-    public function addFoodToDayGoal(){
-        
-        $data = $this->_request->all();
-
-        $food = $this->_goalRepos->addFoodToDayGoalRepos($data);
-
-        return redirect()->route('myGoalsView');
+        return view('goal.addFoodToGoal', compact('foods'));
     }
 
     public function updateFoodToDayGoalView($id){
 
         $food = $this->_foodRepos->findFoodRepos($id);
  
-        return view('goals.updateFoodToGoal', compact('food'));
+        return view('goal.updateFoodToGoal', compact('food'));
+    }
+    
+    //Página de cálculo Taxa de Metabolismo Basal (TMB).
+    public function settingGoalView(){
+
+        return view('goal.settingGoal');
+    }
+
+
+    //Funções.
+    public function addFoodToDayGoal(){
+        
+        $data = $this->_request->all();
+
+        $food = $this->_goalRepos->addFoodToDayGoalRepos($data);
+
+        return redirect()->route('goalView');
     }
     
     public function updateFoodToDayGoal($id){
 
         $food = $this->_goalRepos->updateFoodToDayGoalRepos($id);
 
-        return redirect()->route('myGoalsView');
-    }
-    
-    //Página de cálculo Taxa de Metabolismo Basal (TMB).
-    public function settingGoalsView(){
-
-        return view('goals.settingGoals');
+        return redirect()->route('goalView');
     }
 
-    public function settingGoals(){
+    public function settingGoal(){
 
         $data = $this->_request->all();
         
         $settingGoal = $this->_basalMetabolicRateRepos->settingBasalMetabolicRateRepos($data);
 
-        return view('goals.settingGoals');
+        return view('goal.settingGoal');
     }
 
-    public function deleteGoalFood(){
+    public function deleteGoalFood($id){
 
         $deleteFoodGoal = $this->_goalRepos->deleteGoalFoodRepos($id);
 
-        return redirect()->route('deleteGoalFood');
+        return redirect()->route('goalView');
         
     }
 

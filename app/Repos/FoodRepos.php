@@ -17,13 +17,6 @@ class FoodRepos implements IFoodRepos{
         $this->_food = $food;
 
     }
-    
-    public function allFoodRepos(){
-
-        $foods = $this->_food->paginate(10);
-
-        return $foods;
-    }
 
     public function createFoodRepos($data){
 
@@ -77,11 +70,11 @@ class FoodRepos implements IFoodRepos{
         return $food;
     }
 
-    public function userListFoodRepos(){
+    public function allFoodsRepos(){
 
-        $userlistFood = $this->_food->where('user_id', auth()->user()->id)->paginate(10);
+        $allFoods = $this->_food->paginate(10);
 
-        return $userlistFood;
+        return $allFoods;
     }
 
 }

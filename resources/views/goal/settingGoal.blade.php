@@ -20,7 +20,7 @@
         <div class="row mt-3 d-flex justify-content-center">
             
             <div class="col-sm-2">
-                {{__('Sexo')}}
+                <label>{{__('Sexo')}}</label>
                 <select id="genderId" name="gender" class="form-control mt-1">
                     <option value="masculine">Masculino</option>
                     <option value="feminine">Feminino</option>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-sm-2">
-                <label>Idade</label>
+                <label>{{__('Idade')}}</label>
 
                 <div class="input-group mt-1">
                     <input id="ageId" type="number" name="age" class="form-control" aria-describedby="addon-age" placeholder="Idade">
@@ -43,7 +43,7 @@
 
         <div class="row mt-3 d-flex justify-content-center">
             <div class="col-sm-2">
-                <label>Peso</label>
+                <label>{{__('Peso')}}</label>
 
                 <div class="input-group mt-1">
                     <input id="weightId" type="number" name="weight" class="form-control" aria-describedby="addon-weight" placeholder="Peso" step="any">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="col-sm-2">
-                <label>Estatura</label>
+                <label>{{__('Estatura')}}</label>
 
                 <div class="input-group mt-1">
                     <input id="statureId" type="number" name="stature" class="form-control" aria-describedby="addon-stature" placeholder="Estatura" step="any">
@@ -68,7 +68,7 @@
 
         <div class="row mt-3 d-flex justify-content-center">
             <div class="col-sm-4">
-                <label>Atividade Diária</label>
+                <label>{{__('Atividade Diária')}}</label>
                 <select id="activityRateFactorId" name="activity_rate_factor" class="form-control mt-1">
                     <option value="1.2">Sedentário</option>
                     <option value="1.375">Levemente ativo</option>
@@ -86,7 +86,7 @@
                 <div class="input-group mt-1">
                     <input id="basalMetabolicRateId" type="number" name="basal_metabolic_rate" class="form-control" aria-describedby="addon-result" placeholder="Calorias" step="any">
                     <div class="input-group-append">
-                        <span class="input-group-text" id="addon-result">Calorias</span>
+                        <span class="input-group-text" id="addon-result">{{__('Calorias')}}</span>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="input-group mt-1">
                     <input id="dailyCarbohydrateId" type="number" name="daily_carbohydrate" class="form-control" aria-describedby="addon-result" placeholder="Carboidratos" step="any">
                     <div class="input-group-append">
-                        <span class="input-group-text" id="addon-result">Carboidratos</span>
+                        <span class="input-group-text" id="addon-result">{{__('Carboidratos')}}</span>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                 <div class="input-group mt-1">
                     <input id="dailyProteinId" type="number" name="daily_protein" class="form-control" aria-describedby="addon-result" placeholder="Proteínas" step="any">
                     <div class="input-group-append">
-                        <span class="input-group-text" id="addon-result">Proteínas</span>
+                        <span class="input-group-text" id="addon-result">{{__('Proteínas')}}</span>
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 <div class="input-group mt-1">
                     <input id="dailyFatId" type="number" name="daily_fat" class="form-control" aria-describedby="addon-result" placeholder="Gorduras" step="any">
                     <div class="input-group-append">
-                        <span class="input-group-text" id="addon-result">Gorduras</span>
+                        <span class="input-group-text" id="addon-result">{{__('Gorduras')}}</span>
                     </div>
                 </div>
             </div>
@@ -139,15 +139,16 @@
         </div>
 
         <div class="mt-3 d-flex justify-content-center">
-            <a id="showResultId" class="btn btn-primary col-sm-2 m-2">Calcular</a>
-            <button class="btn btn-primary col-sm-2 m-2">Finalizar</button>
+            <a id="showResultId" class="btn btn-primary text-white col-sm-2 m-2">{{__('Calcular')}}</a>
+            <button class="btn btn-primary col-sm-2 m-2">{{__('Finalizar')}}</button>
         </div>
         
     </form>
 
     <hr class="mt-5">
 
-    <script src="{{asset('js/tmb.js')}}"></script>
-
 </div>
+
+<script src="{{asset('js/tmb.js')}}"></script>
+
 @endsection

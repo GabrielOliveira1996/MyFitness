@@ -67,7 +67,7 @@
                                     <a class="dropdown-item" href="{{ route('createFood') }}">
                                         {{ __('Adicionar') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('userListFoodView') }}">
+                                    <a class="dropdown-item" href="{{ route('allFoodsView') }}">
                                         {{ __('Meus alimentos') }}
                                     </a>
                                 </div>
@@ -82,7 +82,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('myGoalsView') }}" role="button">
+                                <a class="nav-link" href="{{ route('goalView') }}" role="button">
                                     {{ __('Minhas metas') }}
                                 </a>
                             </li>

@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($userlistFood as $value)
+                @foreach($userFoods as $value)
                     <tr>
                         <td><input type="text" class="form-control border-0" style="background-color:white;" name="name" value="{{__($value->name)}}" step="any" disabled></th>
                         <td><input type="number" class="form-control border-0" style="background-color:white;" name="quantity_grams" value="{{__($value->quantity_grams)}}" step="any" disabled></td>
@@ -56,7 +56,7 @@
         </table>
 
         <div class="d-flex justify-content-center mt-5">
-            {{$userlistFood->links()}}
+            {{$userFoods->links()}}
         </div>
 
     </div>
