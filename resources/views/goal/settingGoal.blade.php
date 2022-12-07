@@ -32,7 +32,7 @@
                 <label>{{__('Idade')}}</label>
 
                 <div class="input-group mt-1">
-                    <input id="ageId" type="number" name="age" class="form-control" aria-describedby="addon-age" placeholder="Idade">
+                    <input id="ageId" type="number" value="{{ if($settingGoal->age){echo $settingGoal->age}else{echo ''} }}" name="age" class="form-control" aria-describedby="addon-age" placeholder="Idade">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-age">Anos</span>
                     </div>
@@ -46,7 +46,7 @@
                 <label>{{__('Peso')}}</label>
 
                 <div class="input-group mt-1">
-                    <input id="weightId" type="number" name="weight" class="form-control" aria-describedby="addon-weight" placeholder="Peso" step="any">
+                    <input id="weightId" type="number" value="{{ $settingGoal->weight }}" name="weight" class="form-control" aria-describedby="addon-weight" placeholder="Peso" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-weight">Kg</span>
                     </div>
@@ -57,7 +57,7 @@
                 <label>{{__('Estatura')}}</label>
 
                 <div class="input-group mt-1">
-                    <input id="statureId" type="number" name="stature" class="form-control" aria-describedby="addon-stature" placeholder="Estatura" step="any">
+                    <input id="statureId" type="number" value="{{ $settingGoal->stature }}" name="stature" class="form-control" aria-describedby="addon-stature" placeholder="Estatura" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-stature">cm</span>
                     </div>
@@ -84,7 +84,7 @@
             <div class="col-sm-4">
 
                 <div class="input-group mt-1">
-                    <input id="basalMetabolicRateId" type="number" name="basal_metabolic_rate" class="form-control" aria-describedby="addon-result" placeholder="Calorias" step="any">
+                    <input id="basalMetabolicRateId" value="{{ $settingGoal->basal_metabolic_rate }}" type="number" name="basal_metabolic_rate" class="form-control" aria-describedby="addon-result" placeholder="Calorias" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-result">{{__('Calorias')}}</span>
                     </div>
@@ -97,7 +97,7 @@
             <div class="col-sm-4">
 
                 <div class="input-group mt-1">
-                    <input id="dailyCarbohydrateId" type="number" name="daily_carbohydrate" class="form-control" aria-describedby="addon-result" placeholder="Carboidratos" step="any">
+                    <input id="dailyCarbohydrateId" value="{{ $settingGoal->daily_carbohydrate }}" type="number" name="daily_carbohydrate" class="form-control" aria-describedby="addon-result" placeholder="Carboidratos" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-result">{{__('Carboidratos')}}</span>
                     </div>
@@ -110,7 +110,7 @@
             <div class="col-sm-4">
 
                 <div class="input-group mt-1">
-                    <input id="dailyProteinId" type="number" name="daily_protein" class="form-control" aria-describedby="addon-result" placeholder="Proteínas" step="any">
+                    <input id="dailyProteinId" value="{{ $settingGoal->daily_protein }}" type="number" name="daily_protein" class="form-control" aria-describedby="addon-result" placeholder="Proteínas" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-result">{{__('Proteínas')}}</span>
                     </div>
@@ -123,7 +123,7 @@
             <div class="col-sm-4">
 
                 <div class="input-group mt-1">
-                    <input id="dailyFatId" type="number" name="daily_fat" class="form-control" aria-describedby="addon-result" placeholder="Gorduras" step="any">
+                    <input id="dailyFatId" value="{{ $settingGoal->daily_fat }}" type="number" name="daily_fat" class="form-control" aria-describedby="addon-result" placeholder="Gorduras" step="any">
                     <div class="input-group-append">
                         <span class="input-group-text" id="addon-result">{{__('Gorduras')}}</span>
                     </div>

@@ -53,7 +53,6 @@ class GoalRepos implements IGoalRepos{
         ]);
 
         return $food;
-
     }
 
     public function findFoodRepos($id){
@@ -88,7 +87,6 @@ class GoalRepos implements IGoalRepos{
         $deleteFoodGoal = $this->_goalRepos->where('id', $id)->delete();
 
         return $deleteFoodGoal;
-        
     }
     
 }

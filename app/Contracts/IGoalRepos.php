@@ -10,5 +10,4 @@ interface IGoalRepos {
     public function deleteGoalFoodRepos($id);
     public function findFoodRepos($id);
     public function updateFoodToDayGoalRepos($id);
-
 }

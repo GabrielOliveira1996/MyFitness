@@ -79,7 +79,9 @@ class GoalController extends Controller
     //Página de cálculo Taxa de Metabolismo Basal (TMB).
     public function settingGoalView(){
 
-        return view('goal.settingGoal');
+        $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
+
+        return view('goal.settingGoal', compact('settingGoal'));
     }
 
 

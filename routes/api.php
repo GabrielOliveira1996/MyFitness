@@ -8,6 +8,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', [App\Http\Controllers\Api\UserControllerAPI::class, 'login']);
+Route::post('/register', [App\Http\Controllers\Api\UserControllerAPI::class, 'register']);
+
 Route::prefix('food')->group(function () {
-    Route::get('/all', [App\Http\Controllers\Api\FoodControllerAPI::class, 'allFood'])->name('allFood');
+    Route::get('/all', [App\Http\Controllers\Api\FoodControllerAPI::class, 'allFoods']);
 });

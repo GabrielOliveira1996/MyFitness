@@ -17,17 +17,18 @@ class FoodControllerAPI extends Controller
 
     public function __construct(Request $request, FoodService $foodService, IFoodRepos $foodRepos){
 
+        $this->middleware('auth:sanctum');
         $this->_request = $request;
         $this->_foodService = $foodService;
         $this->_foodRepos = $foodRepos;
 
     }
 
-    public function allFood(){
+    public function allFoods(){
 
-        $foods = $this->_foodRepos->allFoodRepos();
+        $foods = $this->_foodRepos->allFoodsRepos();
 
-        return $foods;
+        return response()->json($foods);
     }
 
 

@@ -14,12 +14,12 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
     public function __construct(Request $request, BasalMetabolicRate $basalMetabolicRateRepos){
 
         $this->_request = $request;
-        $this->_basalMetabolicRepos = $basalMetabolicRateRepos;
+        $this->_basalMetabolicRateRepos = $basalMetabolicRateRepos;
     }
 
     public function findUserBasalMetabolicRateRepos(){
 
-        $userBasalMetabolicRateRepos = $this->_basalMetabolicRepos->where('user_id', auth()->user()->id)->first();
+        $userBasalMetabolicRateRepos = $this->_basalMetabolicRateRepos->where('user_id', auth()->user()->id)->first();
 
         return $userBasalMetabolicRateRepos;
 
@@ -27,7 +27,7 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
     
     public function settingBasalMetabolicRateRepos($data){
 
-        $dataExists = $this->_basalMetabolicRepos->where('user_id', auth()->user()->id)->first();
+        $dataExists = $this->_basalMetabolicRateRepos->where('user_id', auth()->user()->id)->first();
         
         if($dataExists){
 
@@ -48,7 +48,7 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
             return $settingBasalMetabolic;
         }
 
-        $settingBasalMetabolic = $this->_basalMetabolicRepos->create([
+        $settingBasalMetabolic = $this->_basalMetabolicRateRepos->create([
             'user_id' => auth()->user()->id,
             'user_name' => auth()->user()->name,
             'gender' => $data['gender'],
