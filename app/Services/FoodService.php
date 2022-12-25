@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FoodService{
 
@@ -38,9 +39,12 @@ class FoodService{
             'trans_fat.required' => 'Digite a quantidade de de gordura trans.'
         ];
 
-        $validated = $this->_request->validate($rules, $messages);
+        $validator = Validator::make($this->_request->all(), $rules, $messages);
 
-        return $validated;
+        if ($validator->fails()){
+            
+            return $validator->messages();
+        }
     }
 
 }

@@ -13,4 +13,5 @@ Route::post('/register', [App\Http\Controllers\Api\UserControllerAPI::class, 're
 
 Route::prefix('food')->group(function () {
     Route::get('/all', [App\Http\Controllers\Api\FoodControllerAPI::class, 'allFoods']);
+    Route::post('/create', [App\Http\Controllers\Api\FoodControllerAPI::class, 'createFood']);
 });

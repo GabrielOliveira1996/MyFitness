@@ -18,11 +18,11 @@ class FoodRepos implements IFoodRepos{
 
     }
 
-    public function createFoodRepos($data){
+    public function createFoodRepos($user, $data){
 
         $food = $this->_food->create([
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
+            'user_id' => $user->id,
+            'user_name' => $user->name,
             'name' => $data['name'],
             'quantity_grams' => $data['quantity_grams'],
             'calories' => $data['calories'],

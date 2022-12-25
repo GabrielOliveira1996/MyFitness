@@ -53,8 +53,9 @@ class FoodController extends Controller
     public function createFood(){
         
         $data = $this->_request->all();
+        $user = auth()->user();
         $foodValidate = $this->_foodService->FoodValidate($data);
-        $foodCreation = $this->_foodRepos->createFoodRepos($data);
+        $foodCreation = $this->_foodRepos->createFoodRepos($user, $data);
 
         return redirect()->route('createFoodView');
     }
@@ -75,7 +76,7 @@ class FoodController extends Controller
         return redirect()->route('allFoodsView', compact('userFoods'));
     }
 
-    //Função não utilizadas até o momento.
+    //Função não utilizada até o momento.
     public function searchFood(){
 
         $data = $this->_request->all();

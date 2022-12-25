@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Services\FoodService;
 use App\Contracts\IFoodRepos;
 use App\Http\Controllers\Controller;
+//use App\Models\PersonalAccessToken;
+use Illuminate\Support\Facades\Auth;
 
 
 class FoodControllerAPI extends Controller
@@ -21,7 +23,7 @@ class FoodControllerAPI extends Controller
         $this->_request = $request;
         $this->_foodService = $foodService;
         $this->_foodRepos = $foodRepos;
-
+        
     }
 
     public function allFoods(){
@@ -31,5 +33,42 @@ class FoodControllerAPI extends Controller
         return response()->json($foods);
     }
 
+    //Todas as funções abaixo ainda não possuem rotas.
+    public function createFood(){
+        
+        $data = $this->_request->all();
+        $user = Auth::user();
+        $foodValidate = $this->_foodService->FoodValidate($data);
+        //dd($foodValidate);
+        if(!$foodValidate){
+
+            $foodCreation = $this->_foodRepos->createFoodRepos($user, $data);
+
+            return response()->json($foodCreation);
+        }else{
+
+            return response()->json($foodValidate);
+        }
+        
+        
+
+        
+    }
+
+    public function updateFood($id){
+
+        $userFoods = $this->_foodRepos->allFoodsRepos();
+        $food = $this->_foodRepos->updateFoodRepos($id);
+        
+        return redirect()->route('allFoodsView', compact('userFoods'));
+    }
+
+    public function deleteFood($id){
+
+        $userFoods = $this->_foodRepos->allFoodsRepos();
+        $food = $this->_foodRepos->deleteFoodRepos($id);
+        
+        return redirect()->route('allFoodsView', compact('userFoods'));
+    }
 
 }
