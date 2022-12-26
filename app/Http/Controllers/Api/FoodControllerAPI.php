@@ -33,13 +33,12 @@ class FoodControllerAPI extends Controller
         return response()->json($foods);
     }
 
-    //Todas as funções abaixo ainda não possuem rotas.
     public function createFood(){
         
         $data = $this->_request->all();
         $user = Auth::user();
         $foodValidate = $this->_foodService->FoodValidate($data);
-        //dd($foodValidate);
+        
         if(!$foodValidate){
 
             $foodCreation = $this->_foodRepos->createFoodRepos($user, $data);
@@ -49,26 +48,40 @@ class FoodControllerAPI extends Controller
 
             return response()->json($foodValidate);
         }
-        
-        
-
-        
+         
     }
 
     public function updateFood($id){
 
-        $userFoods = $this->_foodRepos->allFoodsRepos();
-        $food = $this->_foodRepos->updateFoodRepos($id);
-        
-        return redirect()->route('allFoodsView', compact('userFoods'));
+        $data = $this->_request->all();
+        $user = Auth::user();
+        $foodValidate = $this->_foodService->FoodValidate($data);
+
+        if(!$foodValidate){
+
+            $foodUpdate = $this->_foodRepos->updateFoodRepos($user, $id);
+
+            return response()->json($foodUpdate);
+        }else{
+
+            return response()->json($foodValidate);
+        }
+
     }
 
     public function deleteFood($id){
 
-        $userFoods = $this->_foodRepos->allFoodsRepos();
         $food = $this->_foodRepos->deleteFoodRepos($id);
         
-        return redirect()->route('allFoodsView', compact('userFoods'));
+        if($food == false){
+            
+            return response()->json('Alimento não localizado.');
+        }else{
+
+            return response()->json('Alimento excluído com sucesso.');
+        }
+
+        
     }
 
 }

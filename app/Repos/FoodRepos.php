@@ -43,13 +43,13 @@ class FoodRepos implements IFoodRepos{
         return $food;
     }
 
-    public function updateFoodRepos($id){
+    public function updateFoodRepos($user, $id){
 
         $data = $this->_request->all();
 
         $food = $this->_food->where('id', $id)->update([
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
+            'user_id' => $user->id,
+            'user_name' => $user->name,
             'name' => $data['name'],
             'quantity_grams' => $data['quantity_grams'],
             'calories' => $data['calories'],
@@ -65,8 +65,17 @@ class FoodRepos implements IFoodRepos{
 
     public function deleteFoodRepos($id){
 
-        $food = $this->_food->find($id)->delete();
-        
+        $food = $this->_food->find($id);
+
+        if($food == null){
+
+            $food = false;
+        }else{
+            
+            $food->delete();
+            $food = true;
+        }
+
         return $food;
     }
 

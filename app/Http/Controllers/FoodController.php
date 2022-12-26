@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\FoodService;
 use App\Contracts\IFoodRepos;
+use Illuminate\Support\Facades\Auth;
 
 
 class FoodController extends Controller
@@ -63,7 +64,9 @@ class FoodController extends Controller
     public function updateFood($id){
 
         $userFoods = $this->_foodRepos->allFoodsRepos();
-        $food = $this->_foodRepos->updateFoodRepos($id);
+        $user = Auth::user();
+
+        $food = $this->_foodRepos->updateFoodRepos($user, $id);
         
         return redirect()->route('allFoodsView', compact('userFoods'));
     }

@@ -54,7 +54,7 @@
 
         <h3 class="text-center">Resultados do dia</h3>
 
-        <h5 class="text-center mt-3">Até o momento esse foi a sua ingestão de nutrientes.</h5>
+        <h5 class="text-center mt-3">Até o momento essa foi a sua ingestão de nutrientes.</h5>
 
         <div class="flex-row d-flex justify-content-center mt-4">
             
