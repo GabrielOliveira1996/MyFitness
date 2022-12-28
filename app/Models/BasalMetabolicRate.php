@@ -15,7 +15,11 @@ class BasalMetabolicRate extends Model
         'weight',
         'stature',
         'activity_rate_factor',
+        'objective',
+        'imc',
+        'water',
         'basal_metabolic_rate',
+        'daily_calories',
         'daily_protein',
         'daily_carbohydrate',
         'daily_fat'

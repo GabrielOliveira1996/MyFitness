@@ -82,6 +82,49 @@
 
         <div class="row mt-3 d-flex justify-content-center">
             <div class="col-sm-4">
+                <label>{{__('Objetivo')}}</label>
+                <select id="objectiveId" name="objective" class="form-control mt-1">
+                    <option value="-0.20">Perder peso</option>
+                    <option value="-0.10">Perder peso lentamente</option>
+                    <option value="0">Manter o peso</option> 
+                    <option value="0.10">Aumentar peso lentamente</option>
+                    <option value="0.20">Aumentar peso</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-center">
+
+            <div class="col-sm-4">
+
+                <div class="input-group mt-1">
+                    <input id="imcId" type="number" name="imc" class="form-control" aria-describedby="addon-result" placeholder="Índice de Massa Corporal" step="any">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="addon-result"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-center">
+
+            <div class="col-sm-4">
+
+                <div class="input-group mt-1">
+                    <input id="waterId" type="number" name="water" class="form-control" aria-describedby="addon-result" placeholder="Requisitos De Água" step="any">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="addon-result">{{__('Água (ml)')}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3 d-flex justify-content-center">
+
+            <div class="col-sm-4">
 
                 <div class="input-group mt-1">
                     <input id="basalMetabolicRateId" type="number" name="basal_metabolic_rate" class="form-control" aria-describedby="addon-result" placeholder="Calorias" step="any">

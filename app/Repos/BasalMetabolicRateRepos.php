@@ -39,7 +39,11 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
                 'weight' => $data['weight'],
                 'stature' => $data['stature'],
                 'activity_rate_factor' => $data['activity_rate_factor'],
+                'objective' => $data['objective'],
+                'imc' => $data['imc'],
+                'water' => $data['water'],
                 'basal_metabolic_rate' => $data['basal_metabolic_rate'],
+                'daily_calories' => $data['daily_calories'],
                 'daily_protein' => $data['daily_protein'],
                 'daily_carbohydrate' => $data['daily_carbohydrate'],
                 'daily_fat' => $data['daily_fat']
@@ -56,7 +60,11 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
             'weight' => $data['weight'],
             'stature' => $data['stature'],
             'activity_rate_factor' => $data['activity_rate_factor'],
+            'objective' => $data['objective'],
+            'imc' => $data['imc'],
+            'water' => $data['water'],
             'basal_metabolic_rate' => $data['basal_metabolic_rate'],
+            'daily_calories' => $data['daily_calories'],
             'daily_protein' => $data['daily_protein'],
             'daily_carbohydrate' => $data['daily_carbohydrate'],
             'daily_fat' => $data['daily_fat']

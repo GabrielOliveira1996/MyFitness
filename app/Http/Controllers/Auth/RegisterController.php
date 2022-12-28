@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\BasalMetabolicRate;
 
 class RegisterController extends Controller
 {
@@ -63,11 +64,32 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        return User::create([
+    {   
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $settingBasalMetabolic = BasalMetabolicRate::create([
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'gender' => 0,
+            'age' => 0,
+            'weight' => 0,
+            'stature' => 0,
+            'activity_rate_factor' => 0,
+            'objective' => 0,
+            'imc' => 0,
+            'water' => 0,
+            'basal_metabolic_rate' => 0,
+            'daily_calories' => 0,
+            'daily_protein' => 0,
+            'daily_carbohydrate' => 0,
+            'daily_fat' => 0
+        ]);
+
+        return $user;
     }
 }
