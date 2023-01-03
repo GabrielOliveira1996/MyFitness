@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('weight');
             $table->integer('stature');
             $table->decimal('activity_rate_factor');
-            $table->decimal('objective');
+            $table->string('objective');
             $table->string('type_of_diet');
             $table->decimal('imc');
             $table->integer('water');

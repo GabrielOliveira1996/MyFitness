@@ -102,6 +102,7 @@ class GoalController extends Controller
         return redirect()->route('goalView');
     }
 
+    //
     public function settingGoal(){
 
         $data = $this->_request->all();

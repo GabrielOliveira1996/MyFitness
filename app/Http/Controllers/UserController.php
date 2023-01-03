@@ -29,4 +29,13 @@ class UserController extends Controller
         return view('perfil', compact('user', 'settingGoal'));
     }  
 
+    public function perfilUpdate(){
+
+        $data = $this->_request->all();
+        
+        $settingGoal = $this->_basalMetabolicRateRepos->settingBasalMetabolicRateRepos($data);
+
+        return redirect()->route('perfil');
+    }
+
 }
