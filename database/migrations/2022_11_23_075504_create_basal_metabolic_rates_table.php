@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stature');
             $table->decimal('activity_rate_factor');
             $table->decimal('objective');
+            $table->string('type_of_diet');
             $table->decimal('imc');
             $table->integer('water');
             $table->integer('basal_metabolic_rate');
@@ -27,6 +28,9 @@ return new class extends Migration
             $table->decimal('daily_protein');
             $table->decimal('daily_carbohydrate');
             $table->decimal('daily_fat');
+            $table->decimal('daily_protein_kcal');
+            $table->decimal('daily_carbohydrate_kcal');
+            $table->decimal('daily_fat_kcal');
             $table->timestamps();
         });
     }

@@ -17,3 +17,6 @@ Route::prefix('food')->group(function () {
     Route::put('/update/{id}', [App\Http\Controllers\Api\FoodControllerAPI::class, 'updateFood']);
     Route::delete('/delete/{id}', [App\Http\Controllers\Api\FoodControllerAPI::class, 'deleteFood']);
 });
+
+
+Route::put('/update', [App\Http\Controllers\Api\GoalControllerAPI::class, 'createBasalMetabolicRateRepos']);
