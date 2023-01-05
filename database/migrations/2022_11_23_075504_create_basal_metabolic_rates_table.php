@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('gender');
             $table->integer('age');
-            $table->integer('weight');
-            $table->integer('stature');
+            $table->decimal('weight');
+            $table->decimal('stature');
             $table->decimal('activity_rate_factor');
             $table->string('objective');
             $table->string('type_of_diet');

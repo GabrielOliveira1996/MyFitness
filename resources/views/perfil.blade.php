@@ -36,9 +36,10 @@
                     <tr>
                         <td>Gênero</td> 
                         <td>
-                            <select id="genderId" onkeyup="basalMetabolicRateCalculation()" name="gender" class="form-control col-lg-4">
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
+                            <input type="hidden" id="genderHiddenId" value="{{$settingGoal->gender}}"><!-- valor de gender escondido, isso deve ser ajustado no futuro -->
+                            <select id="genderId" onchange="basalMetabolicRateCalculation()" name="gender" class="form-control col-lg-4">
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
                             </select>
                         </td>           
                     </tr>
@@ -51,12 +52,12 @@
                     <tr>
                         <td>Atividade</td>
                         <td>
-                            
+                            <input type="hidden" id="activityRateFactorHiddenId" value="{{$settingGoal->activity_rate_factor}}"><!-- valor de activityRateFactor escondido, isso deve ser ajustado no futuro -->
                             <select id="activityRateFactorId" onchange="basalMetabolicRateCalculation()" name="activity_rate_factor" class="form-control col-lg-4">
                                 <option value="1.2">Sedentário</option>
-                                <option value="1.375">Levemente ativo</option>
+                                <option value="1.38">Levemente ativo</option>
                                 <option value="1.55">Moderadamente ativo</option> 
-                                <option value="1.725">Altamente ativo</option>
+                                <option value="1.72">Altamente ativo</option>
                                 <option value="1.9">Extremamente ativo</option>
                             </select>
                             
@@ -65,12 +66,13 @@
                     <tr>
                         <td>Objetivo</td>
                         <td>
+                            <input type="hidden" id="objectiveHiddenId" value="{{$settingGoal->objective}}">
                             <select id="objectiveId" onchange="basalMetabolicRateCalculation()" name="objective" class="form-control col-lg-4">
-                                <option value="perder peso">Perder peso rápidamente</option>
-                                <option value="perder peso lentamente">Perder peso lentamente</option>
-                                <option value="manter o peso">Manter o peso</option> 
-                                <option value="aumentar peso lentamente">Aumentar peso lentamente</option>
-                                <option value="aumentar peso">Aumentar peso rápidamente</option>
+                                <option value="Perder peso rápidamente">Perder peso rápidamente</option>
+                                <option value="Perder peso lentamente">Perder peso lentamente</option>
+                                <option value="Manter o peso">Manter o peso</option> 
+                                <option value="Aumentar peso lentamente">Aumentar peso lentamente</option>
+                                <option value="Aumentar peso rápidamente">Aumentar peso rápidamente</option>
                             </select>
                         </td>       
                     </tr>
@@ -152,19 +154,19 @@
                     <tr>
                         <td><img src="{{ asset('img/icons/flame.png') }}" height="22"> Taxa Metabólica Basal</td>
                         <td>
-                            <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4" name="basal_metabolic_rate" value="{{$settingGoal->basal_metabolic_rate}}" step="any">
+                            <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4" name="basal_metabolic_rate" value="{{$settingGoal->basal_metabolic_rate}}" step="any" readonly>
                         </td>             
                     </tr>
                     <tr>
                         <td><img src="{{ asset('img/icons/imc.png') }}" height="22"> Índice de Massa Corporal (IMC)</td>
                         <td>
-                            <input id="imcId" type="number" class="form-control col-lg-4" name="imc" value="{{$settingGoal->imc}}" step="any">
+                            <input id="imcId" type="number" class="form-control col-lg-4" name="imc" value="{{$settingGoal->imc}}" step="any" readonly>
                         </td>            
                     </tr>
                     <tr>
                         <td><img src="{{ asset('img/icons/water.png') }}" height="22"> Requisitos de Água (ml)</td>
                         <td>
-                            <input id="waterId" type="number" class="form-control col-lg-4" name="water" value="{{$settingGoal->water}}" step="any">
+                            <input id="waterId" type="number" class="form-control col-lg-4" name="water" value="{{$settingGoal->water}}" step="any" readonly>
                         </td>         
                     </tr>
                     
@@ -182,14 +184,14 @@
                     <tr>
                         <td class="font-weight-bold"><img src="{{ asset('img/icons/flame.png') }}" height="22"> Calorías</td>
                         <td>
-                            <input id="dailyCaloriesId" type="number" class="form-control col-lg-4" name="daily_calories" value="{{$settingGoal->daily_calories}}" step="any">
+                            <input id="dailyCaloriesId" type="number" class="form-control col-lg-4" name="daily_calories" value="{{$settingGoal->daily_calories}}" step="any" readonly>
                         </th>           
                     </tr>
                     <tr>
                         <td class="text-danger font-weight-bold"><img src="{{ asset('img/icons/carboidrato.png') }}" height="22"> Carboidratos</td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="dailyCarbohydrateId" type="number" class="form-control col-lg-4" name="daily_carbohydrate" value="{{$settingGoal->daily_carbohydrate}}" step="any">
+                                <input id="dailyCarbohydrateId" type="number" class="form-control col-lg-4" name="daily_carbohydrate" value="{{$settingGoal->daily_carbohydrate}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -197,7 +199,7 @@
                         </td> 
                         <td>
                             <div class="input-group mb-3">
-                                <input id="dailyCarbohydrateKcalId" type="number" class="form-control col-lg-4" name="daily_carbohydrate_kcal" value="{{$settingGoal->daily_carbohydrate_kcal}}" step="any">
+                                <input id="dailyCarbohydrateKcalId" type="number" class="form-control col-lg-4" name="daily_carbohydrate_kcal" value="{{$settingGoal->daily_carbohydrate_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
                                 </div>
@@ -208,7 +210,7 @@
                         <td class="text-primary font-weight-bold"><img src="{{ asset('img/icons/proteina.png') }}" height="22"> Proteínas</td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="dailyProteinId" type="number" class="form-control col-lg-4" name="daily_protein" value="{{$settingGoal->daily_protein}}" step="any">
+                                <input id="dailyProteinId" type="number" class="form-control col-lg-4" name="daily_protein" value="{{$settingGoal->daily_protein}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -216,7 +218,7 @@
                         </th>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="dailyProteinKcalId" type="number" class="form-control col-lg-4" name="daily_protein_kcal" value="{{$settingGoal->daily_protein_kcal}}" step="any">
+                                <input id="dailyProteinKcalId" type="number" class="form-control col-lg-4" name="daily_protein_kcal" value="{{$settingGoal->daily_protein_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
                                 </div>
@@ -227,7 +229,7 @@
                         <td class="text-warning font-weight-bold"><img src="{{ asset('img/icons/gordura.png') }}" height="22"> Gorduras</td>
                         <td>
                             <div class="input-group mb-3">
-                            <input id="dailyFatId" type="number" class="form-control col-lg-4" name="daily_fat" value="{{$settingGoal->daily_fat}}" step="any">
+                                <input id="dailyFatId" type="number" class="form-control col-lg-4" name="daily_fat" value="{{$settingGoal->daily_fat}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -235,7 +237,7 @@
                         </td> 
                         <td>
                             <div class="input-group mb-3">
-                            <input id="dailyFatKcalId" type="number" class="form-control col-lg-4" name="daily_fat_kcal" value="{{$settingGoal->daily_fat_kcal}}" step="any">
+                                <input id="dailyFatKcalId" type="number" class="form-control col-lg-4" name="daily_fat_kcal" value="{{$settingGoal->daily_fat_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
                                 </div>

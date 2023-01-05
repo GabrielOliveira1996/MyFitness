@@ -1,10 +1,9 @@
 let showResult = document.getElementById('showResultId');
 
-showResult.addEventListener('click', basalMetabolicRateCalculation);
+//showResult.addEventListener('click', basalMetabolicRateCalculation);
 
 function basalMetabolicRateCalculation(){
     
-    let user = document.getElementById('userId');
     let gender = document.getElementById('genderId');
     let age = document.getElementById('ageId');
     let weight = document.getElementById('weightId');
@@ -58,33 +57,33 @@ function basalMetabolicRateCalculation(){
     let FeminineStatureCalculation = 1.8 * stature.value;
     let FeminineAgeCalculation = 4.7 * age.value;
 
-    if(gender.value == 'masculino'){
+    if(gender.value == 'Masculino'){
 
-        if(objective.value == 'perder peso'){
+        if(objective.value == 'Perder peso rápidamente'){
 
             dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
             
-        }else if(objective.value == 'perder peso lentamente'){
+        }else if(objective.value == 'Perder peso lentamente'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else if(objective.value == 'manter o peso'){
+        }else if(objective.value == 'Manter o peso'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else if(objective.value == 'aumentar peso lentamente'){
+        }else if(objective.value == 'Aumentar peso lentamente'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else{ // if(objective.value == 'aumentar peso') //
+        }else{ // if(objective.value == 'aumentar peso rápidamente') //
 
             dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.20;
@@ -92,33 +91,33 @@ function basalMetabolicRateCalculation(){
 
         }
 
-    }else if(gender.value == 'feminino'){
+    }else{
 
-        if(objective.value == 'perder peso'){
+        if(objective.value == 'Perder peso rápidamente'){
 
             dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
             
-        }else if(objective.value == 'perder peso lentamente'){
+        }else if(objective.value == 'Perder peso lentamente'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else if(objective.value == 'manter o peso'){
+        }else if(objective.value == 'Manter o peso'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else if(objective.value == 'aumentar peso lentamente'){
+        }else if(objective.value == 'Aumentar peso lentamente'){
             
             dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
-        }else{ // if(objective.value == 'aumentar peso') //
+        }else{ // if(objective.value == 'aumentar peso rápidamente') //
 
             dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.20;
@@ -127,6 +126,7 @@ function basalMetabolicRateCalculation(){
         }
     }
 
+    
     if(typeOfDiet.value == 'Padrão'){ // Carboidrato 50%, Proteína 20%, Gordura 30%
         //Calculos de macros nutrientes. // valor maximo 3 total 
         dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
@@ -138,12 +138,14 @@ function basalMetabolicRateCalculation(){
         let proteinAndFat = parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value);   
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
         
+        /*
         console.log(proteinAndFat, 'soma de kcal proteínas e gorduras.');
         console.log(dailyCalories.value, 'kcal diária.');
 
         console.log(dailyProteinKcal.value, 'de kcal em proteínas por dia.');
         console.log(dailyFatKcal.value, 'de kcal em gorduras por dia.');
         console.log(dailyCarbohydrateKcal.value, 'de kcal em carboidratos por dia.');
+        */
     }else if(typeOfDiet.value == 'Equilibrado'){ // Carboidrato 50%, Proteína 25%, Gordura 25%
 
         dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
@@ -165,6 +167,69 @@ function basalMetabolicRateCalculation(){
         dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
     }
+    
+}
+
+
+// código que seleciona option de objetive.
+let objectiveHidden = document.getElementById('objectiveHiddenId');
+
+if(objectiveHidden.value === 'Perder peso'){
+
+    $("#objectiveId").val('Perder peso'); //Seleciona option através de value
+
+}else if(objectiveHidden.value === 'Perder peso lentamente'){
+
+    $("#objectiveId").val('Perder peso lentamente'); //Seleciona option através de value
+
+}else if(objectiveHidden.value === 'Manter o peso'){
+
+    $("#objectiveId").val('Manter o peso'); //Seleciona option através de value
+
+}else if(objectiveHidden.value === "Aumentar peso lentamente"){
+
+    $("#objectiveId").val('Aumentar peso lentamente'); //Seleciona option através de value
+
+}else if(objectiveHidden.value === 'Aumentar peso rápidamente'){
+
+    $("#objectiveId").val('Aumentar peso rápidamente'); //Seleciona option através de value
 
 }
+
+
+// código que seleciona option de activityRateFactor.
+let activityRateFactor = document.getElementById('activityRateFactorHiddenId');
+
+if(activityRateFactor.value === '1.20'){
+
+    $("#activityRateFactorId").val(1.2); //Seleciona option através de value
+}else if(activityRateFactor.value === '1.38'){
+
+    $("#activityRateFactorId").val(1.38); //Seleciona option através de value
+}else if(activityRateFactor.value === '1.55'){
+
+    $("#activityRateFactorId").val(1.55); //Seleciona option através de value
+}else if(activityRateFactor.value === '1.72'){
+
+    $("#activityRateFactorId").val(1.72); //Seleciona option através de value
+}else if(activityRateFactor.value === '1.90'){
+
+    $("#activityRateFactorId").val(1.9); //Seleciona option através de value
+}
+
+///////////////////////////ocorre erro, corrigir
+
+let genderHidden = document.getElementById('genderHiddenId');
+
+if(genderHidden.value == 'Masculino'){
+
+    $("#genderId").val('Masculino'); //Seleciona option através de value
+}else{
+
+    $("#genderId").val('Feminino'); //Seleciona option através de value
+}
+
+
+
+
 
