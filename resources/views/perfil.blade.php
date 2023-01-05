@@ -86,6 +86,7 @@
                             </a>
                         </td>
                         <td>
+                            <input type="hidden" id="typeOfDietHiddenId" value="{{$settingGoal->type_of_diet}}">
                             <select id="typeOfDietId" onchange="basalMetabolicRateCalculation()" name="type_of_diet" value="{{$settingGoal->type_of_diet}}" class="form-control col-lg-4">
                                 <option value="Padrão">Padrão</option>
                                 <option value="Equilibrado">Equilibrado</option>

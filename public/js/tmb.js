@@ -129,45 +129,81 @@ function basalMetabolicRateCalculation(){
     
     if(typeOfDiet.value == 'Padrão'){ // Carboidrato 50%, Proteína 20%, Gordura 30%
         //Calculos de macros nutrientes. // valor maximo 3 total 
-        dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
-        dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
-        dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
+        dailyCarbohydrate.value = parseFloat(4.63 * weight.value).toFixed(1); 
+        dailyProtein.value = parseFloat(1.85 * weight.value).toFixed(1); 
+        dailyFat.value = parseFloat(1.25 * weight.value).toFixed(1); 
 
-        dailyProteinKcal.value = parseFloat((2 * weight.value) * 4).toFixed(1); // quantidade de kcal por kilo de carbo
-        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.30).toFixed(1); // quantidade de kcal por kilo de carbo
-        let proteinAndFat = parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value);   
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 4).toFixed(1); // quantidade de kcal por kilo de proteina
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.30).toFixed(1); // quantidade de kcal por kilo de gordura
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
-        
-        /*
-        console.log(proteinAndFat, 'soma de kcal proteínas e gorduras.');
-        console.log(dailyCalories.value, 'kcal diária.');
-
-        console.log(dailyProteinKcal.value, 'de kcal em proteínas por dia.');
-        console.log(dailyFatKcal.value, 'de kcal em gorduras por dia.');
-        console.log(dailyCarbohydrateKcal.value, 'de kcal em carboidratos por dia.');
-        */
+    
     }else if(typeOfDiet.value == 'Equilibrado'){ // Carboidrato 50%, Proteína 25%, Gordura 25%
+        //Calculos de macros nutrientes. // valor maximo 3 total 
+        dailyCarbohydrate.value = parseFloat(4.63 * weight.value).toFixed(1); 
+        dailyProtein.value = parseFloat(2.33 * weight.value).toFixed(1); 
+        dailyFat.value = parseFloat(1.04 * weight.value).toFixed(1); 
 
-        dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
-        dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
-        dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 4.65).toFixed(1); // quantidade de kcal por kilo de proteina
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.241).toFixed(1); // quantidade de kcal por kilo de gordura
+        dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+
     }else if(typeOfDiet.value == 'Pobre em gorduras'){ // Carboidrato 60%, Proteína 25%, Gordura 15%
-        
-        dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
-        dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
-        dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
+        //Calculos de macros nutrientes. // valor maximo 3 total 
+        dailyCarbohydrate.value = parseFloat(5.5 * weight.value).toFixed(1); 
+        dailyProtein.value = parseFloat(2.32 * weight.value).toFixed(1); 
+        dailyFat.value = parseFloat(0.62 * weight.value).toFixed(1); 
+
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 4.63).toFixed(1); // quantidade de kcal por kilo de proteina
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.183).toFixed(1); // quantidade de kcal por kilo de gordura
+        dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+
     }else if(typeOfDiet.value == 'Rico em proteínas'){ // Carboidrato 25%, Proteína 40%, Gordura 35%
-        
-        dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
-        dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
-        dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
-    }else{ // Catogénica (Atkins) // Carboidrato 5%, Proteína 30%, Gordura 65%
-        
-        dailyCarbohydrate.value = parseFloat(5 * weight.value).toFixed(1); 
-        dailyProtein.value = parseFloat(2 * weight.value).toFixed(1); 
-        dailyFat.value = parseFloat(0.8 * weight.value).toFixed(1); 
+        //Calculos de macros nutrientes. // valor maximo 3 total 
+        dailyCarbohydrate.value = parseFloat(2.32 * weight.value).toFixed(1); 
+        dailyProtein.value = parseFloat(3.7 * weight.value).toFixed(1); 
+        dailyFat.value = parseFloat(1.45 * weight.value).toFixed(1); 
+
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 7.4).toFixed(1); // quantidade de kcal por kilo de proteina
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.338).toFixed(1); // quantidade de kcal por kilo de gordura
+        dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+
+    }else if(typeOfDiet.value == 'Catogénica'){ // Catogénica (Atkins) // Carboidrato 5%, Proteína 30%, Gordura 65%
+        //Calculos de macros nutrientes. // valor maximo 3 total 
+        dailyCarbohydrate.value = parseFloat(0.46 * weight.value).toFixed(1); 
+        dailyProtein.value = parseFloat(2.78 * weight.value).toFixed(1); 
+        dailyFat.value = parseFloat(2.68 * weight.value).toFixed(1); 
+
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 5.56).toFixed(1); // quantidade de kcal por kilo de proteina
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.6233).toFixed(1); // quantidade de kcal por kilo de gordura
+        dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
     }
     
+}
+
+
+// código que seleciona option de tipo de dieta.
+let typeOfDietHidden = document.getElementById('typeOfDietHiddenId');
+
+if(typeOfDietHidden.value === 'Padrão'){
+
+    $("#typeOfDietId").val('Padrão'); //Seleciona option através de value
+
+}else if(typeOfDietHidden.value === 'Equilibrado'){
+
+    $("#typeOfDietId").val('Equilibrado'); //Seleciona option através de value
+
+}else if(typeOfDietHidden.value === 'Pobre em gorduras'){
+
+    $("#typeOfDietId").val('Pobre em gorduras'); //Seleciona option através de value
+
+}else if(typeOfDietHidden.value === "Rico em proteínas"){
+
+    $("#typeOfDietId").val('Rico em proteínas'); //Seleciona option através de value
+
+}else if(typeOfDietHidden.value === 'Catogénica'){
+
+    $("#typeOfDietId").val('Catogénica'); //Seleciona option através de value
+
 }
 
 
