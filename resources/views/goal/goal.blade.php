@@ -6,45 +6,70 @@
     
     <div class="row d-flex justify-content-center mt-5">
 
-        <div class="col-md-12">
+        <h3 class="text-center">Metas do dia</h3>
 
-            <h3 class="text-center">Suas metas</h3>
-
-            <div class="row mt-4 justify-content-center">
-                <div class="col-md-8 d-flex justify-content-around">
-
-                    <label class="font-weight-bold">
-                        Calorias 
-                        <input id="goalCaloriesId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalCalories)}}" disabled>
-                    </label>
-
-                    <label class="font-weight-bold">
-                        Carboidratos 
-                        <input id="goalCarbohydrateId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalCarbohydrate)}}" disabled> 
-                    </label>
-
-                    <label class="font-weight-bold">
-                        Proteínas 
-                        <input id="goalProteinId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalProtein)}}" disabled>
-                    </label>
-
-                    <label class="font-weight-bold">
-                        Gorduras 
-                        <input id="goalTotalFatId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($goalTotalFat)}}" disabled>
-                    </label>
-
-                </div>
-            </div>
-
+        <div class="col-lg-4">
+            <canvas id="myChart"></canvas>
         </div>
 
-        @if($goalCalories == 0)
-            <h5 class="text-center mt-5">Você ainda não possui metas estabelidas, clique no botão abaixo e ajudaremos você a obter o melhor resultado para si.<h5>
-    
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary mt-3 col-sm-3" href="{{ route('perfil') }}">ESTABELEÇA SUAS META</a>
+        <div class="row mt-4 d-flex justify-content-center">
+            <div class="col-md-8 d-flex justify-content-around">
+
+                <label class="font-weight-bold">
+                    <p class="text-center text-danger">• Carboidratos</p>
+                    <div class="progress">
+                        <div id="progressbarCarbohydrateId" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="input-group mt-3">
+                        <input id="cabohydrateId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysCarbohydrate)}} / {{$settingGoal->daily_carbohydrate}}" disabled>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">g</span>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="font-weight-bold">
+                    <p class="text-center text-primary">• Proteínas</p>
+                    <div class="progress">
+                        <div id="progressbarProteinId" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>        
+                    <div class="input-group mt-3">
+                        <input id="proteinId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysProtein)}} / {{$settingGoal->daily_protein}}" disabled>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">g</span>
+                        </div>
+                    </div>     
+                </label>
+
+                <label class="font-weight-bold">
+                    <p class="text-center text-warning">• Gorduras</p> 
+                    <div class="progress">
+                        <div id="progressbarTotalFatId" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="input-group mt-3">
+                    <input id="fatId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysTotalFat)}} / {{$settingGoal->daily_fat}}" disabled>
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">g</span>
+                        </div>
+                    </div>   
+                </label>
+
             </div>
-        @endif
+            
+            <label class="font-weight-bold col-md-8">
+                <p class="text-center">• Calorias</p> 
+                <div class="progress">
+                    <div id="progressbarCalorieId" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="input-group mt-3">
+                <input id="caloriesId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysCalories)}} / {{$settingGoal->daily_calories}}" disabled>
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">Kcal</span>
+                    </div>
+                </div>   
+            </label>
+            
+        </div>
 
     </div>
 
@@ -55,61 +80,14 @@
 
         <div class="col-md-12">
 
-            <h3 class="text-center">Resultados do dia</h3>
+            <h3 class="text-center">Consumo do dia</h3>
 
             <h5 class="text-center mt-3">Até o momento essa foi a sua ingestão de nutrientes.</h5>
-
-            <div class="flex-row d-flex justify-content-center mt-4">
-                
-                <div class="d-flex flex-column">
-                    <label class="d-flex flex-row">
-                        Calorias 
-                        <input id="todaysCaloriesId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysCalories)}}" disabled>
-                    </label>
-                    
-                    <div class="progress col-lg-8">
-                        <div id="progressbarCalorieId" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column">
-                    <label class="d-flex flex-row">
-                        Carboidratos 
-                        <input id="todaysCarbohydrateId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysCarbohydrate)}}" disabled>
-                    </label>
-                    <div class="progress col-lg-8">
-                        <div id="progressbarCarbohydrateId" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column">
-                    <label class="d-flex flex-row">
-                        Proteínas 
-                        <input id="todaysProteinId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysProtein)}}" disabled>
-                    </label>
-                    <div class="progress col-lg-8">
-                        <div id="progressbarProteinId" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="d-flex flex-column">
-                    <label class="d-flex flex-row">
-                        Gorduras 
-                        <input id="todaysTotalFatId" type="text" style="background-color:white;" class="form-control border-0 p-0 mx-2" value="{{__($todaysTotalFat)}}" disabled>
-                    </label>
-                    <div class="progress col-lg-8">
-                        <div id="progressbarTotalFatId" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                
-            </div>
 
         </div>
 
 
         <div class="row justify-content-center mt-2">
-            
-            <h3 class="text-center mt-5">Consumo do dia</h3>
 
             <table class="table mt-3">
                 <thead>
@@ -119,9 +97,7 @@
                         <th scope="col">Calorias</th>
                         <th scope="col">Carboidratos</th>
                         <th scope="col">Proteínas</th>
-                        <th scope="col">Gordura Total</th>
-                        <th scope="col">Gordura Saturada</th>
-                        <th scope="col">Gordura Trans</th>
+                        <th scope="col">Gordura</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Remover</th>
                     </tr>
@@ -134,9 +110,7 @@
                             <td><input type="number" class="form-control border-0" style="background-color:white;" name="calories" value="{{__($goalFood->calories)}}" step="any" disabled></td>
                             <td><input type="number" class="form-control border-0" style="background-color:white;" name="carbohydrate" value="{{__($goalFood->carbohydrate)}}" step="any" disabled></td>
                             <td><input type="number" class="form-control border-0" style="background-color:white;" name="protein" value="{{__($goalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="total_fat" value="{{__($goalFood->total_fat)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="saturated_fat" value="{{__($goalFood->saturated_fat)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="trans_fat" value="{{__($goalFood->trans_fat)}}" step="any" disabled></td>                    
+                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="total_fat" value="{{__($goalFood->total_fat)}}" step="any" disabled></td>                    
                             <td>
                                 <a href="{{ route('updateFoodToDayGoalView', ['id' => $goalFood->id]) }}" class="btn btn-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -171,6 +145,8 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ asset('js/macroNutrientProgress.js') }}"></script>
+<script type="module" src="{{asset('js/graph.js')}}"></script>
 
 @endsection

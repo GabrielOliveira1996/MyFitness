@@ -61,31 +61,32 @@ function basalMetabolicRateCalculation(){
 
         if(objective.value == 'Perder peso rápidamente'){
 
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
+            //basalMetabolicRate.value = dailyCalories.value - 0.20;
             
         }else if(objective.value == 'Perder peso lentamente'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else if(objective.value == 'Manter o peso'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else if(objective.value == 'Aumentar peso lentamente'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else{ // if(objective.value == 'aumentar peso rápidamente') //
 
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (66 + masculineWeightCalculation + masculineStatureCalculation - masculineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
@@ -95,40 +96,40 @@ function basalMetabolicRateCalculation(){
 
         if(objective.value == 'Perder peso rápidamente'){
 
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
             
         }else if(objective.value == 'Perder peso lentamente'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * -0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else if(objective.value == 'Manter o peso'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else if(objective.value == 'Aumentar peso lentamente'){
             
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.10;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }else{ // if(objective.value == 'aumentar peso rápidamente') //
 
-            dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
+            let dailyCaloriesResult = parseInt(activityRateFactor.value * (655 + FeminineWeightCalculation + FeminineStatureCalculation - FeminineAgeCalculation));
             caloriesNecessary = dailyCaloriesResult * 0.20;
             dailyCalories.value = dailyCaloriesResult + caloriesNecessary;
 
         }
+
     }
 
     
     if(typeOfDiet.value == 'Padrão'){ // Carboidrato 50%, Proteína 20%, Gordura 30%
-        //Calculos de macros nutrientes. // valor maximo 3 total 
         dailyCarbohydrate.value = parseFloat(4.63 * weight.value).toFixed(1); 
         dailyProtein.value = parseFloat(1.85 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(1.25 * weight.value).toFixed(1); 
@@ -138,7 +139,6 @@ function basalMetabolicRateCalculation(){
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
     
     }else if(typeOfDiet.value == 'Equilibrado'){ // Carboidrato 50%, Proteína 25%, Gordura 25%
-        //Calculos de macros nutrientes. // valor maximo 3 total 
         dailyCarbohydrate.value = parseFloat(4.63 * weight.value).toFixed(1); 
         dailyProtein.value = parseFloat(2.33 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(1.04 * weight.value).toFixed(1); 
@@ -148,7 +148,6 @@ function basalMetabolicRateCalculation(){
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
 
     }else if(typeOfDiet.value == 'Pobre em gorduras'){ // Carboidrato 60%, Proteína 25%, Gordura 15%
-        //Calculos de macros nutrientes. // valor maximo 3 total 
         dailyCarbohydrate.value = parseFloat(5.5 * weight.value).toFixed(1); 
         dailyProtein.value = parseFloat(2.32 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(0.62 * weight.value).toFixed(1); 
@@ -158,7 +157,6 @@ function basalMetabolicRateCalculation(){
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
 
     }else if(typeOfDiet.value == 'Rico em proteínas'){ // Carboidrato 25%, Proteína 40%, Gordura 35%
-        //Calculos de macros nutrientes. // valor maximo 3 total 
         dailyCarbohydrate.value = parseFloat(2.32 * weight.value).toFixed(1); 
         dailyProtein.value = parseFloat(3.7 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(1.45 * weight.value).toFixed(1); 
@@ -167,103 +165,31 @@ function basalMetabolicRateCalculation(){
         dailyFatKcal.value = parseFloat(dailyCalories.value * 0.338).toFixed(1); // quantidade de kcal por kilo de gordura
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
 
-    }else if(typeOfDiet.value == 'Catogénica'){ // Catogénica (Atkins) // Carboidrato 5%, Proteína 30%, Gordura 65%
-        //Calculos de macros nutrientes. // valor maximo 3 total 
+    }else if(typeOfDiet.value == 'Cetogénica'){ // Carboidrato 5%, Proteína 30%, Gordura 65% 
         dailyCarbohydrate.value = parseFloat(0.46 * weight.value).toFixed(1); 
         dailyProtein.value = parseFloat(2.78 * weight.value).toFixed(1); 
         dailyFat.value = parseFloat(2.68 * weight.value).toFixed(1); 
 
-        dailyProteinKcal.value = parseFloat((2 * weight.value) * 5.56).toFixed(1); // quantidade de kcal por kilo de proteina
-        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.6233).toFixed(1); // quantidade de kcal por kilo de gordura
+        dailyProteinKcal.value = parseFloat((2 * weight.value) * 5.56).toFixed(1); // quantidade de kcal por kilo de proteina 700,6
+        dailyFatKcal.value = parseFloat(dailyCalories.value * 0.625).toFixed(1); // quantidade de kcal por kilo de gordura 
         dailyCarbohydrateKcal.value = parseFloat(dailyCalories.value - (parseFloat(dailyProteinKcal.value) + parseFloat(dailyFatKcal.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+        
+        /*
+        if(dailyCarbohydrateKcal.value <= 0){
+            
+            dailyCarbohydrateKcal.value = 0;
+            dailyCarbohydrate.value = 0;
+        }
+        */
+       
     }
     
 }
 
 
-// código que seleciona option de tipo de dieta.
-let typeOfDietHidden = document.getElementById('typeOfDietHiddenId');
-
-if(typeOfDietHidden.value === 'Padrão'){
-
-    $("#typeOfDietId").val('Padrão'); //Seleciona option através de value
-
-}else if(typeOfDietHidden.value === 'Equilibrado'){
-
-    $("#typeOfDietId").val('Equilibrado'); //Seleciona option através de value
-
-}else if(typeOfDietHidden.value === 'Pobre em gorduras'){
-
-    $("#typeOfDietId").val('Pobre em gorduras'); //Seleciona option através de value
-
-}else if(typeOfDietHidden.value === "Rico em proteínas"){
-
-    $("#typeOfDietId").val('Rico em proteínas'); //Seleciona option através de value
-
-}else if(typeOfDietHidden.value === 'Catogénica'){
-
-    $("#typeOfDietId").val('Catogénica'); //Seleciona option através de value
-
-}
 
 
-// código que seleciona option de objetive.
-let objectiveHidden = document.getElementById('objectiveHiddenId');
 
-if(objectiveHidden.value === 'Perder peso'){
-
-    $("#objectiveId").val('Perder peso'); //Seleciona option através de value
-
-}else if(objectiveHidden.value === 'Perder peso lentamente'){
-
-    $("#objectiveId").val('Perder peso lentamente'); //Seleciona option através de value
-
-}else if(objectiveHidden.value === 'Manter o peso'){
-
-    $("#objectiveId").val('Manter o peso'); //Seleciona option através de value
-
-}else if(objectiveHidden.value === "Aumentar peso lentamente"){
-
-    $("#objectiveId").val('Aumentar peso lentamente'); //Seleciona option através de value
-
-}else if(objectiveHidden.value === 'Aumentar peso rápidamente'){
-
-    $("#objectiveId").val('Aumentar peso rápidamente'); //Seleciona option através de value
-
-}
-
-
-// código que seleciona option de activityRateFactor.
-let activityRateFactor = document.getElementById('activityRateFactorHiddenId');
-
-if(activityRateFactor.value === '1.20'){
-
-    $("#activityRateFactorId").val(1.2); //Seleciona option através de value
-}else if(activityRateFactor.value === '1.38'){
-
-    $("#activityRateFactorId").val(1.38); //Seleciona option através de value
-}else if(activityRateFactor.value === '1.55'){
-
-    $("#activityRateFactorId").val(1.55); //Seleciona option através de value
-}else if(activityRateFactor.value === '1.72'){
-
-    $("#activityRateFactorId").val(1.72); //Seleciona option através de value
-}else if(activityRateFactor.value === '1.90'){
-
-    $("#activityRateFactorId").val(1.9); //Seleciona option através de value
-}
-
-///////////////////////////ocorre erro, corrigir
-
-let genderHidden = document.getElementById('genderHiddenId');
-
-if(genderHidden.value == 'Masculino'){
-
-    $("#genderId").val('Masculino'); //Seleciona option através de value
-}else{
-
-    $("#genderId").val('Feminino'); //Seleciona option através de value
-}
 
 
 

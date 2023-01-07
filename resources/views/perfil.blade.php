@@ -17,6 +17,7 @@
                     <tr>
                         <th scope="col">Perfil</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,13 +26,15 @@
                         <td>Altura (cm)</td>
                         <td>
                             <input id="statureId" onkeyup="basalMetabolicRateCalculation()" type="text" maxlength="4" class="form-control col-lg-4" name="stature" value="{{$settingGoal->stature}}" step="any">
-                        </td>             
+                        </td> 
+                        <td></td>            
                     </tr>
                     <tr>
                         <td>Peso (kg)</td>
                         <td>
                             <input id="weightId" onkeyup="basalMetabolicRateCalculation()" type="number" class="form-control col-lg-4" name="weight" value="{{$settingGoal->weight}}" step="any">
-                        </td>          
+                        </td>      
+                        <td></td>    
                     </tr>
                     <tr>
                         <td>Gênero</td> 
@@ -41,13 +44,15 @@
                                 <option value="Masculino">Masculino</option>
                                 <option value="Feminino">Feminino</option>
                             </select>
-                        </td>           
+                        </td>  
+                        <td></td>         
                     </tr>
                     <tr>
                         <td>Idade</td>
                         <td>
                             <input id="ageId" onkeyup="basalMetabolicRateCalculation()" type="number" class="form-control col-lg-4" name="age" value="{{$settingGoal->age}}" step="any">
-                        </td>              
+                        </td>      
+                        <td></td>        
                     </tr>
                     <tr>
                         <td>Atividade</td>
@@ -62,6 +67,7 @@
                             </select>
                             
                         </td>       
+                        <td></td>
                     </tr>
                     <tr>
                         <td>Objetivo</td>
@@ -75,6 +81,7 @@
                                 <option value="Aumentar peso rápidamente">Aumentar peso rápidamente</option>
                             </select>
                         </td>       
+                        <td></td>
                     </tr>
                     <tr>
 
@@ -92,9 +99,10 @@
                                 <option value="Equilibrado">Equilibrado</option>
                                 <option value="Pobre em gorduras">Pobre em gorduras</option> 
                                 <option value="Rico em proteínas">Rico em proteínas</option>
-                                <option value="Catogénica">Catogénica (Atkins)</option>
+                                <option value="Cetogénica">Cetogénica (Atkins)</option>
                             </select>
                         </td>
+                        <td></td>
                         <!-- Modal -->
                         <div class="modal fade" id="typeOfDietModal" tabindex="-1" role="dialog" aria-labelledby="typeOfDietModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -129,7 +137,7 @@
                                         </div>
 
                                         <div class="col-lg-12">
-                                            <p>Catogénica (Atkins)</p>
+                                            <p>Cetogénica (Atkins)</p>
                                             <p class="mx-3">Carboidrato 5%, Proteína 30%, Gordura 65%</p>
                                         </div>
                                     </div>
@@ -147,6 +155,7 @@
                     <tr>
                         <th scope="col">Resultados</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -156,19 +165,22 @@
                         <td><img src="{{ asset('img/icons/flame.png') }}" height="22"> Taxa Metabólica Basal</td>
                         <td>
                             <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4" name="basal_metabolic_rate" value="{{$settingGoal->basal_metabolic_rate}}" step="any" readonly>
-                        </td>             
+                        </td>         
+                        <td></td>    
                     </tr>
                     <tr>
                         <td><img src="{{ asset('img/icons/imc.png') }}" height="22"> Índice de Massa Corporal (IMC)</td>
                         <td>
                             <input id="imcId" type="number" class="form-control col-lg-4" name="imc" value="{{$settingGoal->imc}}" step="any" readonly>
-                        </td>            
+                        </td>     
+                        <td></td>       
                     </tr>
                     <tr>
                         <td><img src="{{ asset('img/icons/water.png') }}" height="22"> Requisitos de Água (ml)</td>
                         <td>
                             <input id="waterId" type="number" class="form-control col-lg-4" name="water" value="{{$settingGoal->water}}" step="any" readonly>
-                        </td>         
+                        </td>     
+                        <td></td>    
                     </tr>
                     
                 </tbody>
@@ -176,6 +188,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Requisitos Calóricos Diários & Macro Nutrientes</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -205,7 +218,7 @@
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
                                 </div>
                             </div>
-                        </th> 
+                        </td> 
                     </tr>
                     <tr>
                         <td class="text-primary font-weight-bold"><img src="{{ asset('img/icons/proteina.png') }}" height="22"> Proteínas</td>
@@ -252,6 +265,7 @@
                     <tr>
                         <th scope="col">Meu Conteúdo</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -259,10 +273,12 @@
                     <tr>
                         <td><img src="{{ asset('img/icons/maca.png') }}" height="22"> Meus Alimentos</td>
                         <td><a href="{{route('allFoodsView')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td> 
+                        <td></td>
                     </tr>
                     <tr>
                         <td><img src="{{ asset('img/icons/chapeu-de-chef.png') }}" height="22"> Minhas Receitas</td>
-                        <td>Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></td>                
+                        <td>Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></td>    
+                        <td></td>            
                     </tr>
                     
                 </tbody>
@@ -276,6 +292,7 @@
 
 
 <script src="{{asset('js/tmb.js')}}"></script>
+<script src="{{asset('js/inputMasks.js')}}"></script>
 <script src="{{asset('js/masks.js')}}"></script>
 
 @endsection
