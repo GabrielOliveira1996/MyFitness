@@ -6,7 +6,9 @@
 
     <div class="row justify-content-center mt-2">
         
-        <h3 class="text-center mt-5">Sua lista de alimentos</h3>
+        <h3 class="text-center mt-5">Seus alimentos</h3>
+
+        <p>Essa lista consiste nos alimentos adicionados por você, e por alimentos adicionados como favoritos.</p>
 
         <table class="table mt-3">
             <thead>
