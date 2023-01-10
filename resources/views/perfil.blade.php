@@ -8,11 +8,9 @@
         
         <h3 class="text-center mt-5">Seja bem-vindo {{$user->name}}.</h3>
 
-        <p>Ao realizar alterações no perfil salve utilizando o botão abaixo.</p>
-
         <form method="POST">
             @csrf
-            <button type="submit" class="btn btn-primary text-white col-sm-2 m-2">{{__('SALVAR ALTERAÇÕES')}}</button>
+            <button type="submit" class="btn btn-primary text-white col-sm-12 m-2">{{__('SALVAR ALTERAÇÕES')}}</button>
 
             <table class="table mt-3">
                 <thead>

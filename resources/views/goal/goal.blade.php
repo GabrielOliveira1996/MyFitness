@@ -21,7 +21,7 @@
                         <div id="progressbarCarbohydrateId" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="input-group mt-3">
-                        <input id="cabohydrateId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysCarbohydrate)}} / {{$settingGoal->daily_carbohydrate}}" disabled>
+                        <input id="cabohydrateId" type="text" class="form-control bg-light" value="{{__($todaysCarbohydrate)}} / {{$settingGoal->daily_carbohydrate}}" disabled>
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">g</span>
                         </div>
@@ -34,7 +34,7 @@
                         <div id="progressbarProteinId" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>        
                     <div class="input-group mt-3">
-                        <input id="proteinId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysProtein)}} / {{$settingGoal->daily_protein}}" disabled>
+                        <input id="proteinId" type="text" class="form-control bg-light" value="{{__($todaysProtein)}} / {{$settingGoal->daily_protein}}" disabled>
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">g</span>
                         </div>
@@ -47,7 +47,7 @@
                         <div id="progressbarTotalFatId" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="input-group mt-3">
-                    <input id="fatId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysTotalFat)}} / {{$settingGoal->daily_fat}}" disabled>
+                    <input id="fatId" type="text" class="form-control bg-light" value="{{__($todaysTotalFat)}} / {{$settingGoal->daily_fat}}" disabled>
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">g</span>
                         </div>
@@ -62,7 +62,7 @@
                     <div id="progressbarCalorieId" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="input-group mt-3">
-                <input id="caloriesId" type="text" style="background-color:white;" class="form-control border-0" value="{{__($todaysCalories)}} / {{$settingGoal->daily_calories}}" disabled>
+                <input id="caloriesId" type="text" class="form-control bg-light" value="{{__($todaysCalories)}} / {{$settingGoal->daily_calories}}" disabled>
                     <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">Kcal</span>
                     </div>
@@ -105,12 +105,12 @@
                 <tbody>
                     @foreach($goalFoods as $goalFood)
                         <tr>
-                            <td><input type="text" class="form-control border-0" style="background-color:white;" name="name" value="{{__($goalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="quantity_grams" value="{{__($goalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="calories" value="{{__($goalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="carbohydrate" value="{{__($goalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="protein" value="{{__($goalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control border-0" style="background-color:white;" name="total_fat" value="{{__($goalFood->total_fat)}}" step="any" disabled></td>                    
+                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($goalFood->name)}}" step="any" disabled></th>
+                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($goalFood->quantity_grams)}}" step="any" disabled></td>
+                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($goalFood->calories)}}" step="any" disabled></td>
+                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($goalFood->carbohydrate)}}" step="any" disabled></td>
+                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($goalFood->protein)}}" step="any" disabled></td>
+                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($goalFood->total_fat)}}" step="any" disabled></td>                    
                             <td>
                                 <a href="{{ route('updateFoodToDayGoalView', ['id' => $goalFood->id]) }}" class="btn btn-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
