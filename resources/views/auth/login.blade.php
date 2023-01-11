@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="row mb-1">
-                            <label for="password" class="col-md-4">{{ __('Senha') }}</label>
+                            <label for="password" class="col-md-4">{{ __('messages.Password') }}</label>
                         </div>
 
                         <div class="row mb-3">
@@ -49,7 +49,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Lembrar-me') }}
+                                        {{ __('messages.Remember') }}
                                     </label>
                                 </div>
                             </div>
@@ -58,12 +58,12 @@
                         <div class="row mb-0">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary col-sm-12">
-                                    {{ __('Entrar') }}
+                                    {{ __('messages.Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Esqueci minha senha.') }}
+                                        {{ __('messages.ForgotMyPassword') }}
                                     </a>
                                 @endif
                             </div>

@@ -1,0 +1,68 @@
+<?php 
+
+return [
+
+    'Login' => 'Entrar',
+    'Register' => 'Entrar',
+    'SignOut' => 'Sair',
+    'HelloMessage' => 'Olá',
+    'Profile' => 'Perfil',
+    'AddFood' => 'Adicionar alimento',
+    'MyFoods' => 'Meus alimentos',
+    'MyGoals' => 'Minhas metas',
+    'Phrase1' => 'Que seu remédio seja seu alimento, e que seu alimento seja seu remédio.',
+    'Phrase2' => 'Quer comer com mais atenção? Monitore refeições, aprenda sobre seus hábitos e alcance seus objetivos com o MyFitness.',
+    'StartForFree' => 'COMECE GRATUITAMENTE',
+    'Phrase3' => 'Utilize os alimentos de nossa base, ou registre o seu próprio.',
+    'Phrase4' => 'Veja o detalhamento de calorias e nutrientes, compare porções e descubra como os alimento que você ingere contribuem com os seus objetivos.',
+    'Password' => 'Senha',
+    'ConfirmPassword' => 'Confirmar senha',
+    'Remember' => 'Lembrar',    
+    'ForgotMyPassword' => 'Forgot my password',
+    'Name' => 'Nome',
+    'MyFitnessTerm' => 'Ao continuar você concorda com os termos de uso do MyFitness.',
+    'WelcomeMessage' => 'Seja bem-vindo',
+    'SaveEditions' => 'Salvar',
+    'Height' => 'Altura',
+    'Weight' => 'Peso',
+    'Gender' => 'Gênero',
+    'Masculine' => 'Masculino',
+    'Feminine' => 'Feminino',
+    'Age' => 'Idade',
+
+    'Activity' => 'Atividade',
+    'Sedentary' => 'Sedentário',
+    'SlightlyActive' => 'Levemente ativo',
+    'ModeratelyActive' => 'Moderadamente ativo',
+    'HighlyActive' => 'Altamente ativo',
+    'ExtremelyActive' => 'Extremamento ativo',
+
+    'Objetive' => 'Objetivo',
+    'LoseWeightFast' => 'Perder peso rápidamente',
+    'LoseWeightSlowly' => 'Perder peso lentamente',
+    'KeepWeight' => 'Keep weight',
+    'IncreaseWeightSlowly' => 'Aumentar peso lentamente',
+    'GainWeightFast' => 'Aumentar peso rápidamente',
+
+    'TypeOfDiet' => 'Tipo de dieta',
+    'Pattern' => 'Padrão',
+    'Balanced' => 'Balanceado',
+    'LowInFat' => 'Pobre em gorduras',
+    'RichInProtein' => 'Rico em proteínas',
+    'Ketogenic'=> 'Cetogénica (Atkins)',
+
+    'Calories' => 'Calorias',
+    'Carbohydrate' => 'Carboidrato',
+    'Protein' => 'Proteína',
+    'Fat' => 'Gordura',
+
+    'Results' => 'Resultados',
+    'BasalMetabolicRate' => 'Taxa Metabólica Basal',
+    'BodyMassIndex' => 'Índice de massa corporal (IMC)',
+    'WaterRequirements' => 'Requisitos de água (ml)',
+    'DailyCaloricRequirements&MacroNutrients' => 'Requisitos Calóricos Diários & Macronutrientes',
+
+    'MyContent' => 'Meu Conteúdo',
+    'MyRecipes' => 'Minhas receitas',
+
+];

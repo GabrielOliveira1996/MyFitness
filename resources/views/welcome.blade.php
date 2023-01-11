@@ -10,12 +10,12 @@
             <div class="row mb-5">
                 <div class="col-lg-5 mt-5">
                     <h1 class="mt-5 fw-bold">
-                        Que seu remédio seja seu alimento, e que seu alimento seja seu remédio.
+                        {{ __('messages.Phrase1') }}
                     </h1>
                     <h5 class="mt-2">
-                        Quer comer com mais atenção? Monitore refeições, aprenda sobre seus hábitos e alcance seus objetivos com o MyFitness.
+                        {{ __('messages.Phrase2') }}
                     </h5>
-                    <button class="btn btn-primary">COMECE GRATUITAMENTE</button>
+                    <button class="btn btn-primary">{{ __('messages.StartForFree') }}</button>
                 </div>
                 <img src="img/alimento.png" class="col-lg-7">
             </div>
@@ -26,10 +26,10 @@
                 <img src="img/alimento2.png" class="col-lg-6">
                 <div class="col-lg-5 mt-5">
                     <h1 class="mt-5 fw-bold ">
-                        Utilize os alimentos de nossa base, ou registre o seu próprio.
+                        {{ __('messages.Phrase3') }}
                     </h1>
                     <h5 class="mt-2">
-                        Veja o detalhamento de calorias e nutrientes, compare porções e descubra como os alimento que você ingere contribuem com os seus objetivos.
+                        {{ __('messages.Phrase4') }}
                     </h5>
                 </div>
             </div>

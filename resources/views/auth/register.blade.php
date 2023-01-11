@@ -6,14 +6,14 @@
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center">{{ __('Cadastro') }}</div>
+                <div class="card-header text-center">{{ __('messages.Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row">
-                            <label for="name" class="col-md-12">{{ __('Nome') }}</label>
+                            <label for="name" class="col-md-12">{{ __('messages.Name') }}</label>
                         </div>
 
                         <div class="row mb-3">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="row">
-                            <label for="password" class="col-md-12">{{ __('Senha') }}</label>
+                            <label for="password" class="col-md-12">{{ __('messages.Password') }}</label>
                         </div>
 
                         <div class="row mb-3">
@@ -61,7 +61,7 @@
                         </div>
 
                         <div class="row">
-                            <label for="password-confirm" class="col-md-12">{{ __('Confirmar Senha') }}</label>
+                            <label for="password-confirm" class="col-md-12">{{ __('messages.ConfirmPassword') }}</label>
                         </div>
 
                         <div class="row mb-3">
@@ -73,7 +73,7 @@
                         <div class="row mb-0">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary col-lg-12">
-                                    {{ __('Continuar') }}
+                                    {{ __('messages.Register') }}
                                 </button>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                     <hr>
 
                     <small class="text-justify">
-                        Ao continuar você concorda com os termos de uso do MyFitness.
+                        {{ __('messages.MyFitnessTerm') }}
                     </small>
                 </div>
             </div>
