@@ -51,10 +51,13 @@ return [
     'RichInProtein' => 'Rico em proteínas',
     'Ketogenic'=> 'Cetogénica (Atkins)',
 
+    'AmountInGrams' => 'Quantidade em gramas',
     'Calories' => 'Calorias',
     'Carbohydrate' => 'Carboidrato',
     'Protein' => 'Proteína',
     'Fat' => 'Gordura',
+    'SaturatedFat' => 'Gordura saturada',
+    'TransFat' => 'Gordura trans',
 
     'Results' => 'Resultados',
     'BasalMetabolicRate' => 'Taxa Metabólica Basal',
@@ -64,5 +67,30 @@ return [
 
     'MyContent' => 'Meu Conteúdo',
     'MyRecipes' => 'Minhas receitas',
+
+    //Buttons
+    'Add' => 'Adicionar',
+    'Edit' => 'Editar',
+    'Delete' => 'Remover',
+    'Update' => 'Update',
+    'Search' => 'Buscar',
+
+    'YourFoods' => 'Seus alimentos',
+    'YourFoodsDescription' => 'Essa lista consiste nos alimentos adicionados por você, e alimentos adicionados como favoritos.',
+
+    'AddFoodDescription' => 'Adicione alimentos para melhorar ainda mais os seus resultados.',
+    'AddFoodAlert' => 'Pesquise antes de adicionar as informações sobre os alimentos, para que não existam informações incorretas adicionadas em sistema.',
+
+    'UpdateFoodDescription' => 'As informações do seu alimento estão incorretas? Realize a correção abaixo.',
+
+    'DailyGoal' => 'Meta Diária',
+    'DailyIntake' => 'Ingestão Diária',
+    'DailyIntakeMessage' => 'Até o momento essa foi a sua ingestão de nutrientes.',
+
+    'UpdateFoodGoalDescription' => 'Você selecionou um alimento da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.',
+    
+    'AddFoodToGoalDescription' => 'Adicione alimentos para sua meta do dia.',
+
+    'SearchDescription' => 'Busque por alimentos.',
 
 ];

@@ -6,23 +6,23 @@
 
     <div class="row justify-content-center mt-2">
         
-        <h3 class="text-center mt-5">Seus alimentos</h3>
+        <h3 class="text-center mt-5">{{ __('messages.YourFoods') }}</h3>
 
-        <p>Essa lista consiste nos alimentos adicionados por você, e por alimentos adicionados como favoritos.</p>
+        <p class="text-center">{{ __('messages.YourFoodsDescription') }}</p>
 
         <table class="table mt-3">
             <thead>
                 <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Quantidade Em Gramas</th>
-                    <th scope="col">Calorias</th>
-                    <th scope="col">Carboidratos</th>
-                    <th scope="col">Proteínas</th>
-                    <th scope="col">Gordura Total</th>
-                    <th scope="col">Gordura Saturada</th>
-                    <th scope="col">Gordura Trans</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Remover</th>
+                    <th scope="col">{{ __('messages.Name') }}</th>
+                    <th scope="col">{{ __('messages.AmountInGrams') }}</th>
+                    <th scope="col">{{ __('messages.Calories') }}</th>
+                    <th scope="col">{{ __('messages.Carbohydrate') }}</th>
+                    <th scope="col">{{ __('messages.Protein') }}</th>
+                    <th scope="col">{{ __('messages.Fat') }}</th>
+                    <th scope="col">{{ __('messages.SaturatedFat') }}</th>
+                    <th scope="col">{{ __('messages.TransFat') }}</th>
+                    <th scope="col">{{ __('messages.Edit') }}</th>
+                    <th scope="col">{{ __('messages.Delete') }}</th>
                 </tr>
             </thead>
             <tbody>

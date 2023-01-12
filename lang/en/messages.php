@@ -51,10 +51,13 @@ return [
     'RichInProtein' => 'Rich in protein',
     'Ketogenic'=> 'Ketogenic (Atkins)',
 
+    'AmountInGrams' => 'Amount in grams',
     'Calories' => 'Calories',
     'Carbohydrate' => 'Carbohydrate',
     'Protein' => 'Protein',
     'Fat' => 'Fat',
+    'SaturatedFat' => 'Saturated fat',
+    'TransFat' => 'Trans fat',
 
     'Results' => 'Results',
     'BasalMetabolicRate' => 'Basal metabolic rate',
@@ -64,5 +67,30 @@ return [
 
     'MyContent' => 'My Content',
     'MyRecipes' => 'My Recipes',
+
+    //Buttons
+    'Add' => 'Add',
+    'Edit' => 'Edit',
+    'Delete' => 'Remove',
+    'Update' => 'Update',
+    'Search' => 'Search',
+    
+    'YourFoods' => 'Your foods',
+    'YourFoodsDescription' => 'This list consists of foods added by you, and foods added as favorites.',
+
+    'AddFoodDescription' => 'Add foods to further improve your results.',
+    'AddFoodAlert' => 'Do some research before adding food information so that incorrect information is not added to the system.',
+
+    'UpdateFoodDescription' => 'Is your food information incorrect? Make the correction below.',
+
+    'DailyGoal' => 'Daily Goal',
+    'DailyIntake' => 'Daily Intake',
+    'DailyIntakeMessage' => 'So far this has been your nutrient intake.',
+
+    'UpdateFoodGoalDescription' => 'You have selected a food from your list of goals, on this page you can make changes to the food, if the information is not filled in correctly.',
+
+    'AddFoodToGoalDescription' => 'Add food to your goal for the day.',
+
+    'SearchDescription' => 'Search for foods.',
 
 ];

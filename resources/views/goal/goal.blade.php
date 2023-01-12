@@ -6,7 +6,7 @@
     
     <div class="row d-flex justify-content-center mt-5">
 
-        <h3 class="text-center">Metas do dia</h3>
+        <h3 class="text-center">{{ __('messages.DailyGoal') }}</h3>
 
         <div class="col-lg-4">
             <canvas id="myChart"></canvas>
@@ -16,7 +16,7 @@
             <div class="col-md-8 d-flex justify-content-around">
 
                 <label class="font-weight-bold">
-                    <p class="text-center text-danger">• Carboidratos</p>
+                    <p class="text-center text-danger">• {{ __('messages.Carbohydrate') }}</p>
                     <div class="progress">
                         <div id="progressbarCarbohydrateId" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -29,7 +29,7 @@
                 </label>
 
                 <label class="font-weight-bold">
-                    <p class="text-center text-primary">• Proteínas</p>
+                    <p class="text-center text-primary">• {{ __('messages.Protein') }}</p>
                     <div class="progress">
                         <div id="progressbarProteinId" class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>        
@@ -42,7 +42,7 @@
                 </label>
 
                 <label class="font-weight-bold">
-                    <p class="text-center text-warning">• Gorduras</p> 
+                    <p class="text-center text-warning">• {{ __('messages.Fat') }}</p> 
                     <div class="progress">
                         <div id="progressbarTotalFatId" class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -57,7 +57,7 @@
             </div>
             
             <label class="font-weight-bold col-md-8">
-                <p class="text-center">• Calorias</p> 
+                <p class="text-center">• {{ __('messages.Calories') }}</p> 
                 <div class="progress">
                     <div id="progressbarCalorieId" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -80,9 +80,9 @@
 
         <div class="col-md-12">
 
-            <h3 class="text-center">Consumo do dia</h3>
+            <h3 class="text-center">{{ __('messages.DailyIntake') }}</h3>
 
-            <h5 class="text-center mt-3">Até o momento essa foi a sua ingestão de nutrientes.</h5>
+            <h5 class="text-center mt-3">{{ __('messages.DailyIntakeMessage') }}</h5>
 
         </div>
 
@@ -92,14 +92,14 @@
             <table class="table mt-3">
                 <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Quantidade Em Gramas</th>
-                        <th scope="col">Calorias</th>
-                        <th scope="col">Carboidratos</th>
-                        <th scope="col">Proteínas</th>
-                        <th scope="col">Gordura</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Remover</th>
+                        <th scope="col">{{ __('messages.Name') }}</th>
+                        <th scope="col">{{ __('messages.AmountInGrams') }}</th>
+                        <th scope="col">{{ __('messages.Calories') }}</th>
+                        <th scope="col">{{ __('messages.Carbohydrate') }}</th>
+                        <th scope="col">{{ __('messages.Protein') }}</th>
+                        <th scope="col">{{ __('messages.Fat') }}</th>
+                        <th scope="col">{{ __('messages.Edit') }}</th>
+                        <th scope="col">{{ __('messages.Delete') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,11 +133,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary mt-5" href="{{ route('addFoodToDayGoalView') }}">Adicionar Alimentos</a>
-        </div>
-
-        <div class="d-flex justify-content-center mt-5">
-            {{$goalFoods->links()}}
+            <a class="btn btn-primary col-md-6 mt-5" href="{{ route('addFoodToDayGoalView') }}">{{ __('messages.AddFood') }}</a>
         </div>
 
         <hr class="mt-5">

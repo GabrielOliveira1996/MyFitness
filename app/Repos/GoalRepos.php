@@ -29,7 +29,7 @@ class GoalRepos implements IGoalRepos{
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
         $currentDate = date('m/d/y');
 
-        $goalFoods = $this->_goalRepos->where('date', $currentDate)->where('user_id', auth()->user()->id)->paginate(10);
+        $goalFoods = $this->_goalRepos->where('date', $currentDate)->where('user_id', auth()->user()->id)->get();
 
         return $goalFoods;
     }

@@ -38,7 +38,7 @@ class FoodRepos implements IFoodRepos{
 
     public function findFoodRepos($id){
 
-        $food = $this->_food->where('id', $id)->get();
+        $food = $this->_food->where('id', $id)->first();
         
         return $food;
     }

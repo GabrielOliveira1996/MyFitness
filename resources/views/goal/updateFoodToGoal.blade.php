@@ -17,21 +17,21 @@
 <div class="container d-flex justify-content-center py-5">
 
     <div class="row">
-        <p class="text-center">Você selecionou o alimento {{$food->name}} da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.</p>
+        <p class="text-center">{{ __('messages.UpdateFoodGoalDescription') }}</p>
 
         <form method="POST" autocomplete="off">
             @csrf            
             <table class="table mt-3">
                 <thead>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Quantidade Em Gramas</th>
-                        <th scope="col">Calorias</th>
-                        <th scope="col">Carboidratos</th>
-                        <th scope="col">Proteínas</th>
-                        <th scope="col">Gordura Total</th>
-                        <th scope="col">Gordura Saturada</th>
-                        <th scope="col">Gordura Trans</th>
+                        <th scope="col">{{ __('messages.Name') }}</th>
+                        <th scope="col">{{ __('messages.AmountInGrams') }}</th>
+                        <th scope="col">{{ __('messages.Calories') }}</th>
+                        <th scope="col">{{ __('messages.Carbohydrate') }}</th>
+                        <th scope="col">{{ __('messages.Protein') }}</th>
+                        <th scope="col">{{ __('messages.Fat') }}</th>
+                        <th scope="col">{{ __('messages.SaturatedFat') }}</th>
+                        <th scope="col">{{ __('messages.TransFat') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,14 +102,14 @@
             <hr class="col-lg-12">
 
             <small class="col-lg-12 text-justify">
-                Pesquise antes de adicionar as informações sobre os alimentos, para que não existam informações incorretas adicionadas em sistema.
+                {{ __('messages.AddFoodAlert') }}
             </small>
 
             <hr class="col-lg-12">
 
             <div class="col-lg-12 mt-2">
                 <button type="submit" class="btn btn-primary col-lg-12">
-                    {{ __('Atualizar') }}
+                    {{ __('messages.Update') }}
                 </button>
             </div>    
         </form>
