@@ -67,7 +67,7 @@ class GoalController extends Controller
 
         $foods = $this->_foodRepos->allFoodsRepos();
  
-        return view('goal.addFoodToGoal', compact('foods'));
+        return view('goal.addFoodToGoal');
     }
 
     public function updateFoodToDayGoalView($id){

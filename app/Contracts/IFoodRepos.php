@@ -9,5 +9,6 @@ interface IFoodRepos {
     public function findFoodRepos($id);
     public function updateFoodRepos($user, $id);
     public function deleteFoodRepos($id);
+    //public function searchFoodRepos($data);
 
 }

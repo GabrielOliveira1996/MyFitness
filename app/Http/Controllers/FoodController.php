@@ -78,15 +78,13 @@ class FoodController extends Controller
         
         return redirect()->route('allFoodsView', compact('userFoods'));
     }
-
-    //Função não utilizada até o momento.
+    
     public function searchFood(){
 
         $data = $this->_request->all();
-
-        //$search = $this->_foodRepos->searchFoodRepos($data);
-        //Product::where([['bar_code', 'like', '%'.$barcode.'%']])->paginate(10);
-
-        return redirect()->route('food.search');
+        
+        $foods = $this->_foodRepos->searchFoodRepos($data);
+        
+        return view('goal.addFoodToGoal', compact('foods'));
     }
 }

@@ -11,7 +11,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('food')->group(function () {
-    //Route::get('/search', [App\Http\Controllers\FoodController::class, 'searchFoodView']);
+    Route::post('/search', [App\Http\Controllers\FoodController::class, 'searchFood'])->name('searchFood');
     Route::get('/create', [App\Http\Controllers\FoodController::class, 'createFoodView'])->name('createFoodView');
     Route::post('/create', [App\Http\Controllers\FoodController::class, 'createFood'])->name('createFood');
     Route::get('/all', [App\Http\Controllers\FoodController::class, 'allFoodsView'])->name('allFoodsView');

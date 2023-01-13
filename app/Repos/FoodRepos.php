@@ -85,5 +85,12 @@ class FoodRepos implements IFoodRepos{
 
         return $allFoods;
     }
+    
+    public function searchFoodRepos($data){
+        
+        $search = $this->_food->where([['name', 'like', '%'.$data['name'].'%']])->paginate(10);
+        
+        return $search;
+    }
 
 }
