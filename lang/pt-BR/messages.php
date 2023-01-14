@@ -58,6 +58,7 @@ return [
     'Fat' => 'Gordura',
     'SaturatedFat' => 'Gordura saturada',
     'TransFat' => 'Gordura trans',
+    'TypeOfMeal' => 'Tipo de refeição',
 
     'Results' => 'Resultados',
     'BasalMetabolicRate' => 'Taxa Metabólica Basal',
@@ -92,5 +93,12 @@ return [
     'AddFoodToGoalDescription' => 'Adicione alimentos para sua meta do dia.',
 
     'SearchDescription' => 'Busque por alimentos.',
+
+    'Breakfast' => 'Café da manhã',
+    'Lunch' => 'Almoço',
+    'Snack' => 'Lanche',
+    'Dinner' => 'Jantar',
+    'PreWorkout' => 'Pre treino',
+    'PostWorkout' => 'Pós treino',
 
 ];

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('total_fat');
             $table->decimal('saturated_fat');
             $table->decimal('trans_fat');
+            $table->string('type_of_meal');
             $table->string('date');
             $table->timestamps();
         });

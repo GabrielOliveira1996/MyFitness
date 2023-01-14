@@ -58,6 +58,7 @@ return [
     'Fat' => 'Fat',
     'SaturatedFat' => 'Saturated fat',
     'TransFat' => 'Trans fat',
+    'TypeOfMeal' => 'Type of meal',
 
     'Results' => 'Results',
     'BasalMetabolicRate' => 'Basal metabolic rate',
@@ -92,5 +93,12 @@ return [
     'AddFoodToGoalDescription' => 'Add food to your goal for the day.',
 
     'SearchDescription' => 'Search for foods.',
+
+    'Breakfast' => 'Breakfast',
+    'Lunch' => 'Lunch',
+    'Snack' => 'Snack',
+    'Dinner' => 'Dinner',
+    'PreWorkout' => 'Pre workout',
+    'PostWorkout' => 'Post workout',
 
 ];

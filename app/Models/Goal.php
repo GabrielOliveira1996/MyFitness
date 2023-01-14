@@ -19,6 +19,7 @@ class Goal extends Model
         'total_fat',
         'saturated_fat',
         'trans_fat',
+        'type_of_meal',
         'date'
     ];
 
