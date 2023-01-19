@@ -83,8 +83,14 @@ class FoodController extends Controller
 
         $data = $this->_request->all();
         
-        $foods = $this->_foodRepos->searchFoodRepos($data);
+        if(!$data['name'] == null){
+
+            $foods = $this->_foodRepos->searchFoodRepos($data);
         
-        return view('goal.addFoodToGoal', compact('foods'));
+            return view('goal.addFoodToGoal', compact('foods'));
+        }
+
+        return view('goal.addFoodToGoal');
+        
     }
 }

@@ -30,14 +30,18 @@ class GoalController extends Controller
         //$foods = $this->_foodRepos->allFoodsRepos();
         
         $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
-
+        $date = date('d/m/Y');
+        $dateToInputView = date('Y-m-d');
+        //dd($date);
         //Tipos de refeição.
-        $breakfastGoalFoods = $this->_goalRepos->breakfastGoalFoodsRepos();
-        $lunchGoalFoods = $this->_goalRepos->lunchGoalFoodsRepos();
-        $snackGoalFoods = $this->_goalRepos->snackGoalFoodsRepos();
-        $dinnerGoalFoods = $this->_goalRepos->dinnerGoalFoodsRepos();
-        $preWorkoutGoalFoods = $this->_goalRepos->preWorkoutGoalFoodsRepos();
-        $postWorkoutGoalFoods = $this->_goalRepos->postWorkoutGoalFoodsRepos();
+        $breakfastGoalFoods = $this->_goalRepos->breakfastGoalFoodsRepos($date);
+        $lunchGoalFoods = $this->_goalRepos->lunchGoalFoodsRepos($date);
+        $snackGoalFoods = $this->_goalRepos->snackGoalFoodsRepos($date);
+        $dinnerGoalFoods = $this->_goalRepos->dinnerGoalFoodsRepos($date);
+        $preWorkoutGoalFoods = $this->_goalRepos->preWorkoutGoalFoodsRepos($date);
+        $postWorkoutGoalFoods = $this->_goalRepos->postWorkoutGoalFoodsRepos($date);
+        
+        //dd($breakfastGoalFoods);
         
         //Talvez não precise mais dessas variaveis, verificar.
         $goalCalories = 0;
@@ -81,7 +85,7 @@ class GoalController extends Controller
                             + $dinnerGoalFoods->sum('total_fat')
                             + $preWorkoutGoalFoods->sum('total_fat')
                             + $postWorkoutGoalFoods->sum('total_fat');
-                            
+        
         return view('goal.goal', compact('breakfastGoalFoods', 
                                             'lunchGoalFoods',
                                             'snackGoalFoods',
@@ -96,7 +100,8 @@ class GoalController extends Controller
                                             'goalCalories',
                                             'goalCarbohydrate',
                                             'goalProtein',
-                                            'goalTotalFat'
+                                            'goalTotalFat',
+                                            'dateToInputView'
                                         ));
     }  
     
@@ -156,6 +161,86 @@ class GoalController extends Controller
 
         return redirect()->route('goalView');
         
+    }
+
+    public function searchGoal(){
+
+        $data = $this->_request->all();
+        $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
+        $search = $this->_goalRepos->searchGoalRepos($data);
+        $explodeDate = explode('-', $this->_request->date);
+        $date = $explodeDate[2].'/'.$explodeDate[1].'/'.$explodeDate[0];
+        $dateToInputView = $explodeDate[0].'-'.$explodeDate[1].'-'.$explodeDate[2];
+        //dd($date);
+        //Tipos de refeição.
+        $breakfastGoalFoods = $this->_goalRepos->breakfastGoalFoodsRepos($date);
+        $lunchGoalFoods = $this->_goalRepos->lunchGoalFoodsRepos($date);
+        $snackGoalFoods = $this->_goalRepos->snackGoalFoodsRepos($date);
+        $dinnerGoalFoods = $this->_goalRepos->dinnerGoalFoodsRepos($date);
+        $preWorkoutGoalFoods = $this->_goalRepos->preWorkoutGoalFoodsRepos($date);
+        $postWorkoutGoalFoods = $this->_goalRepos->postWorkoutGoalFoodsRepos($date);
+
+        //Talvez não precise mais dessas variaveis, verificar.
+        $goalCalories = 0;
+        $goalCarbohydrate = 0;
+        $goalProtein = 0;
+        $goalTotalFat = 0;
+
+        if($settingGoal){
+            //Metas estabelecidas pelo usuário.
+            $goalCalories = $settingGoal['daily_calories'];
+            $goalCarbohydrate = $settingGoal['daily_carbohydrate'];
+            $goalProtein = $settingGoal['daily_protein'];
+            $goalTotalFat = $settingGoal['daily_fat'];
+        }
+        
+        //Resultados do dia.
+        $todaysCalories = $breakfastGoalFoods->sum('calories') 
+                            + $lunchGoalFoods->sum('calories') 
+                            + $snackGoalFoods->sum('calories') 
+                            + $dinnerGoalFoods->sum('calories')
+                            + $preWorkoutGoalFoods->sum('calories')
+                            + $postWorkoutGoalFoods->sum('calories'); 
+        
+        $todaysCarbohydrate = $breakfastGoalFoods->sum('carbohydrate') 
+                                + $lunchGoalFoods->sum('carbohydrate') 
+                                + $snackGoalFoods->sum('carbohydrate') 
+                                + $dinnerGoalFoods->sum('carbohydrate')
+                                + $preWorkoutGoalFoods->sum('carbohydrate')
+                                + $postWorkoutGoalFoods->sum('carbohydrate');
+
+        $todaysProtein = $breakfastGoalFoods->sum('protein') 
+                            + $lunchGoalFoods->sum('protein') 
+                            + $snackGoalFoods->sum('protein') 
+                            + $dinnerGoalFoods->sum('protein')
+                            + $preWorkoutGoalFoods->sum('protein')
+                            + $postWorkoutGoalFoods->sum('protein');
+
+        $todaysTotalFat = $breakfastGoalFoods->sum('total_fat') 
+                            + $lunchGoalFoods->sum('total_fat') 
+                            + $snackGoalFoods->sum('total_fat') 
+                            + $dinnerGoalFoods->sum('total_fat')
+                            + $preWorkoutGoalFoods->sum('total_fat')
+                            + $postWorkoutGoalFoods->sum('total_fat');
+
+        return view('goal.goal', compact('breakfastGoalFoods', 
+                                            'lunchGoalFoods',
+                                            'snackGoalFoods',
+                                            'dinnerGoalFoods',
+                                            'preWorkoutGoalFoods',
+                                            'postWorkoutGoalFoods',
+                                            'settingGoal',
+                                            'todaysCalories', 
+                                            'todaysCarbohydrate', 
+                                            'todaysProtein', 
+                                            'todaysTotalFat',
+                                            'goalCalories',
+                                            'goalCarbohydrate',
+                                            'goalProtein',
+                                            'goalTotalFat',
+                                            'dateToInputView'
+                                        ));
+
     }
 
 }

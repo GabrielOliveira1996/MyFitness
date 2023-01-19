@@ -25,88 +25,166 @@ class GoalRepos implements IGoalRepos{
     }
 
     //Funções de tipos de refeições///////////////
-    public function breakfastGoalFoodsRepos(){
+    public function breakfastGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
-
-        $breakfastGoalFoods = $this->_goalRepos
+        $currentDate = $date;
+        //dd($date);
+        if(!empty($date)){
+            
+            $breakfastGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'breakfast')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $breakfastGoalFoods;
+            return $breakfastGoalFoods;
+
+        }
+        
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+
+        return $response;
     }
 
-    public function lunchGoalFoodsRepos(){
+    public function lunchGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
+        $currentDate = $date;
 
-        $lunchGoalFoods = $this->_goalRepos
+        if(!empty($date)){
+
+            $lunchGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'lunch')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $lunchGoalFoods;
+            return $lunchGoalFoods;
+
+        }
+
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+        
+        return $response;
     }
 
-    public function snackGoalFoodsRepos(){
+    public function snackGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
+        $currentDate = $date;
 
-        $snackGoalFoods = $this->_goalRepos
+        if(!empty($date)){
+
+            $snackGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'snack')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $snackGoalFoods;
+            return $snackGoalFoods;
+
+        }
+
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+        
+        return $response;
     }
 
-    public function dinnerGoalFoodsRepos(){
+    public function dinnerGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
+        $currentDate = $date;
 
-        $dinnerGoalFoods = $this->_goalRepos
+        if(!empty($date)){
+
+            $dinnerGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'dinner')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $dinnerGoalFoods;
+            return $dinnerGoalFoods;
+
+        }
+
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+        
+        return $response;
     }
 
-    public function preWorkoutGoalFoodsRepos(){
+    public function preWorkoutGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
+        $currentDate = $date;
+        
+        if(!empty($date)){
 
-        $preWorkoutGoalFoods = $this->_goalRepos
+            $preWorkoutGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'pre_workout')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $preWorkoutGoalFoods;
+            return $preWorkoutGoalFoods;
+
+        }
+
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+        
+        return $response;
     }
 
-    public function postWorkoutGoalFoodsRepos(){
+    public function postWorkoutGoalFoodsRepos($date){
         
         $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = date('m/d/y');
+        $currentDate = $date;
+        
+        if(!empty($date)){
 
-        $postWorkoutGoalFoods = $this->_goalRepos
+            $postWorkoutGoalFoods = $this->_goalRepos
                             ->where('date', $currentDate)
                             ->where('type_of_meal', 'post_workout')
                             ->where('user_id', auth()->user()->id)
                             ->get();
 
-        return $postWorkoutGoalFoods;
+            return $postWorkoutGoalFoods;
+
+        }
+
+        $response = collect([
+            'calories' => 0,
+            'carbohydrate' => 0,
+            'protein' => 0,
+            'total_fat' => 0
+        ]);
+        
+        return $response;
     }
 
     ///////////////////////////////////////
@@ -127,7 +205,7 @@ class GoalRepos implements IGoalRepos{
             'saturated_fat' => $data['saturated_fat'],
             'trans_fat' => $data['trans_fat'],
             'type_of_meal' => $data['type_of_meal'],
-            'date' => date('m/d/y')
+            'date' => date('d/m/Y')
         ]);
 
         return $food;
@@ -154,7 +232,8 @@ class GoalRepos implements IGoalRepos{
             'protein' => $data['protein'],
             'total_fat' => $data['total_fat'],
             'saturated_fat' => $data['saturated_fat'],
-            'trans_fat' => $data['trans_fat']
+            'trans_fat' => $data['trans_fat'],
+            'type_of_meal' => $data['type_of_meal'],
         ]);
 
         return $food;
@@ -165,6 +244,16 @@ class GoalRepos implements IGoalRepos{
         $deleteFoodGoal = $this->_goalRepos->where('id', $id)->delete();
 
         return $deleteFoodGoal;
+    }
+
+    public function searchGoalRepos($data){
+        
+        $explodeDate = explode('-', $data['date']);
+        $date = $explodeDate[1].'/'.$explodeDate[2].'/'.$explodeDate[0];
+        //dd($date);
+        $search = $this->_goalRepos->where('date', $date)->get();
+
+        return $search;
     }
     
 }

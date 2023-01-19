@@ -27,23 +27,23 @@ class UserSeeder extends Seeder
         BasalMetabolicRate::create([
             'user_id' => 1,
             'user_name' => 'Gabriel',
-            'gender' => 0,
-            'age' => 0,
-            'weight' => 0,
-            'stature' => 0,
-            'activity_rate_factor' => 0,
-            'objective' => 0,
+            'gender' => 'Masculino',
+            'age' => 25,
+            'weight' => 63,
+            'stature' => 1.68,
+            'activity_rate_factor' => 1.38,
+            'objective' => 'Aumentar peso lentamente',
             'type_of_diet' => 'Padrão',
-            'imc' => 0,
-            'water' => 0,
+            'imc' => 22.30,
+            'water' => 2205,
             'basal_metabolic_rate' => 0,
-            'daily_calories' => 0,
-            'daily_protein' => 0,
-            'daily_carbohydrate' => 0,
-            'daily_fat' => 0,
-            'daily_protein_kcal' => 0,
-            'daily_carbohydrate_kcal' => 0,
-            'daily_fat_kcal' => 0
+            'daily_calories' => 2427,
+            'daily_protein' => 116.60,
+            'daily_carbohydrate' => 291.70,
+            'daily_fat' => 78.80,
+            'daily_protein_kcal' => 504,
+            'daily_carbohydrate_kcal' => 1194.60,
+            'daily_fat_kcal' => 728
         ]);
 
     }

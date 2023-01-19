@@ -107,5 +107,83 @@ class FoodSeeder extends Seeder
             'trans_fat' => 0
         ]);
 
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Batata Doce (Cozida)',
+            'quantity_grams' => 100,
+            'calories' => 77,
+            'carbohydrate' => 18.40,
+            'protein' => 0.60,
+            'total_fat' => 0.10,
+            'saturated_fat' => 0,
+            'trans_fat' => 0
+        ]);
+
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Batata Doce (Cozida)',
+            'quantity_grams' => 100,
+            'calories' => 77,
+            'carbohydrate' => 18.40,
+            'protein' => 0.60,
+            'total_fat' => 0.10,
+            'saturated_fat' => 0,
+            'trans_fat' => 0
+        ]);
+
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Aveia',
+            'quantity_grams' => 100,
+            'calories' => 394,
+            'carbohydrate' => 57.50,
+            'protein' => 13.90,
+            'total_fat' => 0,
+            'saturated_fat' => 1.50,
+            'trans_fat' => 0
+        ]);
+
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Massa de Tapioca (Cozida)',
+            'quantity_grams' => 100,
+            'calories' => 329,
+            'carbohydrate' => 81.10,
+            'protein' => 0.50,
+            'total_fat' => 0.30,
+            'saturated_fat' => 0,
+            'trans_fat' => 0
+        ]);
+
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Macarrão (Cozida)',
+            'quantity_grams' => 100,
+            'calories' => 158,
+            'carbohydrate' => 29.06,
+            'protein' => 5.80,
+            'total_fat' => 0.93,
+            'saturated_fat' => 0.18,
+            'trans_fat' => 0
+        ]);
+
+        Food::create([
+            'user_id' => 1,
+            'user_name' => 'Gabriel',
+            'name' => 'Feijão Carioca (Cozida)',
+            'quantity_grams' => 100,
+            'calories' => 76,
+            'carbohydrate' => 13.60,
+            'protein' => 4.80,
+            'total_fat' => 0.50,
+            'saturated_fat' => 0.10,
+            'trans_fat' => 0
+        ]);
+
     }
 }

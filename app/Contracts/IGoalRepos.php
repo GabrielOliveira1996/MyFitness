@@ -5,14 +5,16 @@ namespace App\Contracts;
 interface IGoalRepos {
 
     public function allGoalRepos();
-    public function breakfastGoalFoodsRepos();
-    public function lunchGoalFoodsRepos();
-    public function snackGoalFoodsRepos();
-    public function dinnerGoalFoodsRepos();
-    public function preWorkoutGoalFoodsRepos();
-    public function postWorkoutGoalFoodsRepos();
+    public function breakfastGoalFoodsRepos($date);
+    public function lunchGoalFoodsRepos($date);
+    public function snackGoalFoodsRepos($date);
+    public function dinnerGoalFoodsRepos($date);
+    public function preWorkoutGoalFoodsRepos($date);
+    public function postWorkoutGoalFoodsRepos($date);
     public function addFoodToDayGoalRepos($data);
     public function deleteGoalFoodRepos($id);
     public function findFoodRepos($id);
     public function updateFoodToDayGoalRepos($id);
+    public function searchGoalRepos($data);
+    
 }

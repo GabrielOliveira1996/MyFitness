@@ -32,6 +32,7 @@
                         <th scope="col">{{ __('messages.Fat') }}</th>
                         <th scope="col">{{ __('messages.SaturatedFat') }}</th>
                         <th scope="col">{{ __('messages.TransFat') }}</th>
+                        <th scope="col">{{ __('messages.TypeOfMeal') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,7 @@
                         </th>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityGramsId-1" type="number" class="form-control" name="quantity_grams" value="{{ $food->quantity_grams }}">
+                                <input id="quantityGramsId-1" type="number" class="form-control" name="quantity_grams" value="{{ $food->quantity_grams }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -49,7 +50,7 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityCalorieId-1" type="number" class="form-control" name="calories" value="{{ $food->calories }}">
+                                <input id="quantityCalorieId-1" type="number" class="form-control" name="calories" value="{{ $food->calories }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
                                 </div>
@@ -57,7 +58,7 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityCarbohydrateId-1" type="number" class="form-control" name="carbohydrate" value="{{ $food->carbohydrate }}">
+                                <input id="quantityCarbohydrateId-1" type="number" class="form-control" name="carbohydrate" value="{{ $food->carbohydrate }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -65,7 +66,7 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityProteinId-1" type="number" class="form-control" name="protein" value="{{ $food->protein }}">
+                                <input id="quantityProteinId-1" type="number" class="form-control" name="protein" value="{{ $food->protein }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -73,7 +74,7 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityTotalFatId-1" type="number" class="form-control" name="total_fat" value="{{ $food->total_fat }}">
+                                <input id="quantityTotalFatId-1" type="number" class="form-control" name="total_fat" value="{{ $food->total_fat }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -81,7 +82,7 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantitySaturatedFatId-1" type="number" class="form-control" name="saturated_fat" value="{{ $food->saturated_fat }}">
+                                <input id="quantitySaturatedFatId-1" type="number" class="form-control" name="saturated_fat" value="{{ $food->saturated_fat }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
@@ -89,12 +90,22 @@
                         </td>
                         <td>
                             <div class="input-group mb-3">
-                                <input id="quantityTransFatId-1" type="number" class="form-control" name="trans_fat" value="{{ $food->trans_fat }}">
+                                <input id="quantityTransFatId-1" type="number" class="form-control" name="trans_fat" value="{{ $food->trans_fat }}" step="any">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
                             </div>
-                        </td>                    
+                        </td> 
+                        <td>
+                            <select class="form-control" name="type_of_meal">
+                                <option value="breakfast">{{ __('messages.Breakfast') }}</option>
+                                <option value="lunch">{{ __('messages.Lunch') }}</option>
+                                <option value="snack">{{ __('messages.Snack') }}</option>
+                                <option value="dinner">{{ __('messages.Dinner') }}</option>
+                                <option value="pre_workout">{{ __('messages.PreWorkout') }}</option>
+                                <option value="post_workout">{{ __('messages.PostWorkout') }}</option>
+                            </select>
+                        </td>                   
                     </tr>
                 </tbody>
             </table>

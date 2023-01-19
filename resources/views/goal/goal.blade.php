@@ -8,13 +8,14 @@
 
         <h3 class="text-center">{{ __('messages.DailyGoal') }}</h3>
 
-        <form method="POST">
+        <form method="POST" action="{{ route('searchGoal') }}">
+            @csrf
             <div class="d-flex justify-content-center">
                 <div class="col-md-4">
-                    <input type="date" class="form-control">
+                    <input type="date" name="date" value="{{ $dateToInputView }}" class="form-control">
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <button type="submit" class="btn btn-primary col-md-12">Buscar</button>
                 </div>
             </div>
@@ -126,28 +127,30 @@
                 </thead>
                 <tbody>
                     @foreach($breakfastGoalFoods as $breakfastGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($breakfastGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($breakfastGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($breakfastGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($breakfastGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($breakfastGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($breakfastGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $breakfastGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $breakfastGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($breakfastGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($breakfastGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($breakfastGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($breakfastGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($breakfastGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($breakfastGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($breakfastGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $breakfastGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $breakfastGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -178,28 +181,30 @@
                 </thead>
                 <tbody>
                     @foreach($lunchGoalFoods as $lunchGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($lunchGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($lunchGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($lunchGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($lunchGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($lunchGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($lunchGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $lunchGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $lunchGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($lunchGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($lunchGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($lunchGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($lunchGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($lunchGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($lunchGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($lunchGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $lunchGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $lunchGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -230,28 +235,30 @@
                 </thead>
                 <tbody>
                     @foreach($snackGoalFoods as $snackGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($snackGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($snackGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($snackGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($snackGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($snackGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($snackGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $snackGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $snackGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($snackGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($snackGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($snackGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($snackGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($snackGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($snackGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($snackGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $snackGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $snackGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -282,28 +289,30 @@
                 </thead>
                 <tbody>
                     @foreach($dinnerGoalFoods as $dinnerGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($dinnerGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($dinnerGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($dinnerGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($dinnerGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($dinnerGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($dinnerGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $dinnerGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $dinnerGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($dinnerGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($dinnerGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($dinnerGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($dinnerGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($dinnerGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($dinnerGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($dinnerGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $dinnerGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $dinnerGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -334,28 +343,30 @@
                 </thead>
                 <tbody>
                     @foreach($preWorkoutGoalFoods as $preWorkoutGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($preWorkoutGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($preWorkoutGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($preWorkoutGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($preWorkoutGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($preWorkoutGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($preWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $preWorkoutGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $preWorkoutGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($preWorkoutGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($preWorkoutGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($preWorkoutGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($preWorkoutGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($preWorkoutGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($preWorkoutGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($preWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $preWorkoutGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $preWorkoutGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
@@ -386,28 +397,30 @@
                 </thead>
                 <tbody>
                     @foreach($postWorkoutGoalFoods as $postWorkoutGoalFood)
-                        <tr>
-                            <td><input type="text" class="form-control bg-light" name="name" value="{{__($postWorkoutGoalFood->name)}}" step="any" disabled></th>
-                            <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($postWorkoutGoalFood->quantity_grams)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="calories" value="{{__($postWorkoutGoalFood->calories)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($postWorkoutGoalFood->carbohydrate)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="protein" value="{{__($postWorkoutGoalFood->protein)}}" step="any" disabled></td>
-                            <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($postWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
-                            <td>
-                                <a href="{{ route('updateFoodToDayGoalView', ['id' => $postWorkoutGoalFood->id]) }}" class="btn btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{{ route('deleteGoalFood', ['id' => $postWorkoutGoalFood->id]) }}" class="btn btn-danger">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
+                        @if(!empty($postWorkoutGoalFood->name))
+                            <tr>
+                                <td><input type="text" class="form-control bg-light" name="name" value="{{__($postWorkoutGoalFood->name)}}" step="any" disabled></th>
+                                <td><input type="number" class="form-control bg-light" name="quantity_grams" value="{{__($postWorkoutGoalFood->quantity_grams)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="calories" value="{{__($postWorkoutGoalFood->calories)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="carbohydrate" value="{{__($postWorkoutGoalFood->carbohydrate)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="protein" value="{{__($postWorkoutGoalFood->protein)}}" step="any" disabled></td>
+                                <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($postWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
+                                <td>
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $postWorkoutGoalFood->id]) }}" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('deleteGoalFood', ['id' => $postWorkoutGoalFood->id]) }}" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>

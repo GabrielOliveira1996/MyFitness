@@ -29,6 +29,7 @@ Route::prefix('goal')->group(function () {
     Route::get('/delete-goal-food/{id}', [App\Http\Controllers\GoalController::class, 'deleteGoalFood'])->name('deleteGoalFood');
     Route::get('/perfil', [App\Http\Controllers\UserController::class, 'perfil'])->name('perfil');
     Route::post('/perfil', [App\Http\Controllers\UserController::class, 'perfilUpdate'])->name('perfilUpdate');
+    Route::post('/search-goal', [App\Http\Controllers\GoalController::class, 'searchGoal'])->name('searchGoal');
     /*Rotas removidas
     Route::get('/setting-goal', [App\Http\Controllers\GoalController::class, 'settingGoalView'])->name('settingGoalView');
     
