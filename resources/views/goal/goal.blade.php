@@ -8,19 +8,6 @@
 
         <h3 class="text-center">{{ __('messages.DailyGoal') }}</h3>
 
-        <form method="POST" action="{{ route('searchGoal') }}">
-            @csrf
-            <div class="d-flex justify-content-center">
-                <div class="col-md-4">
-                    <input type="date" name="date" value="{{ $dateToInputView }}" class="form-control">
-                </div>
-
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary col-md-12">Buscar</button>
-                </div>
-            </div>
-        </form>
-
         <div class="col-lg-4">
             <canvas id="myChart"></canvas>
         </div>
@@ -84,6 +71,25 @@
             
         </div>
 
+        <p class="text-center mt-3">{{ __('messages.SearchGoalDescription') }}</p>
+
+        
+            <form method="POST" action="{{ route('searchGoal') }}">
+                @csrf
+                <div class="form-group d-flex justify-content-center">
+                    <div class="col-md-3">
+                        <input type="date" name="date" value="{{ $dateToInputView }}" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary col-md-12">{{__('messages.Search')}}</button>
+                    </div>
+                </div>
+                
+            </form>
+        
     </div>
 
     
@@ -99,10 +105,6 @@
 
         </div>
 
-        <div class="d-flex justify-content-center">
-            <a class="btn btn-primary col-md-6 mt-5" href="{{ route('addFoodToDayGoalView') }}">{{ __('messages.AddFood') }}</a>
-        </div>
-
         <!--Café da manhã-->
 
         <div class="row justify-content-center mt-2">
@@ -110,7 +112,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.Breakfast') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.Breakfast') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'breakfast']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -136,7 +141,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($breakfastGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($breakfastGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $breakfastGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $breakfastGoalFood->id, 'type' => 'breakfast']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -164,7 +169,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.Lunch') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.Lunch') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'lunch']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -190,7 +198,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($lunchGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($lunchGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $lunchGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $lunchGoalFood->id, 'type' => 'lunch']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -218,7 +226,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.Snack') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.Snack') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'snack']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -244,7 +255,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($snackGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($snackGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $snackGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $snackGoalFood->id, 'type' => 'snack']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -272,7 +283,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.Dinner') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.Dinner') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'dinner']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -298,7 +312,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($dinnerGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($dinnerGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $dinnerGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $dinnerGoalFood->id, 'type' => 'dinner']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -326,7 +340,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.PreWorkout') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.PreWorkout') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'pre_workout']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -352,7 +369,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($preWorkoutGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($preWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $preWorkoutGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $preWorkoutGoalFood->id, 'type' => 'pre_workout']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>
@@ -380,7 +397,10 @@
             <table class="table mt-3">
                 <thead class="bg-primary text-light">
                     <tr>
-                        <th colspan="12" class="h5"><strong>{{ __('messages.PostWorkout') }}</strong></th>
+                        <th colspan="7" class="h5"><strong>{{ __('messages.PostWorkout') }}</strong></th>
+                        <th>
+                            <a class="btn btn-primary border" href="{{ route('addFoodToDayGoalView', ['type' => 'post_workout']) }}">{{ __('messages.Add') }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <thead>
@@ -406,7 +426,7 @@
                                 <td><input type="number" class="form-control bg-light" name="protein" value="{{__($postWorkoutGoalFood->protein)}}" step="any" disabled></td>
                                 <td><input type="number" class="form-control bg-light" name="total_fat" value="{{__($postWorkoutGoalFood->total_fat)}}" step="any" disabled></td>                    
                                 <td>
-                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $postWorkoutGoalFood->id]) }}" class="btn btn-primary">
+                                    <a href="{{ route('updateFoodToDayGoalView', ['id' => $postWorkoutGoalFood->id, 'type' => 'post_workout']) }}" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                         </svg>

@@ -8,7 +8,7 @@
 
         <p class="text-center">{{ __('messages.SearchDescription') }}</p>
 
-        <form method="post" action="{{ route('searchFood') }}">
+        <form method="post" action="{{ route('searchFood', ['type' => $_GET['type']]) }}">
             @csrf
             <div class="row d-flex justify-content-center">
                 <div class="col-md-5">
@@ -35,7 +35,7 @@
                     <th scope="col">{{ __('messages.Fat') }}</th>
                     <th scope="col">{{ __('messages.SaturatedFat') }}</th>
                     <th scope="col">{{ __('messages.TransFat') }}</th>
-                    <th scope="col">{{ __('messages.TypeOfMeal') }}</th>
+                    <th scope="col"></th>
                     <th scope="col">{{ __('messages.Add') }}</th>
                 </tr>
             </thead>
@@ -54,14 +54,7 @@
                             <td><input id="quantitySaturatedFatId-{{__($key)}}" type="number" class="form-control border-0" name="saturated_fat" value="{{__($value->saturated_fat)}}" step="any" readonly></td>
                             <td><input id="quantityTransFatId-{{__($key)}}" type="number" class="form-control border-0" name="trans_fat" value="{{__($value->trans_fat)}}" step="any" readonly></td>
                             <td>
-                                <select class="form-control" name="type_of_meal">
-                                    <option value="breakfast">{{ __('messages.Breakfast') }}</option>
-                                    <option value="lunch">{{ __('messages.Lunch') }}</option>
-                                    <option value="snack">{{ __('messages.Snack') }}</option>
-                                    <option value="dinner">{{ __('messages.Dinner') }}</option>
-                                    <option value="pre_workout">{{ __('messages.PreWorkout') }}</option>
-                                    <option value="post_workout">{{ __('messages.PostWorkout') }}</option>
-                                </select>
+                                <input type="hidden" class="form-control" name="type_of_meal" value="{{ $_GET['type'] }}" readonly>
                             </td>
                             <td><button class="btn btn-primary">{{ __('messages.Add') }}</button></td>
                         </form>

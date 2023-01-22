@@ -101,4 +101,6 @@ return [
     'PreWorkout' => 'Pre workout',
     'PostWorkout' => 'Post workout',
 
+    'SearchGoalDescription' => 'Search for goals from other days.',
+
 ];

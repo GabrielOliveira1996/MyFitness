@@ -32,7 +32,7 @@
                         <th scope="col">{{ __('messages.Fat') }}</th>
                         <th scope="col">{{ __('messages.SaturatedFat') }}</th>
                         <th scope="col">{{ __('messages.TransFat') }}</th>
-                        <th scope="col">{{ __('messages.TypeOfMeal') }}</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,14 +97,7 @@
                             </div>
                         </td> 
                         <td>
-                            <select class="form-control" name="type_of_meal">
-                                <option value="breakfast">{{ __('messages.Breakfast') }}</option>
-                                <option value="lunch">{{ __('messages.Lunch') }}</option>
-                                <option value="snack">{{ __('messages.Snack') }}</option>
-                                <option value="dinner">{{ __('messages.Dinner') }}</option>
-                                <option value="pre_workout">{{ __('messages.PreWorkout') }}</option>
-                                <option value="post_workout">{{ __('messages.PostWorkout') }}</option>
-                            </select>
+                            <input type="text" class="form-control" name="type_of_meal" value="{{ $_GET['type'] }}" readonly>
                         </td>                   
                     </tr>
                 </tbody>
