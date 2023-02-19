@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Recuperar Senha') }}</div>
+                <div class="card-header">{{ __('messages.RecoverPassword') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4">{{ __('E-mail') }}</label>
                         </div>
 
                         <div class="row">
@@ -35,7 +35,7 @@
 
                         <div class="row mt-4">
                             <button type="submit" class="btn btn-primary col-md-12">
-                                {{ __('Enviar para e-mail') }}
+                                {{ __('messages.SendToEmail') }}
                             </button>
                         </div>
                     </form>

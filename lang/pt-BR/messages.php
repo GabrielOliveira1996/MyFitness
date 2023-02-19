@@ -3,7 +3,7 @@
 return [
 
     'Login' => 'Entrar',
-    'Register' => 'Entrar',
+    'Register' => 'Cadastre-se',
     'SignOut' => 'Sair',
     'HelloMessage' => 'Olá',
     'Profile' => 'Perfil',
@@ -11,14 +11,15 @@ return [
     'MyFoods' => 'Meus alimentos',
     'MyGoals' => 'Minhas metas',
     'Phrase1' => 'Que seu remédio seja seu alimento, e que seu alimento seja seu remédio.',
-    'Phrase2' => 'Quer comer com mais atenção? Monitore refeições, aprenda sobre seus hábitos e alcance seus objetivos com o MyFitness.',
+    'Phrase2' => 'Quer construir uma dieta balanceada? Monitore refeições, aprenda sobre seus hábitos e alcance seus objetivos com o MyFitness.',
     'StartForFree' => 'COMECE GRATUITAMENTE',
-    'Phrase3' => 'Utilize os alimentos de nossa base, ou registre o seu próprio.',
-    'Phrase4' => 'Veja o detalhamento de calorias e nutrientes, compare porções e descubra como os alimento que você ingere contribuem com os seus objetivos.',
+    'Phrase3' => 'Utilize os alimentos de nossa base, ou cadastre o seu próprio.',
+    'Phrase4' => 'Veja o detalhamento de calorias e macronutrientes, compare porções e descubra como os alimentos que você ingere contribuem com os seus objetivos.',
     'Password' => 'Senha',
     'ConfirmPassword' => 'Confirmar senha',
+    'ConfirmPasswordMessage' => 'Por favor confirme sua senha antes de continuar.',
     'Remember' => 'Lembrar',    
-    'ForgotMyPassword' => 'Forgot my password',
+    'ForgotMyPassword' => 'Esqueceu sua senha?',
     'Name' => 'Nome',
     'MyFitnessTerm' => 'Ao continuar você concorda com os termos de uso do MyFitness.',
     'WelcomeMessage' => 'Seja bem-vindo',
@@ -40,7 +41,7 @@ return [
     'Objetive' => 'Objetivo',
     'LoseWeightFast' => 'Perder peso rápidamente',
     'LoseWeightSlowly' => 'Perder peso lentamente',
-    'KeepWeight' => 'Keep weight',
+    'KeepWeight' => 'Manter peso',
     'IncreaseWeightSlowly' => 'Aumentar peso lentamente',
     'GainWeightFast' => 'Aumentar peso rápidamente',
 
@@ -75,6 +76,7 @@ return [
     'Delete' => 'Remover',
     'Update' => 'Update',
     'Search' => 'Buscar',
+    'Revenues' => 'Receitas',
 
     'YourFoods' => 'Seus alimentos',
     'YourFoodsDescription' => 'Essa lista consiste nos alimentos adicionados por você, e alimentos adicionados como favoritos.',
@@ -102,5 +104,13 @@ return [
     'PostWorkout' => 'Pós treino',
 
     'SearchGoalDescription' => 'Pesquise por metas de outros dias.',
+
+    'RecoverPassword' => 'Recuperar Senha',
+    'SendToEmail' => 'Enviar para e-mail',
+
+    'ObjetiveMacro' => 'Os tipos de dietas separam por porcentagem a quantidade que você precisa ingerir de cada macronutriente, separando em quantidade por calorias (Kcal), e por gramas do macronutriente, isso ajudará a alcançar objetivos específicos.',
+
+    'RevenuesDescription' => 'Explore a nossa galeria de receitas.',
+    'RevenuesDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias.',
 
 ];

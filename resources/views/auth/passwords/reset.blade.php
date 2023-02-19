@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Recuperar Senha') }}</div>
+                <div class="card-header">{{ __('messages.RecoverPassword') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="row">
-                            <label for="password" class="col-md-4 col-form-label">{{ __('Senha') }}</label>
+                            <label for="password" class="col-md-4 col-form-label">{{ __('messages.Password') }}</label>
                         </div> 
 
                         <div class="row">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="row">
-                            <label for="password-confirm" class="col-md-4 col-form-label">{{ __('Confirmar Senha') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label">{{ __('messages.ConfirmPassword') }}</label>
                         </div>
 
                         <div class="row"> 
@@ -56,7 +56,7 @@
 
                         <div class="row mt-3">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Salvar') }}
+                                    {{ __('messages.SaveEditions') }}
                                 </button>
                             </div>
                         </div>

@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $user = Auth::user();
         $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
-
+        
         return view('perfil', compact('user', 'settingGoal'));
     }  
 

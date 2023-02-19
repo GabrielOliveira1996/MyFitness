@@ -117,22 +117,28 @@
 
                                     <div class="row">
                                         <div class="col-lg-12">
+                                            {{ __('messages.ObjetiveMacro') }}
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12">
                                             <p class="font-weight-bold">{{ __('messages.Pattern') }}</p>
                                             <p class="mx-3">
-                                                
+                                        
                                                 <div class="col-md-12">
-                                                    <p class="text-danger font-weight-bold">
+                                                    <div class="text-danger">
                                                         {{ __('messages.Carbohydrate') }} 
                                                         {{ __('50%') }}
-                                                    </p>
-                                                    <p class="text-primary font-weight-bold">
+                                                    </div>
+                                                    <div class="text-primary">
                                                         {{ __('messages.Protein') }} 
                                                         {{ __('20%') }}
-                                                    </p>
-                                                    <p class="text-warning font-weight-bold">
+                                                    </div>
+                                                    <div class="text-warning">
                                                         {{ __('messages.Fat') }} 
                                                         {{ __('30%') }}
-                                                    </p>
+                                                    </div>
                                                 </div>
 
                                             </p>
@@ -143,18 +149,18 @@
                                             <p class="mx-3">
 
                                                 <div class="col-md-12">
-                                                    <p class="text-danger font-weight-bold">
+                                                    <div class="text-danger">
                                                         {{ __('messages.Carbohydrate') }} 
                                                         {{ __('50%') }}
-                                                    </p>
-                                                    <p class="text-primary font-weight-bold">
+                                                    </div>
+                                                    <div class="text-primary">
                                                         {{ __('messages.Protein') }} 
                                                         {{ __('25%') }}
-                                                    </p>
-                                                    <p class="text-warning font-weight-bold">
+                                                    </div>
+                                                    <div class="text-warning">
                                                         {{ __('messages.Fat') }} 
                                                         {{ __('25%') }}
-                                                    </p>
+                                                    </div>
                                                 </div>
 
                                             </p>
@@ -165,18 +171,18 @@
                                             <p class="mx-3">
 
                                                 <div class="col-md-12">
-                                                    <p class="text-danger font-weight-bold">
+                                                    <div class="text-danger">
                                                         {{ __('messages.Carbohydrate') }} 
                                                         {{ __('60%') }}
-                                                    </p>
-                                                    <p class="text-primary font-weight-bold">
+                                                    </div>
+                                                    <div class="text-primary">
                                                         {{ __('messages.Protein') }} 
                                                         {{ __('25%') }}
-                                                    </p>
-                                                    <p class="text-warning font-weight-bold">
+                                                    </div>
+                                                    <div class="text-warning">
                                                         {{ __('messages.Fat') }} 
                                                         {{ __('15%') }}
-                                                    </p>
+                                                    </div>
                                                 </div>
 
                                             </p>
@@ -187,18 +193,18 @@
                                             <p class="mx-3">
 
                                                 <div class="col-md-12">
-                                                    <p class="text-danger font-weight-bold">
+                                                    <div class="text-danger">
                                                         {{ __('messages.Carbohydrate') }} 
                                                         {{ __('25%') }}
-                                                    </p>
-                                                    <p class="text-primary font-weight-bold">
+                                                    </div>
+                                                    <div class="text-primary">
                                                         {{ __('messages.Protein') }} 
                                                         {{ __('40%') }}
-                                                    </p>
-                                                    <p class="text-warning font-weight-bold">
+                                                    </div>
+                                                    <div class="text-warning">
                                                         {{ __('messages.Fat') }} 
                                                         {{ __('35%') }}
-                                                    </p>
+                                                    </div>
                                                 </div>
 
                                             </p>
@@ -209,18 +215,18 @@
                                             <p class="mx-3">
 
                                                 <div class="col-md-12">
-                                                    <p class="text-danger font-weight-bold">
+                                                    <div class="text-danger">
                                                         {{ __('messages.Carbohydrate') }} 
                                                         {{ __('5%') }}
-                                                    </p>
-                                                    <p class="text-primary font-weight-bold">
+                                                    </div>
+                                                    <div class="text-primary">
                                                         {{ __('messages.Protein') }} 
                                                         {{ __('30%') }}
-                                                    </p>
-                                                    <p class="text-warning font-weight-bold">
+                                                    </div>
+                                                    <div class="text-warning">
                                                         {{ __('messages.Fat') }} 
                                                         {{ __('65%') }}
-                                                    </p>
+                                                    </div>
                                                 </div>
 
                                             </p>
@@ -284,12 +290,12 @@
                         <td class="font-weight-bold"><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.Calories') }}</td>
                         <td>
                             <input id="dailyCaloriesId" type="number" class="form-control col-lg-4" name="daily_calories" value="{{$settingGoal->daily_calories}}" step="any" readonly>
-                        </th>           
+                        </td>           
                     </tr>
                     <tr>
                         <td class="text-danger font-weight-bold"><img src="{{ asset('img/icons/carboidrato.png') }}" height="22"> {{ __('messages.Carbohydrate') }}</td>
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyCarbohydrateId" type="number" class="form-control col-lg-4" name="daily_carbohydrate" value="{{$settingGoal->daily_carbohydrate}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
@@ -297,7 +303,7 @@
                             </div>
                         </td> 
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyCarbohydrateKcalId" type="number" class="form-control col-lg-4" name="daily_carbohydrate_kcal" value="{{$settingGoal->daily_carbohydrate_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
@@ -308,7 +314,7 @@
                     <tr>
                         <td class="text-primary font-weight-bold"><img src="{{ asset('img/icons/proteina.png') }}" height="22"> {{ __('messages.Protein') }}</td>
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyProteinId" type="number" class="form-control col-lg-4" name="daily_protein" value="{{$settingGoal->daily_protein}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
@@ -316,7 +322,7 @@
                             </div>
                         </th>
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyProteinKcalId" type="number" class="form-control col-lg-4" name="daily_protein_kcal" value="{{$settingGoal->daily_protein_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>
@@ -327,7 +333,7 @@
                     <tr>
                         <td class="text-warning font-weight-bold"><img src="{{ asset('img/icons/gordura.png') }}" height="22"> {{ __('messages.Fat') }}</td>
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyFatId" type="number" class="form-control col-lg-4" name="daily_fat" value="{{$settingGoal->daily_fat}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">g</span>
@@ -335,7 +341,7 @@
                             </div>
                         </td> 
                         <td>
-                            <div class="input-group mb-3">
+                            <div class="input-group">
                                 <input id="dailyFatKcalId" type="number" class="form-control col-lg-4" name="daily_fat_kcal" value="{{$settingGoal->daily_fat_kcal}}" step="any" readonly>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">Kcal</span>

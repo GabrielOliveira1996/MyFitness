@@ -13,12 +13,30 @@ let splitFat = Fat.value.split(" ");
 let todayFat = splitFat[0];
 let goalFat = splitFat[2];
 
+const language = window.navigator.language;
+
+let carbo = '';
+let prote = '';
+let gord = '';
+
+if(language === 'pt-BR'){
+
+    carbo = 'Carboidratos';
+    prote = 'Proteínas';
+    gord = 'Gorduras';
+}else{
+
+    carbo = 'Carbohydrate';
+    prote = 'Protein';
+    gord = 'Fat';
+}
+
 (async function() {
     const data = {
     labels: [
-        'Carboidratos',
-        'Proteínas',
-        'Gorduras'
+        carbo,
+        prote,
+        gord
     ],
     datasets: [{
         label: 'Seu consumo em gramas: ',

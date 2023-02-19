@@ -17,8 +17,9 @@ return [
     'Phrase4' => 'See calorie and nutrient breakdowns, compare servings, and find out how the foods you eat contribute to your goals.',
     'Password' => 'Password',
     'ConfirmPassword' => 'Confirm password',
+    'ConfirmPasswordMessage' => 'Please confirm your password before continuing.',
     'Remember' => 'Remember',
-    'ForgotMyPassword' => 'Forgot my password',
+    'ForgotMyPassword' => 'Forgot your password?',
     'Name' => 'Name',
     'MyFitnessTerm' => 'By continuing you agree to the MyFitness terms of use.',
     'WelcomeMessage' => 'Welcome',
@@ -75,6 +76,7 @@ return [
     'Delete' => 'Remove',
     'Update' => 'Update',
     'Search' => 'Search',
+    'Revenues' => 'Revenues',
     
     'YourFoods' => 'Your foods',
     'YourFoodsDescription' => 'This list consists of foods added by you, and foods added as favorites.',
@@ -102,5 +104,13 @@ return [
     'PostWorkout' => 'Post workout',
 
     'SearchGoalDescription' => 'Search for goals from other days.',
+
+    'RecoverPassword' => 'Recover Password',
+    'SendToEmail' => 'Send to email',
+
+    'ObjetiveMacro' => 'The types of diets separate by percentage the amount you need to ingest of each macronutrient, separating the amount by calories (Kcal), and by grams of the macronutrient, this helps to achieve specific goals.',
+
+    'RevenuesDescription' => 'Explore our recipe gallery.',
+    'RevenuesDescription1' => 'The recipes will help you to have a more pleasant diet, facilitating the process and helping you to reach your daily goals.',
 
 ];

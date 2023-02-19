@@ -14,14 +14,14 @@ class LocalizationLanguage
 
         $languages = explode(',', $request->server('HTTP_ACCEPT_LANGUAGE'));
         App::setLocale('en');
-        /*
+        
         if($languages != null){
 
             App::setLocale($languages[0]);
         }else{
 
             App::setLocale('en');
-        }*/
+        }
         
         return $next($request);
     }
