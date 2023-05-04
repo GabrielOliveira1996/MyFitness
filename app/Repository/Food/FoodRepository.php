@@ -1,25 +1,21 @@
 <?php
 
-namespace App\Repos;
+namespace App\Repository\Food;
 
-use App\Contracts\IFoodRepos;
-use Illuminate\Http\Request;
+use App\Repository\Food\IFoodRepository;
 use App\Models\Food;
 
-class FoodRepos implements IFoodRepos{
-
-    private $_request;
+class FoodRepository implements IFoodRepository
+{
     private $_food;
 
-    public function __construct(Request $request, Food $food){
-
-        $this->_request = $request;
+    public function __construct(Food $food)
+    {
         $this->_food = $food;
-
     }
 
-    public function createFoodRepos($user, $data){
-
+    public function createFoodRepos($user, $data)
+    {
         $food = $this->_food->create([
             'user_id' => $user->id,
             'user_name' => $user->name,
@@ -32,18 +28,20 @@ class FoodRepos implements IFoodRepos{
             'saturated_fat' => $data['saturated_fat'],
             'trans_fat' => $data['trans_fat']
         ]);
-        
+
         return $food;
     }
 
-    public function findFoodRepos($id){
+    public function findFoodRepos($id)
+    {
 
         $food = $this->_food->where('id', $id)->first();
-        
+
         return $food;
     }
 
-    public function updateFoodRepos($user, $id){
+    public function updateFoodRepos($user, $id)
+    {
 
         $data = $this->_request->all();
 
@@ -59,19 +57,20 @@ class FoodRepos implements IFoodRepos{
             'saturated_fat' => $data['saturated_fat'],
             'trans_fat' => $data['trans_fat']
         ]);
-        
+
         return $food;
     }
 
-    public function deleteFoodRepos($id){
+    public function deleteFoodRepos($id)
+    {
 
         $food = $this->_food->find($id);
 
-        if($food == null){
+        if ($food == null) {
 
             $food = false;
-        }else{
-            
+        } else {
+
             $food->delete();
             $food = true;
         }
@@ -79,18 +78,19 @@ class FoodRepos implements IFoodRepos{
         return $food;
     }
 
-    public function allFoodsRepos(){
+    public function allFoodsRepos()
+    {
 
         $allFoods = $this->_food->paginate(10);
 
         return $allFoods;
     }
-    
-    public function searchFoodRepos($data){
-        
-        $search = $this->_food->where([['name', 'like', '%'.$data['name'].'%']])->paginate(10);
-        
+
+    public function searchFoodRepos($data)
+    {
+
+        $search = $this->_food->where([['name', 'like', '%' . $data['name'] . '%']])->paginate(10);
+
         return $search;
     }
-
 }

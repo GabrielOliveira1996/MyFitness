@@ -8,12 +8,13 @@ use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    
+
     public function register()
     {
-        App::bind('App\Contracts\IFoodRepos', 'App\Repos\FoodRepos');
-        App::bind('App\Contracts\IGoalRepos', 'App\Repos\GoalRepos');
-        App::bind('App\Contracts\IBasalMetabolicRateRepos', 'App\Repos\BasalMetabolicRateRepos');
+        App::bind('App\Repository\User\IUserRepository', 'App\Repository\User\UserRepository');
+        App::bind('App\Repository\Food\IFoodRepository', 'App\Repository\Food\FoodRepository');
+        App::bind('App\Repository\Goal\IGoalRepository', 'App\Repository\Goal\GoalRepository');
+        App::bind('App\Repository\BasalMetabolicRate\IBasalMetabolicRateRepository', 'App\Repository\BasalMetabolicRate\BasalMetabolicRateRepository');
     }
 
     public function boot()

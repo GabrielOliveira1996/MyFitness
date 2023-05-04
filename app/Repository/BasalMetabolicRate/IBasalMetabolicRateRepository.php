@@ -1,13 +1,9 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Repository\BasalMetabolicRate;
 
-interface IBasalMetabolicRateRepos {
-    
+interface IBasalMetabolicRateRepository
+{
     public function findUserBasalMetabolicRateRepos();
     public function settingBasalMetabolicRateRepos($data);
-
 }
-
-
-    

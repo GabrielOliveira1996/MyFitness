@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Repository\Goal;
 
-interface IGoalRepos {
-
+interface IGoalRepository
+{
     public function allGoalRepos();
     public function breakfastGoalFoodsRepos($date);
     public function lunchGoalFoodsRepos($date);
@@ -16,5 +16,4 @@ interface IGoalRepos {
     public function findFoodRepos($id);
     public function updateFoodToDayGoalRepos($id);
     public function searchGoalRepos($data);
-    
 }

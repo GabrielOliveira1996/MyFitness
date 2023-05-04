@@ -1,35 +1,34 @@
 <?php
 
-namespace App\Repos;
+namespace App\Repository\BasalMetabolicRate;
 
-use Illuminate\Http\Request;
-use App\Contracts\IBasalMetabolicRateRepos;
+use App\Repository\BasalMetabolicRate\IBasalMetabolicRateRepository;
 use App\Models\BasalMetabolicRate;
 
-class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
+class BasalMetabolicRateRepos implements IBasalMetabolicRateRepository
+{
 
-    private $_request;
     private $_basalMetabolicRateRepos;
 
-    public function __construct(Request $request, BasalMetabolicRate $basalMetabolicRateRepos){
-
-        $this->_request = $request;
+    public function __construct(IBasalMetabolicRateRepository $basalMetabolicRateRepos)
+    {
         $this->_basalMetabolicRateRepos = $basalMetabolicRateRepos;
     }
 
-    public function findUserBasalMetabolicRateRepos(){
+    public function findUserBasalMetabolicRateRepos()
+    {
 
         $userBasalMetabolicRateRepos = $this->_basalMetabolicRateRepos->where('user_id', auth()->user()->id)->first();
 
         return $userBasalMetabolicRateRepos;
-
     }
-    
-    public function settingBasalMetabolicRateRepos($data){
+
+    public function settingBasalMetabolicRateRepos($data)
+    {
 
         $dataExists = $this->_basalMetabolicRateRepos->where('user_id', auth()->user()->id)->first();
-        
-        if($dataExists){
+
+        if ($dataExists) {
 
             $settingBasalMetabolic = $dataExists->update([
                 'user_id' => auth()->user()->id,
@@ -77,5 +76,4 @@ class BasalMetabolicRateRepos implements IBasalMetabolicRateRepos{
 
         return $settingBasalMetabolic;
     }
-    
 }
