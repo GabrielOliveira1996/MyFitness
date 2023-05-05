@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 use App\Services\UserService;
 
-class UserController extends Controller
+class UserManagementController extends Controller
 {
-
     private $_request;
     private $_userService;
 
@@ -49,23 +48,28 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    //Views.
-    public function perfil()
+    public function updateProfile()
     {
-
-        $user = Auth::user();
-        //$settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
-
-        //return view('perfil', compact('user', 'settingGoal'));
-    }
-
-    public function perfilUpdate()
-    {
-
-        $data = $this->_request->all();
-
-        //$settingGoal = $this->_basalMetabolicRateRepos->settingBasalMetabolicRateRepos($data);
-
-        //return redirect()->route('perfil');
+        $user = $this->_request->only([
+            'gender',
+            'age',
+            'weight',
+            'stature',
+            'activity_rate_factor',
+            'objective',
+            'type_of_diet',
+            'imc',
+            'water',
+            'basal_metabolic_rate',
+            'daily_calories',
+            'daily_protein',
+            'daily_carbohydrate',
+            'daily_fat',
+            'daily_protein_kcal',
+            'daily_carbohydrate_kcal',
+            'daily_fat_kcal'
+        ]);
+        $update = $this->_userService->update($user);
+        return redirect()->route('profile');
     }
 }
