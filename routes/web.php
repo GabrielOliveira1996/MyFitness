@@ -6,7 +6,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes();
+//Auth::routes();
+
+Route::post('register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::get('register', function () {
+    return view('auth.register');
+});
+Route::post('login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
+Route::get('login', function () {
+    return view('auth.login');
+});
+Route::post('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
