@@ -131,7 +131,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('perfil') }}">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('messages.Profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('createFood') }}">
