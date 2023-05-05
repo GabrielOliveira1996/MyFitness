@@ -21,6 +21,23 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'age',
+        'weight',
+        'stature',
+        'activity_rate_factor',
+        'objective',
+        'type_of_diet',
+        'imc',
+        'water',
+        'basal_metabolic_rate',
+        'daily_calories',
+        'daily_protein',
+        'daily_carbohydrate',
+        'daily_fat',
+        'daily_protein_kcal',
+        'daily_carbohydrate_kcal',
+        'daily_fat_kcal'
     ];
 
     /**
