@@ -363,7 +363,7 @@
                 <tbody>
                     <tr>
                         <td><img src="{{ asset('img/icons/maca.png') }}" height="22"> {{ __('messages.MyFoods') }}</td>
-                        <td><a href="{{route('allFoodsView')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
+                        <td><a href="{{route('food.all')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
                         <td></td>
                     </tr>
                     <tr>

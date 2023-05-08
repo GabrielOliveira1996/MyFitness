@@ -134,10 +134,10 @@
                                 <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('messages.Profile') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('createFood') }}">
+                                <a class="dropdown-item" href="{{ route('food.create') }}">
                                     {{ __('messages.AddFood') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('allFoodsView') }}">
+                                <a class="dropdown-item" href="{{ route('food.all') }}">
                                     {{ __('messages.MyFoods') }}
                                 </a>
                             </div>
@@ -152,7 +152,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('goalView') }}" role="button">
+                            <a class="nav-link text-light" href="{{ route('goal.index') }}" role="button">
                                 {{ __('messages.MyGoals') }}
                             </a>
                         </li>
