@@ -2,49 +2,48 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
+use App\Repository\Food\IFoodRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class FoodService{
+class FoodService
+{
+    private $_foodRepository;
 
-    private $_request;
-
-    public function __construct(Request $request){
-
-        $this->_request = $request;
-
+    public function __construct(IFoodRepository $foodRepository)
+    {
+        $this->_foodRepository = $foodRepository;
     }
 
-    public function FoodValidate($data){
-
-        $rules = [
-            'name' => 'required',
-            'quantity_grams' => 'required',
-            'calories' => 'required',
-            'carbohydrate' => 'required',
-            'protein' => 'required',
-            'total_fat' => 'required',
-            'saturated_fat' => 'required',
-            'trans_fat' => 'required'
-        ];
-        
-        $messages = [
-            'name.required' => 'Digite o nome do alimento.',
-            'quantity_grams.required' => 'Digite a quantidade de quantidade de gramas.',
-            'calories.required' => 'Digite a quantidade de calorias.',
-            'carbohydrate.required' => 'Digite a quantidade de carboidratos.',
-            'protein.required' => 'Digite a quantidade de proteínas.',
-            'total_fat.required' => 'Digite a quantidade de gordura total.',
-            'saturated_fat.required' => 'Digite a quantidade de de gordura saturada.',
-            'trans_fat.required' => 'Digite a quantidade de de gordura trans.'
-        ];
-
-        $validator = Validator::make($this->_request->all(), $rules, $messages);
-
-        if ($validator->fails()){
-            
-            return $validator->messages();
-        }
+    public function create($food)
+    {
+        $user = Auth::user();
+        $create = $this->_foodRepository->create($food, $user);
+        return $create;
     }
 
+    public function update($id, $food)
+    {
+        $user = Auth::user();
+        $update = $this->_foodRepository->update($id, $food, $user);
+        return $update;
+    }
+
+    public function index()
+    {
+        $id = Auth::user()->id;
+        $foods = $this->_foodRepository->wherePaginate('user_id', $id);
+        return $foods;
+    }
+
+    public function find($id) // Alimentos apenas do usuário
+    {
+        $find = $this->_foodRepository->find($id);
+        return $find;
+    }
+
+    public function delete($id)
+    {
+        $delete = $this->_foodRepository->delete($id);
+    }
 }
