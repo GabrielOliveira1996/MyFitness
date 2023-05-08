@@ -4,9 +4,10 @@ namespace App\Repository\Food;
 
 interface IFoodRepository
 {
-    public function allFoodsRepos();
-    public function createFoodRepos($user, $data);
-    public function findFoodRepos($id);
-    public function updateFoodRepos($user, $id);
-    public function deleteFoodRepos($id);
+    public function index();
+    public function wherePaginate($search, $data);
+    public function create($food, $user);
+    public function find($id);
+    public function update($id, $food, $user);
+    public function delete($id);
 }

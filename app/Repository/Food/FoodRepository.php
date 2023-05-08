@@ -14,83 +14,55 @@ class FoodRepository implements IFoodRepository
         $this->_food = $food;
     }
 
-    public function createFoodRepos($user, $data)
+    public function index()
     {
-        $food = $this->_food->create([
+        return $this->_food->all();
+    }
+
+    public function wherePaginate($search, $data)
+    {
+        return $this->_food->where($search, $data)->paginate(10);
+    }
+
+    public function create($food, $user)
+    {
+        return $this->_food->create([
             'user_id' => $user->id,
             'user_name' => $user->name,
-            'name' => $data['name'],
-            'quantity_grams' => $data['quantity_grams'],
-            'calories' => $data['calories'],
-            'carbohydrate' => $data['carbohydrate'],
-            'protein' => $data['protein'],
-            'total_fat' => $data['total_fat'],
-            'saturated_fat' => $data['saturated_fat'],
-            'trans_fat' => $data['trans_fat']
+            'name' => $food['name'],
+            'quantity_grams' => $food['quantity_grams'],
+            'calories' => $food['calories'],
+            'carbohydrate' => $food['carbohydrate'],
+            'protein' => $food['protein'],
+            'total_fat' => $food['total_fat'],
+            'saturated_fat' => $food['saturated_fat'],
+            'trans_fat' => $food['trans_fat']
         ]);
-
-        return $food;
     }
 
-    public function findFoodRepos($id)
+    public function find($id)
     {
-
-        $food = $this->_food->where('id', $id)->first();
-
-        return $food;
+        return $this->_food->find($id);
     }
 
-    public function updateFoodRepos($user, $id)
+    public function update($id, $food, $user)
     {
-
-        $data = $this->_request->all();
-
-        $food = $this->_food->where('id', $id)->update([
+        return $this->_food->where('id', $id)->update([
             'user_id' => $user->id,
             'user_name' => $user->name,
-            'name' => $data['name'],
-            'quantity_grams' => $data['quantity_grams'],
-            'calories' => $data['calories'],
-            'carbohydrate' => $data['carbohydrate'],
-            'protein' => $data['protein'],
-            'total_fat' => $data['total_fat'],
-            'saturated_fat' => $data['saturated_fat'],
-            'trans_fat' => $data['trans_fat']
+            'name' => $food['name'],
+            'quantity_grams' => $food['quantity_grams'],
+            'calories' => $food['calories'],
+            'carbohydrate' => $food['carbohydrate'],
+            'protein' => $food['protein'],
+            'total_fat' => $food['total_fat'],
+            'saturated_fat' => $food['saturated_fat'],
+            'trans_fat' => $food['trans_fat']
         ]);
-
-        return $food;
     }
 
-    public function deleteFoodRepos($id)
+    public function delete($id)
     {
-
-        $food = $this->_food->find($id);
-
-        if ($food == null) {
-
-            $food = false;
-        } else {
-
-            $food->delete();
-            $food = true;
-        }
-
-        return $food;
-    }
-
-    public function allFoodsRepos()
-    {
-
-        $allFoods = $this->_food->paginate(10);
-
-        return $allFoods;
-    }
-
-    public function searchFoodRepos($data)
-    {
-
-        $search = $this->_food->where([['name', 'like', '%' . $data['name'] . '%']])->paginate(10);
-
-        return $search;
+        return $this->_food->find($id)->delete();
     }
 }
