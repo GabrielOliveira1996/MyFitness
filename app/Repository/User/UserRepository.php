@@ -63,4 +63,9 @@ class UserRepository implements IUserRepository
             'daily_fat_kcal' => $user['daily_fat_kcal']
         ]);
     }
+
+    public function find($id)
+    {
+        return $this->_user->find($id);
+    }
 }
