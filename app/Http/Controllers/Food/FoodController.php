@@ -18,9 +18,9 @@ class FoodController extends Controller
         $this->_foodService = $foodService;
     }
 
-    public function index()
+    public function indexUserFoods()
     {
-        $foods = $this->_foodService->index();
+        $foods = $this->_foodService->indexUserFoods();
         return view('food.all', compact('foods'));
     }
 
