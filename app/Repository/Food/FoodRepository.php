@@ -16,7 +16,7 @@ class FoodRepository implements IFoodRepository
 
     public function index()
     {
-        return $this->_food->all();
+        return $this->_food->paginate(10);
     }
 
     public function wherePaginate($search, $data)
