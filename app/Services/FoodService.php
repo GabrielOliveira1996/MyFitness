@@ -29,7 +29,7 @@ class FoodService
         return $update;
     }
 
-    public function index()
+    public function indexUserFoods()
     {
         $id = Auth::user()->id;
         $foods = $this->_foodRepository->wherePaginate('user_id', $id);
@@ -45,5 +45,11 @@ class FoodService
     public function delete($id)
     {
         $delete = $this->_foodRepository->delete($id);
+    }
+
+    public function index()
+    {
+        $index = $this->_foodRepository->index();
+        return $index;
     }
 }
