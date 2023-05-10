@@ -1,18 +1,6 @@
 @extends('layouts.app')
 
-
 @section('content')
-
-@if($errors->any())
-    <div id="modalErrorsValidateFood" class="fixed-bottom col-lg-4 alert alert-danger m-3">
-        <div class="text-white d-flex flex-row-reverse">
-            <a href="" onclick="closeModalErrorsValidateFood()" style="text-decoration:none;">X</a>
-        </div>
-        @foreach($errors->all() as $error)
-            {{$error}} </br>
-        @endforeach
-    </div>
-@endif
 
 <div class="container d-flex justify-content-center py-5">
 
@@ -20,7 +8,7 @@
         <p class="text-center">{{ __('messages.UpdateFoodGoalDescription') }}</p>
 
         <form method="POST" autocomplete="off">
-            @csrf            
+            @csrf
             <table class="table mt-3">
                 <thead>
                     <tr>
@@ -32,14 +20,12 @@
                         <th scope="col">{{ __('messages.Fat') }}</th>
                         <th scope="col">{{ __('messages.SaturatedFat') }}</th>
                         <th scope="col">{{ __('messages.TransFat') }}</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
                             <input type="text" class="form-control bg-light" name="name" value="{{ $food->name }}" step="any" readonly>
-                        </th>
                         <td>
                             <div class="input-group mb-3">
                                 <input id="quantityGramsId-1" type="number" class="form-control" name="quantity_grams" value="{{ $food->quantity_grams }}" step="any">
@@ -95,10 +81,7 @@
                                     <span class="input-group-text" id="basic-addon2">g</span>
                                 </div>
                             </div>
-                        </td> 
-                        <td>
-                            <input type="text" class="form-control" name="type_of_meal" value="{{ $_GET['type'] }}" readonly>
-                        </td>                   
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -115,7 +98,7 @@
                 <button type="submit" class="btn btn-primary col-lg-12">
                     {{ __('messages.Update') }}
                 </button>
-            </div>    
+            </div>
         </form>
     </div>
 
