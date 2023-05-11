@@ -52,4 +52,10 @@ class FoodService
         $index = $this->_foodRepository->index();
         return $index;
     }
+
+    public function search($food)
+    {
+        $search = $this->_foodRepository->search($food);
+        return $search;
+    }
 }
