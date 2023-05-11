@@ -7,255 +7,83 @@ use App\Models\Goal;
 
 class GoalRepository implements IGoalRepository
 {
-    private $_goalRepos;
+    private $_goal;
 
-    public function __construct(Goal $goalRepos)
+    public function __construct(Goal $goal)
     {
-        $this->_goalRepos = $goalRepos;
+        $this->_goal = $goal;
     }
 
-    public function allGoalRepos()
+    public function create($type, $goal, $user)
     {
-
-        $goalFoods = $this->_goalRepos->all();
-
-        return $goalFoods;
-    }
-
-    //Funções de tipos de refeições///////////////
-    public function breakfastGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-        //dd($date);
-        if (!empty($date)) {
-
-            $breakfastGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'breakfast')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $breakfastGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    public function lunchGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-
-        if (!empty($date)) {
-
-            $lunchGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'lunch')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $lunchGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    public function snackGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-
-        if (!empty($date)) {
-
-            $snackGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'snack')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $snackGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    public function dinnerGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-
-        if (!empty($date)) {
-
-            $dinnerGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'dinner')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $dinnerGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    public function preWorkoutGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-
-        if (!empty($date)) {
-
-            $preWorkoutGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'pre_workout')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $preWorkoutGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    public function postWorkoutGoalFoodsRepos($date)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-        $currentDate = $date;
-
-        if (!empty($date)) {
-
-            $postWorkoutGoalFoods = $this->_goalRepos
-                ->where('date', $currentDate)
-                ->where('type_of_meal', 'post_workout')
-                ->where('user_id', auth()->user()->id)
-                ->get();
-
-            return $postWorkoutGoalFoods;
-        }
-
-        $response = collect([
-            'calories' => 0,
-            'carbohydrate' => 0,
-            'protein' => 0,
-            'total_fat' => 0
-        ]);
-
-        return $response;
-    }
-
-    ///////////////////////////////////////
-
-    public function addFoodToDayGoalRepos($data)
-    {
-
-        $timezoneSp = date_default_timezone_set('America/Sao_Paulo');
-
-        $food = $this->_goalRepos->create([
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
-            'name' => $data['name'],
-            'quantity_grams' => $data['quantity_grams'],
-            'calories' => $data['calories'],
-            'carbohydrate' => $data['carbohydrate'],
-            'protein' => $data['protein'],
-            'total_fat' => $data['total_fat'],
-            'saturated_fat' => $data['saturated_fat'],
-            'trans_fat' => $data['trans_fat'],
-            'type_of_meal' => $data['type_of_meal'],
+        return $this->_goal->create([
+            'user_id' => $user->id,
+            'user_name' => $user->name,
+            'name' => $goal['name'],
+            'quantity_grams' => $goal['quantity_grams'],
+            'calories' => $goal['calories'],
+            'carbohydrate' => $goal['carbohydrate'],
+            'protein' => $goal['protein'],
+            'total_fat' => $goal['total_fat'],
+            'saturated_fat' => $goal['saturated_fat'],
+            'trans_fat' => $goal['trans_fat'],
+            'type_of_meal' => $type,
             'date' => date('d/m/Y')
+        ]);;
+    }
+
+    public function find($id)
+    {
+        return $this->_goal->find($id);
+    }
+
+    public function update($id, $goal)
+    {
+        return $this->_goal->where('id', $id)->update([
+            'name' => $goal['name'],
+            'quantity_grams' => $goal['quantity_grams'],
+            'calories' => $goal['calories'],
+            'carbohydrate' => $goal['carbohydrate'],
+            'protein' => $goal['protein'],
+            'total_fat' => $goal['total_fat'],
+            'saturated_fat' => $goal['saturated_fat'],
+            'trans_fat' => $goal['trans_fat'],
         ]);
-
-        return $food;
     }
 
-    public function findFoodRepos($id)
+    public function delete($id)
     {
-
-        $food = $this->_goalRepos->find($id);
-
-        return $food;
+        return $this->_goal->where('id', $id)->delete();
     }
 
-    public function updateFoodToDayGoalRepos($id)
+    // Funções que localizam por tipo de refeição.
+    public function breakfast($date)
     {
-
-        $data = $this->_request->all();
-
-        $food = $this->_goalRepos->where('id', $id)->update([
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
-            'name' => $data['name'],
-            'quantity_grams' => $data['quantity_grams'],
-            'calories' => $data['calories'],
-            'carbohydrate' => $data['carbohydrate'],
-            'protein' => $data['protein'],
-            'total_fat' => $data['total_fat'],
-            'saturated_fat' => $data['saturated_fat'],
-            'trans_fat' => $data['trans_fat'],
-            'type_of_meal' => $data['type_of_meal'],
-        ]);
-
-        return $food;
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'breakfast')->get();
     }
 
-    public function deleteGoalFoodRepos($id)
+    public function lunch($date)
     {
-
-        $deleteFoodGoal = $this->_goalRepos->where('id', $id)->delete();
-
-        return $deleteFoodGoal;
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'lunch')->get();
     }
 
-    public function searchGoalRepos($data)
+    public function snack($date)
     {
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'snack')->get();
+    }
 
-        $explodeDate = explode('-', $data['date']);
-        $date = $explodeDate[1] . '/' . $explodeDate[2] . '/' . $explodeDate[0];
-        //dd($date);
-        $search = $this->_goalRepos->where('date', $date)->get();
+    public function dinner($date)
+    {
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'dinner')->get();
+    }
 
-        return $search;
+    public function preWorkout($date)
+    {
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'pre_workout')->get();
+    }
+
+    public function postWorkout($date)
+    {
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'post_workout')->get();
     }
 }
