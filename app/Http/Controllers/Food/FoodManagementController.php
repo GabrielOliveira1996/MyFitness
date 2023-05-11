@@ -56,18 +56,10 @@ class FoodManagementController extends Controller
         return redirect()->route('food.all');
     }
 
-    public function searchFood()
+    public function search()
     {
-
-        $data = $this->_request->all();
-
-        if (!$data['name'] == null) {
-
-            $foods = $this->_foodRepos->searchFoodRepos($data);
-
-            return view('goal.addFoodToGoal', compact('foods'));
-        }
-
-        return view('goal.addFoodToGoal');
+        $food = $this->_request->input('name');
+        $foods = $this->_foodService->search($food);
+        return view('food.all', compact('foods'));
     }
 }
