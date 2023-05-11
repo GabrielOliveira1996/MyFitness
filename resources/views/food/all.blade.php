@@ -10,6 +10,21 @@
 
         <p class="text-center">{{ __('messages.YourFoodsDescription') }}</p>
 
+        <form method="POST" action="{{ route('food.search') }}">
+            @csrf
+            <div class="form-group d-flex justify-content-center">
+                <div class="col-md-3">
+                    <input type="text" name="name" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group d-flex justify-content-center mt-1">
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary col-md-12">{{__('messages.Search')}}</button>
+                </div>
+            </div>
+        </form>
+
         <table class="table mt-3">
             <thead>
                 <tr>
