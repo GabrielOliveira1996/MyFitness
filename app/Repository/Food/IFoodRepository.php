@@ -10,4 +10,5 @@ interface IFoodRepository
     public function find($id);
     public function update($id, $food, $user);
     public function delete($id);
+    public function search($food);
 }
