@@ -73,6 +73,31 @@ class GoalController extends Controller
         return view('goal.update', compact('food'));
     }
 
+    public function search()
+    {
+        $date = $this->_request->input('date');
+        $userGoals = $this->_userService->findUserGoals($date);
+
+        return view('goal.index', [
+            'date' => $userGoals['date'],
+            'user' => $userGoals['user'],
+            'breakfasts' => $userGoals['breakfast'],
+            'lunchs' => $userGoals['lunch'],
+            'snacks' => $userGoals['snack'],
+            'dinners' => $userGoals['dinner'],
+            'preWorkouts' => $userGoals['preWorkout'],
+            'postWorkouts' => $userGoals['postWorkout'],
+            'goalCalories' => $userGoals['goalCalories'],
+            'goalCarbohydrate' => $userGoals['goalCarbohydrate'],
+            'goalProtein' => $userGoals['goalProtein'],
+            'goalTotalFat' => $userGoals['goalTotalFat'],
+            'caloriesOfTheDay' => $userGoals['caloriesOfTheDay'],
+            'carbohydratesOfTheDay' => $userGoals['carbohydratesOfTheDay'],
+            'proteinOfTheDay' => $userGoals['proteinOfTheDay'],
+            'totalFatOfTheDay' => $userGoals['totalFatOfTheDay']
+        ]);
+    }
+
     //Página de cálculo Taxa de Metabolismo Basal (TMB).
     public function settingGoalView()
     {
