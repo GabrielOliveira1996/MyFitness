@@ -82,7 +82,7 @@
                 </div>
             </div>
 
-            <div class="form-group d-flex justify-content-center">
+            <div class="form-group d-flex justify-content-center mt-1">
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary col-md-12">{{__('messages.Search')}}</button>
                 </div>
