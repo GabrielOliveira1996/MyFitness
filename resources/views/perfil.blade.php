@@ -15,103 +15,121 @@
             <table class="table mt-3">
                 <thead>
                     <tr>
-                        <th scope="col">{{ __('messages.Profile') }}</th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="4">{{ __('messages.Profile') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
-                        <td>{{ __('messages.Height') }} (cm)</td>
-                        <td>
-                            <input id="statureId" onkeyup="basalMetabolicRateCalculation()" type="text" maxlength="4" class="form-control col-lg-4" name="stature" value="{{$user->stature}}" step="any">
+                        <td colspan="3">{{ __('messages.Height') }} (cm)</td>
+                        <td colspan="1">
+                            <input id="statureId" onkeyup="basalMetabolicRateCalculation()" type="text" maxlength="4" class="form-control @error('stature') is-invalid @enderror" name="stature" value="{{$user->stature}}" step="any">
+                            @error('stature')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Weight') }} (kg)</td>
-                        <td>
-                            <input id="weightId" onkeyup="basalMetabolicRateCalculation()" type="number" class="form-control col-lg-4" name="weight" value="{{$user->weight}}" step="any">
+                        <td colspan="3">{{ __('messages.Weight') }} (kg)</td>
+                        <td colspan="1">
+                            <input id="weightId" onkeyup="basalMetabolicRateCalculation()" type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{$user->weight}}" step="any">
+                            @error('weight')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Gender') }}</td>
-                        <td>
-                            <input type="hidden" id="genderHiddenId" value="{{$user->gender}}"><!-- valor de gender escondido, isso deve ser ajustado no futuro -->
-                            <select id="genderId" onchange="basalMetabolicRateCalculation()" name="gender" class="form-control col-lg-4">
-                                <option value="Masculino">{{ __('messages.Masculine') }}</option>
-                                <option value="Feminino">{{ __('messages.Feminine') }}</option>
+                        <td colspan="3">{{ __('messages.Gender') }}</td>
+                        <td colspan="1">
+                            <select id="genderId" onchange="basalMetabolicRateCalculation()" name="gender" class="form-control col-lg-4 @error('gender') is-invalid @enderror">
+                                <option value="Masculino" {{ $user->gender == 'Masculino' ? 'selected' : ''}}>{{ __('messages.Masculine') }}</option>
+                                <option value="Feminino" {{ $user->gender == 'Feminino' ? 'selected' : ''}}>{{ __('messages.Feminine') }}</option>
                             </select>
+                            @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Age') }}</td>
-                        <td>
-                            <input id="ageId" onkeyup="basalMetabolicRateCalculation()" type="number" class="form-control col-lg-4" name="age" value="{{$user->age}}" step="any">
+                        <td colspan="3">{{ __('messages.Age') }}</td>
+                        <td colspan="1">
+                            <input id="ageId" onkeyup="basalMetabolicRateCalculation()" type="text" class="form-control col-lg-4 @error('age') is-invalid @enderror" name="age" value="{{$user->age}}" step="any">
+                            @error('age')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Activity') }}</td>
-                        <td>
-                            <input type="hidden" id="activityRateFactorHiddenId" value="{{$user->activity_rate_factor}}"><!-- valor de activityRateFactor escondido, isso deve ser ajustado no futuro -->
-                            <select id="activityRateFactorId" onchange="basalMetabolicRateCalculation()" name="activity_rate_factor" class="form-control col-lg-4">
-                                <option value="1.2">{{ __('messages.Sedentary') }}</option>
-                                <option value="1.38">{{ __('messages.SlightlyActive') }}</option>
-                                <option value="1.55">{{ __('messages.ModeratelyActive') }}</option>
-                                <option value="1.72">{{ __('messages.HighlyActive') }}</option>
-                                <option value="1.9">{{ __('messages.ExtremelyActive') }}</option>
+                        <td colspan="3">{{ __('messages.Activity') }}</td>
+                        <td colspan="1">
+                            <select id="activityRateFactorId" onchange="basalMetabolicRateCalculation()" name="activity_rate_factor" class="form-control col-lg-4 @error('activity_rate_factor') is-invalid @enderror">
+                                <option value="1.2" {{ $user->activity_rate_factor == 1.2 ? 'selected' : '' }}>{{ __('messages.Sedentary') }}</option>
+                                <option value="1.38" {{ $user->activity_rate_factor == 1.38 ? 'selected' : '' }}>{{ __('messages.SlightlyActive') }}</option>
+                                <option value="1.55" {{ $user->activity_rate_factor == 1.55 ? 'selected' : '' }}>{{ __('messages.ModeratelyActive') }}</option>
+                                <option value="1.72" {{ $user->activity_rate_factor == 1.72 ? 'selected' : '' }}>{{ __('messages.HighlyActive') }}</option>
+                                <option value="1.9" {{ $user->activity_rate_factor == 1.9 ? 'selected' : '' }}>{{ __('messages.ExtremelyActive') }}</option>
                             </select>
-
+                            @error('activity_rate_factor')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td>{{ __('messages.Objetive') }}</td>
-                        <td>
-                            <input type="hidden" id="objectiveHiddenId" value="{{$user->objective}}">
-                            <select id="objectiveId" onchange="basalMetabolicRateCalculation()" name="objective" class="form-control col-lg-4">
-                                <option value="Perder peso rápidamente">{{ __('messages.LoseWeightFast') }}</option>
-                                <option value="Perder peso lentamente">{{ __('messages.LoseWeightSlowly') }}</option>
-                                <option value="Manter o peso">{{ __('messages.KeepWeight') }}</option>
-                                <option value="Aumentar peso lentamente">{{ __('messages.IncreaseWeightSlowly') }}</option>
-                                <option value="Aumentar peso rápidamente">{{ __('messages.GainWeightFast') }}</option>
+                        <td colspan="3">{{ __('messages.Objetive') }}</td>
+                        <td colspan="1">
+                            <select id="objectiveId" onchange="basalMetabolicRateCalculation()" name="objective" class="form-control col-lg-4 @error('objetive') is-invalid @enderror">
+                                <option value="Perder peso rapidamente" {{ $user->objective == 'Perder peso rapidamente' ? 'selected' : '' }}>{{ __('messages.LoseWeightFast') }}</option>
+                                <option value="Perder peso lentamente" {{ $user->objective == 'Perder peso lentamente' ? 'selected' : '' }}>{{ __('messages.LoseWeightSlowly') }}</option>
+                                <option value="Manter o peso" {{ $user->objective == 'Manter o peso' ? 'selected' : '' }}>{{ __('messages.KeepWeight') }}</option>
+                                <option value="Aumentar peso lentamente" {{ $user->objective == 'Aumentar peso lentamente' ? 'selected' : '' }}>{{ __('messages.IncreaseWeightSlowly') }}</option>
+                                <option value="Aumentar peso rápidamente" {{ $user->objective == 'Aumentar peso rápidamente' ? 'selected' : '' }}>{{ __('messages.GainWeightFast') }}</option>
                             </select>
+                            @error('objetive')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
 
                         <!-- Button trigger modal -->
-                        <td>
-                            <a style="cursor: pointer;" title="Clique aqui para mais informações." data-toggle="modal" data-target="#typeOfDietModal">
+                        <td colspan="3">
+                            <a style="cursor: pointer;" title="Clique aqui para mais informações." data-bs-toggle="modal" data-bs-target="#typeOfDietModal">
                                 {{ __('messages.TypeOfDiet') }}
                                 <img src="{{ asset('img/icons/interrogation.png') }}" height="22">
                             </a>
                         </td>
                         <td>
-                            <input type="hidden" id="typeOfDietHiddenId" value="{{$user->type_of_diet}}">
-                            <select id="typeOfDietId" onchange="basalMetabolicRateCalculation()" name="type_of_diet" value="{{$user->type_of_diet}}" class="form-control col-lg-4">
-                                <option value="Padrão">{{ __('messages.Pattern') }}</option>
-                                <option value="Equilibrado">{{ __('messages.Balanced') }}</option>
-                                <option value="Pobre em gorduras">{{ __('messages.LowInFat') }}</option>
-                                <option value="Rico em proteínas">{{ __('messages.RichInProtein') }}</option>
-                                <option value="Cetogénica">{{ __('messages.Ketogenic') }}</option>
+                            <select id="typeOfDietId" onchange="basalMetabolicRateCalculation()" name="type_of_diet" value="{{$user->type_of_diet}}" class="form-control col-lg-4 @error('type_of_diet') is-invalid @enderror">
+                                <option value="Padrão" {{ $user->type_of_diet == 'Padrão' ? 'selected' : '' }}>{{ __('messages.Pattern') }}</option>
+                                <option value="Equilibrado" {{ $user->type_of_diet == 'Equilibrado' ? 'selected' : '' }}>{{ __('messages.Balanced') }}</option>
+                                <option value="Pobre em gorduras" {{ $user->type_of_diet == 'Pobre em gorduras' ? 'selected' : '' }}>{{ __('messages.LowInFat') }}</option>
+                                <option value="Rico em proteínas" {{ $user->type_of_diet == 'Rico em proteínas' ? 'selected' : '' }}>{{ __('messages.RichInProtein') }}</option>
+                                <option value="Cetogénica" {{ $user->type_of_diet == 'Cetogénica' ? 'selected' : '' }}>{{ __('messages.Ketogenic') }}</option>
                             </select>
+                            @error('type_of_diet')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
-                        <td></td>
                         <!-- Modal -->
-                        <div class="modal fade" id="typeOfDietModal" tabindex="-1" role="dialog" aria-labelledby="typeOfDietModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                        <div class="modal fade" id="typeOfDietModal" tabindex="-1" aria-labelledby="typeOfDietModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title font-weight-bold" id="typeOfDietModalLabel">{{ __('messages.TypeOfDiet') }}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
 
@@ -244,109 +262,43 @@
 
                 <thead>
                     <tr>
-                        <th scope="col">{{ __('messages.Results') }}</th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="4">{{ __('messages.Results') }}</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr>
-                        <td><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.BasalMetabolicRate') }}</td>
+                        <td colspan="3"><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.BasalMetabolicRate') }}</td>
                         <td>
-                            <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4" name="basal_metabolic_rate" value="{{$user->basal_metabolic_rate}}" step="any" readonly>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('img/icons/imc.png') }}" height="22"> {{ __('messages.BodyMassIndex') }}</td>
-                        <td>
-                            <input id="imcId" type="number" class="form-control col-lg-4" name="imc" value="{{$user->imc}}" step="any" readonly>
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><img src="{{ asset('img/icons/water.png') }}" height="22"> {{ __('messages.WaterRequirements') }}</td>
-                        <td>
-                            <input id="waterId" type="number" class="form-control col-lg-4" name="water" value="{{$user->water}}" step="any" readonly>
-                        </td>
-                        <td></td>
-                    </tr>
-
-                </tbody>
-
-                <thead>
-                    <tr>
-                        <th scope="col">{{ __('messages.DailyCaloricRequirements&MacroNutrients') }}</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td class="font-weight-bold"><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.Calories') }}</td>
-                        <td>
-                            <input id="dailyCaloriesId" type="number" class="form-control col-lg-4" name="daily_calories" value="{{$user->daily_calories}}" step="any" readonly>
+                            <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4 @error('basal_metabolic_rate') is-invalid @enderror" name="basal_metabolic_rate" value="{{$user->basal_metabolic_rate}}" step="any" readonly>
+                            @error('basal_metabolic_rate')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-danger font-weight-bold"><img src="{{ asset('img/icons/carboidrato.png') }}" height="22"> {{ __('messages.Carbohydrate') }}</td>
+                        <td colspan="3"><img src="{{ asset('img/icons/imc.png') }}" height="22"> {{ __('messages.BodyMassIndex') }}</td>
                         <td>
-                            <div class="input-group">
-                                <input id="dailyCarbohydrateId" type="number" class="form-control col-lg-4" name="daily_carbohydrate" value="{{$user->daily_carbohydrate}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">g</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input id="dailyCarbohydrateKcalId" type="number" class="form-control col-lg-4" name="daily_carbohydrate_kcal" value="{{$user->daily_carbohydrate_kcal}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
-                                </div>
-                            </div>
+                            <input id="imcId" type="number" class="form-control col-lg-4 @error('imc') is-invalid @enderror" name="imc" value="{{$user->imc}}" step="any" readonly>
+                            @error('imc')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-primary font-weight-bold"><img src="{{ asset('img/icons/proteina.png') }}" height="22"> {{ __('messages.Protein') }}</td>
+                        <td colspan="3"><img src="{{ asset('img/icons/water.png') }}" height="22"> {{ __('messages.WaterRequirements') }}</td>
                         <td>
-                            <div class="input-group">
-                                <input id="dailyProteinId" type="number" class="form-control col-lg-4" name="daily_protein" value="{{$user->daily_protein}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">g</span>
-                                </div>
-                            </div>
-                            </th>
-                        <td>
-                            <div class="input-group">
-                                <input id="dailyProteinKcalId" type="number" class="form-control col-lg-4" name="daily_protein_kcal" value="{{$user->daily_protein_kcal}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
-                                </div>
-                            </div>
-                            </th>
-                    </tr>
-                    <tr>
-                        <td class="text-warning font-weight-bold"><img src="{{ asset('img/icons/gordura.png') }}" height="22"> {{ __('messages.Fat') }}</td>
-                        <td>
-                            <div class="input-group">
-                                <input id="dailyFatId" type="number" class="form-control col-lg-4" name="daily_fat" value="{{$user->daily_fat}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">g</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="input-group">
-                                <input id="dailyFatKcalId" type="number" class="form-control col-lg-4" name="daily_fat_kcal" value="{{$user->daily_fat_kcal}}" step="any" readonly>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
-                                </div>
-                            </div>
+                            <input id="waterId" type="number" class="form-control col-lg-4 @error('water') is-invalid @enderror" name="water" value="{{$user->water}}" step="any" readonly>
+                            @error('water')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </td>
                     </tr>
 
@@ -354,22 +306,126 @@
 
                 <thead>
                     <tr>
-                        <th scope="col">{{ __('messages.MyContent') }}</th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="4">{{ __('messages.DailyCaloricRequirements&MacroNutrients') }}</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
-                        <td><img src="{{ asset('img/icons/maca.png') }}" height="22"> {{ __('messages.MyFoods') }}</td>
-                        <td><a href="{{route('food.all')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
-                        <td></td>
+                        <td class="font-weight-bold col-lg-4" colspan="2"><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.Calories') }}</td>
+                        <td class="col-lg-8" colspan="2">
+                            <input id="dailyCaloriesId" type="number" class="form-control col-lg-4 @error('daily_calories') is-invalid @enderror" name="daily_calories" value="{{$user->daily_calories}}" step="any" readonly>
+                            @error('daily_calories')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </td>
                     </tr>
                     <tr>
-                        <td><img src="{{ asset('img/icons/chapeu-de-chef.png') }}" height="22"> {{ __('messages.MyRecipes') }}</td>
-                        <td>Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></td>
-                        <td></td>
+                        <td class="text-danger font-weight-bold col-lg-6" colspan="2"><img src="{{ asset('img/icons/carboidrato.png') }}" height="22"> {{ __('messages.Carbohydrate') }}</td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyCarbohydrateId" type="number" class="form-control @error('daily_carbohydrate') is-invalid @enderror" name="daily_carbohydrate" value="{{$user->daily_carbohydrate}}" step="any" readonly>
+                                @error('daily_carbohydrate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">g</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyCarbohydrateKcalId" type="number" class="form-control @error('daily_carbohydrate_kcal') is-invalid @enderror" name="daily_carbohydrate_kcal" value="{{$user->daily_carbohydrate_kcal}}" step="any" readonly>
+                                @error('daily_carbohydrate_kcal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-primary font-weight-bold col-lg-4" colspan="2"><img src="{{ asset('img/icons/proteina.png') }}" height="22"> {{ __('messages.Protein') }}</td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyProteinId" type="number" class="form-control col-lg-4 @error('daily_protein') is-invalid @enderror" name="daily_protein" value="{{$user->daily_protein}}" step="any" readonly>
+                                @error('daily_protein')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">g</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyProteinKcalId" type="number" class="form-control col-lg-4 @error('daily_protein_kcal') is-invalid @enderror" name="daily_protein_kcal" value="{{$user->daily_protein_kcal}}" step="any" readonly>
+                                @error('daily_protein_kcal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-warning font-weight-bold col-lg-4" colspan="2"><img src="{{ asset('img/icons/gordura.png') }}" height="22"> {{ __('messages.Fat') }}</td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyFatId" type="number" class="form-control col-lg-4 @error('daily_fat') is-invalid @enderror" name="daily_fat" value="{{$user->daily_fat}}" step="any" readonly>
+                                @error('daily_fat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">g</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="col-lg-4" colspan="1">
+                            <div class="input-group">
+                                <input id="dailyFatKcalId" type="number" class="form-control col-lg-4 @error('daily_fat_kcal') is-invalid @enderror" name="daily_fat_kcal" value="{{$user->daily_fat_kcal}}" step="any" readonly>
+                                @error('daily_fat_kcal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">Kcal</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+                <thead>
+                    <tr>
+                        <th colspan="4">{{ __('messages.MyContent') }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td colspan="2"><img src="{{ asset('img/icons/maca.png') }}" height="22"> {{ __('messages.MyFoods') }}</td>
+                        <td colspan="2"><a href="{{route('food.all')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><img src="{{ asset('img/icons/chapeu-de-chef.png') }}" height="22"> {{ __('messages.MyRecipes') }}</td>
+                        <td colspan="2">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></td>
                     </tr>
 
                 </tbody>
