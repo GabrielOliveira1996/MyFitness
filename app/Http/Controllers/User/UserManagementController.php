@@ -14,7 +14,6 @@ class UserManagementController extends Controller
 
     public function __construct(Request $request, UserService $userService)
     {
-        //$this->middleware('auth');
         $this->_request = $request;
         $this->_userService = $userService;
     }
@@ -42,6 +41,7 @@ class UserManagementController extends Controller
 
     public function logout()
     {
+        $this->middleware('auth');
         Auth::logout();
         $this->_request->session()->invalidate();
         $this->_request->session()->regenerateToken();
@@ -50,6 +50,7 @@ class UserManagementController extends Controller
 
     public function updateProfile()
     {
+        $this->middleware('auth');
         $user = $this->_request->only([
             'gender',
             'age',
