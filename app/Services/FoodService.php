@@ -4,20 +4,23 @@ namespace App\Services;
 
 use App\Repository\Food\IFoodRepository;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Validator\FoodValidator;
 
 class FoodService
 {
     private $_foodRepository;
+    private $_foodValidator;
 
-    public function __construct(IFoodRepository $foodRepository)
+    public function __construct(IFoodRepository $foodRepository, FoodValidator $foodValidator)
     {
         $this->_foodRepository = $foodRepository;
+        $this->_foodValidator = $foodValidator;
     }
 
     public function create($food)
     {
         $user = Auth::user();
+        $this->_foodValidator->create($food);
         $create = $this->_foodRepository->create($food, $user);
         return $create;
     }
@@ -25,6 +28,7 @@ class FoodService
     public function update($id, $food)
     {
         $user = Auth::user();
+        $this->_foodValidator->update($food);
         $update = $this->_foodRepository->update($id, $food, $user);
         return $update;
     }
@@ -42,20 +46,10 @@ class FoodService
         return $find;
     }
 
-    public function delete($id)
-    {
-        $delete = $this->_foodRepository->delete($id);
-    }
-
-    public function index()
-    {
-        $index = $this->_foodRepository->index();
-        return $index;
-    }
-
     public function search($food)
     {
-        $search = $this->_foodRepository->search($food);
+        $id = Auth::user()->id;
+        $search = $this->_foodRepository->search($id, $food);
         return $search;
     }
 }
