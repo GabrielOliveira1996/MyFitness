@@ -66,8 +66,8 @@ class FoodRepository implements IFoodRepository
         return $this->_food->find($id)->delete();
     }
 
-    public function search($food)
+    public function search($id, $food)
     {
-        return $this->_food->where([['name', 'like', '%' . $food . '%']])->paginate(100);
+        return $this->_food->where('user_id', $id)->where([['name', 'like', '%' . $food . '%']])->paginate(100);
     }
 }
