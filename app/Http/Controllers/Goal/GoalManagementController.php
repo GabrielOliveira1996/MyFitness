@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Goal;
 use Illuminate\Http\Request;
 use App\Services\GoalService;
 use App\Http\Controllers\Controller;
+use App\Repository\Goal\GoalRepository;
 use App\Services\UserService;
 
 class GoalManagementController extends Controller
@@ -12,20 +13,24 @@ class GoalManagementController extends Controller
     private $_request;
     private $_goalService;
     private $_userService;
+    private $_goalRepository;
 
-    public function __construct(Request $request, GoalService $goalService, UserService $userService)
-    {
+    public function __construct(
+        Request $request,
+        GoalService $goalService,
+        UserService $userService,
+        GoalRepository $goalRepository
+    ) {
         $this->middleware('auth');
         $this->_request = $request;
         $this->_goalService = $goalService;
         $this->_userService = $userService;
+        $this->_goalRepository = $goalRepository;
     }
 
     public function add($type)
     {
         $goal = $this->_request->only([
-            'user_id',
-            'user_name',
             'name',
             'quantity_grams',
             'calories',
@@ -43,8 +48,6 @@ class GoalManagementController extends Controller
     public function update($id)
     {
         $goal = $this->_request->only([
-            'user_id',
-            'user_name',
             'name',
             'quantity_grams',
             'calories',
@@ -52,7 +55,8 @@ class GoalManagementController extends Controller
             'protein',
             'total_fat',
             'saturated_fat',
-            'trans_fat'
+            'trans_fat',
+            'type_of_meal'
         ]);
         $food = $this->_goalService->update($id, $goal);
         return redirect()->route('goal.index');
@@ -60,7 +64,7 @@ class GoalManagementController extends Controller
 
     public function delete($id)
     {
-        $delete = $this->_goalService->delete($id);
+        $delete = $this->_goalRepository->delete($id);
         return redirect()->route('goal.index');
     }
 
@@ -68,7 +72,6 @@ class GoalManagementController extends Controller
     {
         $date = $this->_request->input('date');
         $userGoals = $this->_userService->findUserGoals($date);
-
         return view('goal.index', [
             'date' => $userGoals['date'],
             'user' => $userGoals['user'],
