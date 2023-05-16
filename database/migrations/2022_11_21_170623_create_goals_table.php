@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up()
     {
         Schema::create('goals', function (Blueprint $table) {
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->decimal('saturated_fat');
             $table->decimal('trans_fat');
             $table->string('type_of_meal');
-            $table->string('date');
             $table->timestamps();
         });
     }
