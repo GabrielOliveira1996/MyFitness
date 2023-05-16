@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
 {
-    
+
     protected $fillable = [
         'user_id',
         'user_name',
@@ -19,8 +19,6 @@ class Goal extends Model
         'total_fat',
         'saturated_fat',
         'trans_fat',
-        'type_of_meal',
-        'date'
+        'type_of_meal'
     ];
-
 }
