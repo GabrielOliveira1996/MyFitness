@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\BasalMetabolicRate;
+use Illuminate\Http\Request;
+use App\Services\UserService;
+
 
 class RegisterController extends Controller
 {
@@ -26,52 +25,25 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     protected $redirectTo = RouteServiceProvider::HOME;
+    private $_request;
+    private $_userService;
 
-    public function __construct()
+    public function __construct(Request $request, UserService $userService)
     {
         $this->middleware('guest');
+        $this->_request = $request;
+        $this->_userService = $userService;
     }
 
-    protected function validator(array $data)
+    public function register()
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        $user = $this->_request->only([
+            'name',
+            'email',
+            'password',
+            'password_confirmation'
         ]);
-    }
-
-    protected function create(array $data)
-    {
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        $settingBasalMetabolic = BasalMetabolicRate::create([
-            'user_id' => $user->id,
-            'user_name' => $user->name,
-            'gender' => 0,
-            'age' => 0,
-            'weight' => 0,
-            'stature' => 0,
-            'activity_rate_factor' => 0,
-            'objective' => 0,
-            'type_of_diet' => 'Padrão',
-            'imc' => 0,
-            'water' => 0,
-            'basal_metabolic_rate' => 0,
-            'daily_calories' => 0,
-            'daily_protein' => 0,
-            'daily_carbohydrate' => 0,
-            'daily_fat' => 0,
-            'daily_protein_kcal' => 0,
-            'daily_carbohydrate_kcal' => 0,
-            'daily_fat_kcal' => 0
-        ]);
-
-        return $user;
+        $register = $this->_userService->register($user);
+        return redirect()->route('home');
     }
 }
