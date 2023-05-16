@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Food;
 use Illuminate\Http\Request;
 use App\Services\FoodService;
 use App\Http\Controllers\Controller;
+use App\Repository\Food\IFoodRepository;
 
 class FoodManagementController extends Controller
 {
     private $_request;
     private $_foodService;
+    private $_foodRepository;
 
-    public function __construct(Request $request, FoodService $foodService)
+    public function __construct(Request $request, FoodService $foodService, IFoodRepository $foodRepository)
     {
         $this->middleware('auth');
         $this->_request = $request;
         $this->_foodService = $foodService;
+        $this->_foodRepository = $foodRepository;
     }
 
     public function create()
@@ -52,7 +55,7 @@ class FoodManagementController extends Controller
 
     public function delete($id)
     {
-        $delete = $this->_foodService->delete($id);
+        $this->_foodRepository->delete($id);
         return redirect()->route('food.all');
     }
 
