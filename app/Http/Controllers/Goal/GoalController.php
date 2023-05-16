@@ -2,30 +2,26 @@
 
 namespace App\Http\Controllers\Goal;
 
-use Illuminate\Http\Request;
 use App\Services\UserService;
-use App\Services\FoodService;
-use App\Services\GoalService;
 use App\Http\Controllers\Controller;
+use App\Repository\Food\FoodRepository;
+use App\Repository\Goal\GoalRepository;
 
 class GoalController extends Controller
 {
-    private $_request;
     private $_userService;
-    private $_foodService;
-    private $_goalService;
+    private $_foodRepository;
+    private $_goalRepository;
 
     public function __construct(
-        Request $request,
         UserService $userService,
-        FoodService $foodService,
-        GoalService $goalService
+        FoodRepository $foodRepository,
+        GoalRepository $goalRepository
     ) {
         $this->middleware('auth');
-        $this->_request = $request;
         $this->_userService = $userService;
-        $this->_foodService = $foodService;
-        $this->_goalService = $goalService;
+        $this->_foodRepository = $foodRepository;
+        $this->_goalRepository = $goalRepository;
     }
 
     public function index()
@@ -38,9 +34,7 @@ class GoalController extends Controller
         // e gorduras, esses valores são passados para 
         // a view.
         $date = date('Y-m-d');
-        //dd($date);
         $userGoals = $this->_userService->findUserGoals($date);
-
         return view('goal.index', [
             'date' => $userGoals['date'],
             'user' => $userGoals['user'],
@@ -63,22 +57,13 @@ class GoalController extends Controller
 
     public function add($type)
     {
-        $foods = $this->_foodService->index();
+        $foods = $this->_foodRepository->index();
         return view('goal.add', compact('foods', 'type'));
     }
 
     public function update($id)
     {
-        $food = $this->_goalService->find($id);
+        $food = $this->_goalRepository->find($id);
         return view('goal.update', compact('food'));
-    }
-
-    //Página de cálculo Taxa de Metabolismo Basal (TMB).
-    public function settingGoalView()
-    {
-
-        $settingGoal = $this->_basalMetabolicRateRepos->findUserBasalMetabolicRateRepos();
-
-        return view('goal.settingGoal', compact('settingGoal'));
     }
 }
