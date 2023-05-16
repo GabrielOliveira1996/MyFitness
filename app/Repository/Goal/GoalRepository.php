@@ -27,8 +27,7 @@ class GoalRepository implements IGoalRepository
             'total_fat' => $goal['total_fat'],
             'saturated_fat' => $goal['saturated_fat'],
             'trans_fat' => $goal['trans_fat'],
-            'type_of_meal' => $type,
-            'date' => date('d/m/Y')
+            'type_of_meal' => $type
         ]);;
     }
 
