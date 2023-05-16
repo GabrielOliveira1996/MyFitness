@@ -21,7 +21,7 @@ class UserRepository implements IUserRepository
             'name' => $user['name'],
             'email' => $user['email'],
             'password' => Hash::make($user['password']),
-            'gender' => 0,
+            'gender' => 'Não definido',
             'age' => 0,
             'weight' => 0,
             'stature' => 0,
