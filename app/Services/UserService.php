@@ -31,6 +31,7 @@ class UserService
     public function update($user)
     {
         $id = Auth::user()->id;
+        $validator = $this->_userValidator->update($user);
         $update = $this->_userRepository->update($user, $id);
         return $update;
     }
