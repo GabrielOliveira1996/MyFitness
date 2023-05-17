@@ -10,7 +10,7 @@
 
         <p class="text-center">{{ __('messages.YourFoodsDescription') }}</p>
 
-        <form method="POST" action="{{ route('food.search') }}">
+        <form method="POST" action="{{ route('food.search') }}" autocomplete="off">
             @csrf
             <div class="form-group d-flex justify-content-center">
                 <div class="col-md-3">

@@ -6,7 +6,7 @@
     <div class="card mt-3">
         <div class="card-body">
             <p class="text-center">Busque por alimentos e adicione a sua lista de favoritos.</p>
-            <form method="post">
+            <form method="post" autocomplete="off">
                 <div class="row">
                     <div class="col-lg-4 offset-lg-4">
                         <input type="text" class="form-control col-lg-2">

@@ -8,7 +8,7 @@
 
         <h3 class="text-center mt-5">{{ __('messages.WelcomeMessage') }} {{$user->name}}.</h3>
 
-        <form method="POST">
+        <form method="POST" autocomplete="off">
             @csrf
             <button type="submit" class="btn btn-primary text-white col-sm-12 m-2">{{__('messages.SaveEditions')}}</button>
 

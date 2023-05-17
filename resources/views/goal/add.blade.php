@@ -8,7 +8,7 @@
 
         <p class="text-center">{{ __('messages.SearchDescription') }}</p>
 
-        <form method="post">
+        <form method="post" autocomplete="off">
             @csrf
             <div class="row d-flex justify-content-center">
                 <div class="col-md-5">
