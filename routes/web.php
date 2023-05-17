@@ -6,42 +6,38 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//Auth::routes();
-
-Route::post('register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
 Route::get('register', function () {
     return view('auth.register');
 });
-Route::post('login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
+Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::get('login', function () {
     return view('auth.login');
 });
-Route::post('logout', [App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
+
+Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
+Route::post('/profile', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('updateProfile');
 
 Route::prefix('food')->group(function () {
-    Route::post('/search/{type}', [App\Http\Controllers\FoodController::class, 'searchFood'])->name('searchFood');
-    Route::get('/create', [App\Http\Controllers\FoodController::class, 'createFoodView'])->name('createFoodView');
-    Route::post('/create', [App\Http\Controllers\FoodController::class, 'createFood'])->name('createFood');
-    Route::get('/all', [App\Http\Controllers\FoodController::class, 'allFoodsView'])->name('allFoodsView');
-    Route::get('/update/{id}', [App\Http\Controllers\FoodController::class, 'updateFoodView'])->name('updateFoodView');
-    Route::post('/update/{id}', [App\Http\Controllers\FoodController::class, 'updateFood'])->name('updateFood');
-    Route::get('/delete/{id}', [App\Http\Controllers\FoodController::class, 'deleteFood'])->name('deleteFood');
+    // Próxima correção será realizada em rota search.
+    Route::post('/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
+    Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'indexUserFoods'])->name('food.all');
+    Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create']);
+    Route::get('/create', [App\Http\Controllers\Food\FoodController::class, 'create'])->name('food.create');
+    Route::post('/update/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'update']);
+    Route::get('/update/{id}', [App\Http\Controllers\Food\FoodController::class, 'update'])->name('food.update');
+    Route::get('/delete/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'delete'])->name('food.delete');
 });
 
 Route::prefix('goal')->group(function () {
-    Route::get('/list', [App\Http\Controllers\GoalController::class, 'goalView'])->name('goalView');
-    Route::get('/add-food-to-day-goal/{type}', [App\Http\Controllers\GoalController::class, 'addFoodToDayGoalView'])->name('addFoodToDayGoalView');
-    Route::post('/add-food-to-day-goal', [App\Http\Controllers\GoalController::class, 'addFoodToDayGoal'])->name('addFoodToDayGoal');
-    Route::get('/update-food-to-day-goal/{id}/{type}', [App\Http\Controllers\GoalController::class, 'updateFoodToDayGoalView'])->name('updateFoodToDayGoalView');
-    Route::post('/update-food-to-day-goal/{id}', [App\Http\Controllers\GoalController::class, 'updateFoodToDayGoal'])->name('updateFoodToDayGoal');
-    Route::get('/delete-goal-food/{id}', [App\Http\Controllers\GoalController::class, 'deleteGoalFood'])->name('deleteGoalFood');
-    Route::get('/perfil', [App\Http\Controllers\UserController::class, 'perfil'])->name('perfil');
-    Route::post('/perfil', [App\Http\Controllers\UserController::class, 'perfilUpdate'])->name('perfilUpdate');
-    Route::post('/search-goal', [App\Http\Controllers\GoalController::class, 'searchGoal'])->name('searchGoal');
-    /*Rotas removidas
-    Route::get('/setting-goal', [App\Http\Controllers\GoalController::class, 'settingGoalView'])->name('settingGoalView');
-    
-    */
+    Route::get('/index', [App\Http\Controllers\Goal\GoalController::class, 'index'])->name('goal.index');
+    Route::post('/create/{type}', [App\Http\Controllers\Goal\GoalManagementController::class, 'add'])->name('goal.addfood');
+    Route::get('/create/{type}', [App\Http\Controllers\Goal\GoalController::class, 'add'])->name('goal.add');
+    Route::post('/update/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'update'])->name('goal.updatefood');
+    Route::get('/update/{id}', [App\Http\Controllers\Goal\GoalController::class, 'update'])->name('goal.update');
+    Route::get('/delete/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'delete'])->name('goal.delete');
+    Route::post('/search', [App\Http\Controllers\Goal\GoalController::class, 'search'])->name('goal.search');
 });
