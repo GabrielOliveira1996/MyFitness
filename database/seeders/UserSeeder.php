@@ -17,16 +17,11 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        
+
         User::create([
             'name' => 'Gabriel',
-            'email' => 'gab-oliveira@hotmail.com',
-            'password' => Hash::make('123456789'),
-        ]);
-
-        BasalMetabolicRate::create([
-            'user_id' => 1,
-            'user_name' => 'Gabriel',
+            'email' => 'admin@myfitness.com',
+            'password' => Hash::make('Aa1234567/'),
             'gender' => 'Masculino',
             'age' => 25,
             'weight' => 63,
@@ -45,6 +40,5 @@ class UserSeeder extends Seeder
             'daily_carbohydrate_kcal' => 1194.60,
             'daily_fat_kcal' => 728
         ]);
-
     }
 }
