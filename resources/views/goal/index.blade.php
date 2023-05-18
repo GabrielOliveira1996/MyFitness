@@ -9,7 +9,7 @@
         <h3 class="text-center">{{ __('messages.DailyGoal') }}</h3>
 
         <div class="col-lg-4">
-            <canvas id="myChart"></canvas>
+            <canvas id="chart"></canvas>
         </div>
 
         <div class="row mt-4 d-flex justify-content-center">
@@ -21,7 +21,7 @@
                         <div id="progressbarCarbohydrateId" class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="input-group mt-3">
-                        <input id="cabohydrateId" type="text" class="form-control bg-light" value="{{__($carbohydratesOfTheDay)}} / {{$user->daily_carbohydrate}}" disabled>
+                        <input id="carbohydrateId" type="text" class="form-control bg-light" value="{{__($carbohydratesOfTheDay)}} / {{$user->daily_carbohydrate}}" disabled>
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">g</span>
                         </div>
@@ -451,7 +451,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ asset('js/macroNutrientProgress.js') }}"></script>
-<script type="module" src="{{asset('js/graph.js')}}"></script>
+<script src="{{ asset('js/goal/index/progressBar.js') }}"></script>
+<script type="module" src="{{asset('js/goal/index/graph.js')}}"></script>
 
 @endsection
