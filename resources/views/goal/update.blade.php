@@ -144,6 +144,6 @@
 
 </div>
 
-<script src="{{ asset('js/goals.js') }}"></script>
+<script src="{{ asset('js/goal/goals.js') }}"></script>
 
 @endsection
