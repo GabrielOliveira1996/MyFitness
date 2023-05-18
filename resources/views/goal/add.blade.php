@@ -81,7 +81,6 @@
 
 </div>
 
-<script src="{{ asset('js/goals.js') }}"></script>
-<script src="{{ url('https://unpkg.com/axios/dist/axios.min.js') }}"></script>
+<script src="{{ asset('js/goal/goals.js') }}"></script>
 
 @endsection
