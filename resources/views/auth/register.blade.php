@@ -70,13 +70,16 @@
                                 </div>
                             </div>
 
+                            <hr>
+
                             <div class="row mb-0">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary col-lg-12">
+                                    <button type="submit" class="btn btn-primary rounded-0 col-lg-12">
                                         {{ __('messages.Register') }}
                                     </button>
                                 </div>
                             </div>
+                            <small class="text-justify">{{ __('messages.IAlreadyHaveAnAccountMessage') }} <a href="{{Route('login')}}">{{ __('messages.Login') }}</a></small>
                         </form>
 
                         <hr>
