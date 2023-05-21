@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Request;
-use App\Services\UserService;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -24,26 +24,68 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
     protected $redirectTo = RouteServiceProvider::HOME;
-    private $_request;
-    private $_userService;
 
-    public function __construct(Request $request, UserService $userService)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
         $this->middleware('guest');
-        $this->_request = $request;
-        $this->_userService = $userService;
     }
 
-    public function register()
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
     {
-        $user = $this->_request->only([
-            'name',
-            'email',
-            'password',
-            'password_confirmation'
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        $register = $this->_userService->register($user);
-        return redirect()->route('home');
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'google_id' => null,
+            'gender' => 'Não definido',
+            'age' => 0,
+            'weight' => 0,
+            'stature' => 0,
+            'activity_rate_factor' => 0,
+            'objective' => 0,
+            'type_of_diet' => 0,
+            'imc' => 0,
+            'water' => 0,
+            'basal_metabolic_rate' => 0,
+            'daily_calories' => 0,
+            'daily_protein' => 0,
+            'daily_carbohydrate' => 0,
+            'daily_fat' => 0,
+            'daily_protein_kcal' => 0,
+            'daily_carbohydrate_kcal' => 0,
+            'daily_fat_kcal' => 0
+        ]);
     }
 }
