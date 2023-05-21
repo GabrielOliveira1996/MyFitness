@@ -21,6 +21,7 @@ class UserRepository implements IUserRepository
             'name' => $user['name'],
             'email' => $user['email'],
             'password' => Hash::make($user['password']),
+            'google_id' => $user['google_id'],
             'gender' => 'Não definido',
             'age' => 0,
             'weight' => 0,
@@ -67,5 +68,10 @@ class UserRepository implements IUserRepository
     public function find($id)
     {
         return $this->_user->find($id);
+    }
+
+    public function findGoogleUser($id)
+    {
+        return $this->_user->where('google_id', $id)->first();
     }
 }
