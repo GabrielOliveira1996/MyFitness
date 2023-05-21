@@ -40,9 +40,10 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+
+                                <small><a href="{{ Route('password.request') }}">Esqueci minha senha.</a></small>
                             </div>
                         </div>
-
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <div class="form-check">
@@ -54,10 +55,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        <small class="text-justify">{{ __('messages.DontHaveAnAccountMessage') }} <a href="{{ route('register') }}">{{ __('messages.Register') }}</a></small>
+                        <hr>
                         <div class="row mb-0">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary col-sm-12">
+                                <button type="submit" class="btn btn-primary rounded-0 col-sm-12">
                                     {{ __('messages.Login') }}
                                 </button>
 
@@ -69,6 +71,15 @@
                             </div>
                         </div>
                     </form>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-light rounded-0 border border-light col-lg-12" href="{{ route('google.login') }}">
+                                <img src="{{ asset('img/icons/google.png') }}" height="22">
+                                Login com Gmail
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
