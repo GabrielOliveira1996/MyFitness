@@ -50,83 +50,13 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                        @if (Route::has('login'))
-
-                        <li class="nav-item dropleft">
-                            <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('messages.Login') }}
-                            </a>
-                            <div class="dropdown-menu p-4" style="width:300px; margin-left:60vw;">
-                                <form method="POST" action="{{ route('login') }}">
-                                    @csrf
-
-                                    <div class="row mb-1">
-                                        <label for="password" class="col-md-4">{{ __('E-mail') }}</label>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-1">
-                                        <label for="password" class="col-md-4">{{ __('messages.Password') }}</label>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                <label class="form-check-label" for="remember">
-                                                    {{ __('messages.Remember') }}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-0">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary col-sm-12">
-                                                {{ __('messages.Login') }}
-                                            </button>
-
-                                            @if (Route::has('password.request'))
-                                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                {{ __('messages.ForgotMyPassword') }}
-                                            </a>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                         </li>
-                        @endif
 
-                        @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                         </li>
-                        @endif
                         @else
 
                         <li class="nav-item dropdown">
@@ -196,9 +126,7 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><img src="{{ asset('img/icons/twitter.png') }}" height="32" width="32"></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><img src="{{ asset('img/icons/instagram.png') }}" height="32" width="32"></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><img src="{{ asset('img/icons/facebook.png') }}" height="32" width="32"></a></li>
+            <li class="my-5 mx-5"><a class="text-muted text-decoration-none" href="https://github.com/GabrielOliveira1996" target="_blank"><img src="{{ asset('img/icons/github.png') }}" height="32" width="32"> Acesse o meu github =)</a></li>
         </ul>
     </footer>
 
