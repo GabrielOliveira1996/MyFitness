@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 
@@ -18,7 +18,7 @@ return [
     'Password' => 'Senha',
     'ConfirmPassword' => 'Confirmar senha',
     'ConfirmPasswordMessage' => 'Por favor confirme sua senha antes de continuar.',
-    'Remember' => 'Lembrar',    
+    'Remember' => 'Lembrar',
     'ForgotMyPassword' => 'Esqueceu sua senha?',
     'Name' => 'Nome',
     'MyFitnessTerm' => 'Ao continuar você concorda com os termos de uso do MyFitness.',
@@ -50,7 +50,7 @@ return [
     'Balanced' => 'Balanceado',
     'LowInFat' => 'Pobre em gorduras',
     'RichInProtein' => 'Rico em proteínas',
-    'Ketogenic'=> 'Cetogénica (Atkins)',
+    'Ketogenic' => 'Cetogénica (Atkins)',
 
     'AmountInGrams' => 'Quantidade em gramas',
     'Calories' => 'Calorias',
@@ -91,7 +91,7 @@ return [
     'DailyIntakeMessage' => 'Até o momento essa foi a sua ingestão de nutrientes.',
 
     'UpdateFoodGoalDescription' => 'Você selecionou um alimento da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.',
-    
+
     'AddFoodToGoalDescription' => 'Adicione alimentos para sua meta do dia.',
 
     'SearchDescription' => 'Busque por alimentos.',
@@ -113,4 +113,6 @@ return [
     'RevenuesDescription' => 'Explore a nossa galeria de receitas.',
     'RevenuesDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias.',
 
+    'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
+    'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?',
 ];

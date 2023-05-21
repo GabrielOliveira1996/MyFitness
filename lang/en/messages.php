@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 
@@ -50,7 +50,7 @@ return [
     'Balanced' => 'Balanced',
     'LowInFat' => 'Low in fat',
     'RichInProtein' => 'Rich in protein',
-    'Ketogenic'=> 'Ketogenic (Atkins)',
+    'Ketogenic' => 'Ketogenic (Atkins)',
 
     'AmountInGrams' => 'Amount in grams',
     'Calories' => 'Calories',
@@ -77,7 +77,7 @@ return [
     'Update' => 'Update',
     'Search' => 'Search',
     'Revenues' => 'Revenues',
-    
+
     'YourFoods' => 'Your foods',
     'YourFoodsDescription' => 'This list consists of foods added by you, and foods added as favorites.',
 
@@ -113,4 +113,6 @@ return [
     'RevenuesDescription' => 'Explore our recipe gallery.',
     'RevenuesDescription1' => 'The recipes will help you to have a more pleasant diet, facilitating the process and helping you to reach your daily goals.',
 
+    'IAlreadyHaveAnAccountMessage' => 'I already have an account and want to',
+    'DontHaveAnAccountMessage' => 'Dont have an account yet?',
 ];
