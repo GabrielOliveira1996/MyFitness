@@ -45,6 +45,13 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
+        'sendinblue' => [
+            'transport' => 'sendinblue',
+            'options' => [
+                'api_key' => env('SENDINBLUE_API_KEY'),
+            ],
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],
