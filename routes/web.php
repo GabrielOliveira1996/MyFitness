@@ -6,15 +6,12 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register'])->name('register');
-Route::get('register', function () {
-    return view('auth.register');
-});
-Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::get('login', function () {
-    return view('auth.login');
-});
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::auth();
+
+
+Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
+
 
 Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
 
