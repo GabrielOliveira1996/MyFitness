@@ -8,12 +8,8 @@ Route::get('/', function () {
 
 Route::auth();
 
-
 Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
-
-
-Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
 
 Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
 Route::post('/profile', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('updateProfile');
