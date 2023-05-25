@@ -7,13 +7,20 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    libzip-dev \
     unzip
 
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets zip
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd sockets
+
+RUN usermod -u 1000 www-data
 
 WORKDIR /var/www
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-EXPOSE 8000
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
+
+USER www-data
+
+EXPOSE 9000
