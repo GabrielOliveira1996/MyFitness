@@ -14,20 +14,6 @@ services:
       - db
       - redis
 
-  nginx:
-    build: nginx
-    container_name: lh-nginx
-    restart: always
-    tty: true
-    ports:
-      - "8080:80"
-    volumes:
-      - .:/var/www
-    networks:
-      - app-network
-    depends_on:
-      - app
-
   db:
     build: mysql
     container_name: lh-db
