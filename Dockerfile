@@ -18,10 +18,4 @@ WORKDIR /var/www
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN pecl install -o -f redis \
-    &&  rm -rf /tmp/pear \
-    &&  docker-php-ext-enable redis
-
-USER www-data
-
-EXPOSE 9000
+EXPOSE 8000

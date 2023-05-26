@@ -1,41 +1,32 @@
-version: '3'
+version: "3"
 
 services:
+    app-myfitness:
+        build: .
+        restart: always
+        ports:
+            - "8000:8000" #pc:container
+        volumes:
+            - .:/var/www
+        networks:
+            - bridge_connection
 
-  app:
-    build: .
-    container_name: lh-app
-    volumes:
-      - .:/var/www
-      - ./.docker/php/custom.ini:/usr/local/etc/php/conf.d/custom.ini
-    networks:
-      - app-network
-    depends_on:
-      - db
-      - redis
-
-  db:
-    build: mysql
-    container_name: lh-db
-    restart: always
-    tty: true
-    ports:
-      - "33006:3306"
-    volumes:
-      - ./.docker/dbdata:/var/lib/mysql
-      - ./mysql:/docker-entrypoint-initdb.d
-    environment:
-      - MYSQL_DATABASE=myfitness
-      - MYSQL_ROOT_PASSWORD=123
-    networks:
-      - app-network
-
-  redis:
-    image: redis:alpine
-    container_name: lh-redis
-    networks:
-      - app-network
+    db-myfitness:
+        image: mysql:5.7
+        restart: always
+        ports:
+            - "5306:3306"
+        environment:
+            - MYSQL_DATABASE=myfitness
+            - MYSQL_ROOT_PASSWORD=123
+        volumes:
+            - ./.docker/mysql/db_data:/var/lib/mysql
+        networks:
+            - bridge_connection
 
 networks:
-  app-network:
-    driver: bridge
+    bridge_connection:
+        driver: bridge
+
+volumes:
+    db_data:
