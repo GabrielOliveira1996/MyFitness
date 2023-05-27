@@ -20,13 +20,13 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('google_id')->nullable();
             $table->string('password');
-            $table->string('gender');
+            $table->integer('gender');
             $table->integer('age');
             $table->decimal('weight');
             $table->decimal('stature');
             $table->decimal('activity_rate_factor');
             $table->integer('objective');
-            $table->string('type_of_diet');
+            $table->integer('type_of_diet');
             $table->decimal('imc');
             $table->integer('water');
             $table->integer('daily_calories');
