@@ -1,12 +1,8 @@
-const input = document.getElementById('statureId');
-
-input.addEventListener('keypress', () => {
-
-    let inputLength = input.value.length;
-
-    if(inputLength === 1){
-        input.value += '.';
+const stature = document.getElementById('statureId');
+stature.addEventListener('keypress', () => {
+    let statureInputLength = stature.value.length;
+    if(statureInputLength === 1){
+        stature.value += '.';
     }
-
 });
 
