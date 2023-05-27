@@ -38,7 +38,7 @@ class UserValidator
             'weight' => 'required|numeric|min:0',
             'stature' => 'required|numeric|min:0',
             'activity_rate_factor' => 'required|numeric|min:0',
-            'objective' => 'required',
+            'objective' => 'required|numeric',
             'type_of_diet' => 'required|numeric',
             'imc' => 'required|numeric|min:0',
             'water' => 'required|numeric|min:0',
