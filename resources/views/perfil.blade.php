@@ -46,7 +46,7 @@
                             <td colspan="1">
                                 <select :id="genderId" @change="calculations()" name="gender" class="form-control col-lg-4 @error('gender') is-invalid @enderror">
                                     <option value="1" {{ $user->gender == '1' ? 'selected' : ''}}>{{ __('messages.Masculine') }}</option>
-                                    <option value="2" {{ $user->gender == '1' ? 'selected' : ''}}>{{ __('messages.Feminine') }}</option>
+                                    <option value="2" {{ $user->gender == '2' ? 'selected' : ''}}>{{ __('messages.Feminine') }}</option>
                                 </select>
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">
@@ -111,11 +111,11 @@
                             </td>
                             <td>
                                 <select :id="typeOfDietId" @change="calculations()" name="type_of_diet" value="{{$user->type_of_diet}}" class="form-control col-lg-4 @error('type_of_diet') is-invalid @enderror">
-                                    <option value="1" {{ $user->type_of_diet == 'Padrão' ? 'selected' : '' }}>{{ __('messages.Pattern') }}</option>
-                                    <option value="2" {{ $user->type_of_diet == 'Equilibrado' ? 'selected' : '' }}>{{ __('messages.Balanced') }}</option>
-                                    <option value="3" {{ $user->type_of_diet == 'Pobre em gorduras' ? 'selected' : '' }}>{{ __('messages.LowInFat') }}</option>
-                                    <option value="4" {{ $user->type_of_diet == 'Rico em proteínas' ? 'selected' : '' }}>{{ __('messages.RichInProtein') }}</option>
-                                    <option value="5" {{ $user->type_of_diet == 'Cetogénica' ? 'selected' : '' }}>{{ __('messages.Ketogenic') }}</option>
+                                    <option value="1" {{ $user->type_of_diet == '1' ? 'selected' : '' }}>{{ __('messages.Pattern') }}</option>
+                                    <option value="2" {{ $user->type_of_diet == '2' ? 'selected' : '' }}>{{ __('messages.Balanced') }}</option>
+                                    <option value="3" {{ $user->type_of_diet == '3' ? 'selected' : '' }}>{{ __('messages.LowInFat') }}</option>
+                                    <option value="4" {{ $user->type_of_diet == '4' ? 'selected' : '' }}>{{ __('messages.RichInProtein') }}</option>
+                                    <option value="5" {{ $user->type_of_diet == '5' ? 'selected' : '' }}>{{ __('messages.Ketogenic') }}</option>
                                 </select>
                                 @error('type_of_diet')
                                 <span class="invalid-feedback" role="alert">
