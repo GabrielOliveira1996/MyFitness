@@ -25,11 +25,10 @@ return new class extends Migration
             $table->decimal('weight');
             $table->decimal('stature');
             $table->decimal('activity_rate_factor');
-            $table->string('objective');
+            $table->integer('objective');
             $table->string('type_of_diet');
             $table->decimal('imc');
             $table->integer('water');
-            $table->integer('basal_metabolic_rate');
             $table->integer('daily_calories');
             $table->decimal('daily_protein');
             $table->decimal('daily_carbohydrate');

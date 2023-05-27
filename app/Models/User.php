@@ -31,7 +31,6 @@ class User extends Authenticatable
         'type_of_diet',
         'imc',
         'water',
-        'basal_metabolic_rate',
         'daily_calories',
         'daily_protein',
         'daily_carbohydrate',
