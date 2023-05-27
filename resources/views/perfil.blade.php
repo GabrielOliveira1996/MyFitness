@@ -45,8 +45,8 @@
                             <td colspan="3">{{ __('messages.Gender') }}</td>
                             <td colspan="1">
                                 <select :id="genderId" @change="calculations()" name="gender" class="form-control col-lg-4 @error('gender') is-invalid @enderror">
-                                    <option value="Masculino" {{ $user->gender == 'Masculino' ? 'selected' : ''}}>{{ __('messages.Masculine') }}</option>
-                                    <option value="Feminino" {{ $user->gender == 'Feminino' ? 'selected' : ''}}>{{ __('messages.Feminine') }}</option>
+                                    <option value="1" {{ $user->gender == '1' ? 'selected' : ''}}>{{ __('messages.Masculine') }}</option>
+                                    <option value="2" {{ $user->gender == '1' ? 'selected' : ''}}>{{ __('messages.Feminine') }}</option>
                                 </select>
                                 @error('gender')
                                 <span class="invalid-feedback" role="alert">
