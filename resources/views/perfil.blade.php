@@ -111,11 +111,11 @@
                             </td>
                             <td>
                                 <select :id="typeOfDietId" @change="calculations()" name="type_of_diet" value="{{$user->type_of_diet}}" class="form-control col-lg-4 @error('type_of_diet') is-invalid @enderror">
-                                    <option value="Padrão" {{ $user->type_of_diet == 'Padrão' ? 'selected' : '' }}>{{ __('messages.Pattern') }}</option>
-                                    <option value="Equilibrado" {{ $user->type_of_diet == 'Equilibrado' ? 'selected' : '' }}>{{ __('messages.Balanced') }}</option>
-                                    <option value="Pobre em gorduras" {{ $user->type_of_diet == 'Pobre em gorduras' ? 'selected' : '' }}>{{ __('messages.LowInFat') }}</option>
-                                    <option value="Rico em proteínas" {{ $user->type_of_diet == 'Rico em proteínas' ? 'selected' : '' }}>{{ __('messages.RichInProtein') }}</option>
-                                    <option value="Cetogénica" {{ $user->type_of_diet == 'Cetogénica' ? 'selected' : '' }}>{{ __('messages.Ketogenic') }}</option>
+                                    <option value="1" {{ $user->type_of_diet == 'Padrão' ? 'selected' : '' }}>{{ __('messages.Pattern') }}</option>
+                                    <option value="2" {{ $user->type_of_diet == 'Equilibrado' ? 'selected' : '' }}>{{ __('messages.Balanced') }}</option>
+                                    <option value="3" {{ $user->type_of_diet == 'Pobre em gorduras' ? 'selected' : '' }}>{{ __('messages.LowInFat') }}</option>
+                                    <option value="4" {{ $user->type_of_diet == 'Rico em proteínas' ? 'selected' : '' }}>{{ __('messages.RichInProtein') }}</option>
+                                    <option value="5" {{ $user->type_of_diet == 'Cetogénica' ? 'selected' : '' }}>{{ __('messages.Ketogenic') }}</option>
                                 </select>
                                 @error('type_of_diet')
                                 <span class="invalid-feedback" role="alert">
