@@ -39,10 +39,9 @@
 
     <div class="row mt-5">
 
-        <div class="col-lg-5">
-            <h1 class="fw-bolder">{{ __('messages.RevenuesDescription') }}</h1>
-            <h5>{{ __('messages.RevenuesDescription1') }}</h5>
-            <button class="btn btn-primary col-lg-5 p-2 mt-2">{{ __('messages.Revenues') }}</button>
+        <div class="col-lg-5 mt-5">
+            <h1 class="fw-bolder">{{ __('messages.RevenueDescription') }}</h1>
+            <h5>{{ __('messages.RevenueDescription1') }}</h5>
         </div>
         <img src="{{ asset('img/receita1.png') }}" class="col-lg-5">
     </div>
