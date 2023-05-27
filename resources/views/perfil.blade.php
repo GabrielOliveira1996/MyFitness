@@ -10,7 +10,6 @@
 
         <form method="POST" autocomplete="off">
             @csrf
-            <button type="submit" class="btn btn-primary text-white col-sm-12 m-2">{{__('messages.SaveEditions')}}</button>
 
             <div id="perfil">
                 <table class="table mt-3">
@@ -34,7 +33,7 @@
                         <tr>
                             <td colspan="3">{{ __('messages.Weight') }} (kg)</td>
                             <td colspan="1">
-                                <input :id="weightId" @keyup="calculations()" type="text" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{$user->weight}}" step="any">
+                                <input :id="weightId" @keyup="calculations()" type="text" maxlength="5" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{$user->weight}}" step="any">
                                 @error('weight')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -88,11 +87,11 @@
                             <td colspan="3">{{ __('messages.Objetive') }}</td>
                             <td colspan="1">
                                 <select :id="objectiveId" @change="calculations()" name="objective" class="form-control col-lg-4 @error('objetive') is-invalid @enderror">
-                                    <option value="Perder peso rápidamente" {{ $user->objective == 'Perder peso rápidamente' ? 'selected' : '' }}>{{ __('messages.LoseWeightFast') }}</option>
-                                    <option value="Perder peso lentamente" {{ $user->objective == 'Perder peso lentamente' ? 'selected' : '' }}>{{ __('messages.LoseWeightSlowly') }}</option>
-                                    <option value="Manter o peso" {{ $user->objective == 'Manter o peso' ? 'selected' : '' }}>{{ __('messages.KeepWeight') }}</option>
-                                    <option value="Aumentar peso lentamente" {{ $user->objective == 'Aumentar peso lentamente' ? 'selected' : '' }}>{{ __('messages.IncreaseWeightSlowly') }}</option>
-                                    <option value="Aumentar peso rápidamente" {{ $user->objective == 'Aumentar peso rápidamente' ? 'selected' : '' }}>{{ __('messages.GainWeightFast') }}</option>
+                                    <option value="1" {{ $user->objective == '1' ? 'selected' : '' }}>{{ __('messages.LoseWeightFast') }}</option>
+                                    <option value="2" {{ $user->objective == '2' ? 'selected' : '' }}>{{ __('messages.LoseWeightSlowly') }}</option>
+                                    <option value="3" {{ $user->objective == '3' ? 'selected' : '' }}>{{ __('messages.KeepWeight') }}</option>
+                                    <option value="4" {{ $user->objective == '4' ? 'selected' : '' }}>{{ __('messages.IncreaseWeightSlowly') }}</option>
+                                    <option value="5" {{ $user->objective == '5' ? 'selected' : '' }}>{{ __('messages.GainWeightFast') }}</option>
                                 </select>
                                 @error('objetive')
                                 <span class="invalid-feedback" role="alert">
@@ -270,17 +269,6 @@
                     <tbody>
 
                         <tr>
-                            <td colspan="3"><img src="{{ asset('img/icons/flame.png') }}" height="22"> {{ __('messages.BasalMetabolicRate') }}</td>
-                            <td>
-                                <input id="basalMetabolicRateId" type="number" class="form-control col-lg-4 @error('basal_metabolic_rate') is-invalid @enderror" name="basal_metabolic_rate" value="{{$user->basal_metabolic_rate}}" step="any" readonly>
-                                @error('basal_metabolic_rate')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </td>
-                        </tr>
-                        <tr>
                             <td colspan="3"><img src="{{ asset('img/icons/imc.png') }}" height="22"> {{ __('messages.BodyMassIndex') }}</td>
                             <td>
                                 <input :id="imcId" type="number" class="form-control col-lg-4 @error('imc') is-invalid @enderror" name="imc" value="{{$user->imc}}" step="any" readonly>
@@ -424,14 +412,11 @@
                             <td colspan="2"><img src="{{ asset('img/icons/maca.png') }}" height="22"> {{ __('messages.MyFoods') }}</td>
                             <td colspan="2"><a href="{{route('food.all')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
                         </tr>
-                        <tr>
-                            <td colspan="2"><img src="{{ asset('img/icons/chapeu-de-chef.png') }}" height="22"> {{ __('messages.MyRecipes') }}</td>
-                            <td colspan="2">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
+            
+            <button type="submit" class="btn btn-primary text-white col-sm-12 m-2">{{__('messages.SaveEditions')}}</button>
 
         </form>
 
