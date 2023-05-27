@@ -86,7 +86,37 @@
 
                         <small class="text-justify">
                             {{ __('messages.MyFitnessTerm') }}
+                            <a style="cursor: pointer;" class="text-primary" title="Clique aqui para verificar os termos." data-bs-toggle="modal" data-bs-target="#termsModal">
+                                {{ __('messages.Terms') }}.
+                            </a>
                         </small>
+
+                        <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title font-weight-bold" id="termsModalLabel">{{ __('messages.Terms') }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container text-justify p-3">
+                                                <p class="row">{{ __('messages.Term1') }}</p>
+                                                <p class="row">{{ __('messages.Term2') }}</p>
+                                                <p class="row">{{ __('messages.Term3') }}</p>
+                                                <p class="row">{{ __('messages.Term4') }}</p>
+                                                <p class="row">{{ __('messages.Term5') }}</p>
+                                                <p class="row">{{ __('messages.Term6') }}</p>
+                                                <p class="row">{{ __('messages.Term7') }}</p>
+                                                <p class="row">{{ __('messages.Term8') }}</p>
+                                                <p class="row">{{ __('messages.Term9') }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">{{ __('messages.TermsButtonAccept') }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
