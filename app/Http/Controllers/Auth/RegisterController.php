@@ -78,7 +78,6 @@ class RegisterController extends Controller
             'type_of_diet' => 0,
             'imc' => 0,
             'water' => 0,
-            'basal_metabolic_rate' => 0,
             'daily_calories' => 0,
             'daily_protein' => 0,
             'daily_carbohydrate' => 0,
