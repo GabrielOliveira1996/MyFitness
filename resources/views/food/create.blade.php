@@ -2,10 +2,17 @@
 
 @section('content')
 
-<div class="container d-flex justify-content-center py-5">
+<div class="container">
 
     <div class="row">
-        <p class="text-center col-lg-12">{{ __('messages.AddFoodDescription') }}</p>
+        <div class="col-lg-6 mt-5">
+            <h1 class="fw-bolder mt-5">{{ __('messages.AddFoodTitle') }}</h1>
+            <h5>{{ __('messages.AddFoodDescription') }}</h5>
+        </div>
+        <img src="{{ asset('img/adicionar-alimento.png') }}" class="col-lg-5">
+    </div>
+
+    <div class="row">
 
         <form method="POST" autocomplete="off">
             @csrf
