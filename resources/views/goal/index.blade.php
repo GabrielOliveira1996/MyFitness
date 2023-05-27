@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container">
-
+    @if($user->daily_calories > 0 && $user->daily_carbohydrate > 0 && $user->daily_protein > 0 && $user->daily_fat > 0)
     <div class="row d-flex justify-content-center mt-5">
-
+        
         <h3 class="text-center">{{ __('messages.DailyGoal') }}</h3>
 
         <div class="col-lg-4">
@@ -92,10 +92,7 @@
 
     </div>
 
-
     <hr class="mt-5">
-
-    @if($goalCalories != 0)
 
     <div class="col-md-12">
 
@@ -445,6 +442,17 @@
             </tbody>
         </table>
 
+    </div>
+
+    @else
+    <div class="row mt-5">
+
+        <div class="col-lg-5 mt-5">
+            <h1 class="fw-bolder">{{ __('messages.SetGoalsDescription') }}</h1>
+            <h5>{{ __('messages.SetGoalsDescription1') }}</h5>
+            <button class="btn btn-primary col-lg-5 p-2 mt-3">{{ __('messages.Profile') }}</button>
+        </div>
+        <img src="{{ asset('img/metas.png') }}" class="col-lg-5">
     </div>
     @endif
 
