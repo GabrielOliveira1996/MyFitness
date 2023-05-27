@@ -1,11 +1,10 @@
 <?php
 
 return [
-
     'Login' => 'Entrar',
     'Register' => 'Cadastre-se',
     'SignOut' => 'Sair',
-    'HelloMessage' => 'Olá',
+    'HelloMessage' => 'Olá,',
     'Profile' => 'Perfil',
     'AddFood' => 'Adicionar alimento',
     'MyFoods' => 'Meus alimentos',
@@ -22,7 +21,7 @@ return [
     'ForgotMyPassword' => 'Esqueceu sua senha?',
     'Name' => 'Nome',
     'MyFitnessTerm' => 'Ao continuar você concorda com os termos de uso do MyFitness.',
-    'WelcomeMessage' => 'Seja bem-vindo',
+    'WelcomeMessage' => 'Seja bem-vindo,',
     'SaveEditions' => 'Salvar',
     'Height' => 'Altura',
     'Weight' => 'Peso',
@@ -39,11 +38,11 @@ return [
     'ExtremelyActive' => 'Extremamento ativo',
 
     'Objetive' => 'Objetivo',
-    'LoseWeightFast' => 'Perder peso rápidamente',
+    'LoseWeightFast' => 'Perder peso rapidamente',
     'LoseWeightSlowly' => 'Perder peso lentamente',
     'KeepWeight' => 'Manter peso',
     'IncreaseWeightSlowly' => 'Aumentar peso lentamente',
-    'GainWeightFast' => 'Aumentar peso rápidamente',
+    'GainWeightFast' => 'Aumentar peso rapidamente',
 
     'TypeOfDiet' => 'Tipo de dieta',
     'Pattern' => 'Padrão',
@@ -56,7 +55,7 @@ return [
     'Calories' => 'Calorias',
     'Carbohydrate' => 'Carboidrato',
     'Protein' => 'Proteína',
-    'Fat' => 'Gordura',
+    'Fat' => 'Gordura Total',
     'SaturatedFat' => 'Gordura saturada',
     'TransFat' => 'Gordura trans',
     'TypeOfMeal' => 'Tipo de refeição',
@@ -76,19 +75,20 @@ return [
     'Delete' => 'Remover',
     'Update' => 'Update',
     'Search' => 'Buscar',
-    'Revenues' => 'Receitas',
+    'Goals' => 'Metas',
 
     'YourFoods' => 'Seus alimentos',
-    'YourFoodsDescription' => 'Essa lista consiste nos alimentos adicionados por você, e alimentos adicionados como favoritos.',
+    'YourFoodsDescription' => 'Aqui ficam os alimentos que foram adicionados por você.',
 
-    'AddFoodDescription' => 'Adicione alimentos para melhorar ainda mais os seus resultados.',
-    'AddFoodAlert' => 'Pesquise antes de adicionar as informações sobre os alimentos, para que não existam informações incorretas adicionadas em sistema.',
+    'AddFoodTitle' => 'Adicione alimentos.',
+    'AddFoodDescription' => 'Se o alimento que deseja não existe em nossa base de dados, você pode adicioná-lo utilizando esse recurso. Busque pela tabela nutricional do alimento, dessa forma o resultado será preciso.',
+    'AddFoodAlert' => 'Pesquise antes de adicionar as informações sobre os alimentos, para que não atrapalhem os seus resultados.',
 
     'UpdateFoodDescription' => 'As informações do seu alimento estão incorretas? Realize a correção abaixo.',
 
     'DailyGoal' => 'Meta Diária',
     'DailyIntake' => 'Ingestão Diária',
-    'DailyIntakeMessage' => 'Até o momento essa foi a sua ingestão de nutrientes.',
+    'DailyIntakeMessage' => 'Abaixo estão os alimentos que foram consumidos até o momento.',
 
     'UpdateFoodGoalDescription' => 'Você selecionou um alimento da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.',
 
@@ -110,9 +110,12 @@ return [
 
     'ObjetiveMacro' => 'Os tipos de dietas separam por porcentagem a quantidade que você precisa ingerir de cada macronutriente, separando em quantidade por calorias (Kcal), e por gramas do macronutriente, isso ajudará a alcançar objetivos específicos.',
 
-    'RevenuesDescription' => 'Explore a nossa galeria de receitas.',
-    'RevenuesDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias.',
+    'SetGoalsDescription' => 'Você ainda precisa preencher o seu perfil.',
+    'SetGoalsDescription1' => 'Lembre-se, quanto mais precisas forem as informações que você adicionar, melhores serão os resultados alcançados, então corre lá.',
+
+    'RevenueDescription' => 'Prepare receitas.',
+    'RevenueDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias.',
 
     'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
-    'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?',
+    'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?', 
 ];

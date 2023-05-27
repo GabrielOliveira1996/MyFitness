@@ -166,6 +166,13 @@ return [
     */
 
     'attributes' => [
+        'quantity_grams' => 'quantidade em gramas',
+        'calories' => 'calorias',
+        'carbohydrate' => 'carboidrato',
+        'protein' => 'proteína',
+        'total_fat' => 'gordura total',
+        'saturated_fat' => 'gordura saturada',
+        'trans_fat' => 'gordura trans',
         'address'   => 'endereço',
         'age'       => 'idade',
         'body'      => 'conteúdo',
