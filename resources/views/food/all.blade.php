@@ -6,9 +6,9 @@
 
     <div class="row justify-content-center mt-2">
 
-        <h3 class="text-center mt-5">{{ __('messages.YourFoods') }}</h3>
+        <h1 class="text-center mt-5">{{ __('messages.YourFoods') }}</h1>
 
-        <p class="text-center">{{ __('messages.YourFoodsDescription') }}</p>
+        <h5 class="text-center">{{ __('messages.YourFoodsDescription') }}</h5>
 
         <form method="POST" action="{{ route('food.search') }}" autocomplete="off">
             @csrf
