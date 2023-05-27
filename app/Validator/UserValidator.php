@@ -39,10 +39,9 @@ class UserValidator
             'stature' => 'required|numeric|min:0',
             'activity_rate_factor' => 'required|numeric|min:0',
             'objective' => 'required',
-            'type_of_diet' => 'required|alpha',
+            'type_of_diet' => 'required',
             'imc' => 'required|numeric|min:0',
             'water' => 'required|numeric|min:0',
-            'basal_metabolic_rate' => 'required|numeric|min:0',
             'daily_calories' => 'required|numeric|min:0',
             'daily_protein' => 'required|numeric|min:0',
             'daily_carbohydrate' => 'required|numeric|min:0',
@@ -51,7 +50,7 @@ class UserValidator
             'daily_carbohydrate_kcal' => 'required|numeric|min:0',
             'daily_fat_kcal' => 'required|numeric|min:0'
         ];
-
+        
         $validator = Validator::make($user, $rules);
         if ($validator->fails()) {
             $errors = $validator->messages();
