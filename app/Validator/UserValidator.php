@@ -39,7 +39,7 @@ class UserValidator
             'stature' => 'required|numeric|min:0',
             'activity_rate_factor' => 'required|numeric|min:0',
             'objective' => 'required',
-            'type_of_diet' => 'required',
+            'type_of_diet' => 'required|numeric',
             'imc' => 'required|numeric|min:0',
             'water' => 'required|numeric|min:0',
             'daily_calories' => 'required|numeric|min:0',
