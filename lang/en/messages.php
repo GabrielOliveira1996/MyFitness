@@ -1,5 +1,5 @@
 <?php
-
+/*
 return [
 
     'Login' => 'Sign In',
@@ -76,7 +76,7 @@ return [
     'Delete' => 'Remove',
     'Update' => 'Update',
     'Search' => 'Search',
-    'Revenues' => 'Revenues',
+    'Goals' => 'Goals',
 
     'YourFoods' => 'Your foods',
     'YourFoodsDescription' => 'This list consists of foods added by you, and foods added as favorites.',
@@ -110,8 +110,11 @@ return [
 
     'ObjetiveMacro' => 'The types of diets separate by percentage the amount you need to ingest of each macronutrient, separating the amount by calories (Kcal), and by grams of the macronutrient, this helps to achieve specific goals.',
 
-    'RevenuesDescription' => 'Explore our recipe gallery.',
-    'RevenuesDescription1' => 'The recipes will help you to have a more pleasant diet, facilitating the process and helping you to reach your daily goals.',
+    'SetGoalsDescription' => 'You still need to fill out your profile.',
+    'SetGoalsDescription1' => 'Remember, the more accurate the information you add, the better the results you achieve, so run there.',
+
+    'RevenueDescription' => 'Prepare recipes.',
+    'RevenueDescription1' => 'The recipes will help you to have a more enjoyable diet, facilitating the process and helping you to reach your daily goals.',
 
     'IAlreadyHaveAnAccountMessage' => 'I already have an account and want to',
     'DontHaveAnAccountMessage' => 'Dont have an account yet?',
