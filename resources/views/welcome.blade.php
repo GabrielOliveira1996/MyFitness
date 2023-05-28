@@ -17,13 +17,13 @@
                 </h5>
                 <a href="{{ route('register') }}" class="btn btn-primary">{{ __('messages.StartForFree') }}</a>
             </div>
-            <img src="{{ asset('img/alimento.png') }}" class="col-lg-7">
+            <img src="{{ asset('img/dieta1.png') }}" class="col-lg-5 mx-5">
         </div>
     </div>
 
     <div class="row mt-5">
-        <div class="row">
-            <img src="{{ asset('img/alimento2.png') }}" class="col-lg-6">
+        <div class="row mt-5">
+            <img src="{{ asset('img/dieta.png') }}" class="col-lg-6">
             <div class="col-lg-5 mt-5">
                 <h1 class="mt-5 fw-bold ">
                     {{ __('messages.Phrase3') }}
