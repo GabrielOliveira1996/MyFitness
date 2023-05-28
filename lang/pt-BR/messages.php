@@ -9,11 +9,12 @@ return [
     'AddFood' => 'Adicionar alimento',
     'MyFoods' => 'Meus alimentos',
     'MyGoals' => 'Minhas metas',
-    'Phrase1' => 'Que seu remédio seja seu alimento, e que seu alimento seja seu remédio.',
-    'Phrase2' => 'Quer construir uma dieta balanceada? Monitore refeições, aprenda sobre seus hábitos e alcance seus objetivos com o MyFitness.',
+    'Phrase0' => 'Que seu remédio seja seu alimento, e que seu alimento seja seu remédio.',
+    'Phrase1' => 'Crie sua dieta.',
+    'Phrase2' => 'Procurando construir uma dieta balanceada de forma eficiente? Com o MyFitness, você pode monitorar suas refeições, entender seus hábitos alimentares e alcançar seus objetivos de maneira eficaz e personalizada.',
     'StartForFree' => 'COMECE GRATUITAMENTE',
     'Phrase3' => 'Utilize os alimentos de nossa base, ou cadastre o seu próprio.',
-    'Phrase4' => 'Veja o detalhamento de calorias e macronutrientes, compare porções e descubra como os alimentos que você ingere contribuem com os seus objetivos.',
+    'Phrase4' => 'Obtenha detalhes sobre calorias e macronutrientes, compare porções e descubra como os alimentos que você consome influenciam seus objetivos.',
     'Password' => 'Senha',
     'ConfirmPassword' => 'Confirmar senha',
     'ConfirmPasswordMessage' => 'Por favor confirme sua senha antes de continuar.',
@@ -62,13 +63,13 @@ return [
     'RichInProtein' => 'Rico em proteínas',
     'Ketogenic' => 'Cetogénica (Atkins)',
 
-    'AmountInGrams' => 'Quantidade em gramas',
+    'AmountInGrams' => 'Gramas',
     'Calories' => 'Calorias',
     'Carbohydrate' => 'Carboidrato',
     'Protein' => 'Proteína',
-    'Fat' => 'Gordura Total',
-    'SaturatedFat' => 'Gordura saturada',
-    'TransFat' => 'Gordura trans',
+    'Fat' => 'Gorduras',
+    'SaturatedFat' => 'Saturada',
+    'TransFat' => 'Trans',
     'TypeOfMeal' => 'Tipo de refeição',
 
     'Results' => 'Resultados',
@@ -87,9 +88,13 @@ return [
     'Update' => 'Update',
     'Search' => 'Buscar',
     'Goals' => 'Metas',
+    'AddFood' => 'Adicionar Alimento',
+    'SearchFood' => 'Buscar Alimento',
 
-    'YourFoods' => 'Seus alimentos',
-    'YourFoodsDescription' => 'Aqui ficam os alimentos que foram adicionados por você.',
+    'SearchFood1' => 'Busque por alimento',
+
+    'YourFoods' => 'Seus alimentos.',
+    'YourFoodsDescription' => 'Nesta seção, você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
 
     'AddFoodTitle' => 'Adicione alimentos.',
     'AddFoodDescription' => 'Se o alimento que deseja não existe em nossa base de dados, você pode adicioná-lo utilizando esse recurso. Busque pela tabela nutricional do alimento, dessa forma o resultado será preciso.',
@@ -125,7 +130,7 @@ return [
     'SetGoalsDescription1' => 'Ainda falta preencher algumas informações no seu perfil. Lembre-se de que quanto mais precisas forem as informações que você adicionar, melhores resultados você poderá alcançar. Não perca tempo, atualize seu perfil agora mesmo!',
 
     'RevenueDescription' => 'Receitas.',
-    'RevenueDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias. Em breve será adicionado a plataforma.',
+    'RevenueDescription1' => 'Descubra como as receitas podem tornar sua dieta mais prazerosa, facilitando o processo e ajudando você a alcançar suas metas diárias. Em breve, elas serão adicionadas à plataforma.',
 
     'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
     'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?', 
