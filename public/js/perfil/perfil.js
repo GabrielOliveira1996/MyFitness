@@ -1,6 +1,17 @@
 const { createApp } = Vue;
 
-// TBM = Taxa Mebolica Basal
+
+////////////////////////////////////////////////////
+// Cálculos de equação de Harris-Benedict, equação
+// consiste  em uma fórmula que utiliza a altura, 
+// peso, idade e gênero de uma pessoa para calcular 
+// sua taxa metabólica basal (TMB). Essa pode não
+// ser a opção mais indicada para algumas pessoas,
+// uma vez que esta equação não considera a massa
+// corporal livre de gordura nem a relação entre 
+// massa muscular e massa gorda. Outros tipos de 
+// cálculos mais complexos vão ser adicionados. 
+
 createApp({
     el: "#perfil",
     data() {
@@ -25,259 +36,145 @@ createApp({
     },
     methods: {
         calculations() {
-            // Cálculo do imc.
-            imcId.value = parseFloat(
-                weightId.value / (statureId.value * statureId.value)
-            ).toFixed(1);
-
-            // Cálculo requisitos de água.
-            waterId.value = weightId.value * 35;
-
-            // Cálculos TMB para formula do sexo masculino.
-            let masculineWeightCalculation = 13.7 * weightId.value;
-            let masculineStatureCalculation = 5 * (statureId.value * 100);
-            let masculineAgeCalculation = 6.8 * ageId.value;
-
-            // Cálculos TMB para formula do sexo masculino.
-            let FeminineWeightCalculation = 9.6 * weightId.value;
-            let FeminineStatureCalculation = 1.8 * statureId.value;
-            let FeminineAgeCalculation = 4.7 * ageId.value;
-
-            if (genderId.value == "Masculino") {
-                if (objectiveId.value == "Perder peso rápidamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (66 +
-                                masculineWeightCalculation +
-                                masculineStatureCalculation -
-                                masculineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * -0.2;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                    //basalMetabolicRate.value = dailyCalories.value - 0.20;
-                } else if (objectiveId.value == "Perder peso lentamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (66 +
-                                masculineWeightCalculation +
-                                masculineStatureCalculation -
-                                masculineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * -0.1;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else if (objectiveId.value == "Manter o peso") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (66 +
-                                masculineWeightCalculation +
-                                masculineStatureCalculation -
-                                masculineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else if (objectiveId.value == "Aumentar peso lentamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (66 +
-                                masculineWeightCalculation +
-                                masculineStatureCalculation -
-                                masculineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0.1;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else {
-                    // if(objective.value == 'aumentar peso rápidamente') //
-
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (66 +
-                                masculineWeightCalculation +
-                                masculineStatureCalculation -
-                                masculineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0.2;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
+            imcId.value = this.calculusImc();
+            waterId.value = this.calculusWater();
+            console.log(imcId.value);
+            if (genderId.value == 1) { // Gender Masculine
+                if (objectiveId.value == 1) { // Objetive Perder peso rápidamente
+                    let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
+                } 
+                if (objectiveId.value == 2) { // Objetive Perder peso lentamente
+                    let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * -0.1;
+                } 
+                if (objectiveId.value == 3) { // Objetive Manter o peso
+                    let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0;
+                } 
+                if (objectiveId.value == 4) { // Objetive Aumentar peso lentamente
+                    let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0.1;
+                } 
+                if (objectiveId.value == 5) { // Objetive Aumentar peso rápidamente 
+                    let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0.2;
                 }
-            } else {
-                if (objectiveId.value == "Perder peso rápidamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactor.value *
-                            (655 +
-                                FeminineWeightCalculation +
-                                FeminineStatureCalculation -
-                                FeminineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * -0.2;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else if (objectiveId.value == "Perder peso lentamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (655 +
-                                FeminineWeightCalculation +
-                                FeminineStatureCalculation -
-                                FeminineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * -0.1;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else if (objectiveId.value == "Manter o peso") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (655 +
-                                FeminineWeightCalculation +
-                                FeminineStatureCalculation -
-                                FeminineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else if (objectiveId.value == "Aumentar peso lentamente") {
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (655 +
-                                FeminineWeightCalculation +
-                                FeminineStatureCalculation -
-                                FeminineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0.1;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
-                } else {
-                    // if(objective.value == 'aumentar peso rápidamente') //
+            } 
 
-                    let dailyCaloriesResult = parseInt(
-                        activityRateFactorId.value *
-                            (655 +
-                                FeminineWeightCalculation +
-                                FeminineStatureCalculation -
-                                FeminineAgeCalculation)
-                    );
-                    caloriesNecessary = dailyCaloriesResult * 0.2;
-                    dailyCaloriesId.value =
-                        dailyCaloriesResult + caloriesNecessary;
+            if(genderId.value == 2) { // Gender Feminine
+                if (objectiveId.value == 1) { // Objetive Perder peso rápidamente
+                    let dailyCaloriesResult = this.calculusFeminineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * -0.2;
+                } 
+                if (objectiveId.value == 2) { // Objetive Perder peso lentamente
+                    let dailyCaloriesResult = this.calculusFeminineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * -0.1;
+                } 
+                if (objectiveId.value == 3) { // Objetive Manter o peso
+                    let dailyCaloriesResult = this.calculusFeminineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0;
+                } 
+                if (objectiveId.value == 4) { // Objetive Aumentar peso lentamente
+                    let dailyCaloriesResult = this.calculusFeminineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0.1;
+                } 
+                if (objectiveId.value == 5) { // Objetive Aumentar peso rápidamente
+                    let dailyCaloriesResult = this.calculusFeminineMetabolicBasalRate();
+                    dailyCaloriesId.value = dailyCaloriesResult + dailyCaloriesResult * 0.2;
                 }
             }
 
-            if (typeOfDietId.value == "Padrão") {
+            if (typeOfDietId.value == 1) { // Type of diet Padrão
                 // Carboidrato 50%, Proteína 20%, Gordura 30%
-                dailyCarbohydrateId.value = parseFloat(
-                    4.63 * weightId.value
-                ).toFixed(1);
-                dailyProteinId.value = parseFloat(
-                    1.85 * weightId.value
-                ).toFixed(1);
+                dailyCarbohydrateId.value = parseFloat(4.63 * weightId.value).toFixed(1);
+                dailyProteinId.value = parseFloat(1.85 * weightId.value).toFixed(1);
                 dailyFatId.value = parseFloat(1.25 * weightId.value).toFixed(1);
 
-                dailyProteinKcalId.value = parseFloat(
-                    2 * weightId.value * 4
-                ).toFixed(1); // quantidade de kcal por kilo de proteina
-                dailyFatKcalId.value = parseFloat(
-                    dailyCaloriesId.value * 0.3
-                ).toFixed(1); // quantidade de kcal por kilo de gordura
+                dailyProteinKcalId.value = parseFloat(2 * weightId.value * 4).toFixed(1); // quantidade de kcal por kilo de proteina
+                dailyFatKcalId.value = parseFloat(dailyCaloriesId.value * 0.36 ).toFixed(1); // quantidade de kcal por kilo de gordura
                 dailyCarbohydrateKcalId.value = parseFloat(
-                    dailyCaloriesId.value -
-                        (parseFloat(dailyProteinKcalId.value) +
-                            parseFloat(dailyFatKcalId.value))
-                ).toFixed(1); // quantidade de kcal por kilo de carbo
-            } else if (typeOfDietId.value == "Equilibrado") {
+                    dailyCaloriesId.value - 
+                    (parseFloat(dailyProteinKcalId.value) + 
+                    parseFloat(dailyFatKcalId.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+            } 
+            if (typeOfDietId.value == 2) { // Type of diet Equilibrado
                 // Carboidrato 50%, Proteína 25%, Gordura 25%
-                dailyCarbohydrateId.value = parseFloat(
-                    4.63 * weightId.value
-                ).toFixed(1);
-                dailyProteinId.value = parseFloat(
-                    2.33 * weightId.value
-                ).toFixed(1);
+                dailyCarbohydrateId.value = parseFloat(4.63 * weightId.value).toFixed(1);
+                dailyProteinId.value = parseFloat(2.33 * weightId.value).toFixed(1);
                 dailyFatId.value = parseFloat(1.04 * weightId.value).toFixed(1);
 
-                dailyProteinKcalId.value = parseFloat(
-                    2 * weightId.value * 4.65
-                ).toFixed(1); // quantidade de kcal por kilo de proteina
-                dailyFatKcalId.value = parseFloat(
-                    dailyCaloriesId.value * 0.241
-                ).toFixed(1); // quantidade de kcal por kilo de gordura
+                dailyProteinKcalId.value = parseFloat(2 * weightId.value * 4.65).toFixed(1); // quantidade de kcal por kilo de proteina
+                dailyFatKcalId.value = parseFloat(dailyCaloriesId.value * 0.241).toFixed(1); // quantidade de kcal por kilo de gordura
                 dailyCarbohydrateKcalId.value = parseFloat(
-                    dailyCaloriesId.value -
-                        (parseFloat(dailyProteinKcalId.value) +
-                            parseFloat(dailyFatKcalId.value))
-                ).toFixed(1); // quantidade de kcal por kilo de carbo
-            } else if (typeOfDietId.value == "Pobre em gorduras") {
+                    dailyCaloriesId.value - 
+                    (parseFloat(dailyProteinKcalId.value) + 
+                    parseFloat(dailyFatKcalId.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+            } 
+            if (typeOfDietId.value == 3) { // Type of diet Pobre em gorduras
                 // Carboidrato 60%, Proteína 25%, Gordura 15%
-                dailyCarbohydrateId.value = parseFloat(
-                    5.5 * weightId.value
-                ).toFixed(1);
-                dailyProteinId.value = parseFloat(
-                    2.32 * weightId.value
-                ).toFixed(1);
+                dailyCarbohydrateId.value = parseFloat(5.5 * weightId.value).toFixed(1);
+                dailyProteinId.value = parseFloat(2.32 * weightId.value).toFixed(1);
                 dailyFatId.value = parseFloat(0.62 * weightId.value).toFixed(1);
 
-                dailyProteinKcalId.value = parseFloat(
-                    2 * weightId.value * 4.63
-                ).toFixed(1); // quantidade de kcal por kilo de proteina
-                dailyFatKcalId.value = parseFloat(
-                    dailyCaloriesId.value * 0.183
-                ).toFixed(1); // quantidade de kcal por kilo de gordura
+                dailyProteinKcalId.value = parseFloat(2 * weightId.value * 4.63).toFixed(1); // quantidade de kcal por kilo de proteina
+                dailyFatKcalId.value = parseFloat(dailyCaloriesId.value * 0.183).toFixed(1); // quantidade de kcal por kilo de gordura
                 dailyCarbohydrateKcalId.value = parseFloat(
-                    dailyCaloriesId.value -
-                        (parseFloat(dailyProteinKcalId.value) +
-                            parseFloat(dailyFatKcalId.value))
-                ).toFixed(1); // quantidade de kcal por kilo de carbo
-            } else if (typeOfDietId.value == "Rico em proteínas") {
+                    dailyCaloriesId.value - 
+                    (parseFloat(dailyProteinKcalId.value) +
+                    parseFloat(dailyFatKcalId.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+            } 
+            if (typeOfDietId.value == 4) { // Type of diet Rico em proteínas
                 // Carboidrato 25%, Proteína 40%, Gordura 35%
-                dailyCarbohydrateId.value = parseFloat(
-                    2.32 * weightId.value
-                ).toFixed(1);
-                dailyProteinId.value = parseFloat(3.7 * weightId.value).toFixed(
-                    1
-                );
+                dailyCarbohydrateId.value = parseFloat(2.32 * weightId.value).toFixed(1);
+                dailyProteinId.value = parseFloat(3.7 * weightId.value).toFixed(1);
                 dailyFatId.value = parseFloat(1.45 * weightId.value).toFixed(1);
 
-                dailyProteinKcalId.value = parseFloat(
-                    2 * weightId.value * 7.4
-                ).toFixed(1); // quantidade de kcal por kilo de proteina
-                dailyFatKcalId.value = parseFloat(
-                    dailyCaloriesId.value * 0.338
-                ).toFixed(1); // quantidade de kcal por kilo de gordura
+                dailyProteinKcalId.value = parseFloat(2 * weightId.value * 7.4).toFixed(1); // quantidade de kcal por kilo de proteina
+                dailyFatKcalId.value = parseFloat(dailyCaloriesId.value * 0.338).toFixed(1); // quantidade de kcal por kilo de gordura
                 dailyCarbohydrateKcalId.value = parseFloat(
-                    dailyCaloriesId.value -
-                        (parseFloat(dailyProteinKcalId.value) +
-                            parseFloat(dailyFatKcalId.value))
-                ).toFixed(1); // quantidade de kcal por kilo de carbo
-            } else if (typeOfDietId.value == "Cetogénica") {
+                    dailyCaloriesId.value - 
+                    (parseFloat(dailyProteinKcalId.value) +
+                    parseFloat(dailyFatKcalId.value))).toFixed(1); // quantidade de kcal por kilo de carbo
+            } 
+            if (typeOfDietId.value == 5) { // Type of diet Cetogénica
                 // Carboidrato 5%, Proteína 30%, Gordura 65%
-                dailyCarbohydrateId.value = parseFloat(
-                    0.46 * weightId.value
-                ).toFixed(1);
-                dailyProteinId.value = parseFloat(
-                    2.78 * weightId.value
-                ).toFixed(1);
+                dailyCarbohydrateId.value = parseFloat(0.46 * weightId.value).toFixed(1);
+                dailyProteinId.value = parseFloat(2.78 * weightId.value).toFixed(1);
                 dailyFatId.value = parseFloat(2.68 * weightId.value).toFixed(1);
 
-                dailyProteinKcalId.value = parseFloat(
-                    2 * weightId.value * 5.56
-                ).toFixed(1); // quantidade de kcal por kilo de proteina 700,6
-                dailyFatKcalId.value = parseFloat(
-                    dailyCaloriesId.value * 0.625
-                ).toFixed(1); // quantidade de kcal por kilo de gordura
+                dailyProteinKcalId.value = parseFloat(2 * weightId.value * 5.56).toFixed(1); // quantidade de kcal por kilo de proteina 700,6
+                dailyFatKcalId.value = parseFloat(dailyCaloriesId.value * 0.625).toFixed(1); // quantidade de kcal por kilo de gordura
                 dailyCarbohydrateKcalId.value = parseFloat(
-                    dailyCaloriesId.value -
-                        (parseFloat(dailyProteinKcalId.value) +
-                            parseFloat(dailyFatKcalId.value))
-                ).toFixed(1); // quantidade de kcal por kilo de carbo
-
-                /*
-                if(dailyCarbohydrateKcal.value <= 0){
-                    
-                    dailyCarbohydrateKcal.value = 0;
-                    dailyCarbohydrate.value = 0;
-                }
-                */
+                    dailyCaloriesId.value - 
+                    (parseFloat(dailyProteinKcalId.value) +
+                    parseFloat(dailyFatKcalId.value))).toFixed(1); // quantidade de kcal por kilo de carbo
             }
         },
+        calculusImc()
+        {
+            let weight = parseFloat(weightId.value);
+            let stature = parseFloat(statureId.value) / 100;
+            return (weight / (stature * stature)).toFixed(1);
+        },
+        calculusWater()
+        {
+            return weightId.value * 35;
+        },
+        calculusMasculineMetabolicBasalRate()
+        {
+            return parseInt(
+                activityRateFactorId.value * 
+                (66 + (13.7 * weightId.value) + 
+                (5 * statureId.value) - 
+                (6.8 * ageId.value)));
+        },
+        calculusFeminineMetabolicBasalRate()
+        {
+            return parseInt(
+                activityRateFactorId.value * 
+                (655 + (9.6 * weightId.value) + 
+                (1.8 * statureId.value) - 
+                (4.7 * ageId.value)));
+        }
     },
 }).mount("#perfil");
