@@ -122,10 +122,10 @@ return [
     'ObjetiveMacro' => 'Os tipos de dietas separam por porcentagem a quantidade que você precisa ingerir de cada macronutriente, separando em quantidade por calorias (Kcal), e por gramas do macronutriente, isso ajudará a alcançar objetivos específicos.',
 
     'SetGoalsDescription' => 'Você ainda precisa preencher o seu perfil.',
-    'SetGoalsDescription1' => 'Lembre-se, quanto mais precisas forem as informações que você adicionar, melhores serão os resultados alcançados, então corre lá.',
+    'SetGoalsDescription1' => 'Ainda falta preencher algumas informações no seu perfil. Lembre-se de que quanto mais precisas forem as informações que você adicionar, melhores resultados você poderá alcançar. Não perca tempo, atualize seu perfil agora mesmo!',
 
-    'RevenueDescription' => 'Prepare receitas.',
-    'RevenueDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias.',
+    'RevenueDescription' => 'Receitas.',
+    'RevenueDescription1' => 'As receitas vão te ajudar a ter uma dieta mais agradável, facilitando o processo e te auxiliando a bater suas metas diárias. Em breve será adicionado a plataforma.',
 
     'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
     'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?', 
