@@ -10,7 +10,7 @@
 
         <form method="POST" autocomplete="off">
             @csrf
-
+            
             <div id="perfil">
                 <table class="table mt-3">
                     <thead>
@@ -401,22 +401,12 @@
 
                     </tbody>
 
-                    <thead>
-                        <tr>
-                            <th colspan="4">{{ __('messages.MyContent') }}</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr>
-                            <td colspan="2"><img src="{{ asset('img/icons/maca.png') }}" height="22"> {{ __('messages.MyFoods') }}</td>
-                            <td colspan="2"><a href="{{route('food.all')}}" class="text-decoration-none">Abrir<img src="{{ asset('img/icons/seta-direita.png') }}" class="animate__animated animate__slideOutRight animate__infinite	infinite animate__slow" height="22"></a></td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
             
-            <button type="submit" class="btn btn-primary text-white col-sm-12 m-2">{{__('messages.SaveEditions')}}</button>
+            <div class="row p-2">
+                <button type="submit" class="btn btn-primary">{{__('messages.SaveEditions')}}</button>
+            </div>
 
         </form>
 
