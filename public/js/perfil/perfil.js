@@ -38,7 +38,7 @@ createApp({
         calculations() {
             imcId.value = this.calculusImc();
             waterId.value = this.calculusWater();
-            console.log(imcId.value);
+            
             if (genderId.value == 1) { // Gender Masculine
                 if (objectiveId.value == 1) { // Objetive Perder peso rápidamente
                     let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();

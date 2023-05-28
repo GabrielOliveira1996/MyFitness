@@ -22,7 +22,7 @@
                         <tr>
                             <td colspan="3">{{ __('messages.Height') }} (cm)</td>
                             <td colspan="1">
-                                <input :id="statureId" @keyup="calculations()" type="text" maxlength="4" class="form-control @error('stature') is-invalid @enderror" name="stature" value="{{$user->stature}}" step="any">
+                                <input :id="statureId" @keyup="calculations()" type="text" maxlength="3" class="form-control @error('stature') is-invalid @enderror" name="stature" value="{{$user->stature}}" step="any">
                                 @error('stature')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -33,7 +33,7 @@
                         <tr>
                             <td colspan="3">{{ __('messages.Weight') }} (kg)</td>
                             <td colspan="1">
-                                <input :id="weightId" @keyup="calculations()" type="text" maxlength="5" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{$user->weight}}" step="any">
+                                <input :id="weightId" @keyup="calculations()" type="text" maxlength="3" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{$user->weight}}" step="any">
                                 @error('weight')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
