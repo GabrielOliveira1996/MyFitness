@@ -450,7 +450,7 @@
         <div class="col-lg-5 mt-5">
             <h1 class="fw-bolder">{{ __('messages.SetGoalsDescription') }}</h1>
             <h5>{{ __('messages.SetGoalsDescription1') }}</h5>
-            <button class="btn btn-primary col-lg-5 p-2 mt-3">{{ __('messages.Profile') }}</button>
+            <a class="btn btn-primary col-lg-5 p-2 mt-3" href="{{ route('profile') }}">{{ __('messages.Profile') }}</a>
         </div>
         <img src="{{ asset('img/metas.png') }}" class="col-lg-5">
     </div>
