@@ -10,6 +10,9 @@
 
     <title>{{ config('app.name', 'MyFitness') }}</title>
 
+    <!--Css-->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+
     <!-- CSS Animated -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
@@ -26,7 +29,7 @@
 
     <!--Vue-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
+    
 </head>
 
 <body>
@@ -68,9 +71,6 @@
                                 <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('messages.Profile') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('food.create') }}">
-                                    {{ __('messages.AddFood') }}
-                                </a>
                                 <a class="dropdown-item" href="{{ route('food.all') }}">
                                     {{ __('messages.MyFoods') }}
                                 </a>
@@ -78,12 +78,6 @@
                         </li>
 
                         <!-- Separador -->
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light">
-                                |
-                            </a>
-                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-light" href="{{ route('goal.index') }}" role="button">
