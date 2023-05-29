@@ -21,18 +21,18 @@
             
             <div class="row">
                 <div class="col-md inputBox mt-3">
-                    <input type="text" class="@error('name') is-invalid @enderror" name="name" step="any">
-                    <label class="labelInput">{{ __('messages.Name') }}</label>
+                    <input type="text" class="@error('name') is-invalid @enderror" name="name" autofocus>
+                    <label for="name" class="labelInput">{{ __('messages.Name') }}</label>
                     @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
-            
+                
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('quantity_grams') is-invalid @enderror" name="quantity_grams">
-                    <label class="labelInput">{{ __('messages.AmountInGrams') }}</label>
+                    <label for="quantity_grams" class="labelInput">{{ __('messages.AmountInGrams') }}</label>
                     @error('quantity_grams')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
 
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('calories') is-invalid @enderror" name="calories">
-                    <label class="labelInput">{{ __('messages.Calories') }}</label>
+                    <label for="calories" class="labelInput">{{ __('messages.Calories') }}</label>
                     @error('calories')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
 
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('carbohydrate') is-invalid @enderror" name="carbohydrate">
-                    <label class="labelInput">{{ __('messages.Carbohydrate') }}</label>
+                    <label for="carbohydrate" class="labelInput">{{ __('messages.Carbohydrate') }}</label>
                     @error('carbohydrate')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -62,7 +62,7 @@
 
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('protein') is-invalid @enderror" name="protein">
-                    <label class="labelInput">{{ __('messages.Protein') }}</label>
+                    <label for="protein" class="labelInput">{{ __('messages.Protein') }}</label>
                     @error('protein')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -72,7 +72,7 @@
 
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('total_fat') is-invalid @enderror" name="total_fat">
-                    <label class="labelInput">{{ __('messages.Fat') }}</label>
+                    <label for="total_fat" class="labelInput">{{ __('messages.Fat') }}</label>
                     @error('total_fat')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -82,7 +82,7 @@
                         
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('saturated_fat') is-invalid @enderror" name="saturated_fat">
-                    <label class="labelInput">{{ __('messages.SaturatedFat') }}</label>
+                    <label for="saturated_fat" class="labelInput">{{ __('messages.SaturatedFat') }}</label>
                     @error('saturated_fat')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -92,7 +92,7 @@
 
                 <div class="col-md inputBox mt-3">
                     <input type="number" class="@error('trans_fat') is-invalid @enderror" name="trans_fat">
-                    <label class="labelInput">{{ __('messages.TransFat') }}</label>
+                    <label for="trans_fat" class="labelInput">{{ __('messages.TransFat') }}</label>
                     @error('trans_fat')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
