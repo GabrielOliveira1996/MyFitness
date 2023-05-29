@@ -93,6 +93,7 @@ return [
 
     'SearchFood1' => 'Busque por alimento',
 
+    'FoodNotFound' => 'Nenhum alimento localizado.',
     'YourFoods' => 'Seus alimentos.',
     'YourFoodsDescription' => 'Nesta seção, você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
 
