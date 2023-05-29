@@ -14,7 +14,7 @@
                         <div class="row mt-3">
                             <div class="col-md-12 inputBox">
                                 <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <label for="password" class="labelInput">{{ __('E-mail') }}</label>
+                                <label for="email" class="labelInput">{{ __('E-mail') }}</label>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
