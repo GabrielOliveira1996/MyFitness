@@ -1,8 +1,8 @@
-.inputBox{
+.inputBox {
     position:relative;
 }
 
-.inputBox input{
+.inputBox input {
     width: 100%;
     border: none;
     border: 1px solid black;
@@ -12,7 +12,7 @@
     padding: 6px;
 }
   
-.labelInput{
+.labelInput {
     position:absolute;
     top: 50%;
     left: 20px;
@@ -23,7 +23,8 @@
     color: black;
 }
 
-input:focus + label {
+input:focus + label,
+input:valid + label {
     font-size: 15px;
     top: 0;
     background: white;
