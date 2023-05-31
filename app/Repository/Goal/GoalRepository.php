@@ -58,31 +58,31 @@ class GoalRepository implements IGoalRepository
     // Funções que localizam por tipo de refeição.
     public function breakfast($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'breakfast')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 1)->get();
     }
 
     public function lunch($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'lunch')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 2)->get();
     }
 
     public function snack($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'snack')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 3)->get();
     }
 
     public function dinner($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'dinner')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 4)->get();
     }
 
     public function preWorkout($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'pre_workout')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 5)->get();
     }
 
     public function postWorkout($date)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'post_workout')->get();
+        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 6)->get();
     }
 }
