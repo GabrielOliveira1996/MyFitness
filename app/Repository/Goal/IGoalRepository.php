@@ -8,11 +8,6 @@ interface IGoalRepository
     public function find($id);
     public function update($id, $goal);
     public function delete($id);
-    public function breakfast($date);
-    public function lunch($date);
-    public function snack($date);
-    public function dinner($date);
-    public function preWorkout($date);
-    public function postWorkout($date);
+    public function findByDateAndMealType($date, $type_of_meal);
     public function searchFoodGoal($name, $type_of_meal, $date, $user);
 }
