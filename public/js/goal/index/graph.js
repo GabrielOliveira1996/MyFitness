@@ -13,13 +13,18 @@ let splitFat = Fat.value.split(" ");
 let todayFat = splitFat[0];
 let goalFat = splitFat[2];
 
+// necessário definir quantidade máxima carb, pro e gord
+let carboCalc = parseFloat(todayCarbohydrate) > parseFloat(goalCarbohydrate) ? parseFloat(goalCarbohydrate) : parseFloat(todayCarbohydrate);
+let protCalc = parseFloat(todayProtein) > parseFloat(goalProtein) ? parseFloat(goalProtein) : parseFloat(todayProtein);
+let gordCalc = parseFloat(todayFat) > parseFloat(goalFat) ? parseFloat(goalFat) : parseFloat(todayFat);
 let total =
     parseFloat(goalCarbohydrate) +
     parseFloat(goalProtein) +
     parseFloat(goalFat) -
-    (parseFloat(todayCarbohydrate) +
-        parseFloat(todayProtein) +
-        parseFloat(todayFat));
+    (parseFloat(carboCalc) +
+    parseFloat(protCalc) +
+    parseFloat(gordCalc));
+
 
 let infoCarbohydrate;
 let infoProtein;
@@ -34,13 +39,7 @@ if (language === "pt-BR") {
     infoFat = "Gorduras";
     infoTotal = "Falta consumir";
     infoLabel = "Quandidade em gramas";
-} else {
-    infoCarbohydrate = "Carbohydrate";
-    infoProtein = "Protein";
-    infoFat = "Fat";
-    infoTotal = "Lack to consume";
-    infoLabel = "Amount in grams";
-}
+} 
 
 (async function () {
     const data = {
@@ -48,7 +47,9 @@ if (language === "pt-BR") {
         datasets: [
             {
                 label: infoLabel,
-                data: [todayCarbohydrate, todayProtein, todayFat, total],
+                data: [
+                    carboCalc, protCalc, gordCalc, total
+                ],
                 backgroundColor: [
                     "rgb(220, 53, 69, 255)",
                     "rgb(13, 110, 253, 255)",
