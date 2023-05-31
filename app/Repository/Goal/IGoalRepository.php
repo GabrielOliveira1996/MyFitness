@@ -14,4 +14,5 @@ interface IGoalRepository
     public function dinner($date);
     public function preWorkout($date);
     public function postWorkout($date);
+    public function searchFoodGoal($name, $type_of_meal, $date, $user);
 }
