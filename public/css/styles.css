@@ -31,6 +31,17 @@ input:valid + label {
     padding: 0px;
 }
 
+.emptyInput {
+    border: none;
+    background: transparent;
+    padding: 1px;
+    width: 100%;
+}
+
+.emptyInput:focus {
+  outline: none;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
