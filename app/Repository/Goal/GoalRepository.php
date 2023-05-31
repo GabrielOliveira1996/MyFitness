@@ -28,7 +28,7 @@ class GoalRepository implements IGoalRepository
             'saturated_fat' => $goal['saturated_fat'],
             'trans_fat' => $goal['trans_fat'],
             'type_of_meal' => $type
-        ]);;
+        ]);
     }
 
     public function find($id)
