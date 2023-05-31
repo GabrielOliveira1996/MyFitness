@@ -23,7 +23,27 @@ class GoalService
     {
         $goal += ['type_of_meal' => $type];
         $user = Auth::user();
+        $date = date('Y-m-d');
         $this->_goalValidator->food($goal);
+
+        $searchGoal = $this->_goalRepository
+                            ->searchFoodGoal($goal['name'], $goal['type_of_meal'], $date);
+        
+        if($searchGoal != null) {
+            $sumGoal = [
+                'name' => $goal['name'],
+                'quantity_grams' => $goal['quantity_grams'] + $searchGoal['quantity_grams'],
+                'calories' => $goal['calories'] + $searchGoal['calories'],
+                'carbohydrate' => $goal['carbohydrate'] + $searchGoal['carbohydrate'],
+                'protein' => $goal['protein'] + $searchGoal['protein'],
+                'total_fat' => $goal['total_fat'] + $searchGoal['total_fat'],
+                'saturated_fat' => $goal['saturated_fat'] + $searchGoal['saturated_fat'],
+                'trans_fat' => $goal['trans_fat'] + $searchGoal['trans_fat'],
+                'type_of_meal' => $goal['type_of_meal']
+            ];
+            $update = $this->_goalRepository->update($searchGoal['id'], $sumGoal);
+            return $update;
+        }
         $create = $this->_goalRepository->create($type, $goal, $user);
         return $create;
     }
