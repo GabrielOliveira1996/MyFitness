@@ -27,7 +27,7 @@ class GoalService
         $this->_goalValidator->food($goal);
 
         $searchGoal = $this->_goalRepository
-                            ->searchFoodGoal($goal['name'], $goal['type_of_meal'], $date);
+                            ->searchFoodGoal($goal['name'], $goal['type_of_meal'], $date, $user);
         
         if($searchGoal != null) {
             $sumGoal = [
