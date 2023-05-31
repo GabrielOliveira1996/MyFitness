@@ -91,23 +91,17 @@ return [
     'AddFood' => 'Adicionar Alimento',
     'SearchFood' => 'Buscar Alimento',
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
     'YourFoods' => 'Seus alimentos',
     'YourFoodsDescription' => 'Aqui ficam os alimentos que foram adicionados por você.',
-=======
->>>>>>> Stashed changes
+
     'SearchFood1' => 'Busque por alimento',
 
     'FoodNotFound' => 'Nenhum alimento localizado.',
     'YourFoods' => 'Seus alimentos.',
-<<<<<<< Updated upstream
+
     'YourFoodsDescription' => 'Nesta seção, você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
-=======
+
     'YourFoodsDescription' => 'Nesta seção, ficam os seus alimentos, aqui você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
     'AddFoodTitle' => 'Adicione alimentos.',
     'AddFoodDescription' => 'Se o alimento que deseja não existe em nossa base de dados, você pode adicioná-lo utilizando esse recurso. Busque pela tabela nutricional do alimento, dessa forma o resultado será preciso.',
