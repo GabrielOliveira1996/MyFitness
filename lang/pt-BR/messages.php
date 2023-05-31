@@ -85,23 +85,35 @@ return [
     'Add' => 'Adicionar',
     'Edit' => 'Editar',
     'Delete' => 'Remover',
-    'Update' => 'Update',
+    'Update' => 'Atualizar',
     'Search' => 'Buscar',
     'Goals' => 'Metas',
     'AddFood' => 'Adicionar Alimento',
     'SearchFood' => 'Buscar Alimento',
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+    'YourFoods' => 'Seus alimentos',
+    'YourFoodsDescription' => 'Aqui ficam os alimentos que foram adicionados por você.',
+=======
+>>>>>>> Stashed changes
     'SearchFood1' => 'Busque por alimento',
 
     'FoodNotFound' => 'Nenhum alimento localizado.',
     'YourFoods' => 'Seus alimentos.',
+<<<<<<< Updated upstream
     'YourFoodsDescription' => 'Nesta seção, você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
+=======
+    'YourFoodsDescription' => 'Nesta seção, ficam os seus alimentos, aqui você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
     'AddFoodTitle' => 'Adicione alimentos.',
     'AddFoodDescription' => 'Se o alimento que deseja não existe em nossa base de dados, você pode adicioná-lo utilizando esse recurso. Busque pela tabela nutricional do alimento, dessa forma o resultado será preciso.',
     'AddFoodAlert' => 'Pesquise antes de adicionar as informações sobre os alimentos, para que não atrapalhem os seus resultados.',
 
-    'UpdateFoodDescription' => 'As informações do seu alimento estão incorretas? Realize a correção abaixo.',
+    'UpdateFoodDescription' => 'Notou informações incorretas sobre o alimento? Faça a correção abaixo.',
 
     'DailyGoal' => 'Meta Diária',
     'DailyIntake' => 'Ingestão Diária',
@@ -120,7 +132,8 @@ return [
     'PreWorkout' => 'Pre treino',
     'PostWorkout' => 'Pós treino',
 
-    'SearchGoalDescription' => 'Pesquise por metas de outros dias.',
+    'SearchGoalDescription' => 'Explore as metas de outros dias e compare com o seu desempenho atual. Isso permitirá identificar áreas de melhoria e oportunidades para progredir ainda mais.',
+    'SearchForGoal' => 'Buscar Por Meta',
 
     'RecoverPassword' => 'Recuperar Senha',
     'SendToEmail' => 'Enviar para e-mail',
