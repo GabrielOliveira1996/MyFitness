@@ -36,18 +36,18 @@ class UserService
         return $update;
     }
 
-    public function findUserGoals($date)
+    public function getDailyMealGoals($date)
     {
         $id = Auth::user()->id;
         $user = $this->_userRepository->find($id);
 
         //Tipos de refeição.
-        $breakfast = $this->_goalRepository->breakfast($date);
-        $lunch = $this->_goalRepository->lunch($date);
-        $snack = $this->_goalRepository->snack($date);
-        $dinner = $this->_goalRepository->dinner($date);
-        $preWorkout = $this->_goalRepository->preWorkout($date);
-        $postWorkout = $this->_goalRepository->postWorkout($date);
+        $breakfast = $this->_goalRepository->findByDateAndMealType($date, 1);
+        $lunch = $this->_goalRepository->findByDateAndMealType($date, 2);
+        $snack = $this->_goalRepository->findByDateAndMealType($date, 3);
+        $dinner = $this->_goalRepository->findByDateAndMealType($date, 4);
+        $preWorkout = $this->_goalRepository->findByDateAndMealType($date, 5);
+        $postWorkout = $this->_goalRepository->findByDateAndMealType($date, 6);
 
         //Metas estabelecidas pelo usuário.
         if ($user) {
@@ -95,7 +95,6 @@ class UserService
         ]);
 
         return [
-            'date' => $date,
             'user' => $user,
             'breakfast' => $breakfast,
             'lunch' => $lunch,

@@ -71,9 +71,9 @@ class GoalManagementController extends Controller
     public function search()
     {
         $date = $this->_request->input('date');
-        $userGoals = $this->_userService->findUserGoals($date);
+        $userGoals = $this->_userService->getDailyMealGoals($date);
         return view('goal.index', [
-            'date' => $userGoals['date'],
+            'date' => $date,
             'user' => $userGoals['user'],
             'breakfasts' => $userGoals['breakfast'],
             'lunchs' => $userGoals['lunch'],

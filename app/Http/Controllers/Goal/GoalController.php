@@ -26,17 +26,17 @@ class GoalController extends Controller
 
     public function index()
     {
-        // Método localiza os alimento, em seguida 
-        // separa em tipos, sendo eles breakfast, 
-        // lunch, snack, dinner, pre workout e post
-        // workout, em seguida faz calculos para 
-        // somar cada calorias, carboidratos, proteinas
-        // e gorduras, esses valores são passados para 
-        // a view.
+        // O método localiza os alimentos e os separa 
+        // em diferentes tipos, como café da manhã, 
+        // almoço, lanche, jantar, pré-treino e pós-treino. 
+        // Em seguida, são realizados cálculos para somar 
+        // as calorias, carboidratos, proteínas e gorduras 
+        // desses alimentos. Esses valores são então passados 
+        // para a visualização.
         $date = date('Y-m-d');
-        $userGoals = $this->_userService->findUserGoals($date);
+        $userGoals = $this->_userService->getDailyMealGoals($date);
         return view('goal.index', [
-            'date' => $userGoals['date'],
+            'date' => $date,
             'user' => $userGoals['user'],
             'breakfasts' => $userGoals['breakfast'],
             'lunchs' => $userGoals['lunch'],

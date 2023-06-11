@@ -28,7 +28,7 @@ class GoalRepository implements IGoalRepository
             'saturated_fat' => $goal['saturated_fat'],
             'trans_fat' => $goal['trans_fat'],
             'type_of_meal' => $type
-        ]);;
+        ]);
     }
 
     public function find($id)
@@ -52,37 +52,27 @@ class GoalRepository implements IGoalRepository
 
     public function delete($id)
     {
-        return $this->_goal->where('id', $id)->delete();
+        return $this->_goal->where('id', $id)
+                            ->delete();
     }
 
-    // Funções que localizam por tipo de refeição.
-    public function breakfast($date)
+    // Função responsável por buscar uma refeição com 
+    // base na data de cadastro e no tipo de refeição.
+    public function findByDateAndMealType($date, $type_of_meal)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'breakfast')->get();
+        return $this->_goal->whereDate('created_at', $date)
+                            ->where('type_of_meal', $type_of_meal)
+                            ->get();
     }
 
-    public function lunch($date)
+    public function searchFoodGoal($name, $type_of_meal, $date, $user)
     {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'lunch')->get();
-    }
-
-    public function snack($date)
-    {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'snack')->get();
-    }
-
-    public function dinner($date)
-    {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'dinner')->get();
-    }
-
-    public function preWorkout($date)
-    {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'pre_workout')->get();
-    }
-
-    public function postWorkout($date)
-    {
-        return $this->_goal->whereDate('created_at', $date)->where('type_of_meal', 'post_workout')->get();
+        // Função responsável por buscar refeição por nome, 
+        // tipo, ID de usuário e data de criação.
+        return $this->_goal->where('name', $name)
+                            ->where('type_of_meal', $type_of_meal)
+                            ->where('user_id', $user->id)
+                            ->whereDate('created_at', $date)
+                            ->first();
     }
 }
