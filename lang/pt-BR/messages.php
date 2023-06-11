@@ -115,6 +115,7 @@ return [
 
     'UpdateFoodGoalDescription' => 'Você selecionou um alimento da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.',
 
+    'AddFoodToGoalDescriptionTitle' => 'Adicione alimentos à sua meta diária.',
     'AddFoodToGoalDescription' => 'Nesta página, você pode selecionar os alimentos que deseja adicionar à sua meta. Isso irá impactar nos resultados exibidos na sua meta, proporcionando um auxílio significativo em seu progresso.',
 
     'SearchDescription' => 'Busque por alimentos.',

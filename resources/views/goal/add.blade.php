@@ -12,7 +12,7 @@
                 <img src="{{ asset('img/seus-alimentos.png') }}" class="col-lg-5">
                 <div class="col-lg-5 mt-5">
                     <h1 class="mt-5 fw-bold">
-                        {{ __('messages.AddFoodToGoalDescription') }}
+                        {{ __('messages.AddFoodToGoalDescriptionTitle') }}
                     </h1>
                     <h5 class="mt-2">
                     {{ __('messages.AddFoodToGoalDescription') }}
