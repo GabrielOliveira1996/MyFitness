@@ -37,18 +37,19 @@
         </form>
 
         <hr class="col-md-12 mt-3"/>
-
-        @if(!empty($foods))
-            <form method="POST" action="{{ route('goal.addfood', ['type' => $type]) }}">
-                @csrf
-                <div class="row d-flex justify-content-center">
-                    @foreach($foods as $key => $value)
-                    <div class="col-md-4">
-                        <div id="app">
-                        <div class="card m-2 p-0" :class="{ 'enlarged': isEnlarged }">
+        
+            
+        <div class="row d-flex justify-content-center">
+            @if(!empty($foods))
+                @foreach($foods as $key => $value)
+                
+                <div class="col-md-4">
+                    <form method="POST" action="{{ route('goal.addfood', ['type' => $type]) }}">
+                        @csrf
+                        <div class="card m-2 p-0">
                             <div class="card-header">
                                 <div class="row d-flex justify-content-between">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <input type="text" 
                                                 class="emptyInput @error('name') is-invalid @enderror" 
                                                 name="name" 
@@ -58,10 +59,6 @@
                                                 readonly
                                         />
                                     </div>
-                                    <label class="col-md-4">
-                                        <input type="checkbox" @click="" name="id[]" value="{{ $value->id }}"/>
-                                        <a @click="toggleEnlarged({{$key}})" class="btn btn-primary">Selecionar</a>
-                                    </label>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -170,23 +167,25 @@
                                 </div>
                                 <hr class="col-lg-12"/>
 
+                                <div class="row">
+                                    <button class="btn btn-primary col-md-12">{{ __('messages.Add') }}</button>
+                                </div>
+
                             </div>
                         </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                    <hr class="col-md-12 mt-3"/>
-
-                    <div class="row">
-                        <button class="btn btn-primary col-md-12">{{ __('messages.Add') }}</button>
-                    </div>     
-
+                    </form>
                 </div>
-            </form>
-        @endif
-        
-    </div>
+                @endforeach
+
+                <hr class="col-md-12 mt-3"/>
+
+                <div class="row">
+                    <button class="btn btn-primary col-md-12">{{ __('messages.Add') }}</button>
+                </div>  
+
+            @endif   
+
+        </div>
 
     <div class="d-flex justify-content-center mt-5">
         @if(!empty($foods))
@@ -197,6 +196,5 @@
 </div>
 
 <script src="{{ asset('js/goal/goals.js') }}"></script>
-<script src="{{ asset('js/goal/add/add.js') }}"></script>
 
 @endsection
