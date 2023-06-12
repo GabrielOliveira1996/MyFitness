@@ -9,7 +9,7 @@
 
         <div class="row d-flex justify-content-center mt-3 mx-5">
             <div class="row mb-5">
-                <img src="{{ asset('img/seus-alimentos.png') }}" class="col-lg-5">
+                <img src="{{ asset('img/se-alimentando.png') }}" class="col-lg-5">
                 <div class="col-lg-5 mt-5">
                     <h1 class="mt-5 fw-bold">
                         {{ __('messages.AddFoodToGoalDescriptionTitle') }}
