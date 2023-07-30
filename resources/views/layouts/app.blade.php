@@ -29,6 +29,10 @@
 
     <!--Vue-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!--IMask-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     
 </head>
 

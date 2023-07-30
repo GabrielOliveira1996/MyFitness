@@ -415,6 +415,6 @@
 </div>
 
 <script src="{{asset('js/perfil/perfil.js')}}"></script>
-<script src="{{asset('js/masks.js')}}"></script>
+<script src="{{asset('js/perfil/masks.js')}}"></script>
 
 @endsection
