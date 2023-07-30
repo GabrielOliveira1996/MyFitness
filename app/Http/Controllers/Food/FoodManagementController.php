@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\FoodService;
 use App\Http\Controllers\Controller;
 use App\Repository\Food\IFoodRepository;
+use Illuminate\Support\Facades\Auth;
 
 class FoodManagementController extends Controller
 {
@@ -62,7 +63,8 @@ class FoodManagementController extends Controller
     public function search()
     {
         $food = $this->_request->input('name');
-        $foods = $this->_foodService->search($food);
+        $id = Auth::user()->id;
+        $foods = $this->_foodRepository->search($id, $food);
         return view('food.all', compact('foods'));
     }
 }
