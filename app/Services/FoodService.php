@@ -45,11 +45,4 @@ class FoodService
         $find = $this->_foodRepository->find($id);
         return $find;
     }
-
-    public function search($food)
-    {
-        $id = Auth::user()->id;
-        $search = $this->_foodRepository->search($id, $food);
-        return $search;
-    }
 }
