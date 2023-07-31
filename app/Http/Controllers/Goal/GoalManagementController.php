@@ -7,6 +7,8 @@ use App\Services\GoalService;
 use App\Http\Controllers\Controller;
 use App\Repository\Goal\GoalRepository;
 use App\Services\UserService;
+use App\Repository\Food\IFoodRepository;
+use Illuminate\Support\Facades\Auth;
 
 class GoalManagementController extends Controller
 {
@@ -14,18 +16,21 @@ class GoalManagementController extends Controller
     private $_goalService;
     private $_userService;
     private $_goalRepository;
+    private $_foodRepository;
 
     public function __construct(
         Request $request,
         GoalService $goalService,
         UserService $userService,
-        GoalRepository $goalRepository
+        GoalRepository $goalRepository,
+        IFoodRepository $foodRepository
     ) {
         $this->middleware('auth');
         $this->_request = $request;
         $this->_goalService = $goalService;
         $this->_userService = $userService;
         $this->_goalRepository = $goalRepository;
+        $this->_foodRepository = $foodRepository;
     }
 
     public function add($type)
@@ -68,7 +73,7 @@ class GoalManagementController extends Controller
         return redirect()->route('goal.index');
     }
 
-    public function search()
+    public function searchGoalByDate()
     {
         $date = $this->_request->input('date');
         $userGoals = $this->_userService->getDailyMealGoals($date);
@@ -90,5 +95,13 @@ class GoalManagementController extends Controller
             'proteinOfTheDay' => $userGoals['proteinOfTheDay'],
             'totalFatOfTheDay' => $userGoals['totalFatOfTheDay']
         ]);
+    }
+
+    public function searchFood($type)
+    {
+        $food = $this->_request->input('name');
+        $id = Auth::user()->id;
+        $foods = $this->_foodRepository->search($id, $food);
+        return view('goal.add', compact('type', 'foods'));
     }
 }
