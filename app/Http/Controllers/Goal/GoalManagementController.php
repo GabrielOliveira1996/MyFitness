@@ -100,8 +100,7 @@ class GoalManagementController extends Controller
     public function searchFood($type)
     {
         $food = $this->_request->input('name');
-        $id = Auth::user()->id;
-        $foods = $this->_foodRepository->search($id, $food);
+        $foods = $this->_foodRepository->searchByName($food);
         return view('goal.add', compact('type', 'foods'));
     }
 }
