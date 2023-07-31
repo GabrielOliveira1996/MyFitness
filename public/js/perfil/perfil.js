@@ -39,8 +39,6 @@ createApp({
             imcId.value = this.calculusImc();
             waterId.value = this.calculusWater();
             
-            console.log(statureId.value);
-            
             if (genderId.value == 1) { // Gender Masculine
                 if (objectiveId.value == 1) { // Objetive Perder peso rápidamente
                     let dailyCaloriesResult = this.calculusMasculineMetabolicBasalRate();
@@ -154,9 +152,12 @@ createApp({
         },
         calculusImc()
         {
-            let weight = parseFloat(weightId.value);
-            let stature = parseFloat(statureId.value);
-            return (weight / (stature * stature)).toFixed(1);
+            let weight = weightId.value;
+            let stature = statureId.value/100;
+            if(statureId.value.length >= 3){
+                return (weight / (stature * stature)).toFixed(1);
+            }
+            return 0;
         },
         calculusWater()
         {
