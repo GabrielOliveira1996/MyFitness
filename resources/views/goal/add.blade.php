@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <form method="post" autocomplete="off">
+        <form method="post" action="{{ route('goal.searchFood', ['type' => $type]) }}" autocomplete="off">
             @csrf
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 inputBox">
@@ -178,10 +178,6 @@
                 @endforeach
 
                 <hr class="col-md-12 mt-3"/>
-
-                <div class="row">
-                    <button class="btn btn-primary col-md-12">{{ __('messages.Add') }}</button>
-                </div>  
 
             @endif   
 
