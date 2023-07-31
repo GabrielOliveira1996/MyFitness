@@ -70,4 +70,9 @@ class FoodRepository implements IFoodRepository
     {
         return $this->_food->where('user_id', $id)->where([['name', 'like', '%' . $food . '%']])->paginate(12);
     }
+    
+    public function searchByName($food)
+    {
+        return $this->_food->where([['name', 'like', '%' . $food . '%']])->paginate(12);
+    }
 }
