@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->integer('gender');
             $table->integer('age');
-            $table->decimal('weight');
-            $table->decimal('stature');
+            $table->integer('weight');
+            $table->integer('stature');
             $table->decimal('activity_rate_factor');
             $table->integer('objective');
             $table->integer('type_of_diet');
