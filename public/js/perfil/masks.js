@@ -1,1 +1,0 @@
-$("#statureId").mask("9.99");
