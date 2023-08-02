@@ -60,6 +60,23 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <input id="confirm-terms" type="checkbox" value="1" class="@error('confirm_terms') is-invalid @enderror" name="confirm_terms">
+                                    <small class="text-justify">
+                                        {{ __('messages.MyFitnessTerm') }}
+                                        <a style="cursor: pointer;" class="text-primary" title="Clique aqui para verificar os termos." data-bs-toggle="modal" data-bs-target="#termsModal">
+                                            {{ __('messages.Terms') }}.
+                                        </a>
+                                    </small>
+                                    @error('confirm_terms')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <hr>
 
                             <div class="row p-2">
@@ -71,13 +88,6 @@
                         </form>
 
                         <hr>
-
-                        <small class="text-justify">
-                            {{ __('messages.MyFitnessTerm') }}
-                            <a style="cursor: pointer;" class="text-primary" title="Clique aqui para verificar os termos." data-bs-toggle="modal" data-bs-target="#termsModal">
-                                {{ __('messages.Terms') }}.
-                            </a>
-                        </small>
 
                         <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
