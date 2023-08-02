@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('google_id')->nullable();
             $table->string('password');
+            $table->boolean('confirm_terms');
             $table->integer('gender');
             $table->integer('age');
             $table->integer('weight');

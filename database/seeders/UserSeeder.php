@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'name' => 'Gabriel',
             'email' => 'admin@myfitness.com',
             'password' => Hash::make('Aa1234567/'),
+            'confirm_terms' => 1,
             'gender' => 1,
             'age' => 25,
             'weight' => 63,
