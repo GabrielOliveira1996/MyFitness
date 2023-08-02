@@ -7,19 +7,27 @@ use App\Services\FoodService;
 use App\Http\Controllers\Controller;
 use App\Repository\Food\IFoodRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Validator\FoodValidator;
 
 class FoodManagementController extends Controller
 {
     private $_request;
     private $_foodService;
     private $_foodRepository;
+    private $_foodValidator;
 
-    public function __construct(Request $request, FoodService $foodService, IFoodRepository $foodRepository)
+    public function __construct(
+        Request $request, 
+        FoodService $foodService, 
+        IFoodRepository $foodRepository,
+        FoodValidator $foodValidator
+        )
     {
         $this->middleware('auth');
         $this->_request = $request;
         $this->_foodService = $foodService;
         $this->_foodRepository = $foodRepository;
+        $this->_foodValidator = $foodValidator;
     }
 
     public function create()
@@ -34,7 +42,9 @@ class FoodManagementController extends Controller
             'saturated_fat',
             'trans_fat'
         ]);
-        $create = $this->_foodService->create($food);
+        $user = Auth::user();
+        $this->_foodValidator->create($food);
+        $create = $this->_foodRepository->create($food, $user);
         return redirect()->route('food.all');
     }
 
@@ -50,7 +60,9 @@ class FoodManagementController extends Controller
             'saturated_fat',
             'trans_fat'
         ]);
-        $update = $this->_foodService->update($id, $food);
+        $user = Auth::user();
+        $this->_foodValidator->update($food);
+        $update = $this->_foodRepository->update($id, $food, $user);
         return redirect()->route('food.all');
     }
 
