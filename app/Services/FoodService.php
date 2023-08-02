@@ -25,14 +25,6 @@ class FoodService
         return $create;
     }
 
-    public function update($id, $food)
-    {
-        $user = Auth::user();
-        $this->_foodValidator->update($food);
-        $update = $this->_foodRepository->update($id, $food, $user);
-        return $update;
-    }
-
     public function indexUserFoods()
     {
         $id = Auth::user()->id;
