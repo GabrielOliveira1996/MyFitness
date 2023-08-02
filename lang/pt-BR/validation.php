@@ -167,6 +167,7 @@ return [
 
     'attributes' => [
         'quantity_grams' => 'quantidade em gramas',
+        'confirm_terms' => 'termos de uso',
         'calories' => 'calorias',
         'carbohydrate' => 'carboidrato',
         'protein' => 'proteína',
