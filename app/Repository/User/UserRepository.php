@@ -21,6 +21,35 @@ class UserRepository implements IUserRepository
             'name' => $user['name'],
             'email' => $user['email'],
             'password' => Hash::make($user['password']),
+            'confirm_terms' => $user['confirm_terms'],
+            'google_id' => null,
+            'confirm_terms'  => 1,
+            'gender' => 0,
+            'age' => 0,
+            'weight' => 0,
+            'stature' => 0,
+            'activity_rate_factor' => 0,
+            'objective' => 0,
+            'type_of_diet' => 0,
+            'imc' => 0,
+            'water' => 0,
+            'daily_calories' => 0,
+            'daily_protein' => 0,
+            'daily_carbohydrate' => 0,
+            'daily_fat' => 0,
+            'daily_protein_kcal' => 0,
+            'daily_carbohydrate_kcal' => 0,
+            'daily_fat_kcal' => 0
+        ]);
+    }
+
+    public function createGoogleUser($user): User
+    {
+        return $this->_user->create([
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'password' => Hash::make($user['password']),
+            'confirm_terms' => 1,
             'google_id' => $user['google_id'],
             'confirm_terms'  => 1,
             'gender' => 0,
