@@ -13,6 +13,7 @@ class UserValidator
             'name' => 'required|alpha_num',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/',
+            'confirm_terms' => 'required|boolean'
         ];
 
         $messages = [
