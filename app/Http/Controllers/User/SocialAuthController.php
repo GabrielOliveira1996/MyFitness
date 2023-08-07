@@ -49,7 +49,7 @@ class SocialAuthController extends Controller
                     'password' => $user['id'],
                     'google_id' => $user['id']
                 ];
-                $newUser = $this->_userRepository->create($user);
+                $newUser = $this->_userRepository->createGoogleUser($user);
                 Auth::login($newUser);
                 return redirect()->route('welcome');
             }
