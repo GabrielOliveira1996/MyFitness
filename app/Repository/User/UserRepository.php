@@ -93,13 +93,18 @@ class UserRepository implements IUserRepository
         ]);
     }
 
-    public function find($id)
+    public function find($id): User
     {
         return $this->_user->find($id);
     }
 
-    public function findGoogleUser($id)
+    public function findGoogleUser($id): User
     {
         return $this->_user->where('google_id', $id)->first();
+    }
+
+    public function findUserByEmail($email): User
+    {
+        return $this->_user->where('email', $email)->first();
     }
 }

@@ -9,4 +9,5 @@ interface IUserRepository
     public function update($user, $id);
     public function find($id);
     public function findGoogleUser($id);
+    public function findUserByEmail($email);
 }
