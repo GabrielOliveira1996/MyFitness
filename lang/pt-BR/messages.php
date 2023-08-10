@@ -22,6 +22,7 @@ return [
     'ForgotMyPassword' => 'Esqueceu sua senha?',
     'Name' => 'Nome',
     'MyFitnessTerm' => 'Ao continuar com o cadastro você concorda com os',
+    'MyFitnessTermForLoginWithSocial' => 'Ao continuar com o login social você concordará com os',
     'Terms' => 'Termos de uso',
     'Term1' => '1. Aceitação dos Termos - Ao acessar e utilizar a plataforma MyFitness, você concorda em cumprir e estar vinculado aos seguintes termos de uso.',
     'Term2' => '2. Uso Responsável - Você concorda em utilizar a plataforma de forma responsável, respeitando todas as leis e regulamentos aplicáveis. Não deve utilizar a plataforma para qualquer finalidade ilegal, fraudulenta ou prejudicial.',
