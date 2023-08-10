@@ -8,10 +8,10 @@ use App\Services\UserService;
 use App\Validator\UserValidator;;
 use App\Repository\User\IUserRepository;
 use Illuminate\Validation\ValidationException;
-use SendinBlue\Client\Configuration;
-use SendinBlue\Client\Api\TransactionalEmailsApi;
-use SendinBlue\Client\Model\SendSmtpEmail;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\MailProvider;
+use App\Models\User;
+use Illuminate\Support\Facades\Password;
 
 class UserManagementController extends Controller
 {
@@ -19,17 +19,20 @@ class UserManagementController extends Controller
     private $_userService;
     private $_userValidator;
     private $_userRepository;
+    private $_mailProvider;
 
     public function __construct(
         Request $request, 
         UserService $userService,  
         UserValidator $userValidator, 
-        IUserRepository $userRepository)
+        IUserRepository $userRepository,
+        MailProvider $mailProvider)
     {
         $this->_request = $request;
         $this->_userService = $userService;
         $this->_userValidator = $userValidator;
         $this->_userRepository = $userRepository;
+        $this->_mailProvider = $mailProvider;
     }
 
     public function updateProfile()
@@ -110,27 +113,25 @@ class UserManagementController extends Controller
     }
 
     public function sendEmailToRecoverPassword(){
-        dd('hehe');
-        /*
-        $email = $this->_request->only(['email']);
-        dd($email);
-        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
-        $apiInstance = new TransactionalEmailsApi(null, $config);
-        $email = new SendSmtpEmail([
-            'to' => [['email' => $email]],
-            'subject' => 'Assunto do e-mail',
-            'htmlContent' => '<p>Conteúdo do e-mail em HTML</p>',
-            'sender' => ['email' => 'myfitness.assistance@gmail.com', 'name' => 'MyFitness'],
-        ]);
-        $result = $apiInstance->sendTransacEmail($email);
-        try {
-            // Envie o e-mail usando a API do Sendinblue
-            $result = $apiInstance->sendTransacEmail($email);
-            // Lógica para lidar com o resultado, se necessário
-            // ...
-        } catch (Exception $e) {
-            // Trate exceções, se ocorrer algum erro no envio
-            // ...
-        }*/
+        try{
+            $this->_request->validate(['email' => 'required|email']);
+            $user = $this->_userRepository->findUserByEmail($this->_request->email);
+            if($user){
+                $this->_mailProvider->recoverPassword($user);
+                return back()->with(['status' => 'Por favor, verifique o seu e-mail.']);
+            } 
+            throw new EmailSendingException('Erro no envio do e-mail.');
+        }catch(EmailSendingException $e){
+            return back()->withErrors(['email' => $e->getMessage()]);
+        }
+    }
+
+    public function resetPassword(){
+        $user = $this->_request->only(['token', 'email', 'password', 'password_confirmation']);
+        $validate = $this->_userValidator->resetPassword($user);
+        $status = $this->_userService->resetPassword($user);
+        return $status === Password::PASSWORD_RESET
+                    ? redirect()->route('login')->with('status', __($status))
+                    : back()->withErrors(['email' => [__($status)]]);
     }
 }

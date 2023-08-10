@@ -6,6 +6,11 @@ use App\Validator\UserValidator;
 use App\Repository\User\IUserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Repository\Goal\IGoalRepository;
+use App\Models\User;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 
 class UserService
 {
@@ -111,5 +116,19 @@ class UserService
             'proteinOfTheDay' => $proteinOfTheDay,
             'totalFatOfTheDay' => $totalFatOfTheDay
         ];
+    }
+
+    public function resetPassword($user){
+        $status = Password::reset(
+            $user,
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+                $user->save();
+                event(new PasswordReset($user));
+            }
+        );
+        return $status;
     }
 }
