@@ -11,8 +11,13 @@ Route::post('/register', [App\Http\Controllers\User\UserManagementController::cl
 Route::get('/login', function(){return view('user.login');});
 Route::post('/login', [App\Http\Controllers\User\UserManagementController::class, 'login'])->name('login');
 Route::post('/logout', [App\Http\Controllers\User\UserManagementController::class, 'logout'])->name('logout');
-Route::get('/recover-password', function(){return view('user.email');})->name('recover.password');
-//Route::post('/recover-password', [App\Http\Controllers\User\UserManagementController::class, 'login'])->name('login');
+
+Route::get('/recover-password', function(){return view('user.email');})->name('recover.password')->middleware('guest');
+Route::post('/recover-password', [App\Http\Controllers\User\UserManagementController::class, 'sendEmailToRecoverPassword'])->middleware('guest')->name('send.email.to.recover.password');
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('user.reset', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+Route::post('/reset-password/{token}', [App\Http\Controllers\User\UserManagementController::class, 'resetPassword'])->middleware('guest')->name('password.reset.post');
 
 Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
