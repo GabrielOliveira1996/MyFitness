@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\MailProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
+use Exception;
 
 class UserManagementController extends Controller
 {
@@ -118,10 +119,11 @@ class UserManagementController extends Controller
             $user = $this->_userRepository->findUserByEmail($this->_request->email);
             if($user){
                 $this->_mailProvider->recoverPassword($user);
-                return back()->with(['status' => 'Por favor, verifique o seu e-mail.']);
+                $messages = $this->_request->session()->get('errors')->all();
+                return back()->with(['status' => $messages[0]]);
             } 
-            throw new EmailSendingException('Erro no envio do e-mail.');
-        }catch(EmailSendingException $e){
+            throw new Exception('Erro no envio do e-mail.');
+        }catch(Exception $e){
             return back()->withErrors(['email' => $e->getMessage()]);
         }
     }
