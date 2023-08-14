@@ -41,7 +41,7 @@
                         </div>
 
                         <small>
-                            <a href="{{ route('recover.password') }}">Esqueci minha senha.</a>
+                            <a href="{{ route('recover-password') }}">Esqueci minha senha.</a>
                         </small>
                         
                         <div class="row mt-3">
