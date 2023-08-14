@@ -41,7 +41,9 @@
 
 <body>
     <div id="app">
-        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && Route::getFacadeRoot()->current()->uri() !== 'register')
+        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && 
+            Route::getFacadeRoot()->current()->uri() !== 'register' &&
+            Route::getFacadeRoot()->current()->uri() !== 'recover-password')
             <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
                 <div class="container">
                     <a class="navbar-brand text-light" href="{{ url('/') }}">
@@ -114,7 +116,9 @@
             @yield('content')
         </main>
 
-        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && Route::getFacadeRoot()->current()->uri() !== 'register')
+        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && 
+            Route::getFacadeRoot()->current()->uri() !== 'register' &&
+            Route::getFacadeRoot()->current()->uri() !== 'recover-password')
             <footer class="bg-light text-center text-white">
             <!-- Grid container -->
             <div class="container p-4 pb-0">
