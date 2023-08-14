@@ -2,18 +2,23 @@
 
 @section('content')
 <div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">{{ __('Entrar') }}</div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <div class="card mt-5">
+
+                <h3 class="d-flex justify-content-center mt-3">
+                    <a class="text-decoration-none text-primary brand" href="{{ route('welcome') }}">{{ config('app.name', 'MYFITNESS') }}</a>
+                </h3>
+                <h3 class="d-flex justify-content-center mt-3">Fazer login</h3>
+                <p class="d-flex justify-content-center">Ir para o MyFitness</p>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
                         @csrf
 
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-md-12 inputBox">
-                                <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="text" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
                                 <label for="email" class="labelInput">{{ __('E-mail') }}</label>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
