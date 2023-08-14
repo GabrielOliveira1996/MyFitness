@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'MyFitness') }}</title>
 
     <!--Css-->
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}" />
 
     <!-- CSS Animated -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -96,7 +96,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="nav-link text-light" href="{{ secure_url('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                     {{ __('messages.SignOut') }}
                                 </a>
