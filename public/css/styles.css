@@ -9,7 +9,14 @@
     border-radius: 5px;
     padding-left: 8px;
     color: black;  
-    padding: 6px;
+    padding: 10px;
+}
+
+.inputBox input:focus,
+.inputBox input:valid {
+    border: 1px solid #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
   
 .labelInput {
@@ -17,7 +24,7 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
-    transition: all .4s ease;
+    transition: all .2s ease;
     font-size: 15px;
     pointer-events: none;
     color: black;
@@ -29,6 +36,7 @@ input:valid + label {
     top: 0;
     background: white;
     padding: 0px;
+    color: #007bff;
 }
 
 .emptyInput {
@@ -39,20 +47,29 @@ input:valid + label {
 }
 
 .emptyInput:focus {
-  outline: none;
+    outline: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 .enlarged {
-  /* Estilos para o card aumentado */
-  transform: scale(1.2);
+    /* Estilos para o card aumentado */
+    transform: scale(1.2);
+}
+
+h1, h2, h3, h4, h5, p {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.brand {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
