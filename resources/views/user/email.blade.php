@@ -19,7 +19,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('send.email.to.recover.password') }}" autocomplete="off">
+                    <form method="POST" action="{{ secure_url('send.email.to.recover.password') }}" autocomplete="off">
                         @csrf
 
                         <div class="row">

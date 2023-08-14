@@ -13,7 +13,7 @@
                 <p class="d-flex justify-content-center">Ir para o MyFitness</p>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" autocomplete="off">
+                    <form method="POST" action="{{ secure_url('login') }}" autocomplete="off">
                         @csrf
 
                         <div class="row">
@@ -106,8 +106,8 @@
                         </div>
                     </div>
                     <div class="row p-2">
-                        <a class="btn btn-light rounded-0 border border-light" href="{{ route('google.login') }}">
-                            <img src="{{ asset('img/icons/google.png') }}" height="22">
+                        <a class="btn btn-light rounded-0 border border-light" href="{{ secure_url('google.login') }}">
+                            <img src="{{ secure_asset('img/icons/google.png') }}" height="22">
                             Login com Gmail
                         </a>
                     </div>

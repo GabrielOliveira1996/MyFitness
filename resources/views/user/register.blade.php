@@ -14,7 +14,7 @@
                     <p class="d-flex justify-content-center">Insira as informações abaixo</p>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" autocomplete="off">
+                        <form method="POST" action="{{ secure_url('register') }}" autocomplete="off">
                             @csrf
 
                             <div class="row mb-3">
