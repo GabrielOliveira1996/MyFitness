@@ -3,6 +3,7 @@ APP_ENV=local
 APP_KEY=base64:2uQnw3ZtDFHQh19d6d1ufDMz9kg1FxLqgodeq71cM3A=
 APP_DEBUG=true
 APP_URL=http://localhost
+FORCE_HTTPS=false // false = development // true = production 
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
