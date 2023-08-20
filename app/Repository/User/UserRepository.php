@@ -98,9 +98,9 @@ class UserRepository implements IUserRepository
         return $this->_user->find($id);
     }
 
-    public function findGoogleUser($id)
+    public function findGoogleUser($email)
     {
-        return $this->_user->where('google_id', $id)->first();
+        return $this->_user->where('email', $email)->first();
     }
 
     public function findUserByEmail($email)

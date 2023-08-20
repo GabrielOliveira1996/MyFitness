@@ -8,6 +8,6 @@ interface IUserRepository
     public function createGoogleUser($user);
     public function update($user, $id);
     public function find($id);
-    public function findGoogleUser($id);
+    public function findGoogleUser($email);
     public function findUserByEmail($email);
 }
