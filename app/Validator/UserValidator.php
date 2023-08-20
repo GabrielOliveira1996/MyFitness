@@ -4,6 +4,7 @@ namespace App\Validator;
 
 use Illuminate\Support\Facades\Validator;
 use App\Exceptions\ValidatorException;
+use Illuminate\Validation\ValidationException;
 
 class UserValidator
 {
@@ -26,7 +27,8 @@ class UserValidator
                 'Fields were not filled in, check if the request receives data.',
                 422,
                 null,
-                $errors
+                $errors,
+                $user
             );
         }
     }
@@ -59,7 +61,8 @@ class UserValidator
                 'Fields were not filled in, check if the request receives data.',
                 422,
                 null,
-                $errors
+                $errors,
+                $user
             );
         }
     }
@@ -81,7 +84,8 @@ class UserValidator
                 'Fields were not filled in, check if the request receives data.',
                 422,
                 null,
-                $errors
+                $errors,
+                $user
             );
         }
     }
