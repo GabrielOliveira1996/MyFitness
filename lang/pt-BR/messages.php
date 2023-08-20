@@ -19,7 +19,7 @@ return [
     'ConfirmPassword' => 'Confirmar senha',
     'ConfirmPasswordMessage' => 'Por favor confirme sua senha antes de continuar.',
     'Remember' => 'Lembrar',
-    'ForgotMyPassword' => 'Esqueceu sua senha?',
+    'ForgotMyPassword' => 'Esqueci minha senha.',
     'Name' => 'Nome',
     'MyFitnessTerm' => 'Ao continuar com o cadastro você concorda com os',
     'MyFitnessTermForLoginWithSocial' => 'Ao continuar com o login social você concordará com os',
@@ -144,4 +144,14 @@ return [
 
     'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
     'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?', 
+
+    'loginNow' => 'Fazer login',
+    'GoToMyFitness' => 'Ir para o MyFitness',
+    'loginWithGmail' => 'Entrar com o Gmail',
+
+    'CreateaMyFitnessAccount' => 'Criar uma conta no MyFitness',
+    'EnterTheInformationBelow' => 'Insira as informações abaixo',
+
+    'EnterYourNewPassword' => 'Digite a sua nova senha',
+    'ContinueOnPasswordRecovery' => 'Ao dar continuidade sua senha será alterada.',
 ];
