@@ -113,11 +113,14 @@ class UserManagementController extends Controller
         return redirect('/');
     }
 
-    public function sendEmailToRecoverPassword(){
+    public function sendEmailToRecoverPassword(){ // Precisa verificar se é uma conta google.
         try{
             $this->_request->validate(['email' => 'required|email']);
             $user = $this->_userRepository->findUserByEmail($this->_request->email);
-            if($user){
+            if($user['google_id']){
+                throw new Exception('Você é um usuário do Google. Use sua conta do Gmail para fazer login.');
+            }
+            if($user && $user['google_id'] === null){
                 $this->_mailProvider->recoverPassword($user);
                 $messages = $this->_request->session()->get('errors')->all();
                 return back()->with(['status' => $messages[0]]);
