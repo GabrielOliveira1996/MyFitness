@@ -41,85 +41,78 @@
 
 <body>
     <div id="app">
-        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && 
-            Route::getFacadeRoot()->current()->uri() !== 'register' &&
-            Route::getFacadeRoot()->current()->uri() !== 'recover-password')
-            <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
-                <div class="container">
-                    <a class="navbar-brand text-light" href="{{ url('/') }}">
-                        <h4 class="brand">{{ config('app.name', 'MYFITNESS') }}</h4>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
+            <div class="container">
+                <a class="navbar-brand text-light" href="{{ url('/') }}">
+                    <h4 class="brand">{{ config('app.name', 'MYFITNESS') }}</h4>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
 
-                        </ul>
+                    </ul>
 
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
-                            </li>
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
-                            </li>
-                            @else
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
+                        </li>
+                        @else
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ __('messages.HelloMessage') }}
-                                    {{ Auth::user()->name }}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('messages.HelloMessage') }}
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                    {{ __('messages.Profile') }}
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
-                                        {{ __('messages.Profile') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('food.all') }}">
-                                        {{ __('messages.MyFoods') }}
-                                    </a>
-                                </div>
-                            </li>
-
-                            <!-- Separador -->
-
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('goal.index') }}" role="button">
-                                    {{ __('messages.MyGoals') }}
+                                <a class="dropdown-item" href="{{ route('food.all') }}">
+                                    {{ __('messages.MyFoods') }}
                                 </a>
-                            </li>
+                            </div>
+                        </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                    {{ __('messages.SignOut') }}
-                                </a>
+                        <!-- Separador -->
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('goal.index') }}" role="button">
+                                {{ __('messages.MyGoals') }}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                {{ __('messages.SignOut') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                        @endguest
+                    </ul>
                 </div>
-            </nav>
-        @endif
+            </div>
+        </nav>
 
-        <main class="">
+        <main class="" style="margin-bottom: 200px;">
             @yield('content')
         </main>
 
-        @if(Route::getFacadeRoot()->current()->uri() !== 'login' && 
-            Route::getFacadeRoot()->current()->uri() !== 'register' &&
-            Route::getFacadeRoot()->current()->uri() !== 'recover-password')
-            <footer class="bg-light text-center text-white">
+        <footer class="bg-light text-center text-white fixed-bottom">
             <!-- Grid container -->
             <div class="container p-4 pb-0">
                 <!-- Section: Social media -->
@@ -162,8 +155,7 @@
                 <a class="text-white" href="#">MyFitness</a>
             </div>
             <!-- Copyright -->
-            </footer>
-        @endif
+        </footer>
 
     </div>
 </body>
