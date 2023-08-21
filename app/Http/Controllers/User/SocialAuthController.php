@@ -36,26 +36,25 @@ class SocialAuthController extends Controller
 
     public function googleCallback()
     {
-        try{
-            $user = Socialite::driver('google')->user();
-            $findGoogleUser = $this->_userRepository->findGoogleUser($user['id']);
-            if ($findGoogleUser) {
-                Auth::login($findGoogleUser);
-                return redirect()->route('welcome');
-            } else {
-                $user = [
-                    'name' => $user['given_name'],
-                    'email' => $user['email'],
-                    'password' => $user['id'],
-                    'google_id' => $user['id']
-                ];
-                $newUser = $this->_userRepository->createGoogleUser($user);
-                Auth::login($newUser);
-                return redirect()->route('welcome');
-            }
-        }catch(InvalidStateException $e){
-            $error = 'Houve um problema durante o processo de autenticação. Nossa equipe já foi notificada e está trabalhando para resolvê-lo.';
-            return view('error', compact('error'));
+        $user = Socialite::driver('google')->user(); 
+        $email = $user['email'];
+        $findGoogleUser = $this->_userRepository->findUserByEmail($email);
+        if ($findGoogleUser == null) {  // Se email não existir. Criado novo usuário com google_id e entra.
+            $user = [
+                'name' => $user['given_name'],
+                'email' => $user['email'],
+                'password' => $user['id'],
+                'google_id' => $user['id']
+            ];
+            $newUser = $this->_userRepository->createGoogleUser($user);
+            Auth::login($newUser);
+            return redirect()->route('welcome');
         }
+        if($findGoogleUser['google_id']){ // Se email existir com google_id ele entra.
+            Auth::login($findGoogleUser);
+            return redirect()->route('welcome');
+        }
+        // Se email existir, e não for google_id.
+        return redirect()->route('login')->withErrors(['email' => 'O e-mail já está cadatrado no sistema.']);
     }
 }
