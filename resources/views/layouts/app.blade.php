@@ -108,15 +108,15 @@
             </div>
         </nav>
 
-        <main class="" style="margin-bottom: 200px;">
+        <main class="">
             @yield('content')
         </main>
 
-        <footer class="bg-light text-center text-white fixed-bottom">
+        <footer class="bg-light text-center text-white relative-bottom">
             <!-- Grid container -->
             <div class="container p-4 pb-0">
                 <!-- Section: Social media -->
-                <section class="mb-4">
+                <section class="mb-5">
                 <!-- Google -->
                 <a
                     class="btn text-white btn-floating m-1"
