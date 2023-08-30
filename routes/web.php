@@ -46,3 +46,8 @@ Route::prefix('goal')->group(function () {
     Route::post('/index/search-by-date', [App\Http\Controllers\Goal\GoalManagementController::class, 'searchGoalByDate'])->name('goal.search');
     Route::match(['get', 'post'], '/create/{type}/search', [App\Http\Controllers\Goal\GoalManagementController::class, 'searchFood'])->name('goal.searchFood');
 });
+
+Route::prefix('settings')->group(function(){
+    Route::get('/informations', [App\Http\Controllers\User\UserController::class, 'settings'])->name('user.settings');
+    Route::post('/informations', [App\Http\Controllers\User\UserManagementController::class, 'settingsUpdate'])->name('settings.edit');
+});
