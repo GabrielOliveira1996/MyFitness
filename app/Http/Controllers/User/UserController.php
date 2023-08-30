@@ -23,4 +23,9 @@ class UserController extends Controller
         $user = Auth::user();
         return view('perfil', compact('user'));
     }
+
+    public function settings(){
+        $user = Auth::user();
+        return view('user.settings', compact('user'));
+    }
 }

@@ -13,6 +13,8 @@ use App\Mail\MailProvider;
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
 use Exception;
+use Google\Client;
+use Google\Service\Drive;
 
 class UserManagementController extends Controller
 {
@@ -138,5 +140,29 @@ class UserManagementController extends Controller
         return $status === Password::PASSWORD_RESET
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
+    }
+
+    public function settingsUpdate(){
+        try{
+            if($this->_request->hasFile('profile_image')){
+                $file = $this->_request->file('profile_image');
+                $size = $file->getSize(); 
+                $type = $file->getMimeType(); 
+                if($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png'){
+                    $path = $file->store('profile');
+                    $user = [
+                        'id' => Auth::user()->id,
+                        'profile_image' => $path,
+                    ];
+                    $updateProfileImage = $this->_userRepository->profileImageUpdate($user);
+                    return redirect()->route('user.settings');
+                }else{
+                    throw new Exception('Apenas imagens podem ser enviados. São suportados apenas formatos png, jpg e jpeg.', 415);
+                }
+            }
+            throw new Exception('Não existe nada para ser atualizado.', 415);
+        }catch(Exception $e){
+            return back()->withErrors(['profile_image' => $e->getMessage()]);
+        }
     }
 }
