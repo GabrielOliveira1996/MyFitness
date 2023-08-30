@@ -154,4 +154,9 @@ return [
 
     'EnterYourNewPassword' => 'Digite a sua nova senha',
     'ContinueOnPasswordRecovery' => 'Ao dar continuidade sua senha será alterada.',
+
+    'Settings' => 'Configurações',
+    'publicProfile' => 'Perfil Público',
+    'updateProfile' => 'Atualizar Perfil',
+    'publicProfileDescription' => 'Seu perfil público é o que fica visível para outros usuários.',
 ];
