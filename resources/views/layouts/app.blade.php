@@ -81,6 +81,9 @@
                                 <a class="dropdown-item" href="{{ route('food.all') }}">
                                     {{ __('messages.MyFoods') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('user.settings') }}">
+                                    {{ __('messages.Settings') }}
+                                </a>
                             </div>
                         </li>
 
