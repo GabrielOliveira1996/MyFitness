@@ -24,6 +24,7 @@ class UserRepository implements IUserRepository
             'confirm_terms' => $user['confirm_terms'],
             'google_id' => null,
             'confirm_terms'  => 1,
+            'profile_image' => null,
             'gender' => 0,
             'age' => 0,
             'weight' => 0,
@@ -106,5 +107,11 @@ class UserRepository implements IUserRepository
     public function findUserByEmail($email)
     {
         return $this->_user->where('email', $email)->first();
+    }
+
+    public function profileImageUpdate($user){
+        return $this->_user->where('id', $user['id'])->update([
+            'profile_image' => $user['profile_image'],
+        ]);
     }
 }
