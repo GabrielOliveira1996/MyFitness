@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('google_id')->nullable();
             $table->string('password');
             $table->boolean('confirm_terms');
+            $table->string('profile_image')->nullable();
             $table->integer('gender');
             $table->integer('age');
             $table->integer('weight');
