@@ -89,3 +89,15 @@ h1, h2, h3, h4, h5, p {
 .shake-text {
     animation: shake 1.6s;
 }
+
+.img {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.profile-image:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
