@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Aa1234567/'),
             'confirm_terms' => 1,
             'profile_image' => null,
+            'bio' => null,
             'gender' => 1,
             'age' => 25,
             'weight' => 63,

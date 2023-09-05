@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'confirm_terms',
         'profile_image',
+        'bio',
         'google_id',
         'gender',
         'age',

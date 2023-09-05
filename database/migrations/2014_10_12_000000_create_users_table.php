@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('confirm_terms');
             $table->string('profile_image')->nullable();
+            $table->string('bio')->nullable();
             $table->integer('gender');
             $table->integer('age');
             $table->integer('weight');
