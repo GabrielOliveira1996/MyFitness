@@ -11,4 +11,6 @@ interface IUserRepository
     public function findGoogleUser($email);
     public function findUserByEmail($email);
     public function profileImageUpdate($user);
+    public function publicSettingsUpdate($user, $id);
+    public function searchUser($user);
 }

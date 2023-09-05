@@ -25,6 +25,7 @@ class UserRepository implements IUserRepository
             'google_id' => null,
             'confirm_terms'  => 1,
             'profile_image' => null,
+            'bio' => null,
             'gender' => 0,
             'age' => 0,
             'weight' => 0,
@@ -53,6 +54,8 @@ class UserRepository implements IUserRepository
             'confirm_terms' => 1,
             'google_id' => $user['google_id'],
             'confirm_terms'  => 1,
+            'profile_image' => null,
+            'bio' => null,
             'gender' => 0,
             'age' => 0,
             'weight' => 0,
@@ -113,5 +116,16 @@ class UserRepository implements IUserRepository
         return $this->_user->where('id', $user['id'])->update([
             'profile_image' => $user['profile_image'],
         ]);
+    }
+
+    public function publicSettingsUpdate($user, $id){
+        return $this->_user->where('id', $id)->update([
+            'name' => $user['name'],
+            'bio' => $user['bio']
+        ]);
+    }
+
+    public function searchUser($name){
+        return $this->_food->where([['name', 'like', '%' . $name . '%']])->paginate(12);
     }
 }
