@@ -6,7 +6,19 @@
 
     <div class="row justify-content-center mt-2">
 
-        <h3 class="text-center mt-5">{{ __('messages.WelcomeMessage') }} {{$user->name}}.</h3>
+        <div class="row mb-3 d-flex justify-content-center mt-5">
+            <div class="col-md-3">
+                <label for="imageInputId" 
+                        class="d-flex justify-content-center">
+                    <img id="imageId"
+                            src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
+                            class="img rounded-circle img-fluid profile-image col-md-12">
+                </label>    
+            </div>
+        </div>
+
+        <h3 class="text-center">{{ __('messages.WelcomeMessage') }} {{$user->name}}.</h3>
+        <hr/>
 
         <form method="POST" autocomplete="off">
             @csrf
