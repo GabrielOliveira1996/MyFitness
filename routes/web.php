@@ -50,4 +50,11 @@ Route::prefix('goal')->group(function () {
 Route::prefix('settings')->group(function(){
     Route::get('/informations', [App\Http\Controllers\User\UserController::class, 'settings'])->name('user.settings');
     Route::post('/informations', [App\Http\Controllers\User\UserManagementController::class, 'settingsUpdate'])->name('settings.edit');
+    //Route::get('/search/{name}', [App\Http\Controllers\User\UserController::class, 'searchUsers'])->name('user.search');
+    //Route::post('/search/{name}', [App\Http\Controllers\User\UserController::class, 'searchUsers'])->name('user.search');
+});
+
+Route::prefix('community')->group(function(){
+    Route::get('/index', [App\Http\Controllers\User\UserController::class, 'community'])->name('community.index');
+    Route::match(['get', 'post'], '/search-users', [App\Http\Controllers\User\UserManagementController::class, 'searchUsers'])->name('community.search');
 });
