@@ -159,4 +159,6 @@ return [
     'publicProfile' => 'Perfil Público',
     'updateProfile' => 'Atualizar Perfil',
     'publicProfileDescription' => 'Seu perfil público é o que fica visível para outros usuários.',
+
+    'community' => 'Comunidade',
 ];
