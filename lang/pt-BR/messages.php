@@ -161,4 +161,6 @@ return [
     'publicProfileDescription' => 'Seu perfil público é o que fica visível para outros usuários.',
 
     'community' => 'Comunidade',
+
+    'bio' => 'Sobre você',
 ];
