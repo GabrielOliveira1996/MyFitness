@@ -89,16 +89,20 @@ h1, h2, h3, h4, h5, p {
     animation: shake 1.6s;
 }
 
-.img {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+.profile-image {
+    cursor: pointer;
+    height: 350px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: border-radius 1s ease, transform 1s ease;
+    object-fit: cover;
 }
 
 .profile-image:hover {
     cursor: pointer;
-    transform: scale(1.1);
+    border-radius: 30px;
+    transform: scale(1.06);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
 }
 
 .resize-false {
