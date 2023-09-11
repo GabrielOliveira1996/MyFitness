@@ -5,6 +5,7 @@ createApp({
     data(){
         return {
             image: null,
+            imageInputId: null,
         };
     },
     methods: {
@@ -19,6 +20,9 @@ createApp({
                 $('#exampleModal').modal('show');
             }
             
+        },
+        closeModal(){
+            document.getElementById('imageInputId').value = '';
         }
     },
 }).mount("#settings");
