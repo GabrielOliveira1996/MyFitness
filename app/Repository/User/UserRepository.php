@@ -125,7 +125,7 @@ class UserRepository implements IUserRepository
         ]);
     }
 
-    public function searchUser($name){
-        return $this->_food->where([['name', 'like', '%' . $name . '%']])->paginate(12);
+    public function searchUser($name, $idAuthUser){
+        return $this->_user->where('id', '!=', $idAuthUser)->where([['name', 'like', '%' . $name . '%']])->paginate(12);
     }
 }
