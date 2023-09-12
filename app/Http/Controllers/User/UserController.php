@@ -28,4 +28,9 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.settings', compact('user'));
     }
+
+    public function community(){
+        $user = Auth::user();
+        return view('community.index', compact('user'));
+    }
 }
