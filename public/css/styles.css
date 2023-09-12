@@ -106,6 +106,22 @@ h1, h2, h3, h4, h5, p {
     background-color: #007bff;
 }
 
+.search-profile-image {
+    cursor: pointer;
+    height: 140px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 1s ease, background-color 1s ease;
+    object-fit: cover;
+}
+
+.search-profile-image:hover {
+    cursor: pointer;
+    transform: scale(1.04);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    background-color: #007bff;
+}
+
 .resize-false {
     width: 100%;
     border: 1px solid black;
