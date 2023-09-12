@@ -49,7 +49,8 @@ Route::prefix('goal')->group(function () {
 
 Route::prefix('settings')->group(function(){
     Route::get('/informations', [App\Http\Controllers\User\UserController::class, 'settings'])->name('user.settings');
-    Route::post('/informations', [App\Http\Controllers\User\UserManagementController::class, 'settingsUpdate'])->name('settings.edit');
+    Route::post('/informations/public-perfil-update', [App\Http\Controllers\User\UserManagementController::class, 'publicProfileUpdate'])->name('public-perfil.update');
+    Route::post('/informations/image-perfil-update', [App\Http\Controllers\User\UserManagementController::class, 'profilePictureUpdate'])->name('perfil-image.update');
     //Route::get('/search/{name}', [App\Http\Controllers\User\UserController::class, 'searchUsers'])->name('user.search');
     //Route::post('/search/{name}', [App\Http\Controllers\User\UserController::class, 'searchUsers'])->name('user.search');
 });

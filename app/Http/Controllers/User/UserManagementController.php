@@ -144,30 +144,38 @@ class UserManagementController extends Controller
                     : back()->withErrors(['email' => [__($status)]]);
     }
 
-    public function settingsUpdate(){
+    public function publicProfileUpdate(){ 
         try{
             $this->middleware('auth');
             $user = Auth::user();
             $data = $this->_request->only(['name', 'bio']);
-            if($this->_request->hasFile('profile_image') || $data['name'] != $user->name || $data['bio'] != $user->bio){
-                if($data['name'] != $user->name || $data['bio'] != $user->bio){
-                    $update = $this->_userRepository->publicSettingsUpdate($data, $user->id);
-                }
-                if($this->_request->hasFile('profile_image')){
-                    $file = $this->_request->file('profile_image');
-                    $size = $file->getSize(); 
-                    $type = $file->getMimeType(); 
-                    if($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png'){
-                        if($user->profile_image){
-                            $deletePreviousImage = Storage::delete($user->profile_image);
-                        }
-                        $path = $file->store('profile');
-                        $user = ['id' => $user->id, 'profile_image' => $path];
-                        $updateProfileImage = $this->_userRepository->profileImageUpdate($user);
-                    }else{
-                        throw new Exception('Apenas imagens nos formatos PNG, JPG e JPEG podem ser enviadas.', 415);
+            if($data['name'] != $user->name || $data['bio'] != $user->bio){
+                $update = $this->_userRepository->publicSettingsUpdate($data, $user->id);
+            }
+            return redirect()->route('user.settings');
+        }catch(Exception $e){
+            return back()->withErrors(['profile_image' => $e->getMessage()]);
+        }
+    }
+
+    public function profilePictureUpdate(){
+        try{
+            $this->middleware('auth');
+            $user = Auth::user();
+            if($this->_request->hasFile('profile_image')){
+                $file = $this->_request->file('profile_image');
+                $size = $file->getSize(); 
+                $type = $file->getMimeType(); 
+                if($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png'){
+                    if($user->profile_image){
+                        $deletePreviousImage = Storage::delete($user->profile_image);
                     }
-                }    
+                    $path = $file->store('profile');
+                    $user = ['id' => $user->id, 'profile_image' => $path];
+                    $updateProfileImage = $this->_userRepository->profileImageUpdate($user);
+                }else{
+                    throw new Exception('Apenas imagens nos formatos PNG, JPG e JPEG podem ser enviadas.', 415);
+                }  
                 return redirect()->route('user.settings');
             }
             throw new Exception('Não existe nada para ser atualizado.', 415);
