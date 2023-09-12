@@ -163,4 +163,7 @@ return [
     'community' => 'Comunidade',
 
     'bio' => 'Sobre você',
+
+    'searchUser' => 'Buscar Usuário',
+    'communityDescription' => 'Nesta seção, você tem a oportunidade de pesquisar por outros usuários e postagens, permitindo a interação e a troca de informações com a comunidade.',
 ];
