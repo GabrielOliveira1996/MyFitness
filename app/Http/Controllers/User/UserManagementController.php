@@ -184,8 +184,18 @@ class UserManagementController extends Controller
         }
     }
     
-    public function searchUsers($name){
-        $users = $this->_userRepository->searchUser($name);
-        return view('user.search', compact('users'));
+    public function searchUsers(){
+        try{
+            $idAuthUser = Auth::user()->id;
+            $name = $this->_request->input('name');
+            $users = $this->_userRepository->searchUser($name, $idAuthUser);
+            if(empty($users->items())){
+                throw new Exception('Não existe nada para ser atualizado.', 404);
+            }
+            return view('community.index', compact('users'));
+        }catch(Exception $e){
+            return back()->withErrors(['profile_image' => $e->getMessage()]);
+        }
+        
     }
 }
