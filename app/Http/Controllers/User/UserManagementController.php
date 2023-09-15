@@ -69,6 +69,7 @@ class UserManagementController extends Controller
     public function register(){
         $user = $this->_request->only([
             'name',
+            'nickname',
             'email',
             'password',
             'password_confirmation',
@@ -196,6 +197,17 @@ class UserManagementController extends Controller
         }catch(Exception $e){
             return back()->withErrors(['profile_image' => $e->getMessage()]);
         }
-        
+    }
+
+    public function followUser($nickname){
+        $userId = Auth::user()->id;
+        $userService = $this->_userService->followUser($nickname);
+        return back()->with('status', "Agora você está seguindo $nickname.");
+    }
+
+    public function unfollowUser($nickname){
+        $userId = Auth::user()->id;
+        $userService = $this->_userService->unfollowUser($nickname);
+        return back()->with('status', "Você parou de seguir $nickname.");
     }
 }
