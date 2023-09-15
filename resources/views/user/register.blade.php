@@ -72,6 +72,20 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-12 inputBox">
+                                        <input id="nickname" type="text" name="nickname" value="{{ old('nickname') }}" required>
+                                        <label for="nickname" class="labelInput">{{ __('messages.Nickname') }}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @error('nickname')
+                                            <small class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12 inputBox">
                                         <input id="email" type="text" name="email" value="{{ old('email') }}" required>
                                         <label for="email" class="labelInput">{{ __('E-mail') }}</label>
                                     </div>
