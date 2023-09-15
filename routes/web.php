@@ -58,4 +58,6 @@ Route::prefix('settings')->group(function(){
 Route::prefix('community')->group(function(){
     Route::get('/index', [App\Http\Controllers\User\UserController::class, 'community'])->name('community.index');
     Route::match(['get', 'post'], '/search-users', [App\Http\Controllers\User\UserManagementController::class, 'searchUsers'])->name('community.search');
+    Route::post('/follow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'followUser'])->name('follow.user');
+    Route::post('/unfollow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'unfollowUser'])->name('unfollow.user');
 });
