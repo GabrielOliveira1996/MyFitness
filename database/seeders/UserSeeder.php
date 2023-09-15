@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Gabriel',
+            'nickname' => 'gabroliveir1996',
             'email' => 'admin@myfitness.com',
             'password' => Hash::make('Aa1234567/'),
             'confirm_terms' => 1,
