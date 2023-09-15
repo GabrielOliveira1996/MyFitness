@@ -78,6 +78,9 @@
                                 <a class="dropdown-item" href="{{ route('profile') }}">
                                     {{ __('messages.Profile') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('goal.index') }}">
+                                    {{ __('messages.MyGoals') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('food.all') }}">
                                     {{ __('messages.MyFoods') }}
                                 </a>
@@ -90,8 +93,8 @@
                         <!-- Separador -->
 
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('goal.index') }}" role="button">
-                                {{ __('messages.MyGoals') }}
+                            <a class="nav-link text-light" href="{{ route('community.index') }}" role="button">
+                                {{ __('messages.community') }}
                             </a>
                         </li>
 
@@ -115,7 +118,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-light text-center text-white relative-bottom">
+        <footer class="bg-light text-center text-white relative-bottom mt-5">
             <!-- Grid container -->
             <div class="container p-4 pb-0">
                 <!-- Section: Social media -->
