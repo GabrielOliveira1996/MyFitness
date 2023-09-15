@@ -39,6 +39,10 @@
             
         </form>
 
+        <div class="d-flex justify-content-center mt-3 text-primary">
+            {{ session('status') }}
+        </div>
+
         <hr class="mt-5"/>
 
         @if(!empty($users))
@@ -57,26 +61,30 @@
                             </label>    
                         </div>
 
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-8 me-auto mt-4">
                                     <strong>{{$user->name}}</strong> 
+                                    <div class="col-md-12">
+                                        <small>{{ $user->nickname }}</small>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label>{{ __('messages.Age') }}</label>
-                                    {{$user->age}}
-                                </div>
-                                <div class="col-md-3">
-                                    <label>{{ __('messages.Height') }}</label>
-                                    {{$user->stature}} 
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label>{{ __('messages.Weight') }} (kg)</label>
-                                    {{$user->weight}}
-                                </div>
+                                @if(Auth::user()->following()->where('users.id', $user->id)->count() > 0)                                
+                                <form method="POST" 
+                                        action="{{ route('unfollow.user', ['nickname' => $user->nickname]) }}" 
+                                        class="col-md-4 ms-auto">
+                                        @csrf
+                                    <button type="submit" class="btn btn-outline-danger">Desseguir -</button>
+                                </form>
+                                @else
+                                <form method="POST" 
+                                        action="{{ route('follow.user', ['nickname' => $user->nickname]) }}" 
+                                        class="col-md-4 ms-auto">
+                                        @csrf
+                                    <button type="submit" class="btn btn-outline-primary">Seguir +</button>
+                                </form>
+                                @endif
                             </div>
-
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <label>{{ $user->bio }}</label>
