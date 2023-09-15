@@ -12,6 +12,7 @@ class UserValidator
     {
         $rules = [
             'name' => 'required|alpha_num',
+            'nickname' => 'required|unique:users,nickname',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/',
             'confirm_terms' => 'required|boolean'
