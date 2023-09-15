@@ -13,4 +13,7 @@ interface IUserRepository
     public function profileImageUpdate($user);
     public function publicSettingsUpdate($user, $id);
     public function searchUser($user, $idAuthUser);
+    public function searchUserByNickname($nickname);
+    public function followUser($nickname, $userNicknameToFollowId);
+    public function unfollowUser($authUser, $userNicknameToUnfollowId);
 }

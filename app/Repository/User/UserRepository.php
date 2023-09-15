@@ -19,6 +19,7 @@ class UserRepository implements IUserRepository
     {
         return $this->_user->create([
             'name' => $user['name'],
+            'nickname' => strtolower($user['nickname']),
             'email' => $user['email'],
             'password' => Hash::make($user['password']),
             'confirm_terms' => $user['confirm_terms'],
@@ -49,6 +50,7 @@ class UserRepository implements IUserRepository
     {
         return $this->_user->create([
             'name' => $user['name'],
+            'nickname' => $user['name'] . Hash::make($user['password']),
             'email' => $user['email'],
             'password' => Hash::make($user['password']),
             'confirm_terms' => 1,
@@ -127,5 +129,17 @@ class UserRepository implements IUserRepository
 
     public function searchUser($name, $idAuthUser){
         return $this->_user->where('id', '!=', $idAuthUser)->where([['name', 'like', '%' . $name . '%']])->paginate(12);
+    }
+
+    public function searchUserByNickname($nickname){
+        return $this->_user->where('nickname', $nickname)->first();
+    }
+
+    public function followUser($authUser, $userNicknameToFollowId){
+        return $authUser->following()->attach($userNicknameToFollowId);
+    }
+
+    public function unfollowUser($authUser, $userNicknameToUnfollowId){
+        return $authUser->following()->detach($userNicknameToUnfollowId);
     }
 }
