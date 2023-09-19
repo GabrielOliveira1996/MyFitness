@@ -47,25 +47,24 @@
 
         @if(!empty($users))
             <div class="card col-md-10 mt-3">
-                <label class="mt-3"><strong>{{ __('messages.people') }}</strong></label>
+                <label class="mt-3"><strong>{{__('messages.people')}}</strong></label>
                 @foreach($users as $user)
 
                     <hr/>
                     <div class="row mb-3">
                         <div class="col-md-2">
-                            <label for="imageInputId" class="d-flex justify-content-center">
-                                <a href="{{ route('community.userprofile', ['nickname' => $user['nickname']]) }}">
-                                    <img id="imageId"
-                                            src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
-                                            class="col-md-12 search-profile-image">
-                                </a>
+                            <label for="imageInputId" 
+                                    class="d-flex justify-content-center">
+                                <img id="imageId"
+                                        src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
+                                        class="col-md-12 search-profile-image">
                             </label>    
                         </div>
 
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-8 me-auto mt-4">
-                                    <strong><a href="{{ route('community.userprofile', ['nickname' => $user['nickname']]) }}">{{$user->name}}</a></strong> 
+                                    <strong>{{$user->name}}</strong> 
                                     <div class="col-md-12">
                                         <small>{{ $user->nickname }}</small>
                                     </div>

@@ -4,12 +4,15 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Repository\User\IUserRepository;
 
 class UserController extends Controller
 {
+    private $_userRepository;
 
-    public function __construct()
+    public function __construct(IUserRepository $userRepository)
     {
+        $this->_userRepository = $userRepository;
         $this->middleware('auth');
     }
 
@@ -32,5 +35,10 @@ class UserController extends Controller
     public function community(){
         $user = Auth::user();
         return view('community.index', compact('user'));
+    }
+
+    public function userProfile($nickname){
+        $user = $this->_userRepository->searchUserByNickname($nickname);
+        return view('community.user-profile', compact('user'));
     }
 }

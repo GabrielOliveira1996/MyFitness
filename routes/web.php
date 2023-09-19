@@ -60,4 +60,5 @@ Route::prefix('community')->group(function(){
     Route::match(['get', 'post'], '/search-users', [App\Http\Controllers\User\UserManagementController::class, 'searchUsers'])->name('community.search');
     Route::post('/follow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'followUser'])->name('follow.user');
     Route::post('/unfollow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'unfollowUser'])->name('unfollow.user');
+    Route::get('/{nickname}', [App\Http\Controllers\User\UserController::class, 'userProfile'])->name('community.userprofile');
 });

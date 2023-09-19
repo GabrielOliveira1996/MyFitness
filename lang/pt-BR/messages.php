@@ -43,28 +43,24 @@ return [
     'Masculine' => 'Masculino',
     'Feminine' => 'Feminino',
     'Age' => 'Idade',
-
     'Activity' => 'Atividade',
     'Sedentary' => 'Sedentário',
     'SlightlyActive' => 'Levemente ativo',
     'ModeratelyActive' => 'Moderadamente ativo',
     'HighlyActive' => 'Altamente ativo',
     'ExtremelyActive' => 'Extremamento ativo',
-
     'Objetive' => 'Objetivo',
     'LoseWeightFast' => 'Perder peso rapidamente',
     'LoseWeightSlowly' => 'Perder peso lentamente',
     'KeepWeight' => 'Manter peso',
     'IncreaseWeightSlowly' => 'Aumentar peso lentamente',
     'GainWeightFast' => 'Aumentar peso rapidamente',
-
     'TypeOfDiet' => 'Tipo de dieta',
     'Pattern' => 'Padrão',
     'Balanced' => 'Balanceado',
     'LowInFat' => 'Pobre em gorduras',
     'RichInProtein' => 'Rico em proteínas',
     'Ketogenic' => 'Cetogénica (Atkins)',
-
     'AmountInGrams' => 'Gramas',
     'Calories' => 'Calorias',
     'Carbohydrate' => 'Carboidrato',
@@ -73,16 +69,13 @@ return [
     'SaturatedFat' => 'Saturada',
     'TransFat' => 'Trans',
     'TypeOfMeal' => 'Tipo de refeição',
-
     'Results' => 'Resultados',
     'BasalMetabolicRate' => 'Taxa Metabólica Basal',
     'BodyMassIndex' => 'Índice de massa corporal (IMC)',
     'WaterRequirements' => 'Requisitos de água (ml)',
     'DailyCaloricRequirements&MacroNutrients' => 'Requisitos Calóricos Diários & Macronutrientes',
-
     'MyContent' => 'Meu Conteúdo',
     'MyRecipes' => 'Minhas receitas',
-
     //Buttons
     'Add' => 'Adicionar',
     'Edit' => 'Editar',
@@ -92,79 +85,55 @@ return [
     'Goals' => 'Metas',
     'AddFood' => 'Adicionar Alimento',
     'SearchFood' => 'Buscar Alimento',
-
     'YourFoods' => 'Seus alimentos',
     'YourFoodsDescription' => 'Aqui ficam os alimentos que foram adicionados por você.',
-
     'SearchFood1' => 'Busque por alimento',
-
     'FoodNotFound' => 'Nenhum alimento localizado.',
     'YourFoods' => 'Seus alimentos.',
-
     'YourFoodsDescription' => 'Nesta seção, você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
-
     'YourFoodsDescription' => 'Nesta seção, ficam os seus alimentos, aqui você pode adicionar, atualizar, remover ou buscar os alimentos de forma simples e prática.',
-
     'AddFoodTitle' => 'Adicione alimentos.',
     'AddFoodDescription' => 'Se o alimento que deseja não existe em nossa base de dados, você pode adicioná-lo utilizando esse recurso. Busque pela tabela nutricional do alimento, dessa forma o resultado será preciso.',
     'AddFoodAlert' => 'Pesquise antes de adicionar as informações sobre os alimentos, para que não atrapalhem os seus resultados.',
-
     'UpdateFoodDescription' => 'Notou informações incorretas sobre o alimento? Faça a correção abaixo.',
-
     'DailyGoal' => 'Meta Diária',
     'DailyIntake' => 'Ingestão Diária',
     'DailyIntakeMessage' => 'Abaixo estão os alimentos que foram consumidos até o momento.',
-
     'UpdateFoodGoalDescription' => 'Você selecionou um alimento da sua lista de metas, nesta página você pode realizar alterações no alimento, caso as informações não estejam preenchidas de forma correta.',
-
     'AddFoodToGoalDescriptionTitle' => 'Adicione alimentos à sua meta diária.',
     'AddFoodToGoalDescription' => 'Nesta página, você pode selecionar os alimentos que deseja adicionar à sua meta. Isso irá impactar nos resultados exibidos na sua meta, proporcionando um auxílio significativo em seu progresso.',
-
     'SearchDescription' => 'Busque por alimentos.',
-
     'Breakfast' => 'Café da manhã',
     'Lunch' => 'Almoço',
     'Snack' => 'Lanche',
     'Dinner' => 'Jantar',
     'PreWorkout' => 'Pre treino',
     'PostWorkout' => 'Pós treino',
-
     'SearchGoalDescription' => 'Explore as metas de outros dias e compare com o seu desempenho atual. Isso permitirá identificar áreas de melhoria e oportunidades para progredir ainda mais.',
     'SearchForGoal' => 'Buscar Por Meta',
-
     'RecoverPassword' => 'Recuperar Senha',
     'SendToEmail' => 'Enviar para e-mail',
-
     'ObjetiveMacro' => 'Os tipos de dietas separam por porcentagem a quantidade que você precisa ingerir de cada macronutriente, separando em quantidade por calorias (Kcal), e por gramas do macronutriente, isso ajudará a alcançar objetivos específicos.',
-
     'SetGoalsDescription' => 'Você ainda precisa preencher o seu perfil.',
     'SetGoalsDescription1' => 'Ainda falta preencher algumas informações no seu perfil. Lembre-se de que quanto mais precisas forem as informações que você adicionar, melhores resultados você poderá alcançar. Não perca tempo, atualize seu perfil agora mesmo!',
-
     'RevenueDescription' => 'Receitas.',
     'RevenueDescription1' => 'Descubra como as receitas podem tornar sua dieta mais prazerosa, facilitando o processo e ajudando você a alcançar suas metas diárias. Em breve, elas serão adicionadas à plataforma.',
-
     'IAlreadyHaveAnAccountMessage' => 'Já tenho uma conta e quero',
     'DontHaveAnAccountMessage' => 'Não possui uma conta ainda?', 
-
     'loginNow' => 'Fazer login',
     'GoToMyFitness' => 'Ir para o MyFitness',
     'loginWithGmail' => 'Entrar com o Gmail',
-
     'CreateaMyFitnessAccount' => 'Criar uma conta no MyFitness',
     'EnterTheInformationBelow' => 'Insira as informações abaixo',
-
     'EnterYourNewPassword' => 'Digite a sua nova senha',
     'ContinueOnPasswordRecovery' => 'Ao dar continuidade sua senha será alterada.',
-
     'Settings' => 'Configurações',
     'publicProfile' => 'Perfil Público',
     'updateProfile' => 'Atualizar Perfil',
     'publicProfileDescription' => 'Seu perfil público é o que fica visível para outros usuários.',
-
     'community' => 'Comunidade',
-
     'bio' => 'Sobre você',
-
     'searchUser' => 'Buscar Usuário',
     'communityDescription' => 'Nesta seção, você tem a oportunidade de pesquisar por outros usuários e postagens, permitindo a interação e a troca de informações com a comunidade.',
+    'people' => 'Pessoas',
 ];
