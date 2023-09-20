@@ -117,16 +117,19 @@ class UserManagementController extends Controller
     }
 
     public function login(){
-        $credentials = $this->_request->only(['email', 'password']);
-        if(Auth::attempt($credentials)) {
-            if ($this->_request->hasSession()) {
-                $this->_request->session()->put('auth.password_confirmed_at', time());
+        try{
+            $credentials = $this->_request->only(['email', 'password']);
+            if(Auth::attempt($credentials)) {
+                if ($this->_request->hasSession()) {
+                    $this->_request->session()->put('auth.password_confirmed_at', time());
+                }
+                return redirect()->route('welcome');
             }
-            return redirect()->route('welcome');
+            throw new Exception(json_encode(['email' => [trans('auth.failed')]]), 422);
+        }catch(Exception $e){
+            $errors = json_decode($e->getMessage(), true);
+            return redirect()->back()->withErrors($errors);
         }
-        throw ValidationException::withMessages([
-            'email' => [trans('auth.failed')],
-        ]);
     }
 
     public function logout(){
