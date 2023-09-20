@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
-use App\Validator\UserValidator;;
+use App\Validator\UserValidator;
 use App\Repository\User\IUserRepository;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -42,59 +42,78 @@ class UserManagementController extends Controller
 
     public function updateProfile()
     {
-        $this->middleware('auth');
-        $user = $this->_request->only([
-            'gender',
-            'age',
-            'weight',
-            'stature',
-            'activity_rate_factor',
-            'objective',
-            'type_of_diet',
-            'imc',
-            'water',
-            'basal_metabolic_rate',
-            'daily_calories',
-            'daily_protein',
-            'daily_carbohydrate',
-            'daily_fat',
-            'daily_protein_kcal',
-            'daily_carbohydrate_kcal',
-            'daily_fat_kcal'
-        ]);
-        $update = $this->_userService->update($user);
-        return redirect()->route('profile');
+        try{
+            $this->middleware('auth');
+            $id = Auth::user()->id;
+            $user = $this->_request->only([
+                'gender',
+                'age',
+                'weight',
+                'stature',
+                'activity_rate_factor',
+                'objective',
+                'type_of_diet',
+                'imc',
+                'water',
+                'basal_metabolic_rate',
+                'daily_calories',
+                'daily_protein',
+                'daily_carbohydrate',
+                'daily_fat',
+                'daily_protein_kcal',
+                'daily_carbohydrate_kcal',
+                'daily_fat_kcal'
+            ]);
+            $validator = $this->_userValidator->update($user);
+            if($validator != null){
+                throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
+            }
+            $update = $this->_userRepository->update($user, $id);
+            return redirect()->route('profile');
+        }catch(Exception $e){
+            $errors = json_decode($e->getMessage(), true);
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     public function register(){
-        $user = $this->_request->only([
-            'name',
-            'nickname',
-            'email',
-            'password',
-            'password_confirmation',
-            'confirm_terms',
-            'gender',
-            'age',
-            'weight',
-            'stature',
-            'activity_rate_factor',
-            'objective',
-            'type_of_diet',
-            'imc',
-            'water',
-            'basal_metabolic_rate',
-            'daily_calories',
-            'daily_protein',
-            'daily_carbohydrate',
-            'daily_fat',
-            'daily_protein_kcal',
-            'daily_carbohydrate_kcal',
-            'daily_fat_kcal'
-        ]);
-        $this->_userValidator->register($user);
-        $this->_userRepository->create($user);
-        return redirect()->route('login');
+        try{
+            $user = $this->_request->only([
+                'name',
+                'nickname',
+                'email',
+                'password',
+                'password_confirmation',
+                'confirm_terms',
+                'gender',
+                'age',
+                'weight',
+                'stature',
+                'activity_rate_factor',
+                'objective',
+                'type_of_diet',
+                'imc',
+                'water',
+                'basal_metabolic_rate',
+                'daily_calories',
+                'daily_protein',
+                'daily_carbohydrate',
+                'daily_fat',
+                'daily_protein_kcal',
+                'daily_carbohydrate_kcal',
+                'daily_fat_kcal'
+            ]);
+            $validator = $this->_userValidator->register($user);
+            if($validator != null){
+                throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
+            }
+            $register = $this->_userRepository->create($user);
+            Auth::login($register);
+            return redirect()->route('welcome');
+        }catch(Exception $e){
+            $errors =json_decode($e->getMessage(), true);
+            return redirect()->back()->withErrors($errors);
+        }
     }
 
     public function login(){
