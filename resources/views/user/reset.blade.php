@@ -72,8 +72,8 @@
 
                             <div class="row mt-4">
                                 <div class="col-md-12 inputBox">
-                                    <input id="email" type="password" name="password" value="{{ old('email') }}" required autofocus>
-                                    <label for="email" class="labelInput">{{ __('Senha') }}</label>
+                                    <input id="password" type="password" name="password" value="{{ old('password') }}" required autofocus>
+                                    <label for="password" class="labelInput">{{ __('Senha') }}</label>
                                 </div>
                                 <div class="col-md-12">
                                     @error('password')
