@@ -24,13 +24,7 @@ class UserValidator
         $validator = Validator::make($user, $rules, $messages);
         if ($validator->fails()) {
             $errors = $validator->messages();
-            throw new ValidatorException(
-                'Fields were not filled in, check if the request receives data.',
-                422,
-                null,
-                $errors,
-                $user
-            );
+            return $errors;
         }
     }
 
@@ -54,17 +48,10 @@ class UserValidator
             'daily_carbohydrate_kcal' => 'required|numeric|min:0',
             'daily_fat_kcal' => 'required|numeric|min:0'
         ];
-        
         $validator = Validator::make($user, $rules);
         if ($validator->fails()) {
             $errors = $validator->messages();
-            throw new ValidatorException(
-                'Fields were not filled in, check if the request receives data.',
-                422,
-                null,
-                $errors,
-                $user
-            );
+            return $errors;
         }
     }
 
