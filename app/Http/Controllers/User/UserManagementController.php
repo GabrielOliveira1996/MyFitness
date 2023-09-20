@@ -142,29 +142,42 @@ class UserManagementController extends Controller
 
     public function sendEmailToRecoverPassword(){ // Precisa verificar se é uma conta google.
         try{
-            $this->_request->validate(['email' => 'required|email']);
-            $user = $this->_userRepository->findUserByEmail($this->_request->email);
-            if($user['google_id']){
-                throw new Exception('Você é um usuário do Google. Use sua conta do Gmail para fazer login.');
-            }
-            if($user && $user['google_id'] === null){
+            $email = $this->_request->only(['email']);
+            $user = $this->_userRepository->findUserByEmail($email);
+            if($user){ // Verifica se usuário foi localizado.
+                if($user['google_id']){
+                    throw new Exception('Você é um usuário do Google. Use sua conta do Gmail para fazer login.');
+                }
                 $this->_mailProvider->recoverPassword($user);
                 $messages = $this->_request->session()->get('errors')->all();
                 return back()->with(['status' => $messages[0]]);
-            } 
-            throw new Exception('Erro no envio do e-mail.');
+            }
+            throw new Exception('E-mail inválido.', 422);
         }catch(Exception $e){
             return back()->withErrors(['email' => $e->getMessage()]);
         }
     }
 
     public function resetPassword(){
-        $user = $this->_request->only(['token', 'email', 'password', 'password_confirmation']);
-        $validate = $this->_userValidator->resetPassword($user);
-        $status = $this->_userService->resetPassword($user);
-        return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+        try{
+            $user = $this->_request->only(['token', 'email', 'password', 'password_confirmation']);
+            $validator = $this->_userValidator->resetPassword($user);
+            $findUser = $this->_userRepository->findUserByEmail($user['email']);
+            if($findUser){
+                if($validator != null){
+                    throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
+                }
+                $status = $this->_userService->resetPassword($user);
+                if($status !== Password::PASSWORD_RESET){
+                    throw new Exception(json_encode($status), 422); // Unprocessable Entity.
+                }
+                return redirect()->route('login')->with('status', __($status));
+            }
+            throw new Exception(json_encode(['email' => 'E-mail inválido.']), 422);
+        }catch(Exception $e){
+            $status = json_decode($e->getMessage(), true);
+            return back()->withErrors($status);
+        }
     }
 
     public function publicProfileUpdate(){ 
