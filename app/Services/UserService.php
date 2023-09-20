@@ -20,9 +20,10 @@ class UserService
     private $_userValidator;
     private $_timezone;
 
-    public function __construct(IUserRepository $userRepository, 
-                                IGoalRepository $goalRepository, 
-                                UserValidator $userValidator)
+    public function __construct(
+        IUserRepository $userRepository, 
+        IGoalRepository $goalRepository, 
+        UserValidator $userValidator)
     {
         $this->_userRepository = $userRepository;
         $this->_goalRepository = $goalRepository;
@@ -34,14 +35,6 @@ class UserService
     {
         $validator = $this->_userValidator->register($user);
         $createUser = $this->_userRepository->create($user);
-    }
-
-    public function update($user)
-    {
-        $id = Auth::user()->id;
-        $validator = $this->_userValidator->update($user);
-        $update = $this->_userRepository->update($user, $id);
-        return $update;
     }
 
     public function getDailyMealGoals($date)
