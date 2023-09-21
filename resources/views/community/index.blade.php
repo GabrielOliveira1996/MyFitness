@@ -98,6 +98,16 @@
             </div>
         @endif
 
+        @if (session('unsuccessfully'))
+            <div class="text-primary d-flex justify-content-center mb-3" role="alert">
+                <strong class="shake-text">{{ session('unsuccessfully') }}</strong>
+            </div>
+        @endif
+
+        <div class="d-flex justify-content-center mt-5">
+            {{$users->links()}}
+        </div>
+
     </div>
 </div>
 
