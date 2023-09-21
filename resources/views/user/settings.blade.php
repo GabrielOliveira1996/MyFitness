@@ -95,13 +95,17 @@
                         </div>
                     </div>
                     
-                    @error('profile_image')
-                    <div class="d-flex justify-content-center">
-                        <small class="text-danger">
-                            <strong>{{ $message }}</strong>
-                        </small>
-                    </div>
-                    @enderror
+                    @if (session('success'))
+                        <div class="text-primary d-flex justify-content-center mb-3" role="alert">
+                            <strong class="shake-text">{{ session('success') }}</strong>
+                        </div>
+                    @endif
+
+                    @if (session('unsuccessfully'))
+                        <div class="text-danger d-flex justify-content-center mb-3" role="alert">
+                            <strong class="shake-text">{{ session('unsuccessfully') }}</strong>
+                        </div>
+                    @endif
 
                     <div class="row p-2 d-flex justify-content-center">
                         <button type="submit" 
