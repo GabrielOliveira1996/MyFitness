@@ -187,10 +187,11 @@ class UserManagementController extends Controller
             $data = $this->_request->only(['name', 'bio']);
             if($data['name'] != $user->name || $data['bio'] != $user->bio){
                 $update = $this->_userRepository->publicSettingsUpdate($data, $user->id);
+                return redirect()->route('user.settings')->with('success', 'Alterações realizadas com sucesso.');
             }
-            return redirect()->route('user.settings');
+            throw new Exception('Nenhuma alteração foi realizada. Não há nada a ser salvo.');
         }catch(Exception $e){
-            return back()->withErrors(['profile_image' => $e->getMessage()]);
+            return redirect()->route('user.settings')->with('unsuccessfully', $e->getMessage());
         }
     }
 
