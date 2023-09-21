@@ -203,7 +203,7 @@ class UserManagementController extends Controller
                 $file = $this->_request->file('profile_image');
                 $size = $file->getSize(); 
                 $type = $file->getMimeType(); 
-                if($type == 'image/jpeg' || $type == 'image/jpg' || $type == 'image/png'){
+                if($type === 'image/jpeg' || $type === 'image/jpg' || $type === 'image/png'){
                     if($user->profile_image){
                         $deletePreviousImage = Storage::delete($user->profile_image);
                     }
@@ -217,7 +217,7 @@ class UserManagementController extends Controller
             }
             throw new Exception('Não existe nada para ser atualizado.', 415);
         }catch(Exception $e){
-            return back()->withErrors(['profile_image' => $e->getMessage()]);
+            return redirect()->route('user.settings')->with('unsuccessfully', $e->getMessage());
         }
     }
     
@@ -227,11 +227,11 @@ class UserManagementController extends Controller
             $name = $this->_request->input('name');
             $users = $this->_userRepository->searchUser($name, $idAuthUser);
             if(empty($users->items())){
-                throw new Exception('Não existe nada para ser atualizado.', 404);
+                throw new Exception('Usuário não foi localizado.', 404);
             }
             return view('community.index', compact('users'));
         }catch(Exception $e){
-            return back()->withErrors(['profile_image' => $e->getMessage()]);
+            return redirect()->route('community.index')->with('unsuccessfully', $e->getMessage());
         }
     }
 
