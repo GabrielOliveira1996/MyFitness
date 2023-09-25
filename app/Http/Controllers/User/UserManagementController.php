@@ -167,7 +167,16 @@ class UserManagementController extends Controller
                 if($validator != null){
                     throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
                 }
-                $status = $this->_userService->resetPassword($user);
+                $status = Password::reset(
+                    $user,
+                    function (User $user, string $password) {
+                        $user->forceFill([
+                            'password' => Hash::make($password)
+                        ])->setRememberToken(Str::random(60));
+                        $user->save();
+                        event(new PasswordReset($user));
+                    }
+                );
                 if($status !== Password::PASSWORD_RESET){
                     throw new Exception(json_encode($status), 422); // Unprocessable Entity.
                 }
@@ -236,14 +245,29 @@ class UserManagementController extends Controller
     }
 
     public function followUser($nickname){
-        $userId = Auth::user()->id;
-        $userService = $this->_userService->followUser($nickname);
-        return back()->with('status', "Agora você está seguindo $nickname.");
+        try{
+            $authUser = Auth::user();
+            $userNicknameToFollow = $this->_userRepository->searchUserByNickname($nickname);
+            if(Auth::user()->following()->where('user_id', $userNicknameToFollow->id)->exists()){
+                throw new Exception("Você já está seguindo $nickname.", 409); // Conflict
+            }
+            $this->_userRepository->followUser($authUser, $userNicknameToFollow->id);
+            return back()->with('status', "Agora você está seguindo $nickname.");
+        }catch(Exception $e){
+            return back()->with('status', $e->getMessage());
+        }
     }
 
     public function unfollowUser($nickname){
-        $userId = Auth::user()->id;
-        $userService = $this->_userService->unfollowUser($nickname);
-        return back()->with('status', "Você parou de seguir $nickname.");
+        try{
+            $authUser = Auth::user();
+            $userNicknameToUnfollow = $this->_userRepository->searchUserByNickname($nickname);
+            if($userNicknameToUnfollow){
+                $this->_userRepository->unfollowUser($authUser, $userNicknameToUnfollow->id);
+            }
+            return back()->with('status', "Você parou de seguir $nickname.");
+        }catch(Exception $e){
+            return back()->with('status', $e->getMessage());
+        }
     }
 }
