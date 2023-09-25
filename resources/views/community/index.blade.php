@@ -20,10 +20,9 @@
 
     <div class="row justify-content-center mt-2">
 
-        <form method="POST" 
+        <form method="GET" 
             action="{{ route('community.search') }}" 
             autocomplete="off">
-            @csrf
             
             <div class="row d-flex justify-content-center">
                 <div class="col-md-8 inputBox mt-3">
@@ -96,6 +95,9 @@
                     
                 @endforeach
             </div>
+            <div class="d-flex justify-content-center mt-5">
+                {{$users->links()}}
+            </div>
         @endif
 
         @if (session('unsuccessfully'))
@@ -104,9 +106,7 @@
             </div>
         @endif
 
-        <div class="d-flex justify-content-center mt-5">
-            {{$users->links()}}
-        </div>
+        
 
     </div>
 </div>
