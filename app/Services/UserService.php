@@ -7,11 +7,6 @@ use App\Repository\Goal\IGoalRepository;
 use App\Validator\UserValidator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Illuminate\Auth\Events\PasswordReset;
-use Exception;
 
 class UserService
 {
@@ -20,21 +15,11 @@ class UserService
     private $_userValidator;
     private $_timezone;
 
-    public function __construct(
-        IUserRepository $userRepository, 
-        IGoalRepository $goalRepository, 
-        UserValidator $userValidator)
-    {
+    public function __construct(IUserRepository $userRepository, IGoalRepository $goalRepository, UserValidator $userValidator){
         $this->_userRepository = $userRepository;
         $this->_goalRepository = $goalRepository;
         $this->_userValidator = $userValidator;
         $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
-    }
-
-    public function register($user)
-    {
-        $validator = $this->_userValidator->register($user);
-        $createUser = $this->_userRepository->create($user);
     }
 
     public function getDailyMealGoals($date)
@@ -112,45 +97,5 @@ class UserService
             'proteinOfTheDay' => $proteinOfTheDay,
             'totalFatOfTheDay' => $totalFatOfTheDay
         ];
-    }
-
-    public function resetPassword($user){
-        $status = Password::reset(
-            $user,
-            function (User $user, string $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
-                $user->save();
-                event(new PasswordReset($user));
-            }
-        );
-        return $status;
-    }
-
-    public function followUser($nickname){
-        try{
-            $authUser = Auth::user();
-            $userNicknameToFollow = $this->_userRepository->searchUserByNickname($nickname);
-            if(Auth::user()->following()->where('user_id', $userNicknameToFollow->id)->exists()){
-                throw new Exception("Você já está seguindo $nickname.", 409); // 409 - conflito
-            }
-            $this->_userRepository->followUser($authUser, $userNicknameToFollow->id);
-        }catch(Exception $e){
-            return back()->with('status', $e->getMessage());
-        }
-    }
-
-    public function unfollowUser($nickname){
-        try{
-            $authUser = Auth::user();
-            $userNicknameToUnfollow = $this->_userRepository->searchUserByNickname($nickname);
-            if($userNicknameToUnfollow){
-                $this->_userRepository->unfollowUser($authUser, $userNicknameToUnfollow->id);
-            }
-            throw new Exception("Você não está mais seguindo $nickname.", 409);
-        }catch(Exception $e){
-            return back()->with('status', $e->getMessage());
-        }
     }
 }
