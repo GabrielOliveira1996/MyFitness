@@ -27,7 +27,7 @@ Route::post('/profile', [App\Http\Controllers\User\UserManagementController::cla
 
 Route::prefix('food')->group(function () {
     // Próxima correção será realizada em rota search.
-    Route::match(['get', 'post'], '/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
+    Route::get('/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
     Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'indexUserFoods'])->name('food.all');
     Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create']);
     Route::get('/create', [App\Http\Controllers\Food\FoodController::class, 'create'])->name('food.create');
