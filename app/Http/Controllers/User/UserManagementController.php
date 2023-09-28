@@ -69,7 +69,7 @@ class UserManagementController extends Controller
                 throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
             }
             $update = $this->_userRepository->update($user, $id);
-            return redirect()->route('profile');
+            return redirect()->route('goal.index');
         }catch(Exception $e){
             $errors = json_decode($e->getMessage(), true);
             return redirect()->back()->withErrors($errors);
