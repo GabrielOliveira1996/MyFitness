@@ -6,7 +6,7 @@
 
     <div class="row mt-3">
 
-        <form method="POST" autocomplete="off">
+        <form method="POST" action="{{ route('updateProfile') }}" autocomplete="off">
             @csrf
             
             <div id="perfil">
