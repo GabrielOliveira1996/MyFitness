@@ -22,8 +22,7 @@ Route::post('/reset-password/{token}', [App\Http\Controllers\User\UserManagement
 Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
 
-Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
-Route::post('/profile', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('updateProfile');
+//Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
 
 Route::prefix('food')->group(function () {
     // Próxima correção será realizada em rota search.
@@ -38,6 +37,7 @@ Route::prefix('food')->group(function () {
 
 Route::prefix('goal')->group(function () {
     Route::get('/index', [App\Http\Controllers\Goal\GoalController::class, 'index'])->name('goal.index');
+    Route::post('/save-profile', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/create/{type}', [App\Http\Controllers\Goal\GoalManagementController::class, 'add'])->name('goal.addfood');
     Route::get('/create/{type}', [App\Http\Controllers\Goal\GoalController::class, 'add'])->name('goal.add');
     Route::post('/update/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'update'])->name('goal.updatefood');
