@@ -22,10 +22,7 @@ Route::post('/reset-password/{token}', [App\Http\Controllers\User\UserManagement
 Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
 
-//Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('profile');
-
 Route::prefix('food')->group(function () {
-    // Próxima correção será realizada em rota search.
     Route::get('/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
     Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'indexUserFoods'])->name('food.all');
     Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create']);
