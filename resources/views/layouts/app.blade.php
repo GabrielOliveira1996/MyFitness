@@ -75,7 +75,7 @@
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('profile') }}">
+                                <a class="dropdown-item" href="{{ route('community.userprofile', ['nickname' => Auth::user()->nickname]) }}">
                                     {{ __('messages.Profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('goal.index') }}">
