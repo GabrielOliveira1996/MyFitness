@@ -136,4 +136,6 @@ return [
     'searchUser' => 'Buscar Usuário',
     'communityDescription' => 'Nesta seção, você tem a oportunidade de pesquisar por outros usuários e postagens, permitindo a interação e a troca de informações com a comunidade.',
     'people' => 'Pessoas',
+    'following' => 'Seguindo',
+    'followingDescription' => 'Nesta seção, encontram-se as pessoas que você está seguindo.',
 ];
