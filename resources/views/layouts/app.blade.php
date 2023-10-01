@@ -81,6 +81,9 @@
                                 <a class="dropdown-item" href="{{ route('goal.index') }}">
                                     {{ __('messages.MyGoals') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('community.allFollowers', ['nickname' => Auth::user()->nickname]) }}">
+                                    {{ __('messages.following') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('food.all') }}">
                                     {{ __('messages.MyFoods') }}
                                 </a>
