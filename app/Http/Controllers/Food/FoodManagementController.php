@@ -30,8 +30,7 @@ class FoodManagementController extends Controller
         $this->_foodValidator = $foodValidator;
     }
 
-    public function create()
-    {
+    public function create(){
         $food = $this->_request->only([
             'name',
             'quantity_grams',
@@ -48,8 +47,7 @@ class FoodManagementController extends Controller
         return redirect()->route('food.all');
     }
 
-    public function update($id)
-    {
+    public function update($id){
         $food = $this->_request->only([
             'name',
             'quantity_grams',
@@ -66,17 +64,22 @@ class FoodManagementController extends Controller
         return redirect()->route('food.all');
     }
 
-    public function delete($id)
-    {
+    public function delete($id){
         $this->_foodRepository->delete($id);
         return redirect()->route('food.all');
     }
 
-    public function search()
-    {
-        $food = $this->_request->input('name');
-        $id = Auth::user()->id;
-        $foods = $this->_foodRepository->search($id, $food);
-        return view('food.all', compact('foods'));
+    public function search(){
+        try{
+            $id = Auth::user()->id;
+            $food = $this->_request->input('name');
+            $foods = $this->_foodRepository->search($id, $food);
+            if(empty($users->$foods)){
+                throw new \Exception('Alimento não encontrado.');
+            }
+            return view('food.all', compact('foods'));
+        }catch(\Exception $e){
+            return redirect()->route('food.all')->with('unsuccessfully', $e->getMessage());
+        }
     }
 }
