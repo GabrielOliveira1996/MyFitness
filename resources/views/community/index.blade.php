@@ -43,7 +43,7 @@
         </div>
 
         <hr class="mt-5"/>
-
+        
         @if(!empty($users))
             <div class="card col-md-10 mt-3">
                 <label class="mt-3"><strong>{{ __('messages.people') }}</strong></label>
@@ -106,7 +106,42 @@
             </div>
         @endif
 
-        
+        @if(!empty($posts))
+            @foreach($posts as $post)
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="{{ route('community.userprofile', $post->user->nickname) }}">
+                                    <img id="imageId"
+                                            src="{{ $post->user->profile_image ? asset('img/' . $post->user->profile_image) : asset('img/user-image.png') }}" 
+                                            class="col-md-12 post-user-image">
+                                </a>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="col-md-12">
+                                    <strong><a href="{{ route('community.userprofile', $post->user->nickname) }}">{{$post->user->name}}</a></strong>
+                                </div>
+                                <div class="col-md-12">
+                                    <small>{{$post->user->nickname}}</small>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="col-md-12">
+                                    <small>{{$post->created_at}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{$post->text}}
+                    </div>
+                </div>
+            @endforeach
+            <div class="d-flex justify-content-center mt-5">
+                {{$posts->links()}}
+            </div>
+        @endif
 
     </div>
 </div>
