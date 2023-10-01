@@ -4,6 +4,17 @@
 
 <div class="container">
 
+    @if($user->daily_calories == 0 && $user->daily_carbohydrate == 0 && $user->daily_protein == 0 && $user->daily_fat == 0)
+        <div class="row mt-5">
+
+            <div class="col-lg-5 mt-5">
+                <h1 class="fw-bolder">{{ __('messages.SetGoalsDescription') }}</h1>
+                <h5>{{ __('messages.SetGoalsDescription1') }}</h5>
+            </div>
+            <img src="{{ asset('img/metas.png') }}" class="col-lg-5">
+        </div>
+    @endif
+
     <div class="row mt-3">
 
         <form method="POST" action="{{ route('updateProfile') }}" autocomplete="off">
@@ -1136,16 +1147,6 @@
         </div>
     </div>
 
-    @else
-    <div class="row mt-5">
-
-        <div class="col-lg-5 mt-5">
-            <h1 class="fw-bolder">{{ __('messages.SetGoalsDescription') }}</h1>
-            <h5>{{ __('messages.SetGoalsDescription1') }}</h5>
-            <a class="btn btn-primary col-lg-5 p-2 mt-3" href="{{ route('profile') }}">{{ __('messages.Profile') }}</a>
-        </div>
-        <img src="{{ asset('img/metas.png') }}" class="col-lg-5">
-    </div>
     @endif
 
 </div>
