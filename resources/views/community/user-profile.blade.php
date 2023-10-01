@@ -11,7 +11,7 @@
                 <label for="imageInputId">
                     <img id="imageId"
                             src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
-                            class="col-md-12 profile-image-follower">
+                            class="profile-image-follower">
                 </label>  
             </div>
             
@@ -59,14 +59,14 @@
                         <h5 class="modal-title">Escreva sobre o que está pensando...</h5>
                         <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                        <div class="modal-body">
-                            <div class="row d-flex justify-content-center">
-                                <form method="POST" 
-                                            action=""
-                                            autocomplete="off"
-                                            class="col-md-12">
-                                            @csrf
-
+                        <form method="POST" 
+                                action="{{ route('post.create') }}"
+                                autocomplete="off"
+                                class="col-md-12">
+                                @csrf
+                            <div class="modal-body">
+                                <div class="row d-flex justify-content-center">
+                                    
                                     <div class="row">
                                         <div class="col-md-12 inputBox align-self-center">
                                             <label for="text"></label>
@@ -74,18 +74,46 @@
                                         </div>
                                     </div>
 
-                                </form>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary col-md-12">Salvar</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary col-md-12">Salvar</button>
+                            </div>
+                        
+                        </form>
                     </div>
                 </div>
             </div>  
 
         </div> 
     </div>  
+
+    @if(!empty($posts))
+        @foreach($posts as $post)
+            <div class="card mt-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <img id="imageId"
+                                    src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
+                                    class="col-md-12 post-user-image">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="col-md-12">
+                                <strong>{{$user->name}}</strong>
+                            </div>
+                            <div class="col-md-12">
+                                <small>{{$user->nickname}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {{$post->text}}
+                </div>
+            </div>
+        @endforeach
+    @endif
 
 </div>
 
