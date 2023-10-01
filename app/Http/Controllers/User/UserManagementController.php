@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use App\Validator\UserValidator;
 use App\Repository\User\IUserRepository;
+use App\Repository\Follower\IFollowerRepository;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\MailProvider;
@@ -31,12 +32,14 @@ class UserManagementController extends Controller
         UserService $userService,  
         UserValidator $userValidator, 
         IUserRepository $userRepository,
+        IFollowerRepository $followerRepository,
         MailProvider $mailProvider)
     {
         $this->_request = $request;
         $this->_userService = $userService;
         $this->_userValidator = $userValidator;
         $this->_userRepository = $userRepository;
+        $this->_followerRepository = $followerRepository;
         $this->_mailProvider = $mailProvider;
     }
 
@@ -251,7 +254,7 @@ class UserManagementController extends Controller
             if(Auth::user()->following()->where('user_id', $userNicknameToFollow->id)->exists()){
                 throw new Exception("Você já está seguindo $nickname.", 409); // Conflict
             }
-            $this->_userRepository->followUser($authUser, $userNicknameToFollow->id);
+            $this->_followerRepository->followUser($authUser, $userNicknameToFollow->id);
             return back()->with('status', "Agora você está seguindo $nickname.");
         }catch(Exception $e){
             return back()->with('status', $e->getMessage());
@@ -263,7 +266,7 @@ class UserManagementController extends Controller
             $authUser = Auth::user();
             $userNicknameToUnfollow = $this->_userRepository->searchUserByNickname($nickname);
             if($userNicknameToUnfollow){
-                $this->_userRepository->unfollowUser($authUser, $userNicknameToUnfollow->id);
+                $this->_followerRepository->unfollowUser($authUser, $userNicknameToUnfollow->id);
             }
             return back()->with('status', "Você parou de seguir $nickname.");
         }catch(Exception $e){
