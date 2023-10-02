@@ -23,4 +23,37 @@ class PostManagementController extends Controller
         $create = $this->_postRepository->create(Auth::user(), $post);
         return redirect()->back();
     }
+
+    public function delete($id){
+        try{
+            $get = $this->_postRepository->get($id);
+            if($get == null){
+                throw new Exception('O post escolhido para exclusão não foi encontrado. Por favor, selecione outro.', 422); // Unprocessable Entity.
+            }
+            if($get['user_id'] != Auth::user()->id){
+                throw new Exception('Este post não está associado à sua conta. Por favor, escolha o seu próprio post.', 401); // Unauthorized.
+            }
+            $get = $this->_postRepository->delete($id);
+            return redirect()->back();
+        }catch(Exception $e){
+            return redirect()->back()->with('status', $e->getMessage());
+        }
+    }
+
+    public function update(){
+        try{
+            $data = $this->_request->only(['id', 'text']);
+            $get = $this->_postRepository->get($data['id']);
+            if($get == null){
+                throw new Exception('O post escolhido para editar não foi encontrado. Por favor, selecione outro.', 422); // Unprocessable Entity.
+            }
+            if($get['user_id'] != Auth::user()->id){
+                throw new Exception('Este post não está associado à sua conta. Por favor, escolha o seu próprio post.', 401); // Unauthorized.
+            }
+            $get = $this->_postRepository->update($data['id'], $data);
+            return redirect()->back();
+        }catch(Exception $e){
+            return redirect()->back()->with('status', $e->getMessage());
+        }
+    }
 }
