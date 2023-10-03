@@ -25,8 +25,7 @@ Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthContro
 Route::prefix('food')->group(function () {
     Route::get('/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
     Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'indexUserFoods'])->name('food.all');
-    Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create']);
-    Route::get('/create', [App\Http\Controllers\Food\FoodController::class, 'create'])->name('food.create');
+    Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create'])->name('food.create');
     Route::post('/update/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'update']);
     Route::get('/update/{id}', [App\Http\Controllers\Food\FoodController::class, 'update'])->name('food.update');
     Route::get('/delete/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'delete'])->name('food.delete');
