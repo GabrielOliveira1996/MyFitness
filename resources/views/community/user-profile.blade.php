@@ -115,11 +115,11 @@
                             </div>
                             @if($post->created_at != $post->updated_at)
                                 <div class="col-md-12">
-                                    <small>Este post foi editado em <strong>{{$post->updated_at}}</strong></small>
+                                    <small>Este post foi editado em <strong>{{date("d/m/Y - H:i:s", strtotime($post->updated_at))}}</strong></small>
                                 </div>
                             @else
                                 <div class="col-md-12">
-                                    <small>Este post foi criado em <strong>{{$post->created_at}}</strong></small>
+                                    <small>Este post foi criado em <strong>{{date("d/m/Y - H:i:s", strtotime($post->created_at))}}</strong></small>
                                 </div>
                             @endif
                         </div>
@@ -131,7 +131,7 @@
                         </a>
                         </div>
                         <div class="col-md-1">
-                            <a id="deletePostButton" class="btn btn-outline-secondary" href="{{ route('post.delete', ['id' => $post->id]) }}" data-id="{{ $post->id }}">
+                            <a id="deletePostButton" class="btn btn-outline-secondary delete-post-button" href="{{ route('post.delete', ['id' => $post->id]) }}" data-id="{{ $post->id }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
