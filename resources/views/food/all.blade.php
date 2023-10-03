@@ -25,25 +25,148 @@
         <form method="GET" action="{{ route('food.search') }}" autocomplete="off">
             
             <div class="row d-flex justify-content-center">
-                <div class="col-md-8 inputBox mt-3">
-                    <input type="text" name="name" value="{{ old('name') }}" required>
+                <div class="col-md-6 inputBox mt-3">
+                    <input type="text" name="name" required>
                     <label class="labelInput">{{__('messages.SearchFood1')}}</label>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-2">
-                <div class="row col-md-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary col-md-3 m-1">{{__('messages.SearchFood')}}</button>
-                    <a href="{{ route('food.create') }}" class="btn btn-primary col-md-3 m-1">{{__('messages.AddFood')}}</a>
+            <div class="mt-2">
+                <div class="row d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary col-md-2 m-1">{{__('messages.SearchFood')}}</button>
+                    <a data-bs-toggle="modal" data-bs-target="#FoodAdditionModal" class="btn btn-primary col-md-2 m-1">{{__('messages.AddFood')}}</a>
                 </div>
             </div>
             
         </form>
 
+        <!-- Food Addition Modal -->
+        <div class="modal fade" id="FoodAdditionModal" tabindex="-1" role="dialog" aria-labelledby="FoodAdditionModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('messages.AddFoodTitle') }}</h5>
+                        <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="row">
+                        <img src="{{ asset('img/adicionar-alimento.png') }}" class="col-lg-5">
+                        <div class="col-lg-5 mt-5">
+                            <h5>{{ __('messages.AddFoodDescription') }}</h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <form method="POST" action="{{ route('food.create') }}" autocomplete="off">
+                            @csrf
+
+                            <hr class="col-lg-12">
+                            
+                            <div class="row m-1">
+                                <div class="col-md-4 inputBox mt-3">
+                                    <input type="text" class="@error('name') is-invalid @enderror" name="name" autofocus required>
+                                    <label for="name" class="labelInput">{{ __('messages.Name') }}</label>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                
+                                <div class="col-md-4 inputBox mt-3">
+                                    <input type="number" class="@error('quantity_grams') is-invalid @enderror" name="quantity_grams" required>
+                                    <label for="quantity_grams" class="labelInput">{{ __('messages.AmountInGrams') }}</label>
+                                    @error('quantity_grams')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 inputBox mt-3">
+                                    <input type="number" class="@error('calories') is-invalid @enderror" name="calories" required>
+                                    <label for="calories" class="labelInput">{{ __('messages.Calories') }}</label>
+                                    @error('calories')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md inputBox mt-3">
+                                    <input type="number" class="@error('carbohydrate') is-invalid @enderror" name="carbohydrate" required>
+                                    <label for="carbohydrate" class="labelInput">{{ __('messages.Carbohydrate') }}</label>
+                                    @error('carbohydrate')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md inputBox mt-3">
+                                    <input type="number" class="@error('protein') is-invalid @enderror" name="protein" required>
+                                    <label for="protein" class="labelInput">{{ __('messages.Protein') }}</label>
+                                    @error('protein')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md inputBox mt-3">
+                                    <input type="number" class="@error('total_fat') is-invalid @enderror" name="total_fat" required>
+                                    <label for="total_fat" class="labelInput">{{ __('messages.Fat') }}</label>
+                                    @error('total_fat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                        
+                                <div class="col-md inputBox mt-3">
+                                    <input type="number" class="@error('saturated_fat') is-invalid @enderror" name="saturated_fat" required>
+                                    <label for="saturated_fat" class="labelInput">{{ __('messages.SaturatedFat') }}</label>
+                                    @error('saturated_fat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md inputBox mt-3">
+                                    <input type="number" class="@error('trans_fat') is-invalid @enderror" name="trans_fat" required>
+                                    <label for="trans_fat" class="labelInput">{{ __('messages.TransFat') }}</label>
+                                    @error('trans_fat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <hr class="col-lg-12">
+
+                            <small class="col-lg-12 text-justify m-1">
+                                {{ __('messages.AddFoodAlert') }}
+                            </small>
+
+                            <hr class="col-lg-12">
+
+                            <div class="row p-2 m-1">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('messages.Add') }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
         <div class="row">
             
-            @if(session('unsuccessfully'))
+            @if(!empty($unsuccessfully))
                 <div class="text-danger d-flex justify-content-center mt-5" role="alert">
-                    <strong class="shake-text">{{session('unsuccessfully')}}</strong>
+                    <strong class="shake-text">{{$unsuccessfully}}</strong>
                 </div>
             @endif
 
