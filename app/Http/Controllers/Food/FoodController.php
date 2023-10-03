@@ -18,19 +18,20 @@ class FoodController extends Controller
         $this->_foodService = $foodService;
     }
 
-    public function indexUserFoods()
-    {
-        $foods = $this->_foodService->indexUserFoods();
-        return view('food.all', compact('foods'));
+    public function indexUserFoods(){
+        try{
+            $foods = $this->_foodService->indexUserFoods();
+            if(empty($foods->items())){
+                throw new \Exception('Nenhum alimento foi encontrado. Clique no botão acima para adicionar um alimento a sua lista.', 404);
+            }
+            return view('food.all', compact('foods'));
+        }catch(\Exception $e){
+            $unsuccessfully = $e->getMessage();
+            return view('food.all', compact('unsuccessfully'));
+        }
     }
 
-    public function create()
-    {
-        return view('food.create');
-    }
-
-    public function update($id)
-    {
+    public function update($id){
         $food = $this->_foodService->find($id);
         return view('food.update', compact('food'));
     }
