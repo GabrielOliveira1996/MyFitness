@@ -3,36 +3,31 @@
 namespace App\Http\Controllers\Food;
 
 use Illuminate\Http\Request;
-use App\Services\FoodService;
 use App\Http\Controllers\Controller;
+use App\Repository\Food\IFoodRepository;
+use Illuminate\Support\Facades\Auth;
 
 class FoodController extends Controller
 {
     private $_request;
-    private $_foodService;
+    private $_foodRepository;
 
-    public function __construct(Request $request, FoodService $foodService)
-    {
+    public function __construct(Request $request, IFoodRepository $foodRepository){
         $this->middleware('auth');
         $this->_request = $request;
-        $this->_foodService = $foodService;
+        $this->_foodRepository = $foodRepository;
     }
 
-    public function indexUserFoods(){
+    public function index(){
         try{
-            $foods = $this->_foodService->indexUserFoods();
-            if(empty($foods->items())){
+            $userId = Auth::user()->id;
+            $foods = $this->_foodRepository->index($userId);
+            if(count($foods) === 0){
                 throw new \Exception('Nenhum alimento foi encontrado. Clique no botão acima para adicionar um alimento a sua lista.', 404);
             }
             return view('food.all', compact('foods'));
         }catch(\Exception $e){
-            $unsuccessfully = $e->getMessage();
-            return view('food.all', compact('unsuccessfully'));
+            return view('food.all', ['unsuccessfully' => $e->getMessage()]);
         }
-    }
-
-    public function update($id){
-        $food = $this->_foodService->find($id);
-        return view('food.update', compact('food'));
     }
 }
