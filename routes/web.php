@@ -23,12 +23,11 @@ Route::get('/login-google', [App\Http\Controllers\User\SocialAuthController::cla
 Route::get('/login-google/callback', [App\Http\Controllers\User\SocialAuthController::class, 'googleCallback']);
 
 Route::prefix('food')->group(function () {
-    Route::get('/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
-    Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'indexUserFoods'])->name('food.all');
     Route::post('/create', [App\Http\Controllers\Food\FoodManagementController::class, 'create'])->name('food.create');
-    Route::post('/update/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'update']);
-    Route::get('/update/{id}', [App\Http\Controllers\Food\FoodController::class, 'update'])->name('food.update');
     Route::get('/delete/{id}', [App\Http\Controllers\Food\FoodManagementController::class, 'delete'])->name('food.delete');
+    Route::get('/all/search', [App\Http\Controllers\Food\FoodManagementController::class, 'search'])->name('food.search');
+    Route::get('/all', [App\Http\Controllers\Food\FoodController::class, 'index'])->name('food.all');
+    Route::post('/update', [App\Http\Controllers\Food\FoodManagementController::class, 'update'])->name('food.update');
 });
 
 Route::prefix('goal')->group(function () {
@@ -62,3 +61,9 @@ Route::prefix('community')->group(function(){
     Route::post('/post/update', [App\Http\Controllers\Post\PostManagementController::class, 'update'])->name('post.update');
     Route::get('/profile/{nickname}/followers', [App\Http\Controllers\User\UserController::class, 'allFollowers'])->name('community.allFollowers');
 });
+
+Route::prefix('comment')->group(function(){
+    Route::post('/create', [App\Http\Controllers\Comment\CommentManagementController::class, 'create'])->name('comment.create');
+    Route::get('/delete/{id}', [App\Http\Controllers\Comment\CommentManagementController::class, 'delete'])->name('comment.delete');
+});
+
