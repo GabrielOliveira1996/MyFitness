@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-2">
+    <div class="row d-flex justify-content-center mt-2">
 
         <form method="GET" 
             action="{{ route('community.search') }}" 
@@ -42,14 +42,14 @@
             {{ session('status') }}
         </div>
 
-        <hr class="mt-5"/>
+        <hr class="col-md-12 mt-5"/>
         
         @if(!empty($users))
             <div class="card col-md-10 mt-3">
                 <label class="mt-3"><strong>{{ __('messages.people') }}</strong></label>
                 @foreach($users as $user)
 
-                    <hr/>
+                    <hr class="col-md-12"/>
                     <div class="row mb-3">
                         <div class="col-md-2">
                             <label for="imageInputId" class="d-flex justify-content-center">
@@ -108,33 +108,123 @@
 
         @if(!empty($posts))
             @foreach($posts as $post)
-                <div class="card mt-3">
+                <div class="card col-md-7 mt-5">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <a href="{{ route('community.userprofile', $post->user->nickname) }}">
                                     <img id="imageId"
                                             src="{{ $post->user->profile_image ? asset('img/' . $post->user->profile_image) : asset('img/user-image.png') }}" 
-                                            class="col-md-12 post-user-image">
+                                            class="post-user-image">
                                 </a>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <div class="col-md-12">
                                     <strong><a href="{{ route('community.userprofile', $post->user->nickname) }}">{{$post->user->name}}</a></strong>
                                 </div>
                                 <div class="col-md-12">
-                                    <small>{{$post->user->nickname}}</small>
+                                    <small>{{ $post->user->nickname }}</small>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="col-md-12">
-                                    <small>{{$post->created_at}}</small>
+                                    <small>{{date("d/m/Y - H:i:s", strtotime($post->created_at))}}</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        {{$post->text}}
+                        {{ $post->text }}
+
+                        <hr class="col-md-12"/>
+
+                        <div class="row">
+                            <a class="col-md-2 btn btn-outline-light m-1">
+                                <img src="{{ asset('img/like.png') }}" height="22" width="22">
+                            </a>
+                            <a class="col-md-2 btn btn-outline-light m-1 show-comments-button" onclick="show(event)" data-post-id="{{ $post->id }}">
+                                <img src="{{ asset('img/comment.png') }}" onclick="show(event)" data-post-id="{{ $post->id }}" height="22" width="22">
+                            </a>
+                        </div>
+
+                        <div id="comments-{{ $post->id }}" class="comments" style="display:none;">
+
+                            <form action="{{ route('comment.create') }}" method="POST" autocomplete="off">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <div class="row mt-2">
+                                    <div class="inputBox mt-3">
+                                        <input type="text" class="@error('text') is-invalid @enderror" name="text" required>
+                                        <label for="text" class="labelInput">Escreva seu comentário</label>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary col-md-12">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr/>
+
+                            @foreach($post->comments()->orderBy('created_at', 'desc')->get() as $comment)
+                                <div class="row mt-3">
+
+                                    <div class="col-md-2">
+                                        <a href="{{ route('community.userprofile', $comment->user->nickname) }}">
+                                            <img id="imageId"
+                                                    src="{{ $comment->user->profile_image ? asset('img/' . $comment->user->profile_image) : asset('img/user-image.png') }}" 
+                                                    class="post-user-image">
+                                        </a>
+                                    </div>
+
+                                    <div class="card bg-light p-2 col-md-10">
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="col-md-12">
+                                                    <strong>
+                                                        <a href="{{ route('community.userprofile', $comment->user->nickname) }}">
+                                                            {{$post->user->name}}
+                                                        </a>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <small>{{ $comment->user->nickname }}</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-12">
+                                                    <small>{{date("d/m/Y - H:i:s", strtotime($comment->created_at))}}</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownComment">
+                                                        <button class="dropdown-item" type="button">Editar</button>
+                                                        <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-post-button" type="button">
+                                                            Excluir
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-8 mt-3">
+                                            {{ $comment->text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                        
+
                     </div>
                 </div>
             @endforeach
@@ -144,6 +234,10 @@
         @endif
 
     </div>
+    
 </div>
+
+<script src="{{ asset('js/comments/show.js') }}"></script>
+<script src="{{ asset('js/comments/deleteCommentConfirm.js') }}"></script>
 
 @endsection
