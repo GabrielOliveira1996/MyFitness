@@ -72,7 +72,7 @@
                                     <div class="row">
                                         <div class="col-md-12 inputBox align-self-center">
                                             <label for="text"></label>
-                                            <textarea name="text" class="resize-false mt-1" cols="10" rows="5" draggable="false"></textarea>
+                                            <input name="text" class="mt-1" class="form-control" draggable="false">
                                         </div>
                                     </div>
 
@@ -167,7 +167,7 @@
                             <div class="row">
                                 <div class="col-md-12 inputBox align-self-center">
                                     <label for="text"></label>
-                                    <textarea name="text" class="resize-false mt-1" cols="10" rows="5" draggable="false"></textarea>
+                                    <input name="text" class="form-control mt-1">
                                 </div>
                             </div>
 

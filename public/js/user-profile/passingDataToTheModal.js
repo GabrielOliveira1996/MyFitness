@@ -7,6 +7,6 @@ $(document).ready(function() {
         $('#post_id').val(postId);
 
         // Preenche o campo de texto do post no textarea do modal.
-        $('#updatePostModal').find('textarea[name="text"]').val(postText);
+        $('#updatePostModal').find('input[name="text"]').val(postText);
     });
 });
