@@ -185,7 +185,7 @@
                                                 <div class="col-md-12">
                                                     <strong>
                                                         <a href="{{ route('community.userprofile', $comment->user->nickname) }}">
-                                                            {{$post->user->name}}
+                                                            {{$comment->user->name}}
                                                         </a>
                                                     </strong>
                                                 </div>
