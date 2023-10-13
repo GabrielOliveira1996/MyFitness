@@ -56,10 +56,13 @@ Route::prefix('community')->group(function(){
     Route::post('/follow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'followUser'])->name('follow.user');
     Route::post('/unfollow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'unfollowUser'])->name('unfollow.user');
     Route::get('/profile/{nickname}', [App\Http\Controllers\User\UserController::class, 'userProfile'])->name('community.userprofile');
-    Route::post('/post/create', [App\Http\Controllers\Post\PostManagementController::class, 'create'])->name('post.create');
-    Route::get('/post/delete/{id}', [App\Http\Controllers\Post\PostManagementController::class, 'delete'])->name('post.delete');
-    Route::post('/post/update', [App\Http\Controllers\Post\PostManagementController::class, 'update'])->name('post.update');
     Route::get('/profile/{nickname}/followers', [App\Http\Controllers\User\UserController::class, 'allFollowers'])->name('community.allFollowers');
+});
+
+Route::prefix('post')->group(function(){
+    Route::post('/create', [App\Http\Controllers\Post\PostManagementController::class, 'create'])->name('post.create');
+    Route::get('/delete/{id}', [App\Http\Controllers\Post\PostManagementController::class, 'delete'])->name('post.delete');
+    Route::post('/update', [App\Http\Controllers\Post\PostManagementController::class, 'update'])->name('post.update');
 });
 
 Route::prefix('comment')->group(function(){
