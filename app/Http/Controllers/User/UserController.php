@@ -38,12 +38,8 @@ class UserController extends Controller
 
     public function community(){
         $user = Auth::user();
-        // $posts = $user->following->with('posts')->orderBy('posts.created_at', 'desc')->paginate(10);
         $followedUserIds = $user->following->pluck('id');
-        $posts = Post::whereIn('user_id', $followedUserIds)->with('user')->orderBy('created_at', 'desc')->paginate(3);
-        // Preciso pegar as postagens das pessoas que o usuário está seguindo.
-        // Primeiro, pegar as pessoas que o autenticado está seguindo.
-        // Segundo, pegar os ids dos usuários que o autenticado está seguindo, e através deles capturar os posts desses usuários.  
+        $posts = Post::where('user_id', $user->id)->orWhereIn('user_id', $followedUserIds)->with('user')->orderBy('created_at', 'desc')->get();
         return view('community.index', compact('user', 'posts'));
     }
 
