@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let botoesExcluir = document.querySelectorAll('.delete-post-button');
+    let botoesExcluir = document.querySelectorAll('.delete-comment-button');
     
     botoesExcluir.forEach(function(botao) {
         botao.addEventListener('click', function(event) {
             event.preventDefault();
-            let postId = botao.getAttribute('data-id');
+            let commentId = botao.getAttribute('data-id');
             
             Swal.fire({
                 title: 'Você tem certeza?',
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         'success'
                     );
                     setTimeout(function() {
-                        window.location.href = '/comment/delete/' + postId;
+                        window.location.href = '/comment/delete/' + commentId;
                     }, 1500);
                 }
             });

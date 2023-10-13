@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function deletePost() {
     let botoesExcluir = document.querySelectorAll('.delete-post-button');
     
     botoesExcluir.forEach(function(botao) {
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         'success'
                     );
                     setTimeout(function() {
-                        window.location.href = '/community/post/delete/' + postId;
-                    }, 2000);
+                        window.location.href = '/post/delete/' + postId;
+                    }, 1500);
                 }
             });
         });
     });
-});
+};

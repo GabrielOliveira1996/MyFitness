@@ -13,22 +13,3 @@ buttons.forEach(button => {
         }
     });
 });
-
-// data-post-id="{{ $post->id }}"
-/*
-const { createApp } = Vue;
-
-createApp({
-    el: "#app",
-    data() {
-        return {
-            comments: 'comments',
-        };
-    },
-    methods: {
-        show() {
-            console.log(this.comments);
-        }
-    },
-}).mount("#app");
-*/
