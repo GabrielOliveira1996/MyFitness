@@ -108,7 +108,7 @@
 
         @if(!empty($posts))
             @foreach($posts as $post)
-                <div class="card col-md-7 mt-5">
+                <div class="card col-md-8 mt-5">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-2">
@@ -118,19 +118,53 @@
                                             class="post-user-image">
                                 </a>
                             </div>
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-9">
                                 <div class="col-md-12">
-                                    <strong><a href="{{ route('community.userprofile', $post->user->nickname) }}">{{$post->user->name}}</a></strong>
+                                    <strong>
+                                        <a href="{{ route('community.userprofile', $post->user->nickname) }}">
+                                            {{$post->user->name}}
+                                        </a>
+                                    </strong>
                                 </div>
                                 <div class="col-md-12">
-                                    <small>{{ $post->user->nickname }}</small>
+                                    <small>{{$post->user->nickname}}</small>
+                                </div>
+                                @if($post->created_at != $post->updated_at)
+                                    <div class="col-md-12">
+                                        <small>Este post foi editado em <strong>{{date("d/m/Y - H:i:s", strtotime($post->updated_at))}}</strong></small>
+                                    </div>
+                                @else
+                                    <div class="col-md-12">
+                                        <small>Este post foi criado em <strong>{{date("d/m/Y - H:i:s", strtotime($post->created_at))}}</strong></small>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="dropdown">
+                                    
+                                    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownComment">
+                                        @if($post->user_id === auth()->user()->id)
+                                            <a class="dropdown-item edit-post-btn" data-post-id="{{ $post->id }}" href="#" data-post-text="{{ $post->text }}" data-bs-toggle="modal" data-bs-target="#updatePostModal">
+                                                Editar
+                                            </a>
+                                            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="deletePost(event)" data-id="{{ $post->id }}" class="dropdown-item delete-post-button" type="button">
+                                                Excluir
+                                            </a>
+                                        @else
+                                            <a class="dropdown-item" type="button">
+                                                Denunciar
+                                            </a>
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="col-md-12">
-                                    <small>{{date("d/m/Y - H:i:s", strtotime($post->created_at))}}</small>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -142,8 +176,8 @@
                             <a class="col-md-2 btn btn-outline-light m-1">
                                 <img src="{{ asset('img/like.png') }}" height="22" width="22">
                             </a>
-                            <a class="col-md-2 btn btn-outline-light m-1 show-comments-button" onclick="show(event)" data-post-id="{{ $post->id }}">
-                                <img src="{{ asset('img/comment.png') }}" onclick="show(event)" data-post-id="{{ $post->id }}" height="22" width="22">
+                            <a class="col-md-2 btn btn-outline-light m-1 show-comments-button" data-post-id="{{ $post->id }}">
+                                <img src="{{ asset('img/comment.png') }}" data-post-id="{{ $post->id }}" height="22" width="22">
                             </a>
                         </div>
 
@@ -206,10 +240,16 @@
                                                         
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownComment">
-                                                        <button class="dropdown-item" type="button">Editar</button>
-                                                        <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-post-button" type="button">
-                                                            Excluir
-                                                        </a>
+                                                        @if($comment->user_id === auth()->user()->id)
+                                                            <button class="dropdown-item" type="button">Editar</button>
+                                                            <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-post-button" type="button">
+                                                                Excluir
+                                                            </a>
+                                                        @else
+                                                            <a class="dropdown-item" type="button">
+                                                                Denunciar
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,9 +268,6 @@
                     </div>
                 </div>
             @endforeach
-            <div class="d-flex justify-content-center mt-5">
-                {{$posts->links()}}
-            </div>
         @endif
 
     </div>

@@ -98,14 +98,17 @@
 
     @if(!empty($posts))
         @foreach($posts as $post)
-            <div class="card mt-3">
+
+            <div class="d-flex justify-content-center">
+            <div class="card col-md-8 mt-3">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <img id="imageId"
                                     src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
-                                    class="col-md-12 post-user-image">
+                                    class="post-user-image">
                         </div>
+
                         <div class="col-md-9">
                             <div class="col-md-12">
                                 <strong>{{$user->name}}</strong>
@@ -123,25 +126,124 @@
                                 </div>
                             @endif
                         </div>
+
                         <div class="col-md-1">
-                        <a class="btn btn-outline-secondary edit-post-btn" data-post-id="{{ $post->id }}" data-post-text="{{ $post->text }}" data-bs-toggle="modal" data-bs-target="#updatePostModal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                            </svg>
-                        </a>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownComment">
+                                    @if($post->user_id === auth()->user()->id)
+                                        <a class="dropdown-item edit-post-btn" data-post-id="{{ $post->id }}" href="#" data-post-text="{{ $post->text }}" data-bs-toggle="modal" data-bs-target="#updatePostModal">
+                                            Editar
+                                        </a>
+                                        <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="deletePost(event)" data-id="{{ $post->id }}" class="dropdown-item delete-post-button" type="button">
+                                            Excluir
+                                        </a>
+                                    @else
+                                        <a class="dropdown-item" type="button">
+                                            Denunciar
+                                        </a>
+                                    @endif
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="col-md-1">
-                            <a id="deletePostButton" class="btn btn-outline-secondary delete-post-button" href="{{ route('post.delete', ['id' => $post->id]) }}" data-id="{{ $post->id }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                </svg>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="card-body">
                     {{$post->text}}
+
+                    <hr class="col-md-12"/>
+
+                        <div class="row">
+                            <a class="col-md-2 btn btn-outline-light m-1">
+                                <img src="{{ asset('img/like.png') }}" height="22" width="22">
+                            </a>
+                            <a class="col-md-2 btn btn-outline-light m-1 show-comments-button" data-post-id="{{ $post->id }}">
+                                <img src="{{ asset('img/comment.png') }}" data-post-id="{{ $post->id }}" height="22" width="22">
+                            </a>
+                        </div>
+
+                        <div id="comments-{{ $post->id }}" class="comments" style="display:none;">
+
+                            <form action="{{ route('comment.create') }}" method="POST" autocomplete="off">
+                                @csrf
+                                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                <div class="row mt-2">
+                                    <div class="inputBox mt-3">
+                                        <input type="text" class="@error('text') is-invalid @enderror" name="text" required>
+                                        <label for="text" class="labelInput">Escreva seu comentário</label>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary col-md-12">Enviar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <hr/>
+
+                            @foreach($post->comments()->orderBy('created_at', 'desc')->get() as $comment)
+                                <div class="row mt-3">
+
+                                    <div class="col-md-2">
+                                        <a href="{{ route('community.userprofile', $comment->user->nickname) }}">
+                                            <img id="imageId"
+                                                    src="{{ $comment->user->profile_image ? asset('img/' . $comment->user->profile_image) : asset('img/user-image.png') }}" 
+                                                    class="post-user-image">
+                                        </a>
+                                    </div>
+
+                                    <div class="card bg-light p-2 col-md-10">
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="col-md-12">
+                                                    <strong>
+                                                        <a href="{{ route('community.userprofile', $comment->user->nickname) }}">
+                                                            {{$comment->user->name}}
+                                                        </a>
+                                                    </strong>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <small>{{ $comment->user->nickname }}</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="col-md-12">
+                                                    <small>{{date("d/m/Y - H:i:s", strtotime($comment->created_at))}}</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1">
+                                                <div class="dropdown">
+                                                    <a class="dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownComment">
+                                                        <button class="dropdown-item" type="button">Editar</button>
+                                                        <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-comment-button" type="button">
+                                                            Excluir
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-8 mt-3">
+                                            {{ $comment->text }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
                 </div>
+            </div>
             </div>
              
         @endforeach
@@ -183,6 +285,8 @@
     </div> 
 
     <script src="{{ asset('js/user-profile/deletePostConfirm.js') }}"></script>
+    <script src="{{ asset('js/comments/show.js') }}"></script>
+    <script src="{{ asset('js/comments/deleteCommentConfirm.js') }}"></script>
 
 </div>
 
