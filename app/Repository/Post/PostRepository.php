@@ -21,7 +21,7 @@ class PostRepository implements IPostRepository
     }
 
     public function getAll($id){
-        return $this->_post->where('user_id', $id)->orderBy('created_at', 'desc')->paginate(10);
+        return $this->_post->where('user_id', $id)->orderBy('created_at', 'desc')->get();
     }
 
     public function get($id){
