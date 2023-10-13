@@ -27,13 +27,13 @@ class PostManagementController extends Controller
     public function delete($id){
         try{
             $get = $this->_postRepository->get($id);
-            if($get == null){
+            if($get === null){
                 throw new Exception('O post escolhido para exclusão não foi encontrado. Por favor, selecione outro.', 422); // Unprocessable Entity.
             }
             if($get['user_id'] != Auth::user()->id){
                 throw new Exception('Este post não está associado à sua conta. Por favor, escolha o seu próprio post.', 401); // Unauthorized.
             }
-            $get = $this->_postRepository->delete($id);
+            $delete = $this->_postRepository->delete($id);
             return redirect()->back();
         }catch(Exception $e){
             return redirect()->back()->with('status', $e->getMessage());
