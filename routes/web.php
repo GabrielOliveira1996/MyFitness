@@ -68,5 +68,6 @@ Route::prefix('post')->group(function(){
 Route::prefix('comment')->group(function(){
     Route::post('/create', [App\Http\Controllers\Comment\CommentManagementController::class, 'create'])->name('comment.create');
     Route::get('/delete/{id}', [App\Http\Controllers\Comment\CommentManagementController::class, 'delete'])->name('comment.delete');
+    Route::post('/update', [App\Http\Controllers\Comment\CommentManagementController::class, 'update'])->name('comment.update');
 });
 
