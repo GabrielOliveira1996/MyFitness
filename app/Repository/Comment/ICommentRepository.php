@@ -8,5 +8,5 @@ interface ICommentRepository
     public function getAll($nickname);
     public function get($id);
     public function delete($id);
-    public function update($id, $data);
+    public function update($data);
 }

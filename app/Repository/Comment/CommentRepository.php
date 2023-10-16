@@ -34,8 +34,8 @@ class CommentRepository implements ICommentRepository
         return $this->_comment->find($id)->delete();
     }
 
-    public function update($id, $data){
-        return $this->_comment->where('id', $id)->update([
+    public function update($data){
+        return $this->_comment->where('id', $data['id'])->update([
             'text' => $data['text'],
         ]);
     }
