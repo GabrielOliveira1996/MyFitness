@@ -51,13 +51,13 @@ class CommentManagementController extends Controller
         try{
             $data = $this->_request->only(['id', 'text']);
             $get = $this->_commentRepository->get($data['id']);
-            if($get == null){
-                throw new Exception('O comentário escolhido para editar não foi encontrado. Por favor, selecione outro.', 422); // Unprocessable Entity.
+            if($get === null){
+                throw new Exception('Seu comentário não foi localizazdo. Por favor, selecione outro.', 422); // Unprocessable Entity.
             }
             if($get['user_id'] != Auth::user()->id){
                 throw new Exception('Este comentário não está associado à sua conta. Por favor, escolha o seu próprio comentário.', 401); // Unauthorized.
             }
-            $get = $this->_commentRepository->update($data['id'], $data);
+            $update = $this->_commentRepository->update($data);
             return redirect()->back();
         }catch(Exception $e){
             return redirect()->back()->with('status_comment', $e->getMessage());
