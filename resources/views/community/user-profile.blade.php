@@ -2,8 +2,6 @@
 
 @section('content')
 
-<script src="{{ asset('js/user-profile/passingDataToTheModal.js') }}"></script>
-
 <div class="container">
 
     <div class="card mt-5">
@@ -52,40 +50,6 @@
                 </div>
 
             @endif
-
-            <!-- Publication Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Escreva sobre o que está pensando...</h5>
-                        <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                        <form method="POST" 
-                                action="{{ route('post.create') }}"
-                                autocomplete="off"
-                                class="col-md-12">
-                                @csrf
-                            <div class="modal-body">
-                                <div class="row d-flex justify-content-center">
-                                    
-                                    <div class="row">
-                                        <div class="col-md-12 inputBox align-self-center">
-                                            <label for="text"></label>
-                                            <input name="text" class="mt-1" class="form-control" draggable="false">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary col-md-12">Salvar</button>
-                            </div>
-                        
-                        </form>
-                    </div>
-                </div>
-            </div>  
 
         </div> 
     </div>  
@@ -225,10 +189,21 @@
                                                         
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownComment">
-                                                        <button class="dropdown-item" type="button">Editar</button>
-                                                        <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-comment-button" type="button">
-                                                            Excluir
-                                                        </a>
+                                                        @if(auth()->user()->id === $comment->user_id)
+                                                            <a class="dropdown-item edit-comment-btn" data-comment-id="{{ $comment->id }}" href="#" data-comment-text="{{ $comment->text }}" data-bs-toggle="modal" data-bs-target="#updateCommentModal">
+                                                                Editar
+                                                            </a>
+                                                            <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-comment-button" type="button">
+                                                                Excluir
+                                                            </a>
+                                                        @elseif(auth()->user()->id != $comment->user_id && auth()->user()->id === $post->user_id)
+                                                            <button class="dropdown-item" type="button">Denunciar</button>
+                                                            <a href="{{ route('comment.delete', ['id' => $comment->id]) }}" data-id="{{ $comment->id }}" class="dropdown-item delete-comment-button" type="button">
+                                                                Excluir
+                                                            </a>
+                                                        @else
+                                                            <button class="dropdown-item" type="button">Denunciar</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,44 +224,167 @@
         @endforeach
     @endif
 
+    <!-- Publication Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img id="imageId"
+                                    src="{{ $user->profile_image ? asset('img/' . $user->profile_image) : asset('img/user-image.png') }}" 
+                                    class="post-user-image">
+
+                        </div>
+                        <div class="col-md-9"> 
+                            <div class="col-md-12">
+                                <strong>
+                                    {{$user->name}}
+                                </strong>
+                            </div>
+                            <div class="col-md-12">
+                                <small>{{$user->nickname}}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-flex justify-content-end">
+                            <button id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <form method="POST" 
+                            action="{{ route('post.create') }}"
+                            autocomplete="off"
+                            class="col-md-12">
+                            @csrf
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="col-md">
+                                <input type="text" class="form-control" name="text" placeholder="Escreva sobre o que está pensando..." required>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md">
+                                <button type="submit" class="btn btn-primary col-md-12">Publicar</button>
+                            </div>
+                        </div>
+            
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>  
+
     <!-- Update Publication Modal -->
     <div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="updatePostModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Escreva sobre o que está pensando...</h5>
-                <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-                <form method="POST" 
-                        action="{{ route('post.update') }}"
-                        autocomplete="off"
-                        class="col-md-12">
-                        @csrf
-                    <input type="hidden" name="id" id="post_id" value="">
-                    <div class="modal-body">
-                        <div class="row d-flex justify-content-center">
-                            
-                            <div class="row">
-                                <div class="col-md-12 inputBox align-self-center">
-                                    <label for="text"></label>
-                                    <input name="text" class="form-control mt-1">
-                                </div>
-                            </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img id="imageId"
+                                    src="{{ $user->profile_image ? asset('img/' . $user->profile_image) : asset('img/user-image.png') }}" 
+                                    class="post-user-image">
 
                         </div>
+                        <div class="col-md-9"> 
+                            <div class="col-md-12">
+                                <strong>
+                                    {{$user->name}}
+                                </strong>
+                            </div>
+                            <div class="col-md-12">
+                                <small>{{$user->nickname}}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-flex justify-content-end">
+                            <button id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary col-md-12">Salvar</button>
-                    </div>
+
+                    <form method="POST" 
+                            action="{{ route('post.update') }}"
+                            autocomplete="off"
+                            class="col-md-12">
+                            @csrf
+                        <input type="hidden" name="id" id="post_id" value="">
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="col-md">
+                                <input type="text" class="form-control" name="text" placeholder="Escreva sobre o que está pensando..." required>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md">
+                                <button type="submit" class="btn btn-primary col-md-12">Publicar</button>
+                            </div>
+                        </div>
+                    
+                    </form>
                 
-                </form>
+                </div>
             </div>
         </div>
     </div> 
 
+    <!-- Update Comment Modal -->
+    <div class="modal fade" id="updateCommentModal" tabindex="-1" role="dialog" aria-labelledby="updateCommentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img id="imageId"
+                                    src="{{ $user->profile_image ? asset('img/' . $user->profile_image) : asset('img/user-image.png') }}" 
+                                    class="post-user-image">
+
+                        </div>
+                        <div class="col-md-9"> 
+                            <div class="col-md-12">
+                                <strong>
+                                    {{$user->name}}
+                                </strong>
+                            </div>
+                            <div class="col-md-12">
+                                <small>{{$user->nickname}}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-1 d-flex justify-content-end">
+                            <button id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <form method="POST" 
+                            action="{{ route('comment.update') }}"
+                            autocomplete="off"
+                            class="col-md-12">
+                            @csrf
+                        <input type="hidden" name="id" id="comment_id" value="">
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="col-md">
+                                <input type="text" class="form-control" name="text" placeholder="Escreva sobre o que está pensando..." required>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="col-md">
+                                <button type="submit" class="btn btn-primary col-md-12">Publicar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/user-profile/updateModal.js') }}"></script>
     <script src="{{ asset('js/user-profile/deletePostConfirm.js') }}"></script>
     <script src="{{ asset('js/comments/show.js') }}"></script>
     <script src="{{ asset('js/comments/deleteCommentConfirm.js') }}"></script>
+    <script src="{{ asset('js/comments/updateModal.js') }}"></script>
 
 </div>
 
