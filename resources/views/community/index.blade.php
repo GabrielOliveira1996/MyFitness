@@ -32,32 +32,12 @@
                     </div>
 
                     <hr class="mt-2"/>
-            
-                    @if(auth()->user()->id != $user->id)
-                        @if(Auth::user()->following()->where('users.id', $user->id)->count() > 0)                       
-                            <form method="POST" 
-                                    action="{{ route('unfollow.user', ['nickname' => $user->nickname]) }}" 
-                                    class="col-md-12 d-flex justify-content-center">
-                                    @csrf
-                                <button type="submit" class="btn btn-outline-danger">Desseguir -</button>
-                            </form>  
-                        @else  
-                            <form method="POST" 
-                                    action="{{ route('follow.user', ['nickname' => $user->nickname]) }}" 
-                                    class="col-md-12 d-flex justify-content-center">
-                                    @csrf
-                                <button type="submit" class="btn btn-outline-primary">Seguir +</button>
-                            </form>
-                        @endif
-                    @else
-
-                        <div class="row d-flex justify-content-center">
-                            <button class="btn btn-outline-primary col-md-8" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Faça uma publicação...                   
-                            </button>
-                        </div>
-
-                    @endif
+        
+                    <div class="row d-flex justify-content-center">
+                        <button class="btn btn-outline-primary col-md-8" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Faça uma publicação...                   
+                        </button>
+                    </div>
 
                 </div> 
             </div> 
