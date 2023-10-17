@@ -235,15 +235,16 @@ class UserManagementController extends Controller
     
     public function searchUsers(){
         try{
-            $idAuthUser = Auth::user()->id;
+            $user = Auth::user();
             $name = $this->_request->input('name');
-            $users = $this->_userRepository->searchUser($name, $idAuthUser);
-            if(empty($users->items())){
-                throw new Exception('Usuário não foi localizado.', 404);
+            $users = $this->_userRepository->searchUser($name, $user->id);
+            if(count($users) === 0){
+                throw new Exception('Nenhum usuário encontrado.', 404);
             }
-            return view('community.index', compact('users'));
+            return view('community.users', compact('users'));
         }catch(Exception $e){
-            return redirect()->route('community.index')->with('unsuccessfully', $e->getMessage());
+            $error = session()->put('searchUserFailure', $e->getMessage());
+            return view('community.users');
         }
     }
 
