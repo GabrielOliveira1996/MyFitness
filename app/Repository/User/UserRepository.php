@@ -128,7 +128,7 @@ class UserRepository implements IUserRepository
     }
 
     public function searchUser($name, $idAuthUser){
-        return $this->_user->where('id', '!=', $idAuthUser)->where([['name', 'like', '%' . $name . '%']])->paginate(12);
+        return $this->_user->where('id', '!=', $idAuthUser)->where([['name', 'like', '%' . $name . '%']])->get();
     }
 
     public function searchUserByNickname($nickname){
