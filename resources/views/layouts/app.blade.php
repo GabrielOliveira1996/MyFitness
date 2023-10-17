@@ -56,7 +56,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        
+                    </ul>
+                    
+                    <ul class="navbar-nav">
+                        <form method="GET" action="{{ route('community.search') }}" autocomplete="off" class="mx-2 my-2 my-lg-0">
+                            <div class="d-flex justify-content-center">
+                                <div class="col-md-12 inputBox">
+                                    <input style="border-radius: 0.3rem 0rem 0rem 0.3rem" type="text" name="name" required>
+                                    <label class="labelInput">{{__('messages.searchUser')}}</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary" style="border-radius: 0rem 0.3rem 0.3rem 0rem">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,7 +89,7 @@
                             <a class="nav-link text-light" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                         </li>
                         @else
-
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('messages.HelloMessage') }}

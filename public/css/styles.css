@@ -8,7 +8,7 @@
     border-radius: 5px;
     padding-left: 8px;
     color: black;  
-    padding: 10px;
+    padding: 6px;
 }
 
 .inputBox input:focus,
@@ -33,9 +33,10 @@ input:focus + label,
 input:valid + label {
     font-size: 15px;
     top: 0;
-    background: white;
+    background: transparent;
     padding: 0px;
     color: #007bff;
+    font-weight: bold;
 }
 
 .emptyInput {
