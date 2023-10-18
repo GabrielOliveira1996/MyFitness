@@ -117,12 +117,12 @@
                                     <a class="col-md-2 btn btn-outline-light m-1">
                                         <img src="{{ asset('img/like.png') }}" height="22" width="22">
                                     </a>
-                                    <a class="col-md-2 btn btn-outline-light m-1 show-comments-button" data-post-id="{{ $post->id }}">
+                                    <a id="comment-buttons-{{ $post->id }}" class="col-md-2 btn btn-outline-light m-1 show-comments-button" data-post-id="{{ $post->id }}">
                                         <img src="{{ asset('img/comment.png') }}" data-post-id="{{ $post->id }}" height="22" width="22">
                                     </a>
                                 </div>
 
-                                <div id="comments-{{ $post->id }}" class="comments" style="display:none;">
+                                <div id="comments-{{ $post->id }}" class="comments hide-comments">
 
                                     <form action="{{ route('comment.create') }}" method="POST" autocomplete="off">
                                         @csrf
@@ -171,7 +171,7 @@
 
                                                     <div class="col-md-4">
                                                         <div class="col-md-12">
-                                                            <small>{{date("d/m/Y - H:i:s", strtotime($comment->created_at))}}</small>
+                                                            <small>{{ date("d/m/Y - H:i:s", strtotime($comment->created_at)) }}</small>
                                                         </div>
                                                     </div>
 
