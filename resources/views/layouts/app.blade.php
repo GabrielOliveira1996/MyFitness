@@ -58,7 +58,8 @@
                     <ul class="navbar-nav me-auto">
                         
                     </ul>
-                    
+                    @guest
+                    @else
                     <ul class="navbar-nav">
                         <form method="GET" action="{{ route('community.search') }}" autocomplete="off" class="mx-2 my-2 my-lg-0">
                             <div class="d-flex justify-content-center">
@@ -76,7 +77,7 @@
                             </div>
                         </form>
                     </ul>
-
+                    @endguest
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
