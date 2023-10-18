@@ -5,11 +5,16 @@ buttons.forEach(button => {
         const postId = event.target.getAttribute('data-post-id');
 
         const commentsContainer = document.getElementById(`comments-${postId}`);
-
-        if (commentsContainer.style.display === 'none' || commentsContainer.style.display === '') {
-            commentsContainer.style.display = 'block';
+        const commentButtons = document.getElementById(`comment-buttons-${postId}`);
+        
+        if (commentsContainer.classList.contains('hide-comments')) {
+            commentsContainer.classList.remove('hide-comments');
+            commentButtons.classList.remove('btn-outline-light');
+            commentButtons.classList.add('btn-primary');
         } else {
-            commentsContainer.style.display = 'none';
+            commentsContainer.classList.add('hide-comments');
+            commentButtons.classList.remove('btn-primary');
+            commentButtons.classList.add('btn-outline-light');
         }
     });
 });
