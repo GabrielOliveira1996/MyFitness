@@ -17,8 +17,12 @@ createApp({
             const formData = new FormData();
             formData.append('email', this.email);
             formData.append('password', this.password);
-
-            let requestUrl = `http://localhost:8000/login`;
+            console.log(`${window.APP_URL}:8000/login`);
+            if(window.APP_URL === 'http://localhost'){
+                requestUrl = `${window.APP_URL}:8000/login`;
+            }else{
+                requestUrl = `${window.APP_URL}/login`;
+            }
             axios.post(requestUrl, formData).then(response => {;
                 if(response.data.error){ // Erro de autenticação.
                     this.error = response.data.error;
