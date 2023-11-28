@@ -12,10 +12,12 @@ class PostManagementController extends Controller
 {
     private $_request;
     private $_postRepository;
+    private $_timezone;
 
     public function __construct(Request $request, IPostRepository $postRepository){
         $this->_request = $request;
         $this->_postRepository = $postRepository;
+        $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
     }
 
     public function create(){
