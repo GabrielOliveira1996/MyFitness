@@ -38,15 +38,14 @@
 
         <hr class="col-md-12 mt-3"/>
         
-            
-        <div class="row d-flex justify-content-center">
+        <div class="row">
             @if(!empty($foods))
                 @foreach($foods as $key => $value)
                 
-                <div class="col-md-4">
+                <div class="col-md-4 p-1 mt-3">
                     <form method="POST" action="{{ route('goal.addfood', ['type' => $type]) }}">
                         @csrf
-                        <div class="card m-2 p-0">
+                        <div class="card selected-card m-1">
                             <div class="card-header">
                                 <div class="row d-flex justify-content-between">
                                     <div class="col-md-12">
@@ -182,12 +181,6 @@
             @endif   
 
         </div>
-
-    <div class="d-flex justify-content-center mt-5">
-        @if(!empty($foods))
-            {{ $foods->links() }}
-        @endif
-    </div>
 
 </div>
 

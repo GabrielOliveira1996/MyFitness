@@ -12,14 +12,17 @@ createApp({
         changeImage(event){
             const file = event.target.files[0];
             if(file){
-                const reader = new FileReader();
-                reader.onload = () => {
-                    this.image = reader.result;
+                if(file.size > 2097152 || file.type !== 'image/png' && file.type !== 'image/jpeg' && file.type !== 'image/jpg'){
+                    $('#errorModal').modal('show');
+                }else{
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        this.image = reader.result;
+                    }
+                    reader.readAsDataURL(file);
+                    $('#exampleModal').modal('show');
                 }
-                reader.readAsDataURL(file);
-                $('#exampleModal').modal('show');
             }
-            
         },
         closeModal(){
             document.getElementById('imageInputId').value = '';
