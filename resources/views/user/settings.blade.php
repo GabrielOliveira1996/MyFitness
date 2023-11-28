@@ -25,7 +25,8 @@
                             class="d-flex justify-content-center">
                         <img id="imageId" 
                                 src="{{ $user['profile_image'] ? asset('img/' . $user['profile_image']) : asset('img/user-image.png') }}" 
-                                class="col-md-12 profile-image">
+                                class="profile-image"
+                                title="Para alterar, clique na imagem.">
                     </label>   
 
                     <input id="imageInputId" 
@@ -42,13 +43,13 @@
                                 <h5 class="modal-title">Esta é uma prévia da sua foto de perfil.</h5>
                                 <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                                <div class="modal-body">
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-md-10">
+                                <div class="modal-body d-flex justify-content-center">
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <img :id="imageModalId"
                                                     v-if="image"
                                                     :src="image"
-                                                    class="col-md-12 profile-image">
+                                                    class="profile-image">
                                         </div>
                                     </div>
                                 </div>
@@ -60,6 +61,25 @@
                     </div>  
                 </form>
 
+                <!-- Error Modal -->
+                <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Houve um erro ao enviar o arquivo.</h5>
+                                <button :id="closeModalId" @click="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="text-danger"><strong>Verifique as seguintes condições:</strong></div>
+                                        <div class="text-danger">São permitidos apenas formatos de imagem JPG/JPEG e PNG.</div>
+                                        <div class="text-danger">Imagem deve ter um tamanho máximo de 10MB.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 <form method="POST" 
                         action="{{ route('public-perfil.update') }}"
                         autocomplete="off"
@@ -67,50 +87,40 @@
                         @csrf
 
                     <div class="row">
-                        <div class="col-md-12 inputBox">
+                        <div class="col-md-6 inputBox">
                             <input id="name" type="text" name="name" value="{{ $user->name }}" required autofocus>
                             <label for="name" class="labelInput">{{ __('messages.Name') }}</label>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12 inputBox align-self-center">
-                            <label class="" for="bio">Aqui fica a sua bio. Escreva algo sobre você...</label>
-                            <textarea name="bio" class="resize-false mt-1" cols="10" rows="10" draggable="false">{{ $user->bio }}</textarea>
+                        <div class="col-md-6 inputBox">
+                            <input id="nickname" type="text" name="nickname" value="{{ $user->nickname }}" required autofocus>
+                            <label for="nickname" class="labelInput">{{ __('Apelido') }}</label>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-3">
+                        <div class="col-md-12 inputBox">
+                            <input id="bio" type="text" name="bio" value="{{ $user->bio }}" required autofocus>
+                            <label for="bio" class="labelInput">{{ __('Bio') }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
                         <div class="col-md-12">
-                            @error('bio')
-                                <small class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </small>
-                            @enderror
-                            @error('name')
-                                <small class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </small>
-                            @enderror
+                            <button type="submit" class="btn btn-primary col-md-12">{{__('messages.updateProfile')}}</button>
                         </div>
                     </div>
                     
                     @if (session('success'))
-                        <div class="text-primary d-flex justify-content-center mb-3" role="alert">
+                        <div class="text-primary d-flex justify-content-center mt-3" role="alert">
                             <strong class="shake-text">{{ session('success') }}</strong>
                         </div>
                     @endif
 
                     @if (session('unsuccessfully'))
-                        <div class="text-danger d-flex justify-content-center mb-3" role="alert">
+                        <div class="text-danger d-flex justify-content-center mt-3" role="alert">
                             <strong class="shake-text">{{ session('unsuccessfully') }}</strong>
                         </div>
                     @endif
-
-                    <div class="row p-2 d-flex justify-content-center">
-                        <button type="submit" 
-                                class="btn btn-primary col-md-12">{{__('messages.updateProfile')}}</button>
-                    </div>
 
                 </form>
             </div>

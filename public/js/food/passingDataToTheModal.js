@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $('.edit-food-btn').click(function() {
-        var foodId = $(this).data('food-id');
-        var foodName = $(this).data('food-name');
-        var foodQuantityGrams = $(this).data('food-quantity-grams');
-        var foodCalories = $(this).data('food-calories');
-        var foodCarbohydrate = $(this).data('food-carbohydrate');
-        var foodProtein = $(this).data('food-protein');
-        var foodTotalFat = $(this).data('food-total-fat');
-        var foodSaturatedFat = $(this).data('food-saturated-fat');
-        var foodTransFat = $(this).data('food-trans-fat');
+        let foodId = $(this).data('food-id');
+        let foodName = $(this).data('food-name');
+        let foodQuantityGrams = $(this).data('food-quantity-grams');
+        let foodCalories = $(this).data('food-calories');
+        let foodCarbohydrate = $(this).data('food-carbohydrate');
+        let foodProtein = $(this).data('food-protein');
+        let foodTotalFat = $(this).data('food-total-fat');
+        let foodSaturatedFat = $(this).data('food-saturated-fat');
+        let foodTransFat = $(this).data('food-trans-fat');
         
         // Preenche os campos do modal com os valores obtidos.
         $('#foodId').val(foodId);
