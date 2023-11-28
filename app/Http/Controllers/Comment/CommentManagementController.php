@@ -12,10 +12,12 @@ class CommentManagementController extends Controller
 {
     private $_request;
     private $_commentRepository;
+    private $_timezone;
 
     public function __construct(Request $request, ICommentRepository $commentRepository){
         $this->_request = $request;
         $this->_commentRepository = $commentRepository;
+        $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
     }
 
     public function create(){
