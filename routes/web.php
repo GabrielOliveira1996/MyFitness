@@ -31,17 +31,14 @@ Route::prefix('food')->group(function () {
 });
 
 Route::prefix('goal')->group(function () {
-    Route::get('/index', [App\Http\Controllers\Goal\GoalController::class, 'index'])->name('goal.index');
-    Route::post('/save-profile', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('updateProfile');
-    Route::post('/create/{type}', [App\Http\Controllers\Goal\GoalManagementController::class, 'add'])->name('goal.addfood');
-    Route::get('/create/{type}', [App\Http\Controllers\Goal\GoalController::class, 'add'])->name('goal.add');
-    Route::post('/update/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'update'])->name('goal.updatefood');
-    Route::get('/update/{id}', [App\Http\Controllers\Goal\GoalController::class, 'update'])->name('goal.update');
-    Route::get('/delete/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'delete'])->name('goal.delete');
-    Route::post('/index/search-by-date', [App\Http\Controllers\Goal\GoalManagementController::class, 'searchGoalByDate'])->name('goal.search');
-    Route::match(['get', 'post'], '/create/{type}/search', [App\Http\Controllers\Goal\GoalManagementController::class, 'searchFood'])->name('goal.searchFood');
+    Route::get('/{date}', [App\Http\Controllers\Goal\GoalController::class, 'index'])->name('goal.index');
+    //Route::get('/{date}/search-goal-by-date', [App\Http\Controllers\Goal\GoalManagementController::class, 'searchGoalByDate'])->name('goal.search');
+    Route::post('/save-goal', [App\Http\Controllers\User\UserManagementController::class, 'updateProfile'])->name('goal.save');
+    Route::post('/{date}/create', [App\Http\Controllers\Goal\GoalManagementController::class, 'add'])->name('goal.add');
+    Route::post('/{date}/update', [App\Http\Controllers\Goal\GoalManagementController::class, 'update'])->name('goal.updatefood');
+    //Route::get('/{date}/delete/{id}', [App\Http\Controllers\Goal\GoalManagementController::class, 'delete'])->name('goal.delete');
 });
-
+// Ao chamar as rotas, é necessário que o token seja adicionado ao cabeçalho da requisição.
 Route::prefix('settings')->group(function(){
     Route::get('/informations', [App\Http\Controllers\User\UserController::class, 'settings'])->name('user.settings');
     Route::post('/informations/public-perfil-update', [App\Http\Controllers\User\UserManagementController::class, 'publicProfileUpdate'])->name('public-perfil.update');
@@ -55,8 +52,8 @@ Route::prefix('community')->group(function(){
     Route::get('/search-users', [App\Http\Controllers\User\UserManagementController::class, 'searchUsers'])->name('community.search');
     Route::post('/follow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'followUser'])->name('follow.user');
     Route::post('/unfollow-user/{nickname}', [App\Http\Controllers\User\UserManagementController::class, 'unfollowUser'])->name('unfollow.user');
-    Route::get('/profile/{nickname}', [App\Http\Controllers\User\UserController::class, 'userProfile'])->name('community.userprofile');
-    Route::get('/profile/{nickname}/followers', [App\Http\Controllers\User\UserController::class, 'allFollowers'])->name('community.allFollowers');
+    Route::get('/{nickname}', [App\Http\Controllers\User\UserController::class, 'userProfile'])->name('community.userprofile');
+    Route::get('/{nickname}/followers', [App\Http\Controllers\User\UserController::class, 'allFollowers'])->name('community.allFollowers');
 });
 
 Route::prefix('post')->group(function(){
@@ -69,5 +66,9 @@ Route::prefix('comment')->group(function(){
     Route::post('/create', [App\Http\Controllers\Comment\CommentManagementController::class, 'create'])->name('comment.create');
     Route::get('/delete/{id}', [App\Http\Controllers\Comment\CommentManagementController::class, 'delete'])->name('comment.delete');
     Route::post('/update', [App\Http\Controllers\Comment\CommentManagementController::class, 'update'])->name('comment.update');
+});
+
+Route::prefix('diets')->group(function () {
+    Route::get('/', [App\Http\Controllers\Diet\DietController::class, 'index'])->name('diet.index');
 });
 

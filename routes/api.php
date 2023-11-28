@@ -8,15 +8,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', [App\Http\Controllers\Api\UserControllerAPI::class, 'login']);
-Route::post('/register', [App\Http\Controllers\Api\UserControllerAPI::class, 'register']);
-
-Route::prefix('food')->group(function () {
-    Route::get('/all', [App\Http\Controllers\Api\FoodControllerAPI::class, 'allFoods']);
-    Route::post('/create', [App\Http\Controllers\Api\FoodControllerAPI::class, 'createFood']);
-    Route::put('/update/{id}', [App\Http\Controllers\Api\FoodControllerAPI::class, 'updateFood']);
-    Route::delete('/delete/{id}', [App\Http\Controllers\Api\FoodControllerAPI::class, 'deleteFood']);
+Route::prefix('goal')->group(function () {
+    Route::get('/search-food', [App\Http\Controllers\Goal\ApiGoalController::class, 'searchFood'])->name('goal.searchFood');
+    Route::delete('/delete', [App\Http\Controllers\Goal\ApiGoalController::class, 'delete'])->name('goal.delete');
+    Route::get('/{date}', [App\Http\Controllers\Goal\ApiGoalController::class, 'index'])->name('goal.list');
+    Route::get('/{date}/search-goal-by-date', [App\Http\Controllers\Goal\ApiGoalController::class, 'searchGoalByDate'])->name('goal.search');
 });
-
-
-Route::put('/update', [App\Http\Controllers\Api\GoalControllerAPI::class, 'createBasalMetabolicRateRepos']);
