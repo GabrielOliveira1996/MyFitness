@@ -123,7 +123,8 @@ class UserRepository implements IUserRepository
     public function publicSettingsUpdate($user, $id){
         return $this->_user->where('id', $id)->update([
             'name' => $user['name'],
-            'bio' => $user['bio']
+            'bio' => $user['bio'],
+            'nickname' => $user['nickname']
         ]);
     }
 
