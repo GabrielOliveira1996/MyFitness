@@ -12,57 +12,23 @@ class GoalController extends Controller
     private $_userService;
     private $_foodRepository;
     private $_goalRepository;
+    private $_timezone;
 
-    public function __construct(
-        UserService $userService,
-        FoodRepository $foodRepository,
-        GoalRepository $goalRepository
-    ) {
+    public function __construct(UserService $userService, FoodRepository $foodRepository, GoalRepository $goalRepository){
         $this->middleware('auth');
         $this->_userService = $userService;
         $this->_foodRepository = $foodRepository;
         $this->_goalRepository = $goalRepository;
+        $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
     }
 
-    public function index()
-    {
-        // O método localiza os alimentos e os separa 
-        // em diferentes tipos, como café da manhã, 
-        // almoço, lanche, jantar, pré-treino e pós-treino. 
-        // Em seguida, são realizados cálculos para somar 
-        // as calorias, carboidratos, proteínas e gorduras 
-        // desses alimentos. Esses valores são então passados 
-        // para a visualização.
-        $date = date('Y-m-d');
-        $userGoals = $this->_userService->getDailyMealGoals($date);
-        return view('goal.index', [
-            'date' => $date,
-            'user' => $userGoals['user'],
-            'breakfasts' => $userGoals['breakfast'],
-            'lunchs' => $userGoals['lunch'],
-            'snacks' => $userGoals['snack'],
-            'dinners' => $userGoals['dinner'],
-            'preWorkouts' => $userGoals['preWorkout'],
-            'postWorkouts' => $userGoals['postWorkout'],
-            'goalCalories' => $userGoals['goalCalories'],
-            'goalCarbohydrate' => $userGoals['goalCarbohydrate'],
-            'goalProtein' => $userGoals['goalProtein'],
-            'goalTotalFat' => $userGoals['goalTotalFat'],
-            'caloriesOfTheDay' => $userGoals['caloriesOfTheDay'],
-            'carbohydratesOfTheDay' => $userGoals['carbohydratesOfTheDay'],
-            'proteinOfTheDay' => $userGoals['proteinOfTheDay'],
-            'totalFatOfTheDay' => $userGoals['totalFatOfTheDay']
-        ]);
+    public function index($date){
+        $user = \Auth::user();
+        $totalConsumption = $this->_goalRepository->totalConsumption($date, $user);
+        return view('goal.index', compact('date', 'user', 'totalConsumption'));
     }
 
-    public function add($type)
-    {
-        $foods = $this->_foodRepository->index();
-        return view('goal.add', compact('foods', 'type'));
-    }
-
-    public function update($id)
-    {
+    public function update($id){
         $food = $this->_goalRepository->find($id);
         return view('goal.update', compact('food'));
     }
