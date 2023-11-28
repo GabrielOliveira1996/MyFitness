@@ -168,6 +168,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{{ asset('js/user/login.js') }}"></script>
+    <script>
+        window.APP_URL = "{{ config('app.url') }}";
+    </script>
 
 </body>
 

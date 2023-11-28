@@ -39,7 +39,6 @@
 
     <!--SweetAlert2-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-
 </head>
 
 <body>
@@ -182,6 +181,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>  
     <script type="module" src="{{asset('js/user/logout.js')}}"></script>
+    <script>
+        window.APP_URL = "{{ config('app.url') }}";
+    </script>
     
 </body>
 </html>
