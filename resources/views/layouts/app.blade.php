@@ -91,27 +91,22 @@
                         </li>
                         @else
                         
-                        <li class="nav-item dropdown">
+                        <li id="vue-user-logout" class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ __('messages.HelloMessage') }}
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{ route('community.userprofile', ['nickname' => Auth::user()->nickname]) }}">
-                                    {{ __('messages.Profile') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('goal.index') }}">
-                                    {{ __('messages.MyGoals') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('community.allFollowers', ['nickname' => Auth::user()->nickname]) }}">
-                                    {{ __('messages.following') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('food.all') }}">
-                                    {{ __('messages.MyFoods') }}
-                                </a>
                                 <a class="dropdown-item" href="{{ route('user.settings') }}">
                                     {{ __('messages.Settings') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" @click="logout" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('messages.SignOut') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
 
@@ -124,14 +119,9 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                {{ __('messages.SignOut') }}
+                            <a class="nav-link text-light" href="{{ route('goal.index', ['date' => $date = (new DateTime('now'))->setTimezone(new DateTimeZone('America/Sao_Paulo'))->format('Y-m-d') ]) }}">
+                                {{ __('messages.MyGoals') }}
                             </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
                         </li>
                         @endguest
                     </ul>
@@ -190,7 +180,8 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>  
+    <script type="module" src="{{asset('js/user/logout.js')}}"></script>
     
 </body>
 </html>

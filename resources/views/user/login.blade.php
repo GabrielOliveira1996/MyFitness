@@ -40,7 +40,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="vue-user-login">
         <div class="container py-5">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-5">
@@ -53,12 +53,12 @@
                         <p class="d-flex justify-content-center">{{ __('messages.GoToMyFitness') }}</p>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}" autocomplete="off">
+                            <form @submit.prevent="login" autocomplete="off">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-12 inputBox @error('email') is-invalid @enderror">
-                                        <input id="email" type="text" class="" name="email" value="{{ old('email') }}" required autofocus>
+                                        <input v-model="email" id="email" type="text" class="" name="email" required autofocus>
                                         <label for="email" class="labelInput">{{ __('E-mail') }}</label>
                                     </div>
                                     <div class="col-md-12">
@@ -72,7 +72,7 @@
 
                                 <div class="row mt-3">
                                     <div class="col-md-12 inputBox">
-                                        <input id="password" type="password" class="" name="password" required autocomplete="current-password">
+                                        <input v-model="password" id="password" type="password" class="" name="password" required autocomplete="current-password">
                                         <label for="password" class="labelInput">{{ __('messages.Password') }}</label>
                                     </div>
                                     <div class="col-md-12">
@@ -83,6 +83,10 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
+                                <small v-if="error" class="row d-flex justify-content-center text-danger">
+                                    @{{ error }}
+                                </small>
 
                                 <small>
                                     <a href="{{ route('recover-password') }}">{{ __('messages.ForgotMyPassword') }}</a>
@@ -161,6 +165,10 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ asset('js/user/login.js') }}"></script>
+
 </body>
 
 </html>
