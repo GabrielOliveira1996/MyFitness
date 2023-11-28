@@ -19,18 +19,11 @@ class GoalService
         $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
     }
 
-    public function create($type, $goal)
-    {
-        $goal += ['type_of_meal' => $type];
-        $user = Auth::user();
-        $date = date('Y-m-d');
-        $this->_goalValidator->food($goal);
-
-        $searchGoal = $this->_goalRepository
-                            ->searchFoodGoal($goal['name'], $goal['type_of_meal'], $date, $user);
-        
+    public function create($user, $date, $goal){
+        $searchGoal = $this->_goalRepository->searchFoodGoal($goal, $date, $user);                 
         if($searchGoal != null) {
             $sumGoal = [
+                'id' => $searchGoal['id'],
                 'name' => $goal['name'],
                 'quantity_grams' => $goal['quantity_grams'] + $searchGoal['quantity_grams'],
                 'calories' => $goal['calories'] + $searchGoal['calories'],
@@ -41,17 +34,10 @@ class GoalService
                 'trans_fat' => $goal['trans_fat'] + $searchGoal['trans_fat'],
                 'type_of_meal' => $goal['type_of_meal']
             ];
-            $update = $this->_goalRepository->update($searchGoal['id'], $sumGoal);
+            $update = $this->_goalRepository->update($sumGoal);
             return $update;
         }
-        $create = $this->_goalRepository->create($type, $goal, $user);
+        $create = $this->_goalRepository->create($goal, $user, $date);
         return $create;
-    }
-
-    public function update($id, $goal)
-    {
-        $this->_goalValidator->food($goal);
-        $update = $this->_goalRepository->update($id, $goal);
-        return $update;
     }
 }
