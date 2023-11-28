@@ -26,6 +26,7 @@ class UserManagementController extends Controller
     private $_userValidator;
     private $_userRepository;
     private $_mailProvider;
+    private $_timezone;
 
     public function __construct(
         Request $request, 
@@ -41,6 +42,7 @@ class UserManagementController extends Controller
         $this->_userRepository = $userRepository;
         $this->_followerRepository = $followerRepository;
         $this->_mailProvider = $mailProvider;
+        $this->_timezone = date_default_timezone_set('America/Sao_Paulo');
     }
 
     public function updateProfile()
@@ -111,6 +113,7 @@ class UserManagementController extends Controller
                 throw new Exception(json_encode($validator->messages()), 422); // Unprocessable Entity.
             }
             $register = $this->_userRepository->create($user);
+            $token = $register->createToken('auth_token')->plainTextToken;
             Auth::login($register);
             return redirect()->route('welcome');
         }catch(Exception $e){
@@ -125,13 +128,13 @@ class UserManagementController extends Controller
             if(Auth::attempt($credentials)) {
                 if ($this->_request->hasSession()) {
                     $this->_request->session()->put('auth.password_confirmed_at', time());
+                    $token = Auth::user()->createToken('auth_token')->plainTextToken;
                 }
-                return redirect()->route('welcome');
+                return response()->json(['token' => $token], 200);
             }
-            throw new Exception(json_encode(['email' => [trans('auth.failed')]]), 422);
+            throw new Exception('Usuário não foi encontrado em nossos registros.', 422);
         }catch(Exception $e){
-            $errors = json_decode($e->getMessage(), true);
-            return redirect()->back()->withErrors($errors);
+            return response()->json(['error' => $e->getMessage()]);
         }
     }
 
@@ -196,38 +199,49 @@ class UserManagementController extends Controller
         try{
             $this->middleware('auth');
             $user = Auth::user();
-            $data = $this->_request->only(['name', 'bio']);
-            if($data['name'] != $user->name || $data['bio'] != $user->bio){
-                $update = $this->_userRepository->publicSettingsUpdate($data, $user->id);
-                return redirect()->route('user.settings')->with('success', 'Alterações realizadas com sucesso.');
+            $data = $this->_request->only(['name', 'nickname', 'bio']);
+            $rules = [
+                'name' => 'required',
+                'bio' => 'required'
+            ];
+            if($user['nickname'] != $data['nickname']){
+                $rules['nickname'] = 'required|unique:users,nickname';
             }
-            throw new Exception('Nenhuma alteração foi realizada. Não há nada a ser salvo.');
+            $validator = \Validator::make($data, $rules);
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+            if($user['name'] === $data['name'] && 
+                $user['nickname'] === $data['nickname'] && 
+                $user['bio'] === $data['bio']){
+                throw new Exception('Não existe nada para ser salvo.');
+            }
+            $update = $this->_userRepository->publicSettingsUpdate($data, $user->id);
+            return redirect()->route('user.settings')->with('success', 'Alterações realizadas com sucesso.');
         }catch(Exception $e){
             return redirect()->route('user.settings')->with('unsuccessfully', $e->getMessage());
         }
     }
 
-    public function profilePictureUpdate(){
+    public function uploadProfileImage(){
         try{
             $this->middleware('auth');
             $user = Auth::user();
-            if($this->_request->hasFile('profile_image')){
-                $file = $this->_request->file('profile_image');
-                $size = $file->getSize(); 
-                $type = $file->getMimeType(); 
-                if($type === 'image/jpeg' || $type === 'image/jpg' || $type === 'image/png'){
-                    if($user->profile_image){
-                        $deletePreviousImage = Storage::delete($user->profile_image);
-                    }
-                    $path = $file->store('profile');
-                    $user = ['id' => $user->id, 'profile_image' => $path];
-                    $updateProfileImage = $this->_userRepository->profileImageUpdate($user);
-                }else{
-                    throw new Exception('Apenas imagens nos formatos PNG, JPG e JPEG podem ser enviadas.', 415);
-                }  
-                return redirect()->route('user.settings');
+            $file = $this->_request->file('profile_image');
+            $rules = [
+                'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            ];
+            $validator = \Validator::make([
+                'profile_image' => $file
+            ], $rules);
+            if($validator->fails()){
+                throw new Exception($validator->errors()->first());
             }
-            throw new Exception('Não existe nada para ser atualizado.', 415);
+            $deletePreviousImage = Storage::delete($user->profile_image);
+            $path = $file->store('profile');
+            $user = ['id' => $user->id, 'profile_image' => $path];
+            $updateProfileImage = $this->_userRepository->profileImageUpdate($user);
+            return redirect()->route('user.settings')->with('success', 'Imagem de perfil foi atualizada com sucesso.');
         }catch(Exception $e){
             return redirect()->route('user.settings')->with('unsuccessfully', $e->getMessage());
         }
